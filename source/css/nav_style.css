@@ -26,8 +26,8 @@
 }
 
 .nav-desk li {
-    padding: 3vw;
-    padding-bottom: 1vw;
+    padding: 2.3vw;
+    /*padding-bottom: 1vw;*/
     text-decoration: none;
     color: white;
     font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
@@ -67,12 +67,13 @@ div.nav-phone.lang > div {
 
 .nav-phone .logo {
     width: auto;
+    margin-left: 2vw;
 }
 
 .nav-phone .title {
     width: auto;
     margin: auto;
-    margin-left: calc(1.5rem - 3.5vw);
+    margin-left: 0;
     padding-left: 0;
     font-size: 6.3vw;
     text-transform: uppercase;
@@ -162,11 +163,11 @@ div.nav-phone.lang > div {
 }
 
 .darker-gray {
-    background-color: #cccccc;
+    background-color: #cccccc ;
 }
 
 .hidden {
-    visibility: hidden;
+    visibility: hidden ;
 }
 
 .no-display {
@@ -174,7 +175,7 @@ div.nav-phone.lang > div {
 }
 
 .red-wine {
-    background: #a60000;
+    background: #a60000 !important;
 }
 
 div.square {
@@ -184,7 +185,11 @@ div.square {
 }
 
 .blur {
-    filter: blur(1px);
+    filter: blur(1px) !important;
+}
+
+.scroll {
+    padding-right: 13px;
 }
 
 /* Styling elements using ID */
@@ -276,44 +281,103 @@ body {
     transition: 0.5s ease;
 }
 
-
 /* Styles management based on screen width */
 
 /* Tablet style */
 /* Why 670? Trial and error - testing values from 540 to 800 (Common phone and tablet widths) */
 @media screen and (min-width: 670px) {
-    .nav-desk > ul {
-        list-style-type: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        background-color: rgba(240, 240, 240, 0.89);
-        width: 100%;
-        left: 0;
-        margin-top: 0.5%;
-        padding: 0;
-        border-bottom: 2px solid black;
-        position: relative;
-        background-color: inherit;
-        width: 99%;
+
+    div.language.select-btn:hover{
+        cursor: pointer;
     }
+
+    #nav-bar{
+        max-height: calc(520px*0.1);
+        max-width: 100vw;
+    }
+
+    div.square {
+        width: calc(520px*0.1) !important;
+        height: 52px !important;
+    }
+
+    div.nav-phone.lang{
+        width: calc(520px*0.1);
+        height: 52px !important;
+    }
+
+    .lang-text{
+        font-size: calc(520px*0.056);
+    }
+
+    #menu-img, #search-img{
+        height: calc(520px*0.07) !important;
+        width: calc(520px*0.07) !important;
+    }
+
+    .nav-phone .logo > img{
+        width: calc(560px*0.08);
+        height: calc(560px*0.08);
+        padding: calc(560px*0.01);
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    .nav-phone .title{
+        font-size: calc(580px*0.063);
+        margin-left: 0 !important;
+    }
+
+    .nav-phone .language-dropdown-content{
+        top: calc(520px*0.1);
+        height: calc(520px*0.1);
+    }
+
+    .nav-phone .search-input{
+        height: calc(520px*0.0755);
+        font-size: calc(520px*0.035);
+        padding: calc(520px*0.01);
+        padding-top: 0;
+        padding-bottom: 0; 
+        border: 0.5px solid #dddddd;
+        height: 51px;
+    }
+
+    input.search-input{
+        width: calc(520px*0.4);
+        max-height: calc(520px*0.1);
+    }
+
+    .nav-phone .logo{
+        margin: auto;
+        margin-right: 0 !important;
+    }
+
+    .nav-desk li{
+        padding: calc(520px*0.018);
+        font-size: calc(420px*0.045);
+    }
+
     #language:hover {
         background-color: #e7e7e7;
         cursor: pointer;
     }
-    .nav-desk li:hover {
-        background-color: rgba(240, 240, 240, 0.89);
-        color: #4e4e4e;
-        cursor: pointer;
+
+    .nav-desk > ul {
+        display: none;
+        margin: auto;
+        width: 240px;
+        padding: 30px;
+        padding-right: 8px;
+        padding-left: 8px;
+        right: 0;
+        height: 100vh;
     }
-    .nav-desk li {
-        margin-bottom: 0 !important;
-        position: relative;
-        color: black;
-        border-right: 1px solid black;
-        width: 100%;
-        padding: 1.5vw;
-        font-size: 2.3vw;
+
+    .nav-desk li:hover {
+        box-shadow: 0px 0px 33px -14px rgba(255,255,255,0.74);
+        transform: scale(1.03);
+        transition: linear 0.2s;
     }
     .nav-elem {
         display: flex;
@@ -322,33 +386,36 @@ body {
     li:last-child {
         border-right: none !important;
     }
-    .nav-desk {
-        display: block;
+
+    #nav-btn:hover{
+        cursor: pointer;
+        background-color: #c40000;
+        transition: ease 0.7s;
     }
-    .nav-phone {
-        display: none;
-    }
+
     #search:hover {
         background-color: #e9e9e9;
         cursor: pointer;
+        transition: ease 0.7s;
     }
 }
 
 /* Bigger screens */
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1100px) {
     .nav-desk li {
-        font-size: 1.5vw;
-        padding: 1.1vw;
+        font-size: calc(480px*0.045);
+        padding: calc(520px*0.0223);
     }
-    .nav-elem > iv {
-        transform: translateY(0%);
-    }
-}
 
-/* Desktop viewport */
-@media only screen and (min-width: 1500px) {
-    .nav-desk li {
-        font-size: 1.2vw;
-        padding: 0.8vw;
+    .nav-desk > ul {
+        width: 308px;
+        padding: 14px;
+        padding-right: 0;
+        padding-left: 0;
+        height: 100vh;
+    }
+
+    .nav-elem > div {
+        transform: translateY(0%);
     }
 }

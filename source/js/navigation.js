@@ -70,22 +70,15 @@ function check_resize() {
         // Removes blur effect.
         if (document.querySelector(".content").classList.contains("blur")) {
             document.querySelector(".content").classList.remove("blur");
+            resetMenu();
         }
         // Switches menu button image source to menu icon.
         if (menuBtnImg.getAttribute("src") == exit_img_src) {
             menuBtnImg.setAttribute("src", original_attribute_src);
         }
-        // Shows the navigation bar if it is hidden and resets the menu.
-        if (window.getComputedStyle(NavMenu).display == "none" || window.getComputedStyle(NavMenu).display == "block") {
-            NavMenu.style.display = "flex";
-            resetMenu();
-        }
+
 
     // Otherwise if we are in the phone/tablet viewport, hide the navigation bar.
-    } else if (window.innerWidth < 670) {
-        if (window.getComputedStyle(NavMenu).display == "flex") {
-            NavMenu.style.display = "none";
-        }
     }
 }
 
