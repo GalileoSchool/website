@@ -139,13 +139,10 @@ $(document).ready(function () {
      */
     function slideIn(isDesktop, selector = searchInput) {
         var width;
-        console.warn(isDesktop);
         if (isDesktop)
             width = "208px"; //calc(520px*0.4)
         else
             width = "40vw";
-        
-        console.warn(width);
 
         if (width.length <= 0) {
             console.error("NullReferenceException: Object reference not set to an instance of an object.");
