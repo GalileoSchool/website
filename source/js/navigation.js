@@ -16,15 +16,7 @@ if (menuBtnImg == null) {
 const NavMenuDesk = document.getElementById("nav-desk");
 const NavMenu = document.getElementById("navigation");
 
-// TEMPORARY SOLUTION. WILL BE REPLACED ONCE WE MOVE TO HANDLEBARS.
-// Checks if we are in the sk folder and figures out the correct path to image.
-let exit_img_src
-if (Parse_Url(window.location.pathname, 2) == "sk") {
-    // ".." means the directory above the one we are in
-    exit_img_src = "../images/icons/close.png";
-} else {
-    exit_img_src = "images/icons/close.png";
-}
+let exit_img_src = "../../images/icons/close.png"
 
 // Gets default path to menu button image source.
 let original_attribute_src = menuBtnImg.getAttribute("src");
