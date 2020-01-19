@@ -27,8 +27,10 @@ $(document).ready(function () {
             $(".right").removeClass("scroll");
         }
         if ($(window).width() == 670) {
-            if (searching)
+            if (searching) {
                 slideOut();
+                searching = false;
+            }
         }
     });
 
