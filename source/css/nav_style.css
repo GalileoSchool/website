@@ -377,6 +377,7 @@ body {
     .nav-desk li:hover {
         box-shadow: 0px 0px 33px -14px rgba(255,255,255,0.74);
         transform: scale(1.03);
+        background-color: #c60000;
         transition: linear 0.2s;
     }
     .nav-elem {
