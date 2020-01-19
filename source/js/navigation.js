@@ -78,7 +78,7 @@ function check_resize() {
         }
 
 
-    // Otherwise if we are in the phone/tablet viewport, hide the navigation bar.
+        // Otherwise if we are in the phone/tablet viewport, hide the navigation bar.
     }
 }
 

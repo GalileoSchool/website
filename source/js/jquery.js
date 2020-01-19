@@ -35,7 +35,7 @@ $(document).ready(function () {
     });
 
     // Toggles navigation menu on click of the navigation menu button.
-    $("#nav-btn").click(function() {
+    $("#nav-btn").click(function () {
         openMenu(isDesktop);
     });
 
@@ -43,7 +43,7 @@ $(document).ready(function () {
         if (isDesktop)
             openDesktopMenu();
         else
-            openPhoneMenu(); 
+            openPhoneMenu();
     }
 
     function openDesktopMenu() {
@@ -94,7 +94,7 @@ $(document).ready(function () {
         });
 
     $(".language-dropdown-content").hover(null, function () {
-        if(!$(langBtn).is(":hover"))
+        if (!$(langBtn).is(":hover"))
             $(".language-dropdown-content").slideUp("fast");
     });
 
@@ -116,17 +116,17 @@ $(document).ready(function () {
     });
 
     // Closes elements when clicking on other parts of the website.
-    $(document).click(function() {
+    $(document).click(function () {
         // Fades out the language dropdown if it is shown.
-        if (!$(".language-dropdown-content").is(":hover") && 
-            !$(".language-dropdown-content").is(":hidden") && 
+        if (!$(".language-dropdown-content").is(":hover") &&
+            !$(".language-dropdown-content").is(":hidden") &&
             !$(langBtn).is(":hover")) {
 
-                $(".language-dropdown-content").fadeOut(200);
+            $(".language-dropdown-content").fadeOut(200);
 
-        // Slides out the search bar if it is shown.
-        } else if (!$(searchInput).is(":hover") && 
-            !$(searchInput).is(":hidden") && 
+            // Slides out the search bar if it is shown.
+        } else if (!$(searchInput).is(":hover") &&
+            !$(searchInput).is(":hidden") &&
             !$(searchBtn).is(":hover")) {
 
             slideOut();
