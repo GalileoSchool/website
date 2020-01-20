@@ -66,26 +66,11 @@ function toggle_menu() {
  */
 function check_resize() {
     // If in desktop viewport (width needs to be the same as in nav_style.css):
-    if (window.innerWidth >= 670) {
-        // Removes blur effect.
-        if (document.querySelector(".content").classList.contains("blur")) {
-            document.querySelector(".content").classList.remove("blur");
-        }
-        // Switches menu button image source to menu icon.
-        if (menuBtnImg.getAttribute("src") == exit_img_src) {
-            menuBtnImg.setAttribute("src", original_attribute_src);
-        }
-        // Shows the navigation bar if it is hidden and resets the menu.
-        if (window.getComputedStyle(NavMenu).display == "none" || window.getComputedStyle(NavMenu).display == "block") {
-            NavMenu.style.display = "flex";
-            resetMenu();
-        }
-
-    // Otherwise if we are in the phone/tablet viewport, hide the navigation bar.
-    } else if (window.innerWidth < 670) {
-        if (window.getComputedStyle(NavMenu).display == "flex") {
-            NavMenu.style.display = "none";
-        }
+    if (window.innerWidth >= 670 && window.innerWidth < 1920 && document.querySelector(".content").classList.contains("blur") && document.querySelector(".left").classList.contains("red-wine")) {
+        resetPhoneMenu();
+    }
+    else if (window.innerWidth < 670 && window.innerWidth > 150 && document.querySelector(".content").classList.contains("blur") && !document.querySelector(".left").classList.contains("red-wine")) {
+        resetDesktopMenu();
     }
 }
 
@@ -95,7 +80,7 @@ function check_resize() {
  * closes the navigation for us, but we also need to set all the attributes
  * directly.
  */
-function resetMenu() {
+function resetPhoneMenu() {
     const left = document.querySelector(".left");
     const language_drop = document.querySelector(".language-dropdown");
     const search = document.querySelector(".search-drop");
@@ -112,5 +97,23 @@ function resetMenu() {
     logo.classList.remove("logo-img-open-nav");
     logo_cont.classList.remove("logo-open-nav");
     title_cont.classList.remove("title-cont-open-nav");
-    menuBtn.classList.remove("active-nav-btn");
+}
+
+function resetDesktopMenu() {
+    const left = document.querySelector(".left");
+    const language_drop = document.querySelector(".language-dropdown");
+    const search = document.querySelector(".search-drop");
+    const title_cont = document.querySelector(".title");
+    const logo_cont = document.querySelector(".logo");
+    const logo = document.getElementById("logo");
+    const title = document.getElementById("title");
+
+    console.log("Resetting the menu now!");
+    left.classList.add("red-wine");
+    search.classList.add("hidden");
+    language_drop.classList.add("no-display");
+    title.classList.add("title-open-nav");
+    logo.classList.add("logo-img-open-nav");
+    logo_cont.classList.add("logo-open-nav");
+    title_cont.classList.add("title-cont-open-nav");
 }

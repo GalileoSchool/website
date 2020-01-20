@@ -1,8 +1,62 @@
 // Executes functions as soon as the page is fully loaded.
-$(document).ready(function() {
+$(document).ready(function () {
+    var isDesktop = DesktopCheck();
+    var isOverflow = OverflowCheck();
+
+    // This is how variable assignment is done in JavaScript.
+    let langBtn = "#langBtn";
+
+    // Set up variables for search.
+    let searchBtn = "#search";
+    let searchInput = ".search-input";
+    let searching = false;
+
+    // Set up variables for logo and title.
+    let logo = ".nav-phone .logo";
+    let title = ".nav-phone .title";
+
+
+    $(window).resize(function () {
+        isDesktop = DesktopCheck();
+        isOverflow = OverflowCheck();
+        if (isOverflow) {
+            $("body").addClass("scroll");
+            $(".right").addClass("scroll");
+        }
+        else if (!isOverflow) {
+            $("body").removeClass("scroll");
+            $(".right").removeClass("scroll");
+        }
+        if ($(window).width() == 670) {
+            if (searching) {
+                slideOut();
+                searching = false;
+            }
+        }
+    });
 
     // Toggles navigation menu on click of the navigation menu button.
-    $("#nav-btn").click(function() {
+    $("#nav-btn").click(function () {
+        openMenu(isDesktop);
+    });
+
+    function openMenu(isDesktop) {
+        if (isDesktop)
+            openDesktopMenu();
+        else
+            openPhoneMenu();
+    }
+
+    function openDesktopMenu() {
+        // Slides the navigation out / in.
+        $(".navbar").slideToggle("fast");
+        // Toggles look of menu button (e.g. colour).
+        $("#nav-btn").toggleClass("active-nav-btn");
+        // Fade out language dropdown.
+        $(".dropdown-content").fadeOut(200);
+    }
+
+    function openPhoneMenu() {
         // Slides the navigation out / in.
         $(".navbar").slideToggle("fast");
         // Toggles look of menu button (e.g. colour).
@@ -23,30 +77,33 @@ $(document).ready(function() {
         $(".title").toggleClass("title-cont-open-nav");
         // Adjusts padding and margin of logo image.
         $("#logo").toggleClass("logo-img-open-nav");
-    });
-
-    // This is how variable assignment is done in JavaScript.
-    let langBtn = "#langBtn";
+    }
 
     // Hooking a click event listener into langBtn.
-    $(langBtn).click(function() {
+    $(langBtn).click(function () {
+        if (isDesktop) { return; }
         $(".language-dropdown-content").fadeToggle(200);
         return;
     });
 
-    // Set up variables for search.
-    let searchBtn = "#search";
-    let searchInput = ".search-input";
-    let searching = false;
+    $(langBtn).hover(
+        function () { if (!isDesktop) { return; } $(".language-dropdown-content").slideDown("fast"); },
+        function () {
+            if (!$(".language-dropdown-content").is(":hover")) {
+                $(".language-dropdown-content").slideUp("fast");
+            }
+        });
 
-    // Set up variables for logo and title.
-    let logo = ".nav-phone .logo";
-    let title = ".nav-phone .title";
+    $(".language-dropdown-content").hover(null, function () {
+        if (!$(langBtn).is(":hover"))
+            $(".language-dropdown-content").slideUp("fast");
+    });
 
     // Manages search button sliding on click.
-    $(searchBtn).click(function() {
+    $(searchBtn).click(function () {
+        isDesktop = DesktopCheck();
         if (!searching) {
-            slideIn();
+            slideIn(isDesktop);
 
             // TEMPORARY SOLUTION.
             searching = true;
@@ -60,17 +117,17 @@ $(document).ready(function() {
     });
 
     // Closes elements when clicking on other parts of the website.
-    $(document).click(function() {
+    $(document).click(function () {
         // Fades out the language dropdown if it is shown.
-        if (!$(".language-dropdown-content").is(":hover") && 
-            !$(".language-dropdown-content").is(":hidden") && 
+        if (!$(".language-dropdown-content").is(":hover") &&
+            !$(".language-dropdown-content").is(":hidden") &&
             !$(langBtn).is(":hover")) {
 
-                $(".language-dropdown-content").fadeOut(200);
+            $(".language-dropdown-content").fadeOut(200);
 
-        // Slides out the search bar if it is shown.
-        } else if (!$(searchInput).is(":hover") && 
-            !$(searchInput).is(":hidden") && 
+            // Slides out the search bar if it is shown.
+        } else if (!$(searchInput).is(":hover") &&
+            !$(searchInput).is(":hidden") &&
             !$(searchBtn).is(":hover")) {
 
             slideOut();
@@ -81,17 +138,30 @@ $(document).ready(function() {
     /**
      * @description Controls the slide-in animation for the {selector}.
      * @param {*} selector
+     * @param {Boolean} isDesktop
      */
-    function slideIn(selector = searchInput) {
+    function slideIn(isDesktop, selector = searchInput) {
+        var width;
+        if (isDesktop)
+            width = "208px"; //calc(520px*0.4)
+        else
+            width = "40vw";
+
+        if (width.length <= 0) {
+            console.error("NullReferenceException: Object reference not set to an instance of an object.");
+            return;
+        }
         // Show and slide in the {selector}.
         $(selector).show();
         $(selector).delay(0).animate({
-            "width": "40vw",
+            "width": width,
             "opacity": .9
         }, 400);
         // Hides logo and title.
-        $(logo).addClass("no-display");
-        $(title).addClass("no-display");
+        if ($(window).width() < 1035) {
+            $(logo).addClass("no-display");
+            $(title).addClass("no-display");
+        }
     };
 
     /**
@@ -110,22 +180,16 @@ $(document).ready(function() {
         $(title).removeClass("no-display");
     };
 
-    // TEMPORARILY DISABLED UNTIL DESKTOP VIEWPORT IS FINALISED
-    // Use the code below for the desktop version (It is the hover version)
+    function DesktopCheck() {
+        var width = $(window).width();
+        if (width >= 670)
+            return true;
+        else
+            return false;
+    }
 
-    /*
-    let langBtn = "#langBtn";
-
-    $(langBtn).hover(
-        function() {$(".language-dropdown-content").slideDown("fast");},
-        function() {
-            if(!$(".language-dropdown-content").is(":hover")){
-                $(".language-dropdown-content").slideUp("fast");
-            }
-    });
-
-    $(".language-dropdown-content").hover(null,function () {
-        $(".language-dropdown-content").slideUp("fast");
-    });
-    */
+    function OverflowCheck() {
+        var overflow = document.querySelector("body").scrollHeight > $(window).innerHeight();
+        return overflow;
+    }
 });
