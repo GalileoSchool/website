@@ -15,7 +15,6 @@ $(document).ready(function () {
     let logo = ".nav-phone .logo";
     let title = ".nav-phone .title";
 
-
     $(window).resize(function () {
         isDesktop = DesktopCheck();
         isOverflow = OverflowCheck();

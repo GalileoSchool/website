@@ -3,13 +3,6 @@
 /* In general, we are using vw (view-width) units = browser's content window width */
 /* vw units will scale with the content window -> responsive website */
 
-html{
-    font-family: 'Times New Roman', Times, serif !important;
-}
-
-body{
-    font-family: 'Times New Roman', Times, serif !important;
-}
 
 /* Mobile viewport first, serves as a foundation that can be expanded using queries */
 
@@ -70,7 +63,6 @@ div.nav-phone.lang > div {
     height: 8vw;
     margin: auto;
     padding: 1vw;
-    box-sizing: content-box;
 }
 
 .nav-phone .logo {
@@ -193,7 +185,7 @@ div.square {
 }
 
 .blur {
-    filter: blur(4px) !important;
+    filter: blur(1px) !important;
 }
 
 .scroll {
@@ -261,8 +253,7 @@ div.square {
 /* The rest */
 .content {
     z-index: 0;
-    padding: 0.5em;
-    padding-top: 2px;
+    padding: 1em;
     text-align: center;
 }
 
@@ -296,29 +287,13 @@ body {
 /* Why 670? Trial and error - testing values from 540 to 800 (Common phone and tablet widths) */
 @media screen and (min-width: 670px) {
 
-    div.language.select-btn:hover, div.nav-phone.light-gray.lang.lang-text{
+    div.language.select-btn:hover{
         cursor: pointer;
     }
 
     #nav-bar{
-        max-height: calc(670px*0.1);
+        max-height: calc(520px*0.1);
         max-width: 100vw;
-    }
-
-    div.right{
-        height: 52px !important;
-        margin: auto;
-        margin-bottom: 0;
-        padding-right: 0.5em;
-    }
-
-    div.left{
-        padding-left: 0.5em;
-    }
-
-    div.nav-phone.search-drop.dropdown.square{
-        margin: auto;
-        margin-bottom: 0;
     }
 
     div.square {
@@ -341,15 +316,15 @@ body {
     }
 
     .nav-phone .logo > img{
-        width: calc(670px*0.08);
-        height: calc(670px*0.08);
-        padding: calc(670px*0.01);
+        width: calc(560px*0.08);
+        height: calc(560px*0.08);
+        padding: calc(560px*0.01);
         padding-bottom: 0;
         padding-top: 0;
     }
 
     .nav-phone .title{
-        font-size: calc(670px*0.063);
+        font-size: calc(580px*0.063);
         margin-left: 0 !important;
     }
 
@@ -365,7 +340,7 @@ body {
         padding-top: 0;
         padding-bottom: 0; 
         border: 0.5px solid #dddddd;
-        height: 52px;
+        height: 51px;
     }
 
     input.search-input{
@@ -395,7 +370,7 @@ body {
         padding: 30px;
         padding-right: 8px;
         padding-left: 8px;
-        right: 0.5em;
+        right: 0;
         height: 100vh;
     }
 
