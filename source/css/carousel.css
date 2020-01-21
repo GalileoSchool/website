@@ -1,14 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
+@import url('https://fonts.googleapis.com/css?family=IM+Fell+Great+Primer:400i&display=swap');
+
+/* Minimum height for carousel */
+.carousel-item > img {
+    overflow: hidden;
+    min-height: 300px;
+}
+
+/* Left arrow */
 .carousel-control-prev-icon {
     width: 2.5vw;
     height: 2.5vw;
 }
 
+/* Right arrow */
 .carousel-control-next-icon {
     width: 2.5vw;
     height: 2.5vw;
 }
 
+/* Bar indicators on the bottom */
 .carousel-indicators li {
     width: 3vw;
     height: 0.3vw;
+}
+
+
+/* WIP BELOW */
+
+
+/* Extra bit under the image for text */
+.carousel-under {
+    background-color: #a60000;
+    text-align: center;
+}
+
+/* Slide title text */
+.slide-title {
+    color: #ffffff;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif; /* TODO Font needs to be worked out */
+    font-size: 6vw;
+    text-transform: capitalize;
+    text-align: center;
+    margin: 2vw;
+}
+
+/* Slide description text */
+.slide-text {
+    color: #ffffff;
+    font-family: 'IM Fell Great Primer', serif; /* TODO Font needs to be worked out */
+    font-size: 3vw;
+    text-align: center;
+    margin: 2vw;
+}
+
+/* Horizontal line */
+.carousel-extra > hr {
+    margin: 0;
+    color: #ffffff;
 }
