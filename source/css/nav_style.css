@@ -200,11 +200,6 @@ div.square {
     padding-right: 13px;
 }
 
-ol.carousel-indicators{
-    bottom: 3px !important;
-    margin-bottom: 8px;
-}
-
 /* Styling elements using ID */
 #logo-container {
     width: 100%;
@@ -227,11 +222,6 @@ ol.carousel-indicators{
 #search {
     background-color: #cccccc;
     width: 10vw;
-}
-
-#carousel{
-    width: 100vw !important;
-    margin: auto !important;
 }
 
 #search-img {
@@ -304,15 +294,6 @@ body {
 /* Tablet style */
 /* Why 670? Trial and error - testing values from 540 to 800 (Common phone and tablet widths) */
 @media screen and (min-width: 670px) {
-
-    #carousel{
-        width: 100% !important;
-    }
-
-    ol.carousel-indicators{
-        bottom: 10px !important;
-        margin-bottom: 1rem;
-    }
 
     div.language.select-btn:hover, div.nav-phone.light-gray.lang.lang-text{
         cursor: pointer;
