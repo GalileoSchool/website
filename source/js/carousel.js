@@ -2,34 +2,36 @@
 // To see it, find the console tab
 console.log("Carousel JavaScript has loaded!");
 
-// const images = document.querySelector('.carousel-item img');
-
-// find all carousel items
-const items = Array.from(document.getElementsByClassName("carousel-item"))
-
-// TEST
-var test = items[0].children
-console.log(test.getElementsByTagName("IMG"))
-
-// get the first image in each item
-const images = items.map(item => item.children.getElementsByTagName("IMG")[0]) // DOES NOT WORK
+// get the carousel images
+const images = Array.from(document.querySelectorAll('.carousel-item img'))
 // get the source strings
 const imageSources = images.map(image => image.getAttribute("src"))
 // get the alternate mobile source strings
-const imageMobileSources = imageSources.map(source => source.replace(".png", "_mobile.png"))
+const imageMobileSources = imageSources.map(source => source.replace(".jpg", "_mobile.jpg"))
 
+// check if needs to switch picture source
 window.addEventListener("resize", check_resize, false);
 
+// just to make sure that the correct picture is displayed
+check_resize()
+
 function check_resize() {
-    // If in desktop viewport (width needs to be the same as in nav_style.css):
+    // if in desktop viewport
     if (window.innerWidth >= 670 && window.innerWidth < 1920) {
-        images.forEach(image, i => {
-            image.setAttribute("src", imageSources[i])
+        images.forEach((image, i) => {
+            // only change the image if needed
+            if (image.getAttribute("src") != imageSources[i]) {
+                image.setAttribute("src", imageSources[i])
+            }
         });
     }
+    // if on mobile viewport
     else if (window.innerWidth < 670 && window.innerWidth > 150) {
-        images.forEach(image, i => {
-            image.setAttribute("src", imageMobileSources[i])
+        images.forEach((image, i) => {
+            // only change the image if needed
+            if (image.getAttribute("src") != imageMobileSources[i]) {
+                image.setAttribute("src", imageMobileSources[i])
+            } 
         });
     }
 }
