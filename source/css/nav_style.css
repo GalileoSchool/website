@@ -3,12 +3,14 @@
 /* In general, we are using vw (view-width) units = browser's content window width */
 /* vw units will scale with the content window -> responsive website */
 
-html{
+html {
     font-family: 'Times New Roman', Times, serif !important;
 }
 
-body{
+body {
     font-family: 'Times New Roman', Times, serif !important;
+    padding: 0;
+    margin: 0;
 }
 
 /* Mobile viewport first, serves as a foundation that can be expanded using queries */
@@ -196,10 +198,6 @@ div.square {
     filter: blur(4px) !important;
 }
 
-.scroll {
-    padding-right: 13px;
-}
-
 /* Styling elements using ID */
 #logo-container {
     width: 100%;
@@ -231,7 +229,7 @@ div.square {
 
 #nav-bar {
     height: 10vw;
-    width: 100vw;
+    width: 100%;
 }
 
 #menu-img, #search-img {
@@ -263,11 +261,6 @@ div.square {
     z-index: 0;
     padding-top: 2px !important;
     text-align: center;
-}
-
-body {
-    padding: 0;
-    margin: 0;
 }
 
 .lang-text {
@@ -408,10 +401,12 @@ body {
         background-color: #c60000;
         transition: linear 0.2s;
     }
+
     .nav-elem {
         display: flex;
         justify-content: center;
     }
+    
     li:last-child {
         border-right: none !important;
     }

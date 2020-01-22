@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
 @import url('https://fonts.googleapis.com/css?family=IM+Fell+Great+Primer:400i&display=swap');
 
+.carousel-item {
+    padding: 0;
+}
+
 /* Minimum height for carousel */
 .carousel-item > img {
     overflow: hidden;
     min-height: 300px;
     min-width: 1000px;
+    width: 100%;
 }
 
 /* Extra bit under the image for text */
@@ -13,9 +18,12 @@
     background-color: #a60000;
     text-align: center;
     position: relative;
+    bottom: 0;
     left: auto;
     right: auto;
-    height: 20vw;
+    margin: 0;
+    padding: 1vw;
+    height: 16vw;
 }
 
 /* Slide title text */
@@ -59,8 +67,9 @@
 
 /* Bar indicators on the bottom */
 .carousel-indicators {
-    bottom: 2vw;
+    bottom: 1vw;
 }
+
 .carousel-indicators > li {
     width: 3vw;
     height: 0.4vw;

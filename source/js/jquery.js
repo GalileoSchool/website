@@ -19,14 +19,6 @@ $(document).ready(function () {
     $(window).resize(function () {
         isDesktop = DesktopCheck();
         isOverflow = OverflowCheck();
-        if (isOverflow) {
-            $("body").addClass("scroll");
-            $(".right").addClass("scroll");
-        }
-        else if (!isOverflow) {
-            $("body").removeClass("scroll");
-            $(".right").removeClass("scroll");
-        }
         if ($(window).width() == 670) {
             if (searching) {
                 slideOut();
