@@ -1,15 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
 @import url('https://fonts.googleapis.com/css?family=IM+Fell+Great+Primer:400i&display=swap');
 
-.carousel-item {
-    padding: 0;
+/* Default viewport is for phones */
+
+/* Separator on top for large screens */
+#nav-carousel-separator {
+    display: none;
+    height: 52px;
 }
 
 /* Minimum height for carousel */
 .carousel-item > img {
     overflow: hidden;
     min-height: 300px;
-    min-width: 1000px;
+    min-width: 400px;
     width: 100%;
 }
 
@@ -23,46 +27,55 @@
     right: auto;
     margin: 0;
     padding: 1vw;
-    height: 16vw;
-}
-
-/* Slide title text */
-.slide-title {
-    color: #ffffff;
-    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;  /* TODO Font needs to be worked out */
-    font-size: 2vw;
-    text-transform: uppercase;
-    text-align: center;
-    margin: 1vw;
-}
-
-/* Slide description text */
-.slide-text {
-    color: #ffffff;
-    font-family: 'IM Fell Great Primer', serif; /* TODO Font needs to be worked out */
-    font-size: 1.5vw;
-    text-align: center;
-    margin: 1vw;
+    height: 40vw;
+    display: block;
 }
 
 /* Horizontal line */
 .carousel-caption > hr {
     height: 1px;
     border: 0;
-    /* margin: 0; */
+    margin: 0;
     background-color: #ffffff;
 }
 
+/* Slide title text */
+.slide-title {
+    color: #ffffff;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;  /* TODO Font needs to be worked out */
+    text-transform: uppercase;
+    text-align: center;
+    margin: 1vw;
+    font-size: 7vw;
+}
+
+/* Slide description text */
+.slide-text {
+    color: #ffffff;
+    font-family: 'IM Fell Great Primer', serif; /* TODO Font needs to be worked out */
+    text-align: center;
+    margin: 1vw;
+    font-size: 4vw;
+}
+
 /* Left arrow */
+.carousel-control-prev {
+    width: 30vw;
+}
+
 .carousel-control-prev-icon {
-    width: 2.5vw;
-    height: 2.5vw;
+    width: 7vw;
+    height: 7vw;
 }
 
 /* Right arrow */
+.carousel-control-next {
+    width: 30vw;
+}
+
 .carousel-control-next-icon {
-    width: 2.5vw;
-    height: 2.5vw;
+    width: 7vw;
+    height: 7vw;
 }
 
 /* Bar indicators on the bottom */
@@ -71,12 +84,77 @@
 }
 
 .carousel-indicators > li {
-    width: 3vw;
-    height: 0.4vw;
+    width: 10vw;
+    height: 1vw;
 }
 
 /* Tablet size */
-/* @media screen and (min-width: 670px) { */
+@media screen and (min-width: 670px) {
+    /* Separator appears on larger screens */
+    #nav-carousel-separator {
+        display: block;
+    }
+
+    /* Minimum height for carousel */
+    .carousel-item > img {
+        overflow: hidden;
+        min-height: 300px;
+        min-width: 1000px;
+        width: 100%;
+    }
+
+    /* Caption disappears on larger screens */
+    .carousel-caption {
+        padding: 1vw;
+        height: 16vw;
+        display: none;
+    }
+
+    /* Bar indicators on the bottom */
+    .carousel-indicators {
+        bottom: 1vw;
+    }
+    
+    .carousel-indicators > li {
+        width: 3vw;
+        height: 0.4vw;
+    }
+
+    /* Left arrow */
+    .carousel-control-prev {
+        width: 10vw;
+    }
+
+    .carousel-control-prev-icon {
+        width: 3vw;
+        height: 3vw;
+    }
+
+    /* Right arrow */
+    .carousel-control-next {
+        width: 10vw;
+    }
+
+    .carousel-control-next-icon {
+        width: 3vw;
+        height: 3vw;
+    }
+
+    /* Slide title text */
+    .slide-title {
+        margin: 1vw;
+        font-size: 2vw;
+    }
+
+    /* Slide description text */
+    .slide-text {
+        margin: 1vw;
+        font-size: 1.5vw;
+    }
+}
+
 
 /* Bigger screen */
-/* @media only screen and (min-width: 1100px) { */
+/* @media only screen and (min-width: 1100px) {
+    
+} */
