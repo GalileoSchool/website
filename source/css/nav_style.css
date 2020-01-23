@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
-
 /* In general, we are using vw (view-width) units = browser's content window width */
 /* vw units will scale with the content window -> responsive website */
 
@@ -85,7 +83,7 @@ div.nav-phone.lang > div {
     margin: auto;
     margin-left: 0;
     padding-left: 0;
-    font-size: 6.3vw;
+    font-size: 6vw;
     text-transform: uppercase;
 }
 
