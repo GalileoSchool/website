@@ -49,7 +49,8 @@
 /* Slide description text */
 .slide-text {
     color: #ffffff;
-    font-family: 'IM Fell Great Primer', serif; /* TODO Font needs to be worked out */
+    font-family: 'Times New Roman', Times, serif; /* TODO Font needs to be worked out */
+    font-style: italic;
     text-align: center;
     margin: 1vw;
     font-size: 4vw;
