@@ -2,13 +2,18 @@
 /* vw units will scale with the content window -> responsive website */
 
 html {
-    font-family: 'Times New Roman', Times, serif !important;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 body {
-    font-family: 'Times New Roman', Times, serif !important;
+    font-family: 'Times New Roman', Times, serif;
     padding: 0;
     margin: 0;
+}
+
+/* Prevent user selecting / highlighting on navbar  */
+nav {
+    user-select: none;
 }
 
 /* Mobile viewport first, serves as a foundation that can be expanded using queries */
@@ -81,8 +86,7 @@ div.nav-phone.lang > div {
 .nav-phone .title {
     width: auto;
     margin: auto;
-    margin-left: 0;
-    padding-left: 0;
+    margin-left: 2vw;
     font-size: 6vw;
     text-transform: uppercase;
 }
@@ -161,21 +165,20 @@ div.nav-phone.lang > div {
 }
 
 .nav-phone .search-input:focus {
-    /* !important is a special ccs attribute that overrides any styles that could clash with it */
-    opacity: 1 !important;
+    opacity: 1;
 }
 
 /* Pre-made styling classes */
 .light-gray {
-    background-color: #e4e4e4 !important;
+    background-color: #e4e4e4;
 }
 
 .darker-gray {
-    background-color: #cccccc ;
+    background-color: #cccccc;
 }
 
 .hidden {
-    visibility: hidden ;
+    visibility: hidden;
 }
 
 .no-display {
@@ -183,17 +186,16 @@ div.nav-phone.lang > div {
 }
 
 .red-wine {
-    background: #a60000 !important;
+    background: #a60000;
 }
 
 div.square {
-    display: flex;
     width: 10vw;
     text-align: center;
 }
 
 .blur {
-    filter: blur(4px) !important;
+    filter: blur(4px);
 }
 
 /* Styling elements using ID */
@@ -237,12 +239,12 @@ div.square {
 
 /* Logo + title CSS */
 .logo-open-nav {
-    margin-left: 3vw !important;
+    margin-left: 3vw;
 }
 
 .logo-img-open-nav {
-    margin-bottom: 0.2vw !important;
-    padding-bottom: 0.5vw !important;
+    margin-bottom: 0.2vw;
+    padding-bottom: 0.5vw;
 }
 
 .title-open-nav {
@@ -250,14 +252,14 @@ div.square {
 }
 
 .title-cont-open-nav {
-    margin-bottom: 0.5vw !important;
-    padding-bottom: 0.5vw !important;
+    margin-bottom: 0.5vw;
+    padding-bottom: 0.5vw;
 }
 
 /* The rest */
 .content {
     z-index: 0;
-    padding-top: 2px !important;
+    padding-top: 2px;
     text-align: center;
 }
 
@@ -276,7 +278,7 @@ div.square {
 }
 
 .active-nav-btn {
-    background-color: #c40000 !important;
+    background-color: #c40000;
     transition: 0.5s ease;
 }
 
@@ -291,7 +293,7 @@ div.square {
     }
 
     .content{
-        padding: 0.5em;
+        padding-top: 2px !important;
     }
 
     #nav-bar{
@@ -303,11 +305,6 @@ div.square {
         height: 52px !important;
         margin: auto;
         margin-bottom: 0;
-        padding-right: 0.5em;
-    }
-
-    div.left{
-        padding-left: 0.5em;
     }
 
     div.nav-phone.search-drop.dropdown.square{
@@ -317,12 +314,12 @@ div.square {
 
     div.square {
         width: calc(520px*0.1) !important;
-        height: 52px !important;
+        height: 52px;
     }
 
     div.nav-phone.lang{
         width: calc(520px*0.1);
-        height: 52px !important;
+        height: 52px;
     }
 
     .lang-text{
@@ -330,8 +327,8 @@ div.square {
     }
 
     #menu-img, #search-img{
-        height: calc(520px*0.07) !important;
-        width: calc(520px*0.07) !important;
+        height: calc(520px*0.07);
+        width: calc(520px*0.07);
     }
 
     .nav-phone .logo > img{
@@ -344,7 +341,7 @@ div.square {
 
     .nav-phone .title{
         font-size: calc(670px*0.063);
-        margin-left: 0 !important;
+        margin-left: 0;
     }
 
     .nav-phone .language-dropdown-content{
@@ -369,7 +366,7 @@ div.square {
 
     .nav-phone .logo{
         margin: auto;
-        margin-right: 0 !important;
+        margin-right: 0;
     }
 
     .nav-desk li{
@@ -389,7 +386,7 @@ div.square {
         padding: 30px;
         padding-right: 8px;
         padding-left: 8px;
-        right: 0.5em;
+        right: 0;
         height: 100vh;
     }
 
@@ -406,7 +403,7 @@ div.square {
     }
     
     li:last-child {
-        border-right: none !important;
+        border-right: none;
     }
 
     #nav-btn:hover{
@@ -440,4 +437,11 @@ div.square {
     .nav-elem > div {
         transform: translateY(0%);
     }
+}
+
+/* Counteract _reboot.scss */
+*,
+*::before,
+*::after {
+  box-sizing: unset;
 }
