@@ -1,3 +1,4 @@
+// This file is responsible for human interaction with the navigation such as clicking the hamburger button and a menu pops-up
 // Executes functions as soon as the page is fully loaded.
 $(document).ready(function () {
     let isDesktop = DesktopCheck();
@@ -15,14 +16,14 @@ $(document).ready(function () {
     let logo = ".nav-phone .logo";
     let title = ".nav-phone .title";
 
+    // When resizing browser this function checks for desktop viewport and browser
+    //  overflow and makes decisions based on the returned values / data
     $(window).resize(function () {
         isDesktop = DesktopCheck();
         isOverflow = OverflowCheck();
-        if ($(window).width() == 670) {
-            if (searching) {
-                slideOut();
-                searching = false;
-            }
+        if (isDesktop && searching) {
+            slideOut();
+            searching = false;
         }
     });
 
@@ -135,7 +136,7 @@ $(document).ready(function () {
     function slideIn(isDesktop, selector = searchInput) {
         let width;
         if (isDesktop) {
-            width = "208px"; //calc(520px*0.4)
+            width = "208px";
         } else {
             width = "40vw";
         }

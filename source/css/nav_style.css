@@ -286,9 +286,10 @@ div.square {
 
 /* Tablet style */
 /* Why 670? Trial and error - testing values from 540 to 800 (Common phone and tablet widths) */
+/* Warning: Any changes made to this "conditional" such as changing the min-width will have to be repeated in nav_jquery.js file in the function check_resize() */
 @media screen and (min-width: 670px) {
 
-    div.language.select-btn:hover, div.nav-phone.light-gray.lang.lang-text{
+    div.language-select-btn:hover, div.nav-phone.light-gray.lang.lang-text{
         cursor: pointer;
     }
 
