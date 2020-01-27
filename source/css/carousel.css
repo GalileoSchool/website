@@ -1,5 +1,9 @@
 /* Default viewport is for phones */
 
+#carousel {
+    margin-bottom: 3px;
+}
+
 /* Separator on top for large screens */
 #nav-carousel-separator {
     display: none;
@@ -22,17 +26,10 @@
     left: auto;
     right: auto;
     margin: 0;
-    padding: 1vw;
-    height: 40vw;
+    padding: 0;
+    padding-top: 1vw;
+    height: 35vw;
     display: block;
-}
-
-/* Horizontal line */
-.carousel-caption > hr {
-    height: 1px;
-    border: 0;
-    margin: 0;
-    background-color: #ffffff;
 }
 
 /* Slide title text */
@@ -42,7 +39,7 @@
     text-transform: uppercase;
     text-align: center;
     margin: 1vw;
-    font-size: 7vw;
+    font-size: 6vw;
 }
 
 /* Slide description text */
@@ -51,14 +48,14 @@
     font-family: 'Times New Roman', Times, serif; /* TODO Font needs to be worked out */
     font-style: italic;
     text-align: center;
-    margin: 1vw;
+    padding: 1.25rem;
     font-size: 4vw;
 }
 
 /* Left arrow */
 .carousel-control-prev {
     width: 25vw;
-    height: 65%;
+    height: 68%;
     min-height: 300px;
 }
 
@@ -70,7 +67,7 @@
 /* Right arrow */
 .carousel-control-next {
     width: 25vw;
-    height: 65%;
+    height: 68%;
     min-height: 300px;
 }
 
@@ -91,6 +88,11 @@
 
 /* Tablet size */
 @media screen and (min-width: 670px) {
+
+    #carousel {
+        margin-bottom: 0;
+    }
+
     /* Separator appears on larger screens */
     #nav-carousel-separator {
         display: block;

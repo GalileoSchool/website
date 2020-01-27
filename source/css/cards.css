@@ -4,51 +4,52 @@
 }
 
 .wine-red{
-    background-color: #a60000 !important;
-    color: white !important;
+    background-color: #a60000;
+    color: white;
 }
 
 .square-corners{
-    border-radius: 0 !important;
+    border-radius: 0;
 }
 
 .card-footer{
-    padding: 0 !important;
+    padding: 0;
 }
 
 .card {
-    border-radius: 0 !important;
+    border-radius: 0;
     border: none;
     background-color: #a60000;
     color: white;
     margin-left: 3px !important;
     margin-right: 0 !important;
+    margin-bottom: 3px !important;
 }
 
 .card-body{
     font-style: italic;
-    /*color: rgb(189, 188, 188);*/
-    color: #dddddd;
-    font-size: calc(670px*0.03);
+    color: white;
+    font-size: 1.5vw;
 }
 
 hr {
-    margin: 0 !important;
-    background-color: white !important;
-    color: white !important;
+    margin: 0;
+    background-color: white;
+    color: white;
     border: 1px solid white;
 }
 
 .card-title{
     width: 100%;
     text-transform: uppercase;
-    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif !important;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+    font-size: 2vw;
     margin-top: .5rem;
     margin-bottom: .5rem;
 }
 
 .card-deck{
-    margin-top: 5px !important;
+    margin-top: 3px !important;
     width: 100% !important;
     margin: auto;
 }
@@ -57,8 +58,22 @@ hr {
     margin-left: 0 !important;
 }
 
+/* Mobile viewport */
 @media screen and (max-width: 670px){
-    .card{
+    .card {
         margin-left: 0 !important;
+    }
+
+    .card-deck {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-title {
+        font-size: 6vw;
+    }
+    
+    .card-body {
+        font-size: 4vw;
     }
 }
