@@ -34,11 +34,12 @@ nav {
     z-index: 1;
     padding: 8vw;
     /* Prevents ul items being shifted to the right */
-    padding-left: 0;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 }
 
 .nav-desk li {
-    padding: 2.3vw;
+    padding: 2vw;
     /*padding-bottom: 1vw;*/
     text-decoration: none;
     color: white;
@@ -86,7 +87,7 @@ div.nav-phone.lang > div {
 .nav-phone .title {
     width: auto;
     margin: auto;
-    margin-left: 2vw;
+    margin-left: 0;
     font-size: 5.9vw;
     text-transform: uppercase;
 }
@@ -173,6 +174,12 @@ div.nav-phone.lang > div {
     background-color: #e4e4e4;
 }
 
+.scroll-menu {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 2 !important;
+}
+
 .darker-gray {
     background-color: #cccccc;
 }
@@ -196,6 +203,7 @@ div.square {
 
 .blur {
     filter: blur(4px);
+    transition: all 1.5s;
 }
 
 /* Styling elements using ID */
@@ -259,8 +267,9 @@ div.square {
 /* The rest */
 .content {
     z-index: 0;
-    padding-top: 2px;
+    /*padding-top: 2px;*/
     text-align: center;
+    transition: linear 1.5s;
 }
 
 .lang-text {
@@ -294,7 +303,7 @@ div.square {
     }
 
     .content{
-        padding-top: 2px !important;
+        /*padding-top: 2px !important;*/
     }
 
     #nav-bar{
@@ -385,6 +394,7 @@ div.square {
         margin: auto;
         width: 240px;
         padding: 30px;
+        padding-top: 0px;
         padding-right: 8px;
         padding-left: 8px;
         right: 0;
@@ -432,7 +442,9 @@ div.square {
         padding: 14px;
         padding-right: 0;
         padding-left: 0;
+        padding-top: 0;
         height: 100vh;
+        transition: none 0.75s;
     }
 
     .nav-elem > div {

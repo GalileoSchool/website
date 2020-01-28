@@ -88,6 +88,7 @@ function resetPhoneMenu() {
     const logo_cont = document.querySelector(".logo");
     const logo = document.getElementById("logo");
     const title = document.getElementById("title");
+    const header = document.querySelector("header");
 
     console.log("Resetting the menu now!");
     left.classList.remove("red-wine");
@@ -97,6 +98,7 @@ function resetPhoneMenu() {
     logo.classList.remove("logo-img-open-nav");
     logo_cont.classList.remove("logo-open-nav");
     title_cont.classList.remove("title-cont-open-nav");
+    header.classList.remove("scroll-menu");
 }
 
 function resetDesktopMenu() {
@@ -107,6 +109,7 @@ function resetDesktopMenu() {
     const logo_cont = document.querySelector(".logo");
     const logo = document.getElementById("logo");
     const title = document.getElementById("title");
+    const header = document.querySelector("header");
 
     console.log("Resetting the menu now!");
     left.classList.add("red-wine");
@@ -116,4 +119,5 @@ function resetDesktopMenu() {
     logo.classList.add("logo-img-open-nav");
     logo_cont.classList.add("logo-open-nav");
     title_cont.classList.add("title-cont-open-nav");
+    header.classList.add("scroll-menu");
 }

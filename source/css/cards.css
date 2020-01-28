@@ -61,4 +61,9 @@ hr {
     .card{
         margin-left: 0 !important;
     }
+
+    .card-deck {
+        display: flex;
+        flex-direction: column;
+    }
 }

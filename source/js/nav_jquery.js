@@ -42,7 +42,7 @@ $(document).ready(function () {
 
     function openDesktopMenu() {
         // Slides the navigation out / in.
-        $(".navbar").slideToggle("fast");
+        $(".navbar").slideToggle("slow");
         // Toggles look of menu button (e.g. colour).
         $("#nav-btn").toggleClass("active-nav-btn");
         // Fade out language dropdown.
@@ -70,6 +70,8 @@ $(document).ready(function () {
         $(".title").toggleClass("title-cont-open-nav");
         // Adjusts padding and margin of logo image.
         $("#logo").toggleClass("logo-img-open-nav");
+        //
+        $("header").toggleClass("scroll-menu");
     }
 
     // Hooking a click event listener into langBtn.
