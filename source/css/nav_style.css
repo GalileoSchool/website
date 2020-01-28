@@ -178,6 +178,10 @@ div.nav-phone.lang > div {
     max-height: 100vh;
 }
 
+.red-wine {
+    background-color: #a60000 !important;
+}
+
 .scroll-menu {
     position: sticky !important;
     top: 0 !important;
