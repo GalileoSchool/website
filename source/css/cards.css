@@ -68,12 +68,4 @@ hr {
         display: flex;
         flex-direction: column;
     }
-
-    .card-title {
-        font-size: 6vw;
-    }
-    
-    .card-body {
-        font-size: 4vw;
-    }
 }
