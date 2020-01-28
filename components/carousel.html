@@ -10,11 +10,63 @@
     </ol>
     <!-- Carousel content -->
     <div class="carousel-inner">
-        <!-- The items are a language-specific component -->
         <!-- Every item is enclosed in a carousel-item div -->
         <!-- Each item has an img for the slide -->
-        <!-- There's also a carousel caption which contains text -->
-        {{carousel_items}}
+        <!-- Each also has a title and description -->
+        <!-- The contents are language specific and can be found in carousel_contents.html -->
+        <div class="carousel-item active">
+            <img class="d-block w-100" src="../../images/carousel/carousel1.jpg" alt="Picture Not Available!">
+            <div class="carousel-caption">
+                <p class="slide-title">{{carousel_contents.1-title}}</p>
+                <hr>
+                <p class="slide-text">
+                    {{carousel_contents.1-text}}
+                </p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="../../images/carousel/carousel2.jpg" alt="Picture Not Available!">
+            <div class="carousel-caption">
+                <p class="slide-title">{{carousel_contents.2-title}}</p>
+                <hr>
+                <p class="slide-text">
+                    {{carousel_contents.2-text}}
+                </p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="../../images/carousel/carousel3.jpg" alt="Picture Not Available!">
+            <div class="carousel-caption">
+                <p class="slide-title">{{carousel_contents.3-title}}</p>
+                <hr>
+                <p class="slide-text">
+                    {{carousel_contents.3-text}}
+                </p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="../../images/carousel/carousel4.jpg" alt="Picture Not Available!">
+            <div class="carousel-caption">
+                <p class="slide-title">{{carousel_contents.4-title}}</p>
+                <hr>
+                <p class="slide-text">
+                    {{carousel_contents.4-text}}
+                </p>
+            </div>
+        </div>
+        <!-- Template: -->
+        <!-- 
+        <div class="carousel-item">
+            <img class="d-block w-100" src="[LINK TO IMAGE]" alt="Picture Not Available!">
+            <div class="carousel-caption">
+                <p class="slide-title">{{carousel_contents.N-title}}</p>
+                <hr>
+                <p class="slide-text">
+                    {{carousel_contents.N-text}}
+                </p>
+            </div>
+        </div> 
+        -->
     </div>
     <!-- Carousel control arrows -->
     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
