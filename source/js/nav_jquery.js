@@ -3,6 +3,8 @@
 $(document).ready(function () {
     let isDesktop = DesktopCheck();
     let isOverflow = OverflowCheck();
+    let Scroll_Height = calculateTop();
+    let isInMenu = false;
 
     // This is how variable assignment is done in JavaScript.
     let langBtn = "#langBtn";
@@ -27,6 +29,14 @@ $(document).ready(function () {
         }
     });
 
+    $(window).on('scroll', function(){
+        //console.log("Scroll recalculated: " + calculateTop());
+        Scroll_Height = calculateTop();
+        //console.log(isInMenu);
+        if(isInMenu && isDesktop)
+            adjustTop(calculateTop(), "#navigation");
+    });
+
     // Toggles navigation menu on click of the navigation menu button.
     $("#nav-btn").click(function () {
         openMenu(isDesktop);
@@ -47,6 +57,10 @@ $(document).ready(function () {
         $("#nav-btn").toggleClass("active-nav-btn");
         // Fade out language dropdown.
         $(".dropdown-content").fadeOut(200);
+        adjustTop(calculateTop(), "#navigation");
+        $('body').toggleClass('scroll-lock');
+        isInMenu = !isInMenu;
+        //console.warn($('html').scrollTop() + "\nisInMenu: " + isInMenu);
     }
 
     function openPhoneMenu() {
@@ -72,6 +86,11 @@ $(document).ready(function () {
         $("#logo").toggleClass("logo-img-open-nav");
         //
         $("header").toggleClass("scroll-menu");
+        isInMenu = !isInMenu;
+    }
+
+    function calculateTop(selector = "html") {
+        return (67 - $(selector).scrollTop());
     }
 
     // Hooking a click event listener into langBtn.
@@ -129,6 +148,22 @@ $(document).ready(function () {
             searching = false;
         }
     });
+
+    /**
+     * 
+     * @param {Number} calculatedTop 
+     * @param {String} selector 
+     */
+    function adjustTop(calculatedTop, selector) {
+        if(calculatedTop <= 0 )
+            calculatedTop = 0;
+        else if(calculatedTop >= 67)
+            calculatedTop = 67;
+        //console.warn("Calculated Top:" + calculatedTop);
+        $(selector).animate({
+            "top" : String(calculatedTop)
+        }, 0);
+    }
 
     /**
      * @description Controls the slide-in animation for the {selector}.

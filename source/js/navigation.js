@@ -72,6 +72,9 @@ function check_resize() {
     else if (window.innerWidth < 670 && window.innerWidth > 150 && document.querySelector(".content").classList.contains("blur") && !document.querySelector(".left").classList.contains("red-wine")) {
         resetDesktopMenu();
     }
+    else if (window.innerWidth < 670 && window.innerWidth > 150 && !document.querySelector(".content").classList.contains("blur") && document.querySelector(".left").classList.contains("red-wine")){
+        document.getElementById("navigation").setAttribute("style","display:none;");
+    }
 }
 
 /**
@@ -89,6 +92,7 @@ function resetPhoneMenu() {
     const logo = document.getElementById("logo");
     const title = document.getElementById("title");
     const header = document.querySelector("header");
+    const body = document.querySelector("body");
 
     console.log("Resetting the menu now!");
     left.classList.remove("red-wine");
@@ -99,6 +103,7 @@ function resetPhoneMenu() {
     logo_cont.classList.remove("logo-open-nav");
     title_cont.classList.remove("title-cont-open-nav");
     header.classList.remove("scroll-menu");
+    body.classList.add("scroll-lock");
 }
 
 function resetDesktopMenu() {
@@ -110,6 +115,8 @@ function resetDesktopMenu() {
     const logo = document.getElementById("logo");
     const title = document.getElementById("title");
     const header = document.querySelector("header");
+    const body = document.querySelector("body");
+    const navigation = document.getElementById("navigation");
 
     console.log("Resetting the menu now!");
     left.classList.add("red-wine");
@@ -120,4 +127,6 @@ function resetDesktopMenu() {
     logo_cont.classList.add("logo-open-nav");
     title_cont.classList.add("title-cont-open-nav");
     header.classList.add("scroll-menu");
+    body.classList.remove("scroll-lock");
+    navigation.setAttribute("style","display:block;");
 }
