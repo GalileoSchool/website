@@ -59,7 +59,7 @@ hr {
 }
 
 /* Mobile viewport */
-@media screen and (max-width: 670px){
+@media screen and (max-width: 669px){
     .card {
         margin-left: 0 !important;
     }
