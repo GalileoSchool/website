@@ -27,19 +27,9 @@
     right: auto;
     margin: 0;
     padding: 0;
-    padding-top: 1vw;
-    height: 35vw;
+    height: 20vw;
+    width: 100%;
     display: block;
-}
-
-/* Slide title text */
-.slide-title {
-    color: #ffffff;
-    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;  /* TODO Font needs to be worked out */
-    text-transform: uppercase;
-    text-align: center;
-    margin: 1vw;
-    font-size: 6vw;
 }
 
 /* Slide description text */
@@ -48,14 +38,14 @@
     font-family: 'Times New Roman', Times, serif; /* TODO Font needs to be worked out */
     font-style: italic;
     text-align: center;
-    padding: 1.25rem;
-    font-size: 4vw;
+    padding: 2vw;
+    font-size: 5vw;
 }
 
 /* Left arrow */
 .carousel-control-prev {
     width: 25vw;
-    height: 63%;
+    height: 75%;
     min-height: 150px;
 }
 
@@ -67,7 +57,7 @@
 /* Right arrow */
 .carousel-control-next {
     width: 25vw;
-    height: 63%;
+    height: 75%;
     min-height: 150px;
 }
 
@@ -109,8 +99,13 @@
     /* Caption disappears on larger screens */
     .carousel-caption {
         padding: 1vw;
-        height: 16vw;
-        display: none;
+        display: block;
+        position: absolute;
+        background-color: rgba(0,0,0,0.3);
+        top: 2vw;
+        left: 5vw;
+        width: auto;
+        height: 5vw;
     }
 
     /* Bar indicators on the bottom */
@@ -147,15 +142,12 @@
         height: 3vw;
     }
 
-    /* Slide title text */
-    .slide-title {
-        margin: 1vw;
-        font-size: 2vw;
-    }
-
     /* Slide description text */
     .slide-text {
-        margin: 1vw;
-        font-size: 1.5vw;
+        margin: 0;
+        padding: 0;
+        font-size: 2vw;
+        height: auto;
+        width: auto;
     }
 }
