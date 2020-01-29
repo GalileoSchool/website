@@ -119,8 +119,59 @@ function transpileUsingNestedHandlebars(fileString, fileToCreate, components) {
 		fileString = template(components)
 	}
 	// write output to file
+	fileString = autoFillParentFolders(fileToCreate, fileString);
 	fs.writeFileSync(fileToCreate, fileString)
-	console.log('Transpiled file', fileToCreate)
+	console.log('Transpiled file: ' + fileToCreate + "\n")
+}
+
+/** Identifies and auto-fills parent folders
+ * 
+ * @param {String} filepath 
+ * @param {*} file_content 
+ * @returns {String} The string with filled placeholders
+ */
+function autoFillParentFolders(filepath, file_content) {
+	var path = filepath;
+	while(file_content.indexOf('{fill_parents}') != -1) {
+		file_content = file_content.replace('{fill_parents}', joinRepeatedString(getNumberOfParentFolders(path,'html'),'../'));
+	}
+	while(file_content.indexOf('{fill_parents_one_less}') != -1) {
+		file_content = file_content.replace('{fill_parents_one_less}', joinRepeatedString(getNumberOfParentFolders(path,'html') - 1,'../'));
+	}
+	// console.log("Parent Folders AutoFill Complete On The File: " + path);
+	return file_content;
+}
+
+/** Joins together the same string x number of times
+ * 
+ * @param {Number} multiplier Number how many times the pattern is to be repeated
+ * @param {String} pattern The pattern to be repeatedly joined 
+ * @returns {String} A joined string of the pattern
+ */
+function joinRepeatedString(multiplier, pattern) {
+	var string_builder = "";
+	for(var i = 0; (i + 1) <= multiplier; i++){
+		string_builder += pattern;
+	}
+	//console.log(string_builder);
+	return string_builder;
+}
+
+/** Get the number of parent folders from the "Root" of HTML files
+ *  
+ * @param {String} path Path of the file 
+ * @param {String} root 
+ * @returns {Number} Number of parent folders from root 
+ */
+function getNumberOfParentFolders(path, root = "html") {
+	var parsed = path.split(root + '/');
+	var counter = -1;
+	if(parsed[1]) {
+		var parsed_even_more = parsed[1].split('/');
+		counter = parsed_even_more.length;
+		//console.log(parsed[1] + " number of parents: " + parsed_even_more.length);
+	}
+	return counter
 }
 
 // first we prepare all the folders in the build folder

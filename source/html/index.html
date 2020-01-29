@@ -5,7 +5,9 @@
 {{head}}
 
 <body>
+    <header>
     {{navigation}}
+    </header>
     <div class="red-wine" id="nav-carousel-separator"></div>
     <div class="content">
         {{carousel}}
@@ -14,8 +16,8 @@
     </div>
 
     <!-- Scripts at the end to make sure everything else is already loaded . -->
-    <script src="../../js/navigation.js"></script>
-    <script src="../../js/carousel.js"></script>
+    <script src="{fill_parents}js/navigation.js"></script>
+    <script src="{fill_parents}js/carousel.js"></script>
 </body>
 
 </html>
