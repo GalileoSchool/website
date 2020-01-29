@@ -72,7 +72,7 @@ function check_resize() {
     else if (window.innerWidth < 670 && window.innerWidth > 150 && document.querySelector(".content").classList.contains("blur") && !document.querySelector(".left").classList.contains("red-wine")) {
         resetDesktopMenu();
     }
-    else if (window.innerWidth < 670 && window.innerWidth > 150 && !document.querySelector(".content").classList.contains("blur") && document.querySelector(".left").classList.contains("red-wine")){
+    else if (window.innerWidth < 670 && window.innerWidth > 150 && !document.querySelector(".content").classList.contains("blur")){
         document.getElementById("navigation").setAttribute("style","display:none;");
     }
 }
