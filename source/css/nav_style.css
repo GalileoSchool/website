@@ -406,7 +406,7 @@ div.square {
     }
 
     .nav-desk li:hover {
-        box-shadow: 0px 0px 33px -14px rgba(255,255,255,0.74);
+        box-shadow: 0px 0px 33px -14px rgba(0, 0, 0, 0.2);
         transform: scale(1.03);
         background-color: #c60000;
         transition: linear 0.2s;
@@ -454,11 +454,4 @@ div.square {
     .nav-elem > div {
         transform: translateY(0%);
     }
-}
-
-/* Counteract _reboot.scss */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
 }
