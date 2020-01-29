@@ -207,7 +207,7 @@ div.square {
 
 .blur {
     filter: blur(4px);
-    transition: all 1.5s;
+    transition: ease 1s;
 }
 
 /* Styling elements using ID */
@@ -273,7 +273,7 @@ div.square {
     z-index: 0;
     /*padding-top: 2px;*/
     text-align: center;
-    transition: linear 1.5s;
+    transition: ease .75s;
 }
 
 .lang-text {
@@ -345,12 +345,12 @@ div.square {
         width: calc(520px*0.07);
     }
 
-    .nav-phone .logo > img{
-        width: calc(670px*0.08);
-        height: calc(670px*0.08);
+    .nav-phone .logo > img {
+        height: 61px;
+        width: auto;
         padding: calc(670px*0.01);
-        padding-bottom: 0;
-        padding-top: 0;
+        padding-bottom: 2px;
+        padding-top: 2px;
     }
 
     .nav-phone .title{
