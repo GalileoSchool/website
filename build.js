@@ -138,6 +138,9 @@ function autoFillParentFolders(filepath, file_content) {
 	while(file_content.indexOf('{fill_parents_one_less}') != -1) {
 		file_content = file_content.replace('{fill_parents_one_less}', joinRepeatedString(getNumberOfParentFolders(path,'html') - 1,'../'));
 	}
+	while(file_content.indexOf('{fill_parents_one_more}') != -1) {
+		file_content = file_content.replace('{fill_parents_one_more}', joinRepeatedString(getNumberOfParentFolders(path,'html') + 1,'../'));
+	}
 	// console.log("Parent Folders AutoFill Complete On The File: " + path);
 	return file_content;
 }
