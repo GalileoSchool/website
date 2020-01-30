@@ -53,7 +53,7 @@ function isCssFile (filePath) {
 }
 
 function makeFolder (folderPath) {
-	// console.log('Preparing folder', folderPath)
+	 console.log('Preparing folder', folderPath)
 	// create if it doesn't exists yet
 	if (!fs.existsSync(folderPath)) {
 		fs.mkdirSync(folderPath)
@@ -120,28 +120,39 @@ function transpileUsingNestedHandlebars(fileString, fileToCreate, components) {
 	}
 	// write output to file
 	fileString = autoFillParentFolders(fileToCreate, fileString);
+	fileString = languageFillPath(fileToCreate, fileString);
 	fs.writeFileSync(fileToCreate, fileString)
-	console.log('Transpiled file: ' + fileToCreate + "\n")
+	//console.log('Transpiled file: ' + fileToCreate + "\n")
 }
 
 /** Identifies and auto-fills parent folders
  * 
- * @param {String} filepath 
- * @param {*} file_content 
+ * @param {String} filepath Path to file where the component is located
+ * @param {*} file_content Content of the file
  * @returns {String} The string with filled placeholders
  */
 function autoFillParentFolders(filepath, file_content) {
 	var path = filepath;
 	while(file_content.indexOf('{fill_parents}') != -1) {
-		file_content = file_content.replace('{fill_parents}', joinRepeatedString(getNumberOfParentFolders(path,'html'),'../'));
+		file_content = file_content.replace('{fill_parents}', joinRepeatedString(getNumberOfParentFolders(path,'build') - 1,'../'));
 	}
-	while(file_content.indexOf('{fill_parents_one_less}') != -1) {
-		file_content = file_content.replace('{fill_parents_one_less}', joinRepeatedString(getNumberOfParentFolders(path,'html') - 1,'../'));
-	}
-	while(file_content.indexOf('{fill_parents_one_more}') != -1) {
-		file_content = file_content.replace('{fill_parents_one_more}', joinRepeatedString(getNumberOfParentFolders(path,'html') + 1,'../'));
+	while(file_content.indexOf('{fill_parents_html}') != -1) {
+		file_content = file_content.replace('{fill_parents_html}', joinRepeatedString(getNumberOfParentFolders(path,'html') - 1,'../'));
 	}
 	// console.log("Parent Folders AutoFill Complete On The File: " + path);
+	return file_content;
+}
+
+/** Returns string where language href(url) are replaced with appropriate links
+ * 
+ * @param {String} filepath Path to file where the component is located
+ * @param {*} file_content Content of the file
+ * @returns Returns the file content with transpiled components
+ */
+function languageFillPath(filepath, file_content) {
+	while(file_content.indexOf('{language_src}') != -1) {
+		file_content = file_content.replace('{language_src}', joinPathofFile(filepath));
+	}
 	return file_content;
 }
 
@@ -160,6 +171,25 @@ function joinRepeatedString(multiplier, pattern) {
 	return string_builder;
 }
 
+/** Returns the relative url of the file in different language folder
+ * 
+ * @param {String} filepath Path to file where the component is located
+ * @returns {String} The relative url of the same file in different language
+ */
+function joinPathofFile(filepath) {
+	if(getNumberOfParentFolders(filepath) == 0)
+		return;
+	var string_builder = joinRepeatedString(getNumberOfParentFolders(filepath) - 1, '../');
+	var path_parts = filepath.split('html/')[1];
+	//console.log("Path Parts:" + path_parts);
+	if(path_parts.indexOf('en/') != -1)
+		string_builder += path_parts.replace('en/','sk/');
+	else
+		string_builder += path_parts.replace('sk/', 'en/');
+	//console.log("File Path:"+filepath+"\nBuilt String:"+string_builder);
+	return string_builder;
+}
+
 /** Get the number of parent folders from the "Root" of HTML files
  *  
  * @param {String} path Path of the file 
@@ -168,13 +198,13 @@ function joinRepeatedString(multiplier, pattern) {
  */
 function getNumberOfParentFolders(path, root = "html") {
 	var parsed = path.split(root + '/');
-	var counter = -1;
+	var counter = 0;
 	if(parsed[1]) {
 		var parsed_even_more = parsed[1].split('/');
 		counter = parsed_even_more.length;
 		//console.log(parsed[1] + " number of parents: " + parsed_even_more.length);
 	}
-	return counter
+	return counter;
 }
 
 // first we prepare all the folders in the build folder
@@ -215,7 +245,7 @@ const enComponents = makeComponentDictionary(getDirname() + '/components/{*,en/*
 const skComponents = makeComponentDictionary(getDirname() + '/components/{*,sk/*}.html')
 
 // third, we compose all css files into a single one
-console.log('Beginning CSS composition into style.css')
+//console.log('Beginning CSS composition into style.css')
 // find all css files inside css folder
 const cssSourceFiles = glob.sync(getDirname() + '/source/css/*.css', {})
 // turn them into strings
@@ -225,7 +255,7 @@ const cssConcatenated = cssString.join('\n')
 // TODO: remove whitespace?
 // write concatenated string to css file
 fs.writeFileSync(getDirname() + '/build/css/style.css', cssConcatenated)
-console.log('Composed all CSS files into style.css')
+//console.log('Composed all CSS files into style.css')
 
 // finally, we transpile html files and copy non-html files
 let sourceFiles = glob.sync(getDirname() + '/source/**/*', { nodir: true })
