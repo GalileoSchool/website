@@ -16,10 +16,15 @@ if (menuBtnImg == null) {
 const NavMenuDesk = document.getElementById("nav-desk");
 const NavMenu = document.getElementById("navigation");
 
-let exit_img_src = "../../images/icons/close.png"
-
 // Gets default path to menu button image source.
 let original_attribute_src = menuBtnImg.getAttribute("src");
+let exit_img_src = getCloseImgURL(original_attribute_src) + "images/icons/close.png"
+
+
+function getCloseImgURL(url_of_image_from_current_page) {
+    var path = url_of_image_from_current_page;
+    return path.split('images/')[0];
+}
 
 // Adding an Event Listener for an action (click on a button) on my object.
 // A function is passed in that should be carried out when the event occurs.
@@ -121,7 +126,7 @@ function resetDesktopMenu() {
     const navigation = document.getElementById("navigation");
     const menu_overlay = document.getElementById("menu-overlay");
 
-    //console.log("Resetting the menu now!");
+    //console.log("Resetting the Phone menu now!");
     left.classList.add("red-wine");
     search.classList.add("hidden");
     language_drop.classList.add("no-display");
