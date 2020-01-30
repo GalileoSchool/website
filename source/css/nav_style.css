@@ -306,8 +306,15 @@ div.square {
         cursor: pointer;
     }
 
-    .content{
-        /*padding-top: 2px !important;*/
+    #menu-overlay {
+        display: block;
+        max-width: 100vw;
+        max-height: 100vh;
+        position: fixed;
+        background-color: rgba(160, 160, 160, 0.377);
+        z-index: 1;
+        height: 100%;
+        width: 100%;
     }
 
     #nav-bar{

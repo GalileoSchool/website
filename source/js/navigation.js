@@ -93,8 +93,9 @@ function resetPhoneMenu() {
     const title = document.getElementById("title");
     const header = document.querySelector("header");
     const body = document.querySelector("body");
+    const menu_overlay = document.getElementById("menu-overlay");
 
-    console.log("Resetting the menu now!");
+    //console.log("Resetting the menu now!");
     left.classList.remove("red-wine");
     search.classList.remove("hidden");
     language_drop.classList.remove("no-display");
@@ -104,6 +105,7 @@ function resetPhoneMenu() {
     title_cont.classList.remove("title-cont-open-nav");
     header.classList.remove("scroll-menu");
     body.classList.add("scroll-lock");
+    menu_overlay.classList.remove('no-display');
 }
 
 function resetDesktopMenu() {
@@ -117,8 +119,9 @@ function resetDesktopMenu() {
     const header = document.querySelector("header");
     const body = document.querySelector("body");
     const navigation = document.getElementById("navigation");
+    const menu_overlay = document.getElementById("menu-overlay");
 
-    console.log("Resetting the menu now!");
+    //console.log("Resetting the menu now!");
     left.classList.add("red-wine");
     search.classList.add("hidden");
     language_drop.classList.add("no-display");
@@ -129,4 +132,5 @@ function resetDesktopMenu() {
     header.classList.add("scroll-menu");
     body.classList.remove("scroll-lock");
     navigation.setAttribute("style","display:block;");
+    menu_overlay.classList.add("no-display");
 }

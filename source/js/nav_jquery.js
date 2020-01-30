@@ -2,7 +2,6 @@
 // Executes functions as soon as the page is fully loaded.
 $(document).ready(function () {
     let isDesktop = DesktopCheck();
-    let isOverflow = OverflowCheck();
     let Scroll_Height = calculateTop();
     let isInMenu = false;
 
@@ -22,7 +21,6 @@ $(document).ready(function () {
     //  overflow and makes decisions based on the returned values / data
     $(window).resize(function () {
         isDesktop = DesktopCheck();
-        isOverflow = OverflowCheck();
         if (isDesktop && searching) {
             slideOut();
             searching = false;
@@ -55,6 +53,7 @@ $(document).ready(function () {
         $(".navbar").slideToggle("slow");
         // Toggles look of menu button (e.g. colour).
         $("#nav-btn").toggleClass("active-nav-btn");
+        $("#menu-overlay").toggleClass('no-display');
         // Fade out language dropdown.
         $(".dropdown-content").fadeOut(200);
         adjustTop(calculateTop(), "#navigation");
