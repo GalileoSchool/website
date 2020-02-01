@@ -75,7 +75,7 @@ $(document).ready(function () {
         // Make 'left' elements toggle their colour.
         $(".left").toggleClass("red-wine");
         // Hide / Show the search bar.
-        $(".search-drop").toggleClass("hidden");
+        $(".search-drop").toggleClass("no-display");
         // Toggles colour of school name.
         $("#title").toggleClass("title-open-nav");
         // Adjusts logo's margin-left.

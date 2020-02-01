@@ -247,6 +247,7 @@ div.square {
 
 #menu-img, #search-img {
     height: 5.5vw;
+    width: auto;
     margin: auto;
 }
 

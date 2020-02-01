@@ -102,7 +102,7 @@ function resetPhoneMenu() {
 
     //console.log("Resetting the menu now!");
     left.classList.remove("red-wine");
-    search.classList.remove("hidden");
+    search.classList.remove("no-display");
     language_drop.classList.remove("no-display");
     title.classList.remove("title-open-nav");
     logo.classList.remove("logo-img-open-nav");
@@ -128,7 +128,7 @@ function resetDesktopMenu() {
 
     //console.log("Resetting the Phone menu now!");
     left.classList.add("red-wine");
-    search.classList.add("hidden");
+    search.classList.add("no-display");
     language_drop.classList.add("no-display");
     title.classList.add("title-open-nav");
     logo.classList.add("logo-img-open-nav");
