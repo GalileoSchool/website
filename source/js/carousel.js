@@ -42,6 +42,7 @@ $(document).ready(function () {
         swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
           if (direction == 'left') $(this).carousel('next');
           if (direction == 'right') $(this).carousel('prev');
+          console.log("Swipe Distance: " + distance);
         },
         allowPageScroll:"vertical"
       });

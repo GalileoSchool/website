@@ -9,6 +9,7 @@ body {
     font-family: 'Times New Roman', Times, serif;
     padding: 0;
     margin: 0;
+    overflow-x: hidden;
 }
 
 /* Prevent user selecting / highlighting on navbar  */
@@ -18,12 +19,7 @@ nav {
 
 /* Mobile viewport first, serves as a foundation that can be expanded using queries */
 
-/* Nav-Desk (Navigation-Desktop) */
-.nav-desk {
-    display: block;
-}
-
-.nav-desk > ul {
+.phone-menu > ul {
     display: none;
     margin: auto;
     width: 100vw;
@@ -31,7 +27,7 @@ nav {
     text-align: center;
     position: fixed;
     background-color: #a60000;
-    z-index: 1;
+    z-index: 2;
     padding: 8vw;
     /* Prevents ul items being shifted to the right */
     padding-left: 0px !important;
@@ -39,25 +35,25 @@ nav {
     top: auto !important;
 }
 
-.nav-desk li {
+.phone-menu li {
     padding: 2vw;
     /*padding-bottom: 1vw;*/
     text-decoration: none;
     color: white;
     font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
     font-size: 4.5vw;
-    z-index: 1;
+    z-index: 2;
 }
 
-.nav-desk .title {
+.phone-menu .title {
     padding: 4vw;
 }
 
-.nav-desk li:last-child {
+.phone-menu li:last-child {
     margin-bottom: 0;
 }
 
-.nav-desk li:hover {
+.phone-menu li:hover {
     background-color: #c40000;
     color: #ffffff;
     cursor: pointer;
@@ -308,6 +304,12 @@ div.square {
         cursor: pointer;
     }
 
+    .nav-desk {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
     #menu-overlay {
         display: block;
         position: fixed;
@@ -398,21 +400,59 @@ div.square {
         cursor: pointer;
     }
 
-    .nav-desk > ul {
-        display: none;
+    #main-nav {
+        display: flex;
+        position: sticky;
+        top: 0;
+        flex-direction: column;
+        max-height: 52px;
+        justify-content: center;
+        width: 100%;
+        align-items: center;
+        align-content: center;
         margin: auto;
-        width: 240px;
-        padding: 30px;
-        padding-top: 0px;
-        padding-right: 8px;
-        padding-left: 8px;
+        padding: 0;
+        z-index: 0;
+        font-size: 2vw;
+        transition: width 2s ease-in;
+        background-color: #a60000;
+        color: #ffffff;
+        font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+    }
+
+    #main-nav > li {
+        padding-right: calc(520px*0.025);
+        padding-left: calc(520px*0.025);
+        height: 52px;
+    }
+
+    #main-nav > li:hover,  #sub-nav > li:hover {
+        cursor: pointer;
+    }
+
+    #main-nav, #sub-nav {
+        user-select: none;
+    }
+
+    .nav-desk > ul:nth-child(2) {
+        display: none;
+        position: absolute;
         right: 0;
+        width:  250px;
         height: auto;
+        margin: auto;
+        padding: 30px 0;
+        padding-top: 0;
+        top: 52px;
+        font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+        text-transform: uppercase;
+        background-color: #a60000;
+        color: #ffffff;
     }
 
     .nav-desk li:hover {
         box-shadow: 0px 0px 33px -14px rgba(0, 0, 0, 0.2);
-        transform: scale(1.03);
+        transform: scale(1.05);
         background-color: #c60000;
         transition: linear 0.2s;
     }
@@ -447,22 +487,12 @@ div.square {
 
 /* Bigger screens */
 @media only screen and (min-width: 1100px) {
-    .nav-desk li {
-        font-size: calc(480px*0.045);
-        padding: calc(520px*0.0223);
-    }
-
-    .nav-desk > ul {
-        width: 308px;
-        padding: 14px;
-        padding-right: 0;
-        padding-left: 0;
-        padding-top: 0;
-        height: 100vh;
-        transition: none 0.75s;
-    }
-
-    .nav-elem > div {
-        transform: translateY(0%);
+    #main-nav > li {
+        padding-right: calc(520px*0.05);
+        padding-left: calc(520px*0.05);
+        }
+        
+    .nav-desk > ul:nth-child(2)  {
+        width: 300px;
     }
 }
