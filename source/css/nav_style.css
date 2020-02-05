@@ -68,12 +68,27 @@ div.nav-phone.lang > div {
     margin: auto;
 }
 
+.close {
+    width: 0 !important;
+    transition: 1.5s linear;
+}
+
+.close input {
+    padding: 0 !important;
+    transition: 1.5s linear;
+}
+
+#search_box, #search_box:focus {
+    text-transform: capitalize;
+}
+
 .nav-phone .logo > img {
     width: 8vw;
     height: 8vw;
     margin: auto;
     padding: 1vw;
     box-sizing: content-box;
+    transition: 2s linear;
 }
 
 .nav-phone .logo {
@@ -86,6 +101,7 @@ div.nav-phone.lang > div {
     margin-left: 0;
     font-size: 6vw;
     text-transform: uppercase;
+    transition: 2s linear;
 }
 
 .nav-phone {
@@ -147,31 +163,9 @@ div.nav-phone.lang > div {
     height: 100%;
 }
 
-.nav-phone .search-input {
-    width: 0vw;
-    height: 100%;
-    display: none;
-    border: 0.2vw solid #cccccc;
-    background: #eeeeee;
-    padding: 1vw;
-    font-size: 3.5vw;
-    position: absolute;
-    z-index: 1;
-    /* Opacity controls transparency */
-    opacity: 0;
-}
-
-.nav-phone .search-input:focus {
-    opacity: 1;
-}
-
 /* Pre-made styling classes */
 .light-gray {
     background-color: #e4e4e4;
-}
-
-.scroll-lock {
-    max-height: 100vh;
 }
 
 .red-wine {
@@ -293,6 +287,34 @@ div.square {
     transition: 0.5s ease;
 }
 
+.search-container {
+    max-height: 100%;
+    height: 100%;
+    width: 30vw;
+    transition: 1.5s linear;
+}
+
+.search-container > input {
+    max-height: 100%;
+    height: 100%;
+    border: none;
+    background-color: #eeeeee;
+    width: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 3.7vw;
+}
+
+li.nav-phone.logo.searching img {
+    width: 5vw !important;
+    height: 5vw !important;
+    transition: all .55s linear;
+}
+
+li.nav-phone.title.searching {
+    font-size: 3.8vw;
+    transition: .55s linear;
+}
+
 /* Styles management based on screen width */
 
 /* Tablet style */
@@ -302,6 +324,49 @@ div.square {
 
     div.language-select-btn:hover, div.nav-phone.light-gray.lang.lang-text{
         cursor: pointer;
+    }
+
+    #search {
+        width: calc(520px*0.1);
+        height: 52px;
+        margin: auto;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .search-container {
+        max-height: 52px;
+        margin-top: auto;
+        max-width: 180px;
+        width: 180px;
+        transition: 1.5s linear;
+    }
+
+    .search-container > input {
+        max-height: 52px;
+        height: 52px;
+        width: 100%;
+        font-size: 20px;
+    }
+
+    li.nav-phone.logo.searching img {
+        width: 51px !important;
+        height: auto !important;
+        transition: all 1s linear;
+    }
+
+    li.nav-phone.title.searching {
+        font-size: calc(670px*0.047);
+        transition: 1s linear;
+    }
+
+    .search-container > input:focus {
+        border: none !important;
+        outline: none !important;
+        -webkit-box-shadow: inset 0px 0px 20px -8px rgba(139, 139, 139, 0.8);
+        -moz-box-shadow: inset 0px 0px 20px -8px rgba(139, 139, 139, 0.8);
+        box-shadow: inset 0px 0px 20px -8px rgba(139, 139, 139, 0.8);
     }
 
     .nav-desk {
@@ -326,10 +391,6 @@ div.square {
 
     div.right{
         height: 52px !important;
-        margin-top: auto;
-    }
-
-    div.nav-phone.search-drop.dropdown.square{
         margin-top: auto;
     }
 
@@ -358,11 +419,13 @@ div.square {
         padding: calc(670px*0.01);
         padding-bottom: 2px;
         padding-top: 2px;
+        transition: all 1s linear;
     }
 
     .nav-phone .title{
         font-size: calc(670px*0.063);
         margin-left: 0;
+        transition: 1s linear;
     }
 
     .nav-phone .language-dropdown-content{
@@ -490,6 +553,17 @@ div.square {
     #main-nav > li {
         padding-right: calc(520px*0.05);
         padding-left: calc(520px*0.05);
+        }
+
+        li.nav-phone.logo.searching img {
+            width: 61px !important;
+            height: auto !important;
+            transition: all 1s linear;
+        }
+    
+        li.nav-phone.title.searching {
+            font-size: calc(670px*0.063);
+            transition: 1s linear;
         }
         
     .nav-desk > ul:nth-child(2)  {

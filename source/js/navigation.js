@@ -9,6 +9,7 @@ $(document).ready(function () {
     const navBtnExitImgSrc = getCloseImgUrl(navBtnImgSrc, 'close');
     const langBtn = $("#menu-btn-img");
     const langDropdown = $(".language-dropdown-content");
+    const searchBtn = $("#search");
 
     var isSearching = false;
     var viewport = new Viewport($(window).innerWidth(),$(window).innerHeight());
@@ -41,6 +42,10 @@ $(document).ready(function () {
             togglePhoneMenu();
     });
 
+    searchBtn.click(function(e){
+        toggleSearch();
+    });
+
 
     /*  Functions Section   */
 
@@ -55,9 +60,10 @@ $(document).ready(function () {
 
     function togglePhoneMenu(toggle = true) {
         isPhoneMenuOpen = !isPhoneMenuOpen;
-        phone_nav.slideToggle("fast");
+        if(isSearching)
+            toggleSearch();
         $('.left').toggleClass("red-wine");
-        $('.search-drop').toggleClass("no-display");
+        $('#search').toggleClass("no-display");
         $('.language-dropdown').toggleClass("no-display");
         $('#title').toggleClass("title-open-nav");
         $('#logo').toggleClass("logo-img-open-nav");
@@ -65,11 +71,14 @@ $(document).ready(function () {
         $('.title').toggleClass("title-cont-open-nav");
         $('nav').toggleClass("scroll-menu");
         toggleMenuBtnImg();
+        phone_nav.slideToggle("fast");
     }
 
     function toggleSearch() {
         // TODO: deal with this
-        
+        $('li.logo').toggleClass('searching');
+        $('li.title').toggleClass('searching');
+        $('.search-container').toggleClass('close');
         isSearching = !isSearching;
     }
 
