@@ -52,6 +52,10 @@ function isCssFile (filePath) {
 	return getFileExtension(filePath) === 'css'
 }
 
+function isJsonFile(filePath) {
+	return getFileExtension(filePath) === 'json'
+}
+
 function makeFolder (folderPath) {
 	 console.log('Preparing folder', folderPath)
 	// create if it doesn't exists yet
@@ -122,7 +126,34 @@ function transpileUsingNestedHandlebars(fileString, fileToCreate, components) {
 	fileString = autoFillParentFolders(fileToCreate, fileString);
 	fileString = languageFillPath(fileToCreate, fileString);
 	fs.writeFileSync(fileToCreate, fileString)
-	//console.log('Transpiled file: ' + fileToCreate + "\n")
+	
+	var demoFile = getDirname() + "/build/html/cards.html";
+	var array = [];
+	var demo = {};
+	demo["Name"] = "Hugo";
+	demo["Age"] = 19;
+	demo["Gender"] = "Male";
+	var demo2 = {};
+	demo2["Name"] = "Heck";
+	demo2["Age"] = 17;
+	demo2["Gender"] = "Male";
+	var demo3 = {};
+	demo3["Name"] = "Madison";
+	demo3["Age"] = 20;
+	demo3["Gender"] = "Female";
+	array.push(demo);
+	array.push(demo2);
+	array.push(demo3);
+	array = JSON.stringify(array);
+	//array = JSON.parse(read);
+	console.log(array);
+	// return;
+	fs.writeFileSync(demoFile,array);
+	var read = fs.readFileSync(demoFile);
+	var arr = JSON.parse(read);
+	console.log("Content after reading: " + arr.collection.length);
+	console.log("File " + demoFile);
+	return;
 }
 
 /** Identifies and auto-fills parent folders
@@ -261,8 +292,10 @@ fs.writeFileSync(getDirname() + '/build/css/style.css', cssConcatenated)
 let sourceFiles = glob.sync(getDirname() + '/source/**/*', { nodir: true })
 for (const sourceFile of sourceFiles) {
 	// identifies the new file to be created
+	
 	const fileToCreate = getBuildFilePathFromSourceFilePath(sourceFile)
-
+	/*cconsole.log("Source File " + getDirname() + "/build/html/cards.html");
+	return;*/
 	// note to future contributors: if you're going to use the html folder 
 	// for something other than .html files, use filePath.includes('/html/')
 	if (isHtmlFile(sourceFile)) {
@@ -281,10 +314,44 @@ for (const sourceFile of sourceFiles) {
 	} else if (isCssFile(sourceFile)) {
 		console.log('Skipped CSS file', sourceFile)
 
-	} else {
+	} else if(isJsonFile(sourceFile)) {
+		
+	}
+	else {
 		fs.copyFileSync(sourceFile, fileToCreate)
 		console.log('Copied file', fileToCreate)
 	}
 }
 
 console.log('Success! Files built in build/')
+
+class Card {
+
+	constructor(image,title,quickinfo,longdesc) {
+		this.image = image;
+		this.title = title;
+		this.quickinfo = quickinfo;
+		this.longdesc = longdesc;
+	}
+
+	getCode() {
+		var str_builder = `
+			<div class="card">
+				<img class="card-img-top" src="{fill_parents}${this.image}" alt="Photo">
+				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
+					<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+					<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+				</div>
+			</div>
+		`;
+	}
+	/*<div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>*/
+}

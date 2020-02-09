@@ -1,9 +1,9 @@
-.fill-area{
+.fill-area {
     width: 100%;
     height: 100%;
 }
 
-.wine-red{
+.wine-red {
     background-color: #a60000;
     color: white;
 }
@@ -12,11 +12,11 @@
     border-radius: 0;
 }
 
-.card-footer{
+.card.index > .card-footer{
     padding: 0;
 }
 
-.card {
+.card.index {
     border-radius: 0;
     border: none;
     background-color: #a60000;
@@ -27,7 +27,7 @@
     transition: linear .15s;
 }
 
-.card-body{
+.card.index > .card-body{
     font-style: italic;
     color: #dddddd;
     font-size: calc(670px*0.0385);
@@ -40,7 +40,7 @@ hr {
     border: 1px solid white;
 }
 
-.card-title{
+.card.index > .card-title {
     width: 100%;
     text-transform: uppercase;
     font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
@@ -49,38 +49,38 @@ hr {
     margin-bottom: .5rem;
 }
 
-.card-deck{
+.card-deck.index {
     margin-top: 3px !important;
     width: 100% !important;
     margin: auto;
 }
 
-.card:first-child{
+.card.index:first-child {
     margin-left: 0 !important;
 }
 
 /* Mobile viewport */
 @media screen and (max-width: 669px){
-    .card {
+    .card.index {
         margin-left: 0 !important;
     }
 
-    .card-title {
+    .card.index > .card-title {
         font-size: 6vw !important;
     }
 
-    .card-body {
+    .card.index > .card-body {
         font-size: calc(670px*0.0295) !important;
     }
 
-    .card-deck {
+    .card-deck.index {
         display: flex;
         flex-direction: column;
     }
 }
 
 @media screen and (min-width: 720px) {
-    .card:hover {
+    .card.index:hover {
         cursor: pointer;
         z-index: 4;
         transform: scale(1.035);
@@ -90,7 +90,7 @@ hr {
         transition: ease .15s;
     }
 
-    .card:active {
+    .card.index:active {
         transform: scale(.985);
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
@@ -100,11 +100,11 @@ hr {
 }
 
 @media screen and (max-width: 1199px) {
-    .card-title {
+    .card.index > .card-title {
         font-size: 1.25rem;
     }
 
-    .card-body {
+    .card.index > .card-body {
         font-size: calc(670px*0.03);
     }
 }
