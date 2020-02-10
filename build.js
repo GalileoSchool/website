@@ -16,6 +16,58 @@
 // this acts as if you had multiple components, but put into one file
 //  and accessed using {{component.subcomponent}}
 
+class Card {
+
+	constructor(image,title,quickinfo,longdesc,pathToPhotosFolderFromWebRoot) {
+		this.image = image;
+		this.title = title;
+		this.quickinfo = quickinfo;
+		this.longdesc = longdesc;
+		this.path = pathToPhotosFolderFromWebRoot;
+		this.photos = [];
+		
+		var succ = this._getPhotos();
+		if (!succ)
+			return;
+		console.log("Oject initialized!");
+	}
+
+	_getPhotos() {
+		var files = fs.readdirSync(getDirname() + '/source/' + this.path)
+			if (files.length < 1)
+				return false;
+			files.forEach(file => {
+				var ext = getFileExtension(file);
+				if (ext === "jpg" || ext === "png" || ext === "svg") {
+					var src = (this.path + "/" + file);
+					var name = file.split('.')[0];
+					var photo = { name: name, source: src };
+					this.photos.push(photo);
+				}
+			});
+		return true;
+	}
+
+	getCode() {
+		var str_builder = `
+			<div class="card">
+				<img class="card-img-top" src="{fill_parents}${this.image}" alt="Photo">
+				<div class="card-body">
+					<h5 class="card-title">${this.title}</h5>
+					<p class="card-text">${this.quickinfo}</p>
+					<p class="card-text card-long-desc no-display">${this.longdesc}</p>
+					<ul class="card-images no-display">
+						${this.photos.map(photo =>`<li class="card-photo">
+							<img src="{fill_parents}${photo.source} alt="${photo.name}">
+						</li>
+					`).join('')}</ul>
+				</div>
+			</div>
+		`;
+		return str_builder;
+	}
+}
+
 const fs = require('fs') // for manipulation of files
 const glob = require('glob') // for finding the right files
 const Handlebars = require('handlebars') // for using handlebars
@@ -57,17 +109,17 @@ function isJsonFile(filePath) {
 }
 
 function makeFolder (folderPath) {
-	 console.log('Preparing folder', folderPath)
+	 //console.log('Preparing folder', folderPath)
 	// create if it doesn't exists yet
 	if (!fs.existsSync(folderPath)) {
 		fs.mkdirSync(folderPath)
-		console.log('Created folder', folderPath)
+		//console.log('Created folder', folderPath)
 	}
 }
 
 // creates a dictionary of (filename: sourceFile) for Handlebars
 function makeComponentDictionary(globPattern) {
-	console.log('Looking for components matching: ' + globPattern)
+	//console.log('Looking for components matching: ' + globPattern)
 
 	const componentSourceFiles = glob.sync(globPattern)
 	const components = {}
@@ -77,12 +129,12 @@ function makeComponentDictionary(globPattern) {
 			.split('/').pop() // get the actual filename
 			.replace(/\.html$/, '') // remove .html at the end
 	
-		console.log('Found component', componentName)
+		//console.log('Found component', componentName)
 
 		// parse component (separate into subcomponents if it is compound)
 		const fileString = fs.readFileSync(componentSourceFile, "utf8")
 		if (fileString.indexOf(OPENING_SIGNATURE) == 0) {
-			console.log(componentName, 'was identified as a compound component')
+			//console.log(componentName, 'was identified as a compound component')
 
 			// split by sections / subcomponents
 			let sections = fileString.split('\r\n' + OPENING_SIGNATURE)
@@ -127,31 +179,19 @@ function transpileUsingNestedHandlebars(fileString, fileToCreate, components) {
 	fileString = languageFillPath(fileToCreate, fileString);
 	fs.writeFileSync(fileToCreate, fileString)
 	
-	var demoFile = getDirname() + "/build/html/cards.html";
-	var array = [];
-	var demo = {};
-	demo["Name"] = "Hugo";
-	demo["Age"] = 19;
-	demo["Gender"] = "Male";
-	var demo2 = {};
-	demo2["Name"] = "Heck";
-	demo2["Age"] = 17;
-	demo2["Gender"] = "Male";
-	var demo3 = {};
-	demo3["Name"] = "Madison";
-	demo3["Age"] = 20;
-	demo3["Gender"] = "Female";
-	array.push(demo);
-	array.push(demo2);
-	array.push(demo3);
-	array = JSON.stringify(array);
-	//array = JSON.parse(read);
+	var demoFile = getDirname() + "/source/html/cards.html";
+	var demo =
+	{
+		Name: "Hugo",
+		Age: 19,
+		Gender: "Male"
+	};
+	demo = JSON.stringify(demo);
 	console.log(array);
-	// return;
 	fs.writeFileSync(demoFile,array);
 	var read = fs.readFileSync(demoFile);
 	var arr = JSON.parse(read);
-	console.log("Content after reading: " + arr.collection.length);
+	arr.map(e => console.log("Name: " + e.Name + " Age: " + e.Age + " Gender: " + e.Gender));
 	console.log("File " + demoFile);
 	return;
 }
@@ -287,14 +327,16 @@ const cssConcatenated = cssString.join('\n')
 // write concatenated string to css file
 fs.writeFileSync(getDirname() + '/build/css/style.css', cssConcatenated)
 //console.log('Composed all CSS files into style.css')
-
 // finally, we transpile html files and copy non-html files
 let sourceFiles = glob.sync(getDirname() + '/source/**/*', { nodir: true })
 for (const sourceFile of sourceFiles) {
 	// identifies the new file to be created
 	
 	const fileToCreate = getBuildFilePathFromSourceFilePath(sourceFile)
-	/*cconsole.log("Source File " + getDirname() + "/build/html/cards.html");
+	if (isJsonFile(sourceFile)) {
+		
+	}
+	/*console.log("Source File " + getDirname() + "/build/html/cards.html");
 	return;*/
 	// note to future contributors: if you're going to use the html folder 
 	// for something other than .html files, use filePath.includes('/html/')
@@ -314,44 +356,10 @@ for (const sourceFile of sourceFiles) {
 	} else if (isCssFile(sourceFile)) {
 		console.log('Skipped CSS file', sourceFile)
 
-	} else if(isJsonFile(sourceFile)) {
-		
-	}
-	else {
+	} else {
 		fs.copyFileSync(sourceFile, fileToCreate)
 		console.log('Copied file', fileToCreate)
 	}
 }
 
-console.log('Success! Files built in build/')
-
-class Card {
-
-	constructor(image,title,quickinfo,longdesc) {
-		this.image = image;
-		this.title = title;
-		this.quickinfo = quickinfo;
-		this.longdesc = longdesc;
-	}
-
-	getCode() {
-		var str_builder = `
-			<div class="card">
-				<img class="card-img-top" src="{fill_parents}${this.image}" alt="Photo">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-					<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-				</div>
-			</div>
-		`;
-	}
-	/*<div class="card">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-    </div>*/
-}
+console.log('Success! Files built in build/');
