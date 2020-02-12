@@ -187,10 +187,11 @@ function transpileUsingNestedHandlebars(fileString, fileToCreate, components) {
 		Gender: "Male"
 	};
 	demo = JSON.stringify(demo);
-	console.log(array);
-	fs.writeFileSync(demoFile,array);
+	console.log(demo);
+	fs.writeFileSync(demoFile,demo);
 	var read = fs.readFileSync(demoFile);
-	var arr = JSON.parse(read);
+	var arr = [];
+	arr.push(JSON.parse(read));
 	arr.map(e => console.log("Name: " + e.Name + " Age: " + e.Age + " Gender: " + e.Gender));
 	console.log("File " + demoFile);
 	return;
@@ -278,6 +279,22 @@ function getNumberOfParentFolders(path, root = "html") {
 	return counter;
 }
 
+function transpileJsonInterviewCardsToHTML(enJson, skJson) {
+	var file;
+	var dir = getDirname() + "/components/";
+	var langs = [];
+	if (!enJson || enJson == "") { file = skJson.split('/').pop().split('.')[0] + ".html"; langs.push('sk'); }
+	else if (!skJson || skJson == "") { file = enJson.split('/').pop().split('.')[0] + ".html"; langs.push('en'); }
+	else { file = enJson.split('/').pop().split('.')[0] + ".html"; langs.push('sk'); langs.push('en'); }
+	var obj_en = JSON.parse(fs.readFileSync(enJson));
+	console.log(obj_en);
+	var obj_sk = [];
+	/*langs.map(lan => {
+		console.log(dir + lan + "/" + file);
+	});*/
+	return;
+}
+
 // first we prepare all the folders in the build folder
 // create the target build/ folder if it doesn't exist yet
 makeFolder('./build/')
@@ -311,10 +328,14 @@ for (const sourceFolder of sourceFolders) {
 	}
 }
 
+const enJson = glob.sync(getDirname() + '/components/en/interview_cards.json', {}).toString();
+const skJson = glob.sync(getDirname() + '/components/sk/interview_cards.json', {}).toString();
+transpileJsonInterviewCardsToHTML(enJson, skJson);
+// Function that transpiles json into html code
+return;
 // second, we prepare all components
 const enComponents = makeComponentDictionary(getDirname() + '/components/{*,en/*}.html')
 const skComponents = makeComponentDictionary(getDirname() + '/components/{*,sk/*}.html')
-
 // third, we compose all css files into a single one
 //console.log('Beginning CSS composition into style.css')
 // find all css files inside css folder
@@ -333,9 +354,6 @@ for (const sourceFile of sourceFiles) {
 	// identifies the new file to be created
 	
 	const fileToCreate = getBuildFilePathFromSourceFilePath(sourceFile)
-	if (isJsonFile(sourceFile)) {
-		
-	}
 	/*console.log("Source File " + getDirname() + "/build/html/cards.html");
 	return;*/
 	// note to future contributors: if you're going to use the html folder 
