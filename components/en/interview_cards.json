@@ -1,0 +1,50 @@
+[
+	{
+		"Image":"images/interviews/Tomi_rgb.jpg",
+		"Title":"University of Oxford",
+		"Name":"Tomas Halgas",
+		"ShortInfo":"Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science",
+		"LongInfo":"Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science. Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science. Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science.",
+		"PhotosFolderPath":"images/interviews/"
+	},
+	{
+		"Image":"images/interviews/dasa_rgb.jpg",
+		"Title":"University of Oxford",
+		"Name":"Dasa",
+		"ShortInfo":"Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science",
+		"LongInfo":"Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science. Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science. Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science.",
+		"PhotosFolderPath":"images/interviews/"
+	},
+	{
+		"Image":"images/interviews/jakub_rybansky_rgb.jpg",
+		"Title":"University of Oxford",
+		"Name":"Jakub Rybansky",
+		"ShortInfo":"Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science",
+		"LongInfo":"Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science. Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science. Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science.",
+		"PhotosFolderPath":"images/interviews/"
+	},
+	{
+		"Image":"images/interviews/Luki_rgb.jpg",
+		"Title":"University of Oxford",
+		"Name":"Lukas Halgas",
+		"ShortInfo":"Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science",
+		"LongInfo":"Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science. Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science. Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science.",
+		"PhotosFolderPath":"images/interviews/"
+	},
+	{
+		"Image":"images/interviews/orth_rgb.jpg",
+		"Title":"Santa Clara University",
+		"Name":"Filip Orth",
+		"ShortInfo":"Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science",
+		"LongInfo":"Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science. Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science. Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science.",
+		"PhotosFolderPath":"images/interviews/"
+	},
+	{
+		"Image":"images/interviews/samo_rybansky_rgb.jpg",
+		"Title":"University of Sheffield",
+		"Name":"Samuel Rybansky",
+		"ShortInfo":"Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science",
+		"LongInfo":"Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science. Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science. Studied Computer Science, Completed Masters from Computer Science, Saw his/her future in Computer Science.",
+		"PhotosFolderPath":"images/interviews/"
+	}
+]

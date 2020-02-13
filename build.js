@@ -16,55 +16,60 @@
 // this acts as if you had multiple components, but put into one file
 //  and accessed using {{component.subcomponent}}
 
-class Card {
+class InterviewCard {
 
-	constructor(image,title,quickinfo,longdesc,pathToPhotosFolderFromWebRoot) {
+	constructor(image, title, quickinfo, longdesc, pathToPhotosFolderFromWebRoot, student) {
 		this.image = image;
 		this.title = title;
+		this.student = student;
 		this.quickinfo = quickinfo;
 		this.longdesc = longdesc;
 		this.path = pathToPhotosFolderFromWebRoot;
 		this.photos = [];
 		
 		var succ = this._getPhotos();
-		if (!succ)
-			return;
-		console.log("Oject initialized!");
+		if(!succ)
+			console.error("Missing photos in folder for " + this.image.split('/').pop() + " interview card");
+		//console.log("Oject initialized!");
 	}
 
 	_getPhotos() {
+		try {
 		var files = fs.readdirSync(getDirname() + '/source/' + this.path)
 			if (files.length < 1)
 				return false;
 			files.forEach(file => {
 				var ext = getFileExtension(file);
 				if (ext === "jpg" || ext === "png" || ext === "svg") {
-					var src = (this.path + "/" + file);
+					var src = (this.path + file);
 					var name = file.split('.')[0];
 					var photo = { name: name, source: src };
 					this.photos.push(photo);
 				}
 			});
 		return true;
+		} catch (error) {
+			console.log(error);
+			return false;	
+		}
 	}
 
 	getCode() {
-		var str_builder = `
-			<div class="card">
-				<img class="card-img-top" src="{fill_parents}${this.image}" alt="Photo">
-				<div class="card-body">
-					<h5 class="card-title">${this.title}</h5>
-					<p class="card-text">${this.quickinfo}</p>
-					<p class="card-text card-long-desc no-display">${this.longdesc}</p>
-					<ul class="card-images no-display">
-						${this.photos.map(photo =>`<li class="card-photo">
-							<img src="{fill_parents}${photo.source} alt="${photo.name}">
-						</li>
-					`).join('')}</ul>
-				</div>
+		return `
+		<div id="${this.student.replace(' ', '_')}" class="card interview">
+			<img class="card-img-top" src="{fill_parents}${this.image}" alt="Photo">
+			<h4 class="card-title">${this.title}</h4>
+			<div class="card-body">
+				<h5 class="card-subtitle">${this.student}</h5>
+				<p class="card-text">${this.quickinfo}</p>
+				<p class="card-text card-long-desc no-display">${this.longdesc}</p>
+				<ul class="card-images no-display">
+					${this.photos.map(photo =>`<li class="card-photo">
+						<img src="{fill_parents}${photo.source}" alt="${photo.name}">
+					</li>`).join('')}
+				</ul>
 			</div>
-		`;
-		return str_builder;
+		</div>`;
 	}
 }
 
@@ -178,23 +183,6 @@ function transpileUsingNestedHandlebars(fileString, fileToCreate, components) {
 	fileString = autoFillParentFolders(fileToCreate, fileString);
 	fileString = languageFillPath(fileToCreate, fileString);
 	fs.writeFileSync(fileToCreate, fileString)
-	
-	var demoFile = getDirname() + "/source/html/cards.html";
-	var demo =
-	{
-		Name: "Hugo",
-		Age: 19,
-		Gender: "Male"
-	};
-	demo = JSON.stringify(demo);
-	console.log(demo);
-	fs.writeFileSync(demoFile,demo);
-	var read = fs.readFileSync(demoFile);
-	var arr = [];
-	arr.push(JSON.parse(read));
-	arr.map(e => console.log("Name: " + e.Name + " Age: " + e.Age + " Gender: " + e.Gender));
-	console.log("File " + demoFile);
-	return;
 }
 
 /** Identifies and auto-fills parent folders
@@ -283,16 +271,81 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 	var file;
 	var dir = getDirname() + "/components/";
 	var langs = [];
+	var files = [];
+	var card_deck_start = `
+	<div class="card-deck interview">`;
+	var card_deck_end = `
+	</div>`;
+
 	if (!enJson || enJson == "") { file = skJson.split('/').pop().split('.')[0] + ".html"; langs.push('sk'); }
 	else if (!skJson || skJson == "") { file = enJson.split('/').pop().split('.')[0] + ".html"; langs.push('en'); }
 	else { file = enJson.split('/').pop().split('.')[0] + ".html"; langs.push('sk'); langs.push('en'); }
-	var obj_en = JSON.parse(fs.readFileSync(enJson));
-	console.log(obj_en);
-	var obj_sk = [];
-	/*langs.map(lan => {
-		console.log(dir + lan + "/" + file);
-	});*/
-	return;
+
+	langs.map(lang => {
+		var obj = {
+			language: lang,
+			src: dir+lang+"/"+file
+		};
+		files.push(obj);
+	});
+
+	
+	if(langs.includes('en'))
+		var obj_en = JSON.parse(fs.readFileSync(enJson));
+	if(langs.includes('sk'))
+		var obj_sk = JSON.parse(fs.readFileSync(skJson));
+
+	if(obj_en) {
+		var str_builder = ``;
+		var counter = 0;
+		obj_en.map(obj => {
+			if(counter === 0)
+				str_builder += card_deck_start;
+			var card = new InterviewCard(obj.Image, obj.Title, obj.ShortInfo, obj.LongInfo, obj.PhotosFolderPath, obj.Name);
+			//console.log(card);
+			str_builder += card.getCode();
+			counter++;
+			if(counter === 3) {
+				str_builder += card_deck_end;
+				counter = 0;
+			}
+		});
+		if(counter !== 0) {
+			str_builder += card_deck_end;
+			counter = 0;
+		}
+		//console.log(str_builder);
+		var file = files.find(obj => {
+			return obj.language === 'en';
+		});
+		fs.writeFileSync(file.src, str_builder);
+		//console.log(counter);
+	}
+	if(obj_sk) {
+		var str_builder = ``;
+		var counter = 0;
+		obj_en.map(obj => {
+			if(counter === 0)
+				str_builder += card_deck_start;
+			var card = new InterviewCard(obj.Image, obj.Title, obj.ShortInfo, obj.LongInfo, obj.PhotosFolderPath, obj.Name);
+			//console.log(card);
+			str_builder += card.getCode();
+			counter++;
+			if(counter === 3) {
+				str_builder += card_deck_end;
+				counter = 0;
+			}
+		});
+		if(counter !== 0) {
+			str_builder += card_deck_end;
+			counter = 0;
+		}
+		var file = files.find(obj => {
+			return obj.language === 'sk';
+		});
+		fs.writeFileSync(file.src, str_builder);
+		//console.log(counter);
+	}
 }
 
 // first we prepare all the folders in the build folder
@@ -331,13 +384,11 @@ for (const sourceFolder of sourceFolders) {
 const enJson = glob.sync(getDirname() + '/components/en/interview_cards.json', {}).toString();
 const skJson = glob.sync(getDirname() + '/components/sk/interview_cards.json', {}).toString();
 transpileJsonInterviewCardsToHTML(enJson, skJson);
-// Function that transpiles json into html code
-return;
 // second, we prepare all components
 const enComponents = makeComponentDictionary(getDirname() + '/components/{*,en/*}.html')
 const skComponents = makeComponentDictionary(getDirname() + '/components/{*,sk/*}.html')
 // third, we compose all css files into a single one
-//console.log('Beginning CSS composition into style.css')
+console.log('Beginning CSS composition into style.css')
 // find all css files inside css folder
 const cssSourceFiles = glob.sync(getDirname() + '/source/css/*.css', {})
 // turn them into strings
@@ -347,15 +398,13 @@ const cssConcatenated = cssString.join('\n')
 // TODO: remove whitespace?
 // write concatenated string to css file
 fs.writeFileSync(getDirname() + '/build/css/style.css', cssConcatenated)
-//console.log('Composed all CSS files into style.css')
+console.log('Composed all CSS files into style.css')
 // finally, we transpile html files and copy non-html files
 let sourceFiles = glob.sync(getDirname() + '/source/**/*', { nodir: true })
 for (const sourceFile of sourceFiles) {
 	// identifies the new file to be created
 	
 	const fileToCreate = getBuildFilePathFromSourceFilePath(sourceFile)
-	/*console.log("Source File " + getDirname() + "/build/html/cards.html");
-	return;*/
 	// note to future contributors: if you're going to use the html folder 
 	// for something other than .html files, use filePath.includes('/html/')
 	if (isHtmlFile(sourceFile)) {
