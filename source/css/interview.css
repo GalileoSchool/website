@@ -38,6 +38,15 @@
 
 @media screen and (min-width: 670px) {
 
+    body::-webkit-scrollbar {
+        width: 0;
+    }
+
+    body {
+        overflow: -moz-scrollbars-none;
+        -ms-overflow-style: none;
+    }
+
     .card.interview {
         border-radius: 0;
     }
@@ -58,6 +67,10 @@
         right: 0;
     }
 
+    #modal-box::-webkit-scrollbar {
+        width: 0;
+    }
+
     #modal-box {
         display: block;
         position: fixed;
@@ -75,6 +88,8 @@
         overflow: auto;
         border-radius: 1%;
         transition: .55s ease;
+        overflow: -moz-scrollbars-none;
+        -ms-overflow-style: none;
     }
 
     #modal-box > .card-body > div.card-text {
@@ -103,6 +118,7 @@
     }
 
     #modal-box > img {
+        margin-top: 10px;
         max-width: 400px;
         max-height: 400px;
     }

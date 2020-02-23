@@ -477,10 +477,13 @@ li.nav-phone.title.searching {
 
     #main-nav {
         display: flex;
+        display: -ms-flexbox;
         position: sticky;
         top: 0;
-        flex-direction: column;
+        flex-direction: row;
         max-height: 52px;
+        -ms-flex-direction: row;
+        -ms-flex-align: center;
         justify-content: center;
         width: 100%;
         align-items: center;
