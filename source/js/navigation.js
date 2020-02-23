@@ -26,7 +26,7 @@ $(document).ready(function () {
 
     $(window).resize(function () { 
         // Since Javascript has an automatic garbage collection we don't have to worry about disposing the old object
-        viewport = new Viewport($(window).innerWidth(),$(window).innerHeight());
+        viewport = new Viewport($(window).innerWidth() + 17,$(window).innerHeight());
         isDesktop = viewport.isDesktop;
         if(isDesktop) {
             resetToDesktop();

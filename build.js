@@ -61,8 +61,11 @@ class InterviewCard {
 			<h4 class="card-title">${this.title}</h4>
 			<div class="card-body">
 				<h5 class="card-subtitle">${this.student}</h5>
-				<p class="card-text">${this.quickinfo}</p>
-				<p class="card-text card-long-desc no-display">${this.longdesc}</p>
+				<div class="card-text">
+					<p class="card-text">${this.quickinfo}</p>
+					<p class="card-text card-long-desc no-display">${this.longdesc}</p>
+				</div>
+				<h2 class="no-display">Gallery</h2>
 				<ul class="card-images no-display">
 					${this.photos.map(photo =>`<li class="card-photo">
 						<img src="{fill_parents}${photo.source}" alt="${photo.name}">
@@ -266,6 +269,19 @@ function getNumberOfParentFolders(path, root = "html") {
 	}
 	return counter;
 }
+/**
+ * 
+ * @param {Array} obj 
+ */
+function transpileInterviewNavigation(objects) {
+	// console.log(objects); 
+	// return;
+	str_builder = ``;
+	objects.map(obj => {
+		str_builder += `<li id="${obj.Name.replace(" ", "_")}_menu" class="nav-elem"><div>${obj.Name}</div></li>\n`;		
+	});
+	return str_builder;
+}
 
 function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 	var file;
@@ -295,6 +311,8 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 	if(langs.includes('sk'))
 		var obj_sk = JSON.parse(fs.readFileSync(skJson));
 
+	fs.writeFileSync(getDirname() + "/components/" + "interview_navigation.html", transpileInterviewNavigation(obj_en)); 
+	
 	if(obj_en) {
 		var str_builder = ``;
 		var counter = 0;

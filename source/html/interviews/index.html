@@ -3,16 +3,31 @@
 <head>
     {{head}}
     {{interview_style}}
+    <script src="{fill_parents}js/interview.js"></script>
 </head>
 <body>
+    <div id="modal-background" class="no-display"></div>
     <header class="flex">
         {{navigation}}
         <div id="header-img" class="header"><img src="{fill_parents}images/interviews/header.jpg" alt="Welcome To Interviews With Past Students"></div>
     </header>
-    
-    <div class="content">
+
+    <nav id="modal-navigation" class="flex vertical fixed no-display">
+        <ul>
+            {{interview_navigation}}
+        </ul>
+    </nav>
+
+    <div id="modal-close" class="no-display fixed top">
+        <img src="{fill_parents}images/icons/close.png" alt="">
+    </div>
+
+    <div class="content interview">
+        <div id="interviews-heading">{{interview.sub-heading}}</div>
         {{interview_cards}}
     </div>
+
+    <div id="modal-box" class="card interview no-display"></div>
 
 </body>
 </html>
