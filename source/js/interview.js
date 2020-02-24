@@ -98,11 +98,17 @@ $(document).ready(function () {
     }
 
     function elementScrollToTop(id) {
-        document.getElementById(id).scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-          });
+        try{
+            document.getElementById(id).scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+              });
+        }
+        catch(err){
+            document.getElementById(id).scrollTop = 0;
+        }
+        
     }
 
     function setActiveNavTab(ID) {
