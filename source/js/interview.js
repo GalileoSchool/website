@@ -10,7 +10,6 @@ $(document).ready(function () {
     const modal_bckg = $("#modal-background");
     const closeBtn = $("#modal-close");
     const modal_box = $("#modal-box");
-    
 
     for (var tab of menu.children().children()) {
         tab.addEventListener("click", function (e) {
@@ -44,6 +43,7 @@ $(document).ready(function () {
     for (var card of cards) {
         if (card.id != "modal-box") {
             card.addEventListener("click", function (e) {
+                modifyUrl(hashCode(this.id));
                 if (isDesktop())
                     cardExpand(this);
                 else
@@ -53,13 +53,21 @@ $(document).ready(function () {
     };
 
     closeBtn.click(function (e) { 
+        modifyUrl(null);
         if(iscardOpen)
             cardExpand(e);
         else
             e.preventDefault();
     });
 
+    window.onpopstate = function(e){
+        checkUrlForRequest();
+    };
+
+    checkUrlForRequest();
+
     function changeCard(sender) {
+        modifyUrl(hashCode(sender.id.replace("_menu", "")));
         modal_box.animate({ height: "0px"}, 200).delay(600).animate({ height: "100vh"}, 200);
         setTimeout(() => {
             changeCurrentCardContent(sender)
@@ -136,11 +144,12 @@ $(document).ready(function () {
         
             if (newContent && newContent != null && newContent != undefined) 
                 modal_box.html(newContent.replace(/no-display/g, ""));
-            Print(sender.id);
+            //Print(sender.id);
             setActiveNavTab(sender.id);
         }
         catch(err) {
-            console.error("[" + changeCurrentCardContent.name + "] > NullReferenceException: Object reference not set to an instance of an object");            
+            console.error("[" + changeCurrentCardContent.name + "] > NullReferenceException: Object reference not set to an instance of an object");     
+            console.error(err);       
         }
 
     }
@@ -170,4 +179,58 @@ $(document).ready(function () {
             return false;
     }
 
+    function hashCode(string) {
+        for(var i = 0, h = 0; i < string.length; i++)
+            h = Math.imul(31, h) + string.charCodeAt(i) | 0;
+    
+        return h;
+    }
+
+    function checkUrlForRequest() {
+        var loadcard = null;
+        var url = new URL(window.location.href);
+        if(!url.search || url.search == null)
+            return;
+        var id = url.searchParams.get("id");
+        if(id && id != null) {
+            for(var card of cards) {
+                if(card.id == "modal-box")
+                    break;
+                
+                if(hashCode(card.id) == id)
+                    loadcard = card;
+
+                if(hashCode(card.id) == hashCode(id))
+                    loadcard = card;
+
+                if(hashCode(card.id.toLowerCase()) == hashCode(id))
+                    loadcard = card;
+            }
+
+            if(loadcard === null)
+                alert(`"${id}" is invalid!`);
+            else {
+                if(!iscardOpen)
+                    document.getElementById(loadcard.id).click();
+                else 
+                    changeCard(loadcard);
+            }
+        }
+        else
+            return;
+    }
+
+    function modifyUrl(id) {
+        if(window.location.href.indexOf("id=") !== -1)
+            var build_url = window.location.href.replace(window.location.href.split("id=")[1], id);
+        else
+            var build_url = (window.location.href + "?id=" + id);
+        
+        if(id == null)
+            build_url = build_url.split("?")[0];
+
+        history.pushState({
+            id: 'interview'
+        }, 'GALILEO | INTERVIEWS', build_url);
+    }
 });

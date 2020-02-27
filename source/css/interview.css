@@ -151,7 +151,7 @@
         height: 100%;
         padding-left: 0;
         color: #ffffff;
-        font-family: cursive;
+        font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
     }
 
     nav#modal-navigation > ul > li {
