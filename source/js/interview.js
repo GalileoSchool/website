@@ -27,7 +27,6 @@ $(document).ready(function () {
             modal_bckg.addClass("no-display");
             closeBtn.addClass("no-display");
             menu.addClass("no-display");
-            $("#interviews-heading").addClass("no-display");
             if (iscardOpen)
                 $("body").toggleClass("no-overflow");
             iscardOpen = false;
