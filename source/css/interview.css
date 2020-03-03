@@ -1,3 +1,14 @@
+.fixed {
+    position: fixed;
+}
+
+.top {
+    top: 0;
+}
+
+.content.interview {
+    margin-top: 15px;
+}
 
 .card.interview {
     background-color: rgba(166, 0, 0, 0.9);
@@ -5,6 +16,50 @@
     user-select: none;
     -webkit-user-drag: none;
     transition: .55s ease;
+}
+
+.card.interview.opened {
+    position: fixed;
+    top: 0;
+    z-index: 6;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: rgba(166,0,0,1);
+    transition: .75s ease;
+}
+
+.card.interview > .card-body > ul {
+    padding: 10px;
+    margin: auto;
+    list-style: none;
+    display: flex;
+    flex: auto;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card.interview > .card-body > .card-text {
+    margin-bottom: 10px;
+}
+
+.card.interview > .card-body > h2 {
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+    letter-spacing: 2.5;
+}
+
+.card.interview > .card-body > ul > li {
+    padding: 5px;
+    flex-grow: 2;
+    flex-shrink: 1;
+}
+
+.card.interview > .card-body > ul > li > img {
+    border-radius: 5px;
+    width: 100%;
+    height: auto;
 }
 
 .card-deck.interview {
@@ -34,6 +89,31 @@
 
 .card.interview > .card-body {
     font-family: 'Times New Roman', Times, serif;
+}
+
+#interviews-heading {
+    display: none;
+}
+
+#modal-close {
+    right: 2%;
+    z-index: 7;
+    top: 15px;
+    padding: 7px;
+    user-select: none;
+    border-radius: 50%;
+    transition: .55s ease;
+}
+
+#modal-close:active {
+    background-color: rgba(26, 79, 223, 0.36);
+    transform: scale(0.68);
+    transition: .15s ease;
+}
+
+#modal-close > img {
+    width: 38px;
+    height: auto;
 }
 
 @media screen and (min-width: 670px) {
@@ -128,6 +208,7 @@
     }
 
     #interviews-heading {
+        display: block;
         font-size: 1.2rem;
         padding: 12px;
         font-style: italic;
@@ -376,6 +457,10 @@
 
     #modal-box > .card-title {
         font-size: 1.9rem;
+    }
+
+    #modal-box > .card-body > h2 {
+        font-size: 2.5vw;
     }
 
     #modal-box > .card-body > div.card-text {

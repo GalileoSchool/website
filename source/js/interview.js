@@ -3,7 +3,8 @@ $(document).ready(function () {
     //Variables
     var cards = document.getElementsByClassName("card");
     var iscardOpen = false;
-    var currentCard;
+    var iscardOpenPhone = false;
+    var currentCard, currentCardPhone;
 
     // Constants
     const menu = $("#modal-navigation");
@@ -31,10 +32,13 @@ $(document).ready(function () {
                 $("body").toggleClass("no-overflow");
             iscardOpen = false;
             currentCard = null;
+            modifyUrl(null);
         }
         else {
-            if ($("#interviews-heading").hasClass("no-display"))
-                $("#interviews-heading").removeClass("no-display");
+            if(iscardOpenPhone) {
+                cardTogglePhone(currentCardPhone);
+                modifyUrl(null);
+            }
         }
             
     });
@@ -45,17 +49,19 @@ $(document).ready(function () {
             card.addEventListener("click", function (e) {
                 modifyUrl(hashCode(this.id));
                 if (isDesktop())
-                    cardExpand(this);
-                else
-                    cardFill();
+                    cardClicked(this);
+                else if(!iscardOpenPhone)
+                    cardFill(this);
             });
         }
     };
 
     closeBtn.click(function (e) { 
         modifyUrl(null);
-        if(iscardOpen)
-            cardExpand(e);
+        if(iscardOpen && isDesktop())
+            cardClicked(e);
+        else if(iscardOpenPhone && !isDesktop())
+            cardTogglePhone(currentCardPhone);
         else
             e.preventDefault();
     });
@@ -79,16 +85,16 @@ $(document).ready(function () {
 
     function cardFill(e) {
         if (!iscardOpen)
-            cardOpen(e);
+            cardTogglePhone(e);
         else
-            cardOpen(null);
+            cardTogglePhone(null);
     }
 
-    function cardExpand(e) {
+    function cardClicked(e) {
         if (!iscardOpen)
-            cardOpen(e);
+            cardTogglePC(e);
         else
-            cardOpen(null);
+            cardTogglePC(null);
         $("body").toggleClass("no-overflow");
         menu.toggleClass("no-display");
         modal_bckg.toggleClass("no-display");
@@ -161,11 +167,25 @@ $(document).ready(function () {
             return false;
     }
 
-    function cardOpen(sender) {
+    function cardTogglePC(sender) {
         if (sender != null)
             modal_box.html(sender.innerHTML.replace(/no-display/g, ""));
         else
             modal_box.html(sender);
+    }
+
+    function cardTogglePhone(sender) {
+        if(sender == null) 
+            throw new Error("[" + cardTogglePhone.name + "] > NullReferenceException: Object reference not set to an instance of an object");
+
+        $("body").toggleClass("no-overflow");
+        $("#" + sender.id).toggleClass("opened");
+        $(`#${sender.id} .card-body .card-text .card-long-desc`).toggleClass("no-display");
+        $(`#${sender.id} .card-body h2`).toggleClass("no-display");
+        $(`#${sender.id} .card-body .card-images`).toggleClass("no-display");
+        closeBtn.toggleClass("no-display");
+        currentCardPhone = sender;
+        iscardOpenPhone = !iscardOpenPhone;
     }
 
     /**
@@ -173,7 +193,7 @@ $(document).ready(function () {
      * @returns Boolean
      */
     function isDesktop() {
-        if (window.innerWidth >= 670 && window.innerHeight >= 400)
+        if (window.innerWidth >= 670 && window.innerHeight >= 300)
             return true;
         else
             return false;
@@ -203,7 +223,7 @@ $(document).ready(function () {
                 if(hashCode(card.id) == hashCode(id))
                     loadcard = card;
 
-                if(hashCode(card.id.toLowerCase()) == hashCode(id))
+                if(hashCode(card.id.toLowerCase()) == hashCode(id.toLowerCase()))
                     loadcard = card;
             }
 
