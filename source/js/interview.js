@@ -12,6 +12,7 @@ $(document).ready(function () {
     const closeBtn = $("#modal-close");
     const modal_box = $("#modal-box");
 
+    // Adding click event listener for every button in our interview navigation (the one with student names)
     for (var tab of menu.children().children()) {
         tab.addEventListener("click", function (e) {
             if (!isCardAlreadyOpened(this.id))
@@ -21,6 +22,7 @@ $(document).ready(function () {
         });
     }
 
+    // Checking for browser resize event (simply this fires when browser is resized)
     $(window).resize(function () { 
         if (!isDesktop()) {
             modal_box.addClass("no-display");
@@ -42,7 +44,7 @@ $(document).ready(function () {
             
     });
 
-    console.log(cards);
+    // Adding click event listener for every studnet card on our interview page
     for (var card of cards) {
         if (card.id != "modal-box") {
             card.addEventListener("click", function (e) {
@@ -55,6 +57,7 @@ $(document).ready(function () {
         }
     };
 
+    // Adding click event listener to the button that's responsible for closing the modal box 
     closeBtn.click(function (e) { 
         modifyUrl(null);
         if(iscardOpen && isDesktop())
@@ -65,23 +68,30 @@ $(document).ready(function () {
             e.preventDefault();
     });
 
+    // Adding click event listener for the browser's back button
     window.onpopstate = function(e){
         checkUrlForRequest();
     };
 
+    // Checking whether the URL contains any parameters
     checkUrlForRequest();
 
+
+/* Local Functions Section */
+    
+    // Function that's responsible for changing the content inside our modal box when user clicks on a tab in our interview menu
     function changeCard(sender) {
         modifyUrl(hashCode(sender.id.replace("_menu", "")));
-        modal_box.animate({ height: "0px"}, 200).delay(600).animate({ height: "100vh"}, 200);
+        modal_box.animate({ height: "0px"}, 200).delay(680).animate({ height: "100vh"}, 200);
         setTimeout(() => {
             changeCurrentCardContent(sender)
             setTimeout(() => {
                 elementScrollToTop("modal-box");    
             }, 900);
-        }, 600);
+        }, 680);
     }
 
+    // Function that's responsible for calling the cardTogglePhone function with the right parameters
     function cardFill(e) {
         if (!iscardOpen)
             cardTogglePhone(e);
@@ -89,6 +99,7 @@ $(document).ready(function () {
             cardTogglePhone(null);
     }
 
+    // Function that's responsible for opening up the modal box and freezing the background
     function cardClicked(e) {
         if (!iscardOpen)
             cardTogglePC(e);
@@ -110,6 +121,7 @@ $(document).ready(function () {
             setActiveNavTab(currentCard);
     }
 
+    // Function that's responsible for scrolling to the top of the given element
     function elementScrollToTop(id) {
         try{
             document.getElementById(id).scrollTo({
@@ -124,6 +136,7 @@ $(document).ready(function () {
         
     }
 
+    // Function that's responsible for changing the active tab in our interview menu
     function setActiveNavTab(ID) {
         var children = menu.children().children();
 
@@ -135,10 +148,7 @@ $(document).ready(function () {
         menu.children().children("#" + ID + "_menu").addClass("active");
     }
 
-    function Print(message) {
-        console.log(message);
-    }
-
+    // Function that's responsible for changing the modal box content for the one provided
     function changeCurrentCardContent(sender) {
         try {
             var newContent;
@@ -149,7 +159,6 @@ $(document).ready(function () {
         
             if (newContent && newContent != null && newContent != undefined) 
                 modal_box.html(newContent.replace(/no-display/g, ""));
-            //Print(sender.id);
             setActiveNavTab(sender.id);
         }
         catch(err) {
@@ -159,6 +168,7 @@ $(document).ready(function () {
 
     }
 
+    // Checks whether the card provided is or isn't already loaded
     function isCardAlreadyOpened(ID) {
         if ($("#" + ID).hasClass("active"))
             return true;
@@ -166,6 +176,7 @@ $(document).ready(function () {
             return false;
     }
 
+    // Function that's responsible for calling the opening and closing function for the modal box with the right parameters
     function cardTogglePC(sender) {
         if (sender != null)
             modal_box.html(sender.innerHTML.replace(/no-display/g, ""));
@@ -173,6 +184,7 @@ $(document).ready(function () {
             modal_box.html(sender);
     }
 
+    // Function that's responsible for opening and closing the student card on a mobile device
     function cardTogglePhone(sender) {
         if(sender == null) 
             throw new Error("[" + cardTogglePhone.name + "] > NullReferenceException: Object reference not set to an instance of an object");
@@ -198,6 +210,7 @@ $(document).ready(function () {
             return false;
     }
 
+    // Function that's responsible for generating hash from a string 
     function hashCode(string) {
         for(var i = 0, h = 0; i < string.length; i++)
             h = Math.imul(31, h) + string.charCodeAt(i) | 0;
@@ -205,6 +218,7 @@ $(document).ready(function () {
         return h;
     }
 
+    // Function that's responsible for checking the URL for any arguments/parameters and taking actions accordingly
     function checkUrlForRequest() {
         var loadcard = null;
         var url = new URL(window.location.href);
@@ -239,6 +253,7 @@ $(document).ready(function () {
             return;
     }
 
+    // Function that's responsible for modifying the URL without reloading the page
     function modifyUrl(id) {
         if(window.location.href.indexOf("id=") !== -1)
             var build_url = window.location.href.replace(window.location.href.split("id=")[1], id);
