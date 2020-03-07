@@ -30,7 +30,6 @@ class InterviewCard {
 		var succ = this._getPhotos();
 		if(!succ)
 			console.error("Missing photos in folder for " + this.image.split('/').pop() + " interview card");
-		//console.log("Oject initialized!");
 	}
 
 	_getPhotos() {
@@ -117,17 +116,14 @@ function isJsonFile(filePath) {
 }
 
 function makeFolder (folderPath) {
-	 //console.log('Preparing folder', folderPath)
 	// create if it doesn't exists yet
 	if (!fs.existsSync(folderPath)) {
 		fs.mkdirSync(folderPath)
-		//console.log('Created folder', folderPath)
 	}
 }
 
 // creates a dictionary of (filename: sourceFile) for Handlebars
 function makeComponentDictionary(globPattern) {
-	//console.log('Looking for components matching: ' + globPattern)
 
 	const componentSourceFiles = glob.sync(globPattern)
 	const components = {}
@@ -137,12 +133,9 @@ function makeComponentDictionary(globPattern) {
 			.split('/').pop() // get the actual filename
 			.replace(/\.html$/, '') // remove .html at the end
 	
-		//console.log('Found component', componentName)
-
 		// parse component (separate into subcomponents if it is compound)
 		const fileString = fs.readFileSync(componentSourceFile, "utf8")
 		if (fileString.indexOf(OPENING_SIGNATURE) == 0) {
-			//console.log(componentName, 'was identified as a compound component')
 
 			// split by sections / subcomponents
 			let sections = fileString.split('\r\n' + OPENING_SIGNATURE)
@@ -230,7 +223,6 @@ function joinRepeatedString(multiplier, pattern) {
 	for(var i = 0; (i + 1) <= multiplier; i++){
 		string_builder += pattern;
 	}
-	//console.log(string_builder);
 	return string_builder;
 }
 
@@ -244,12 +236,10 @@ function joinPathofFile(filepath) {
 		return;
 	var string_builder = joinRepeatedString(getNumberOfParentFolders(filepath) - 1, '../');
 	var path_parts = filepath.split('html/')[1];
-	//console.log("Path Parts:" + path_parts);
 	if(path_parts.indexOf('en/') != -1)
 		string_builder += path_parts.replace('en/','sk/');
 	else
 		string_builder += path_parts.replace('sk/', 'en/');
-	//console.log("File Path:"+filepath+"\nBuilt String:"+string_builder);
 	return string_builder;
 }
 
@@ -265,7 +255,6 @@ function getNumberOfParentFolders(path, root = "html") {
 	if(parsed[1]) {
 		var parsed_even_more = parsed[1].split('/');
 		counter = parsed_even_more.length;
-		//console.log(parsed[1] + " number of parents: " + parsed_even_more.length);
 	}
 	return counter;
 }
@@ -274,8 +263,6 @@ function getNumberOfParentFolders(path, root = "html") {
  * @param {Array} obj 
  */
 function transpileInterviewNavigation(objects) {
-	// console.log(objects); 
-	// return;
 	str_builder = ``;
 	objects.map(obj => {
 		str_builder += `<li id="${obj.Name.replace(" ", "_")}_menu" class="nav-elem"><div>${obj.Name}</div></li>\n`;		
@@ -320,7 +307,6 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 			if(counter === 0)
 				str_builder += card_deck_start;
 			var card = new InterviewCard(obj.Image, obj.Title, obj.ShortInfo, obj.LongInfo, obj.PhotosFolderPath, obj.Name);
-			//console.log(card);
 			str_builder += card.getCode();
 			counter++;
 			if(counter === 3) {
@@ -332,12 +318,10 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 			str_builder += card_deck_end;
 			counter = 0;
 		}
-		//console.log(str_builder);
 		var file = files.find(obj => {
 			return obj.language === 'en';
 		});
 		fs.writeFileSync(file.src, str_builder);
-		//console.log(counter);
 	}
 	if(obj_sk) {
 		var str_builder = ``;
@@ -346,7 +330,6 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 			if(counter === 0)
 				str_builder += card_deck_start;
 			var card = new InterviewCard(obj.Image, obj.Title, obj.ShortInfo, obj.LongInfo, obj.PhotosFolderPath, obj.Name);
-			//console.log(card);
 			str_builder += card.getCode();
 			counter++;
 			if(counter === 3) {
@@ -362,7 +345,6 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 			return obj.language === 'sk';
 		});
 		fs.writeFileSync(file.src, str_builder);
-		//console.log(counter);
 	}
 }
 
