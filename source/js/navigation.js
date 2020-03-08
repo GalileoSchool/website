@@ -38,7 +38,7 @@ $(document).ready(function () {
 
     navBtn.click(function (e) { 
         if(isDesktop)
-            toggleDeskMenu();
+            toggleDesktopMenu();
         else
             togglePhoneMenu();
     });
@@ -50,7 +50,7 @@ $(document).ready(function () {
 
     /*  Functions Section   */
 
-    function toggleDeskMenu() {
+    function toggleDesktopMenu() {
         isSubMenuOpen = !isSubMenuOpen;
         if($('html').scrollTop() != 0)
             $("html, body").animate({ scrollTop: 0 }, "slow");

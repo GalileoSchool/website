@@ -16,6 +16,10 @@
 // this acts as if you had multiple components, but put into one file
 //  and accessed using {{component.subcomponent}}
 
+/** Allows us to create an interview card object that has its own pre-made local functions to make our lives easier
+ * 
+ * @description Creating an instance of this class with the right parameters allows us to use its local functions. Example would be using the function getCode() to get a fully formatted html code of the card with the content from the parameters.
+ */
 class InterviewCard {
 
 	constructor(image, title, quickinfo, longdesc, pathToPhotosFolderFromWebRoot, student) {
@@ -32,11 +36,15 @@ class InterviewCard {
 			console.error("Missing photos in folder for " + this.image.split('/').pop() + " interview card");
 	}
 
+	/**
+	 * This is a private function that shouldn't be accessed from outside this class declaration, it is responsible for loading the subjects gallery
+	 */
 	_getPhotos() {
 		try {
-		var files = fs.readdirSync(getDirname() + '/source/' + this.path)
+			var files = fs.readdirSync(getDirname() + '/source/' + this.path);
 			if (files.length < 1)
 				return false;
+			
 			files.forEach(file => {
 				var ext = getFileExtension(file);
 				if (ext === "jpg" || ext === "png" || ext === "svg") {
@@ -46,7 +54,7 @@ class InterviewCard {
 					this.photos.push(photo);
 				}
 			});
-		return true;
+			return true;
 		} catch (error) {
 			console.log(error);
 			return false;	
@@ -258,93 +266,118 @@ function getNumberOfParentFolders(path, root = "html") {
 	}
 	return counter;
 }
-/**
+
+/** Precompiles JSON parsed interview objects into a list elements used in navigation
  * 
- * @param {Array} obj 
+ * @param {Array} objects JSON parsed interview objects
+ * @returns Compiled HTML code for modal navigation
  */
 function transpileInterviewNavigation(objects) {
-	str_builder = ``;
-	objects.map(obj => {
-		str_builder += `<li id="${obj.Name.replace(" ", "_")}_menu" class="nav-elem"><div>${obj.Name}</div></li>\n`;		
-	});
-	return str_builder;
+	try {
+		str_builder = ``;
+		objects.forEach(obj => {
+			str_builder += `<li id="${obj.Name.replace(" ", "_")}_menu" class="nav-elem"><div>${obj.Name}</div></li>\n`;		
+		});
+		return str_builder;
+	} catch (err) {
+		console.error(err);
+		return null;
+	}
 }
 
 function transpileJsonInterviewCardsToHTML(enJson, skJson) {
-	var file;
-	var dir = getDirname() + "/components/";
-	var langs = [];
-	var files = [];
-	var card_deck_start = `
-	<div class="card-deck interview">`;
-	var card_deck_end = `
-	</div>`;
+	try {
+		// Declaration of necessary variables
+		var file;
+		var dir = getDirname() + "/components/";
+		var languages = [];
+		var files = [];
+		var card_deck_start = `
+		<div class="card-deck interview">`;
+		var card_deck_end = `
+		</div>`;
 
-	if (!enJson || enJson == "") { file = skJson.split('/').pop().split('.')[0] + ".html"; langs.push('sk'); }
-	else if (!skJson || skJson == "") { file = enJson.split('/').pop().split('.')[0] + ".html"; langs.push('en'); }
-	else { file = enJson.split('/').pop().split('.')[0] + ".html"; langs.push('sk'); langs.push('en'); }
+		// Checking if there is Slovak and English version of the interviews
+		if (!enJson || enJson == "") { file = skJson.split('/').pop().split('.')[0] + ".html"; languages.push('sk'); }
+		else if (!skJson || skJson == "") { file = enJson.split('/').pop().split('.')[0] + ".html"; languages.push('en'); }
+		else { file = enJson.split('/').pop().split('.')[0] + ".html"; languages.push('sk'); languages.push('en'); }
 
-	langs.map(lang => {
-		var obj = {
-			language: lang,
-			src: dir+lang+"/"+file
-		};
-		files.push(obj);
-	});
+		// Creating new object for each language and adding it to my files[] array 
+		languages.forEach(language => {
+			var object = {
+				language: language,
+				src: dir+language+"/"+file
+			};
+			files.push(object);
+		});
 
-	
-	if(langs.includes('en'))
-		var obj_en = JSON.parse(fs.readFileSync(enJson));
-	if(langs.includes('sk'))
-		var obj_sk = JSON.parse(fs.readFileSync(skJson));
+		// Checks performed
+		if(languages.includes('en'))
+			var object_en = JSON.parse(fs.readFileSync(enJson));
+		if(languages.includes('sk'))
+			var object_sk = JSON.parse(fs.readFileSync(skJson));
 
-	fs.writeFileSync(getDirname() + "/components/" + "interview_navigation.html", transpileInterviewNavigation(obj_en)); 
-	
-	if(obj_en) {
-		var str_builder = ``;
-		var counter = 0;
-		obj_en.map(obj => {
-			if(counter === 0)
-				str_builder += card_deck_start;
-			var card = new InterviewCard(obj.Image, obj.Title, obj.ShortInfo, obj.LongInfo, obj.PhotosFolderPath, obj.Name);
-			str_builder += card.getCode();
-			counter++;
-			if(counter === 3) {
+		// Compiling interview modal navigation
+		fs.writeFileSync(getDirname() + "/components/" + "interview_navigation.html", transpileInterviewNavigation(object_en)); 
+
+		// Pre-compiling the English version of the interview cards
+		if(object_en) {
+			var str_builder = ``;
+			var counter = 0;
+			object_en.map(obj => {
+				// I check how many cards are already in one deck if it is the start of a new deck I manually add a card deck starting block
+				if(counter === 0)
+					str_builder += card_deck_start;
+				// Creating new instance of Interview Card so I can access it's HTML code
+				var card = new InterviewCard(obj.Image, obj.Title, obj.ShortInfo, obj.LongInfo, obj.PhotosFolderPath, obj.Name);
+				str_builder += card.getCode();
+				counter++;
+				// Here I state how many cards should be in one card deck or you can call it card row
+				if(counter === 3) {
+					str_builder += card_deck_end;
+					counter = 0;
+				}
+			});
+			// Here I check if the last card added to row was 3rd in the row if not I have to manually add card deck end block
+			if(counter !== 0) {
 				str_builder += card_deck_end;
 				counter = 0;
 			}
-		});
-		if(counter !== 0) {
-			str_builder += card_deck_end;
-			counter = 0;
+			var file = files.find(obj => {
+				return obj.language === 'en';
+			});
+			// Writing the final compiled HTML code into file
+			fs.writeFileSync(file.src, str_builder);
 		}
-		var file = files.find(obj => {
-			return obj.language === 'en';
-		});
-		fs.writeFileSync(file.src, str_builder);
-	}
-	if(obj_sk) {
-		var str_builder = ``;
-		var counter = 0;
-		obj_en.map(obj => {
-			if(counter === 0)
-				str_builder += card_deck_start;
-			var card = new InterviewCard(obj.Image, obj.Title, obj.ShortInfo, obj.LongInfo, obj.PhotosFolderPath, obj.Name);
-			str_builder += card.getCode();
-			counter++;
-			if(counter === 3) {
+
+		// Pre-compiling the Slovak version of the interview cards
+		if(object_sk) {
+			var str_builder = ``;
+			var counter = 0;
+			object_sk.map(obj => {
+				if(counter === 0)
+					str_builder += card_deck_start;
+				var card = new InterviewCard(obj.Image, obj.Title, obj.ShortInfo, obj.LongInfo, obj.PhotosFolderPath, obj.Name);
+				str_builder += card.getCode();
+				counter++;
+				if(counter === 3) {
+					str_builder += card_deck_end;
+					counter = 0;
+				}
+			});
+			if(counter !== 0) {
 				str_builder += card_deck_end;
 				counter = 0;
 			}
-		});
-		if(counter !== 0) {
-			str_builder += card_deck_end;
-			counter = 0;
+			var file = files.find(obj => {
+				return obj.language === 'sk';
+			});
+			fs.writeFileSync(file.src, str_builder);
 		}
-		var file = files.find(obj => {
-			return obj.language === 'sk';
-		});
-		fs.writeFileSync(file.src, str_builder);
+		return true;
+	} catch (err) {
+		console.error("There was an internal error while transpiling Interview Cards: " + err);
+		return false;
 	}
 }
 
@@ -383,7 +416,9 @@ for (const sourceFolder of sourceFolders) {
 
 const enJson = glob.sync(getDirname() + '/components/en/interview_cards.json', {}).toString();
 const skJson = glob.sync(getDirname() + '/components/sk/interview_cards.json', {}).toString();
-transpileJsonInterviewCardsToHTML(enJson, skJson);
+var suc = transpileJsonInterviewCardsToHTML(enJson, skJson);
+if (!suc)
+	return;
 // second, we prepare all components
 const enComponents = makeComponentDictionary(getDirname() + '/components/{*,en/*}.html')
 const skComponents = makeComponentDictionary(getDirname() + '/components/{*,sk/*}.html')
