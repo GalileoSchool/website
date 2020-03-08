@@ -293,9 +293,9 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 		var languages = [];
 		var files = [];
 		var card_deck_start = `
-		<div class="card-deck interview">`;
+	<div class="card-deck interview">`;
 		var card_deck_end = `
-		</div>`;
+	</div>`;
 
 		// Checking if there is Slovak and English version of the interviews
 		if (!enJson || enJson == "") { file = skJson.split('/').pop().split('.')[0] + ".html"; languages.push('sk'); }
@@ -318,7 +318,12 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 			var object_sk = JSON.parse(fs.readFileSync(skJson));
 
 		// Compiling interview modal navigation
-		fs.writeFileSync(getDirname() + "/components/" + "interview_navigation.html", transpileInterviewNavigation(object_en)); 
+		if (object_en)
+			fs.writeFileSync(getDirname() + "/components/" + "interview_navigation.html", transpileInterviewNavigation(object_en));
+		else if (object_sk)
+			fs.writeFileSync(getDirname() + "/components/" + "interview_navigation.html", transpileInterviewNavigation(object_sk));
+		else
+			throw new Error("[" + transpileJsonInterviewCardsToHTML.name + "] > NullReferenceException: Object reference not set to an instance of an object");
 
 		// Pre-compiling the English version of the interview cards
 		if(object_en) {
