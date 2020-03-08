@@ -31,13 +31,15 @@ class InterviewCard {
 		this.path = pathToPhotosFolderFromWebRoot;
 		this.photos = [];
 		
+		if (this.path == null)
+			break;
 		var succ = this._getPhotos();
 		if(!succ)
 			console.error("Missing photos in folder for " + this.image.split('/').pop() + " interview card");
 	}
 
 	/**
-	 * This is a private function that shouldn't be accessed from outside this class declaration, it is responsible for loading the subjects gallery
+	 * This is a private function that shouldn't be accessed from outside this class declaration, it is responsible for loading photos
 	 */
 	_getPhotos() {
 		try {
@@ -274,11 +276,11 @@ function getNumberOfParentFolders(path, root = "html") {
  */
 function transpileInterviewNavigation(objects) {
 	try {
-		str_builder = ``;
+		string_builder = ``;
 		objects.forEach(obj => {
-			str_builder += `<li id="${obj.Name.replace(" ", "_")}_menu" class="nav-elem"><div>${obj.Name}</div></li>\n`;		
+			string_builder += `<li id="${obj.Name.replace(" ", "_")}_menu" class="nav-elem"><div>${obj.Name}</div></li>\n`;		
 		});
-		return str_builder;
+		return string_builder;
 	} catch (err) {
 		console.error(err);
 		return null;
@@ -306,15 +308,15 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 		languages.forEach(language => {
 			var object = {
 				language: language,
-				src: dir+language+"/"+file
+				src: dir + language + "/" + file
 			};
 			files.push(object);
 		});
 
 		// Checks performed
-		if(languages.includes('en'))
+		if (languages.includes('en'))
 			var object_en = JSON.parse(fs.readFileSync(enJson));
-		if(languages.includes('sk'))
+		if (languages.includes('sk'))
 			var object_sk = JSON.parse(fs.readFileSync(skJson));
 
 		// Compiling interview modal navigation
@@ -326,58 +328,58 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 			throw new Error("[" + transpileJsonInterviewCardsToHTML.name + "] > NullReferenceException: Object reference not set to an instance of an object");
 
 		// Pre-compiling the English version of the interview cards
-		if(object_en) {
-			var str_builder = ``;
+		if (object_en) {
+			var string_builder = ``;
 			var counter = 0;
 			object_en.map(obj => {
 				// I check how many cards are already in one deck if it is the start of a new deck I manually add a card deck starting block
-				if(counter === 0)
-					str_builder += card_deck_start;
+				if (counter === 0)
+					string_builder += card_deck_start;
 				// Creating new instance of Interview Card so I can access it's HTML code
 				var card = new InterviewCard(obj.Image, obj.Title, obj.ShortInfo, obj.LongInfo, obj.PhotosFolderPath, obj.Name);
-				str_builder += card.getCode();
+				string_builder += card.getCode();
 				counter++;
 				// Here I state how many cards should be in one card deck or you can call it card row
-				if(counter === 3) {
-					str_builder += card_deck_end;
+				if (counter === 3) {
+					string_builder += card_deck_end;
 					counter = 0;
 				}
 			});
 			// Here I check if the last card added to row was 3rd in the row if not I have to manually add card deck end block
-			if(counter !== 0) {
-				str_builder += card_deck_end;
+			if (counter !== 0) {
+				string_builder += card_deck_end;
 				counter = 0;
 			}
 			var file = files.find(obj => {
 				return obj.language === 'en';
 			});
 			// Writing the final compiled HTML code into file
-			fs.writeFileSync(file.src, str_builder);
+			fs.writeFileSync(file.src, string_builder);
 		}
 
 		// Pre-compiling the Slovak version of the interview cards
-		if(object_sk) {
-			var str_builder = ``;
+		if (object_sk) {
+			var string_builder = ``;
 			var counter = 0;
 			object_sk.map(obj => {
-				if(counter === 0)
-					str_builder += card_deck_start;
+				if (counter === 0)
+					string_builder += card_deck_start;
 				var card = new InterviewCard(obj.Image, obj.Title, obj.ShortInfo, obj.LongInfo, obj.PhotosFolderPath, obj.Name);
-				str_builder += card.getCode();
+				string_builder += card.getCode();
 				counter++;
-				if(counter === 3) {
-					str_builder += card_deck_end;
+				if (counter === 3) {
+					string_builder += card_deck_end;
 					counter = 0;
 				}
 			});
-			if(counter !== 0) {
-				str_builder += card_deck_end;
+			if (counter !== 0) {
+				string_builder += card_deck_end;
 				counter = 0;
 			}
 			var file = files.find(obj => {
 				return obj.language === 'sk';
 			});
-			fs.writeFileSync(file.src, str_builder);
+			fs.writeFileSync(file.src, string_builder);
 		}
 		return true;
 	} catch (err) {

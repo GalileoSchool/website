@@ -225,7 +225,7 @@ $(document).ready(function () {
         var url = new URL(window.location.href);
         if(!url.search || url.search == null)
             return;
-        // Getting trying to get parameter id from our URL, which could look like this (https://www.galileoschool.sk/interviews/index.html?id=518421) evertyhing behind the "?" symbol is considered a parameter
+        // Trying to get parameter id from our URL, which could look like this (https://www.galileoschool.sk/interviews/index.html?id=518421) evertyhing behind the "?" symbol is considered a parameter
         // Multiple parameters are divided with "&" symbol ex. (https:/www.galileoschool.sk/interviews/index.html?id=518421&showPhotos=false)
         // I decided to use id because each interview card has its own UID and it's easier to compare things if you know what you are comparing
         var id = url.searchParams.get("id");
