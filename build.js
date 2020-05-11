@@ -283,8 +283,48 @@ function transpileInterviewNavigation(objects) {
 		return string_builder;
 	} catch (err) {
 		console.error(err);
-		return null;
+		return;
 	}
+}
+
+function getHTMLCodeFromJSON(json_object) {
+	var card_deck_start = `
+	<div class="card-deck interview">`;
+		var card_deck_end = `
+	</div>`;
+	var string_builder = ``;
+	var counter = 0;
+
+	json_object.map(obj => {
+		// I check how many cards are already in one deck and if it is the start of a new deck I manually add a card deck starting block
+		if (counter === 0)
+			string_builder += card_deck_start;
+		// Creating new instance of Interview Card so I can access it's HTML code
+		var card = new InterviewCard(obj.Image, obj.Title, obj.ShortInfo, obj.LongInfo, obj.PhotosFolderPath, obj.Name);
+		string_builder += card.getCode();
+		counter++;
+		// Here I state how many cards should be in one card deck or you can call it card row
+		if (counter === 3) {
+			string_builder += card_deck_end;
+			counter = 0;
+		}
+	});
+	// Here I check if the last card added to row was 3rd in the row if not I have to manually add card deck end block
+	if (counter !== 0) {
+		string_builder += card_deck_end;
+		counter = 0;
+	}
+	return string_builder;
+}
+
+function writeInterviewCardHTMLCodeToFile(language, HTML) {
+	if (language == "english" || language == "en" || language == "En" || language == "EN" || language == "English") language = "en";
+	if (language == "slovak" || language == "sk" || language == "SK" || language == "Sk" || language == "Slovak") language = "sk";
+	var file = files.find(obj => {
+		return obj.language === language;
+	});
+	// Writing the final compiled HTML code into file
+	fs.writeFileSync(file.src, HTML);
 }
 
 function transpileJsonInterviewCardsToHTML(enJson, skJson) {
@@ -294,10 +334,6 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 		var dir = getDirname() + "/components/";
 		var languages = [];
 		var files = [];
-		var card_deck_start = `
-	<div class="card-deck interview">`;
-		var card_deck_end = `
-	</div>`;
 
 		// Checking if there is Slovak and English version of the interviews
 		if (!enJson || enJson == "") { file = skJson.split('/').pop().split('.')[0] + ".html"; languages.push('sk'); }
@@ -329,58 +365,17 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 
 		// Pre-compiling the English version of the interview cards
 		if (object_en) {
-			var string_builder = ``;
-			var counter = 0;
-			object_en.map(obj => {
-				// I check how many cards are already in one deck if it is the start of a new deck I manually add a card deck starting block
-				if (counter === 0)
-					string_builder += card_deck_start;
-				// Creating new instance of Interview Card so I can access it's HTML code
-				var card = new InterviewCard(obj.Image, obj.Title, obj.ShortInfo, obj.LongInfo, obj.PhotosFolderPath, obj.Name);
-				string_builder += card.getCode();
-				counter++;
-				// Here I state how many cards should be in one card deck or you can call it card row
-				if (counter === 3) {
-					string_builder += card_deck_end;
-					counter = 0;
-				}
-			});
-			// Here I check if the last card added to row was 3rd in the row if not I have to manually add card deck end block
-			if (counter !== 0) {
-				string_builder += card_deck_end;
-				counter = 0;
-			}
-			var file = files.find(obj => {
-				return obj.language === 'en';
-			});
-			// Writing the final compiled HTML code into file
-			fs.writeFileSync(file.src, string_builder);
+			var HTML = getHTMLCodeFromJSON(object_en);
+			writeInterviewCardHTMLCodeToFile("en", HTML);
 		}
 
 		// Pre-compiling the Slovak version of the interview cards
 		if (object_sk) {
-			var string_builder = ``;
-			var counter = 0;
-			object_sk.map(obj => {
-				if (counter === 0)
-					string_builder += card_deck_start;
-				var card = new InterviewCard(obj.Image, obj.Title, obj.ShortInfo, obj.LongInfo, obj.PhotosFolderPath, obj.Name);
-				string_builder += card.getCode();
-				counter++;
-				if (counter === 3) {
-					string_builder += card_deck_end;
-					counter = 0;
-				}
-			});
-			if (counter !== 0) {
-				string_builder += card_deck_end;
-				counter = 0;
-			}
-			var file = files.find(obj => {
-				return obj.language === 'sk';
-			});
-			fs.writeFileSync(file.src, string_builder);
+			var HTML = getHTMLCodeFromJSON(object_sk);
+			writeInterviewCardHTMLCodeToFile("sk", HTML);
 		}
+
+		// If everything goes as it should we return true to indicate that the process was successful
 		return true;
 	} catch (err) {
 		console.error("There was an internal error while transpiling Interview Cards: " + err);
