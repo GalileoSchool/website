@@ -30,12 +30,14 @@ class InterviewCard {
 		this.longdesc = longdesc;
 		this.path = pathToPhotosFolderFromWebRoot;
 		this.photos = [];
+		this.hasPhotos = false;
 		
 		if (this.path == null)
-			break;
+			return;
 		var succ = this._getPhotos();
+		this.hasPhotos = succ;
 		if(!succ)
-			console.error("Missing photos in folder for " + this.image.split('/').pop() + " interview card");
+			console.error("Missing photos for " + this.student + " interview card");
 	}
 
 	/**
@@ -44,7 +46,7 @@ class InterviewCard {
 	_getPhotos() {
 		try {
 			var files = fs.readdirSync(getDirname() + '/source/' + this.path);
-			if (files.length < 1)
+			if (this._countPictures(files) < 1)
 				return false;
 			
 			files.forEach(file => {
@@ -63,6 +65,15 @@ class InterviewCard {
 		}
 	}
 
+	_countPictures(files) {
+		var count = 0;
+		files.forEach(file => {
+			if (file.includes(".jpg") || file.includes(".png") || file.includes(".svg"))
+				count++;
+		});
+		return count;
+	}
+
 	getCode() {
 		return `
 		<div id="${this.student.replace(' ', '_')}" class="card interview">
@@ -74,7 +85,7 @@ class InterviewCard {
 					<p class="card-text">${this.quickinfo}</p>
 					<p class="card-text card-long-desc no-display">${this.longdesc}</p>
 				</div>
-				<h2 class="no-display">Gallery</h2>
+				${this.hasPhotos ? `<h2 class="no-display">Gallery</h2>` : ``}
 				<ul class="card-images no-display">
 					${this.photos.map(photo =>`<li class="card-photo">
 						<img src="{fill_parents}${photo.source}" alt="${photo.name}">
@@ -283,7 +294,7 @@ function transpileInterviewNavigation(objects) {
 		return string_builder;
 	} catch (err) {
 		console.error(err);
-		return;
+		return null;
 	}
 }
 
@@ -311,13 +322,17 @@ function getHTMLCodeFromJSON(json_object) {
 	});
 	// Here I check if the last card added to row was 3rd in the row if not I have to manually add card deck end block
 	if (counter !== 0) {
+		for (i = 0; i < (3 - counter); i++) {
+			string_builder += `
+			<div class="card interview hidden"></div>`;
+		}
 		string_builder += card_deck_end;
 		counter = 0;
 	}
 	return string_builder;
 }
 
-function writeInterviewCardHTMLCodeToFile(language, HTML) {
+function writeInterviewCardHTMLCodeToFile(language, HTML, files) {
 	if (language == "english" || language == "en" || language == "En" || language == "EN" || language == "English") language = "en";
 	if (language == "slovak" || language == "sk" || language == "SK" || language == "Sk" || language == "Slovak") language = "sk";
 	var file = files.find(obj => {
@@ -366,13 +381,13 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 		// Pre-compiling the English version of the interview cards
 		if (object_en) {
 			var HTML = getHTMLCodeFromJSON(object_en);
-			writeInterviewCardHTMLCodeToFile("en", HTML);
+			writeInterviewCardHTMLCodeToFile("en", HTML, files);
 		}
 
 		// Pre-compiling the Slovak version of the interview cards
 		if (object_sk) {
 			var HTML = getHTMLCodeFromJSON(object_sk);
-			writeInterviewCardHTMLCodeToFile("sk", HTML);
+			writeInterviewCardHTMLCodeToFile("sk", HTML, files);
 		}
 
 		// If everything goes as it should we return true to indicate that the process was successful
