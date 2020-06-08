@@ -299,10 +299,8 @@ function transpileInterviewNavigation(objects) {
 }
 
 function getHTMLCodeFromJSON(json_object) {
-	var card_deck_start = `
-	<div class="card-deck interview">`;
-		var card_deck_end = `
-	</div>`;
+	var card_deck_start = `<div class="card-deck interview">`;
+		var card_deck_end = `</div>`;
 	var string_builder = ``;
 	var counter = 0;
 
@@ -433,8 +431,8 @@ for (const sourceFolder of sourceFolders) {
 
 const enJson = glob.sync(getDirname() + '/components/en/interview_cards.json', {}).toString();
 const skJson = glob.sync(getDirname() + '/components/sk/interview_cards.json', {}).toString();
-var suc = transpileJsonInterviewCardsToHTML(enJson, skJson);
-if (!suc)
+var success = transpileJsonInterviewCardsToHTML(enJson, skJson);
+if (!success)
 	return;
 // second, we prepare all components
 const enComponents = makeComponentDictionary(getDirname() + '/components/{*,en/*}.html')
