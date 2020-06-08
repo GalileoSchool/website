@@ -300,7 +300,7 @@ function transpileInterviewNavigation(objects) {
 
 function getHTMLCodeFromJSON(json_object) {
 	var card_deck_start = `<div class="card-deck interview">`;
-		var card_deck_end = `</div>`;
+	var card_deck_end = `</div>`;
 	var string_builder = ``;
 	var counter = 0;
 
