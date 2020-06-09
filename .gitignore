@@ -194,4 +194,10 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Our Files
+components/en/interview_cards.html
+components/en/interview.html
+components/sk/interview.html
+components/sk/interview_cards.html
+
 # End of https://www.gitignore.io/api/node,macos,windows,sublimetext,visualstudiocode

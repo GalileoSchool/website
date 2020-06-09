@@ -165,8 +165,8 @@ $(document).ready(function () {
             setActiveNavTab(sender.id);
         }
         catch(err) {
-            console.error("[" + changeCurrentCardContent.name + "] > NullReferenceException: Object reference not set to an instance of an object");     
-            console.error(err);       
+            console.error(err); 
+            throw new Error("[" + changeCurrentCardContent.name + "] > NullReferenceException: Object reference not set to an instance of an object")
         }
 
     }

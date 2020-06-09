@@ -286,16 +286,11 @@ function getNumberOfParentFolders(path, root = "html") {
  * @returns Compiled HTML code for modal navigation
  */
 function transpileInterviewNavigation(objects) {
-	try {
-		string_builder = ``;
-		objects.forEach(obj => {
-			string_builder += `<li id="${obj.Name.replace(" ", "_")}_menu" class="nav-elem"><div>${obj.Name}</div></li>\n`;		
-		});
-		return string_builder;
-	} catch (err) {
-		console.error(err);
-		return null;
-	}
+	string_builder = ``;
+	objects.forEach(obj => {
+		string_builder += `<li id="${obj.Name.replace(" ", "_")}_menu" class="nav-elem"><div>${obj.Name}</div></li>\n`;		
+	});
+	return string_builder;
 }
 
 function getHTMLCodeFromJSON(json_object) {
