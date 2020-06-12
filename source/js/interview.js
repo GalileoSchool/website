@@ -151,7 +151,9 @@ $(document).ready(function () {
         menu.children().children("#" + ID.replace("_menu", "") + "_menu").addClass("active");
     }
 
-    // Function that's responsible for changing the modal box content for the one provided
+    /** Function that's responsible for changing the modal box content for the one provided
+     *  @param sender Since this function is used in an event of a html element, sender is the html element on which the event occured
+     * */ 
     function changeCurrentCardContent(sender) {
         try {
             var newContent;
