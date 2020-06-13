@@ -386,6 +386,7 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 		// If everything goes as it should we return true to indicate that the process was successful
 		return true;
 	} catch (err) {
+		// We use this catch to determine whether the transpilation was successful or not. The function itself returns a boolean that we later check for.
 		console.error("There was an internal error while transpiling Interview Cards: " + err);
 		return false;
 	}
