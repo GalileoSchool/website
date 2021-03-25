@@ -1,0 +1,51 @@
+<div class="phone heading">
+    <h1>{{contact.phone_heading}}</h1>
+</div>
+<div class="heading">
+    <div class="logo"><img id="logo" src="{fill_parents}images/logo.jpg"></div>
+    <h1 class="text">{{contact.heading}}</h1>
+</div>
+
+<div class="contact-info container">
+    <ul class="list">
+        <li><i class="far fa-envelope"></i><h6 class="phone title">Email:</h6><a href="mailto:info@galileoschool.sk">info@galileoschool.sk</a></li>
+        <li>
+            <i class="fas fa-phone-alt"></i> 
+            <h6 class="phone title">Telephone:</h6>
+            
+            <ul>
+                <li><a href="tel:02/4598 1928">02/4598 1928</a></li>
+                <li><a href="tel:02/4598 1929">02/4598 1929</a></li>
+            </ul>
+        </li>
+        <li><i class="fas fa-map-marker-alt"></i><h6 class="phone title">Address:</h6><a href="http://maps.google.com/?q=Dudvážska 6, 821 07 Bratislava 214">Dudvážska 6, 821 07 Bratislava 214</a></li>
+    </ul>
+</div>
+<div class="contact-form container">
+    <div class="left flex column center">
+        <img src="{fill_parents}images/envelope.svg" alt="">
+    </div>
+    <div class="right flex column center">
+        <h2>{{contact.form_heading}}</h2>
+        <div>
+            <form id="Contact-Form" class="flex column" action="#">
+                <input class="form input" type="text" name="Name" id="Name" placeholder="Mark Twain">
+                <input class="form input" type="email" name="Email" id="Email" placeholder="example@gmail.com">
+                <input class="form input" type="text" name="Subject" id="Subject" placeholder="Subject">
+            </form>
+            <textarea class="form input" name="Message" id="Message" cols="10" rows="5" placeholder="Message"></textarea>
+            <input type="submit" value="{{contact.form_submit}}" form="Contact-Form">
+        </div>
+    </div>
+</div>
+<div class="map container">
+    <iframe
+        width="100%"
+        height="100%"
+        style="border:0"
+        loading="lazy"
+        allowfullscreen
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDuDYzua5Ywn03AharIGWNXJRVsY2yco7s
+            &q=Dudvážska 6, 821 07 Bratislava 214">
+    </iframe>
+</div>
