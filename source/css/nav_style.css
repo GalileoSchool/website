@@ -88,7 +88,7 @@ div.nav-phone.lang > div {
     margin: auto;
     padding: 1vw;
     box-sizing: content-box;
-    transition: 2s linear;
+    transition: .4s ease;
 }
 
 .nav-phone .logo {
@@ -101,7 +101,7 @@ div.nav-phone.lang > div {
     margin-left: 0;
     font-size: 6vw;
     text-transform: uppercase;
-    transition: 2s linear;
+    transition: .4s ease;
 }
 
 .nav-phone {

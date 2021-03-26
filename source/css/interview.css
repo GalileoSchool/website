@@ -66,6 +66,10 @@
     flex-direction: column;
 }
 
+.card-deck.interview:last-child .card.interview:last-child {
+    margin-bottom: 0;
+}
+
 .card.interview > .card-title {
     width: 100%;
     text-transform: uppercase;
