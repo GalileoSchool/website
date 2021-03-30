@@ -8,7 +8,7 @@
 
 <div class="contact-info container">
     <ul class="list">
-        <li><i class="far fa-envelope"></i><h6 class="phone title">Email:</h6><a href="mailto:info@galileoschool.sk">info@galileoschool.sk</a></li>
+        <li><i class="far fa-envelope"></i><h6 class="phone title">Email:</h6><a id="school-email" href="mailto:info@galileoschool.sk">info@galileoschool.sk</a></li>
         <li>
             <i class="fas fa-phone-alt"></i> 
             <h6 class="phone title">Telephone:</h6>
@@ -23,12 +23,12 @@
 </div>
 <div class="contact-form container">
     <div class="left flex column center">
-        <img src="{fill_parents}images/envelope.svg" alt="">
+        <img src="{fill_parents}images/envelope.svg" alt="" draggable="false">
     </div>
     <div class="right flex column center">
         <h2>{{contact.form_heading}}</h2>
         <div>
-            <form id="Contact-Form" class="flex column" action="#">
+            <form id="Contact-Form" class="flex column" action="javascript:sendMail();">
                 <div class="form-input-cont">
                     <input class="form input" type="text" name="Name" id="Name" placeholder="Mark Twain" autocomplete="off">
                 </div>

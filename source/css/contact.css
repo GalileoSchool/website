@@ -287,6 +287,7 @@ div.contact-form.container .flex.center {
         width: 100%;
         min-height: 200px;
         overflow-wrap: break-word;
+        max-height: 650px;
     }
 
     div.contact-form div.right > * {
@@ -369,8 +370,10 @@ div.contact-form.container .flex.center {
     }
 
     div.contact-form div.left img {
-        width: 50%;
+        width: 60%;
         height: auto;
+        user-select: none;
+        -webkit-user-drag: none;
     }
 
     div.contact-info ul.list {
@@ -420,6 +423,10 @@ div.contact-form.container .flex.center {
         font-weight: 800;
         text-align: start;
         padding: 1rem 30px;
+    }
+
+    div.contact-form div.right div textarea {
+        max-height: 450px;
     }
 
     div.form-input-cont input {

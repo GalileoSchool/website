@@ -83,6 +83,9 @@ $(document).ready(function () {
             elem.classList.add(class2);
     }
 
+    /**
+     * Checks whether a quickfix of the background is necessary
+     */
     async function checkAutoHeight() {
         desktop = (document.getElementById("heading").scrollHeight != 0) ? true : false;
         if (autoHeightApplied) body.classList.remove("auto-height");
@@ -93,7 +96,10 @@ $(document).ready(function () {
             autoHeightApplied = true;
         });
     }
+
 });
+
+
 
 /**
  * 
@@ -110,8 +116,7 @@ function autoHeight(body, callback) {
  * @param {boolean} email 
  * @returns {boolean}
  */
-function validate(string, email = false)
-{
+function validate(string, email = false) {
     if (!string || string == null || string == undefined) return false;
 
     string = string.trim();
@@ -133,4 +138,25 @@ function validate(string, email = false)
  */
 function emailValidate(email) {
     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
-}   
+}
+
+function sendMail() {
+    try {
+        let name = document.getElementById("Name").value;
+        let email = document.getElementById("Email").value;
+        let subject = document.getElementById("Subject").value;
+        let message = document.getElementById("Message").value;
+        let mail = document.getElementById("school-email").textContent;
+
+
+        if (validate(name) && validate(email, true) && validate(subject) && validate(message) && validate(mail, true)) {
+            let body = `Dear Galileo School,\r\n\n${message}\r\n\nSincerely,\r\n${name} → ${email}`;
+            window.open(`mailto:${mail}?subject=${subject}&body=${encodeURIComponent(body)}`);
+            window.location.reload();
+        }
+        else throw new Error("There was an error while trying to send mail!");
+        
+    } catch (error) {
+        throw error;
+    }
+}
