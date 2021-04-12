@@ -28,16 +28,19 @@
     <div class="right flex column center">
         <h2>{{contact.form_heading}}</h2>
         <div>
-            <form id="Contact-Form" class="flex column" action="javascript:sendMail();">
+            <form id="Contact-Form" class="flex column" action="javascript:sendMail();" autocomplete="off">
                 <div class="form-input-cont">
-                    <input class="form input" type="text" name="Name" id="Name" placeholder="Mark Twain" autocomplete="off">
+                    <input class="form input" type="text" name="Name" id="Name" placeholder="Your Full Name" autocomplete="off">
                 </div>
+                <span class="error msg" input="Name">Too short! Minimum lenght is 4 characters</span>
                 <div class="form-input-cont">
                     <input class="form input" type="email" name="Email" id="Email" placeholder="Email" autocomplete="off">
                 </div>
+                <span class="error msg" input="Email">Please enter a valid email</span>
                 <div class="form-input-cont">
                     <input class="form input" type="text" name="Subject" id="Subject" placeholder="Subject" autocomplete="off">
                 </div>
+                <span class="error msg" input="Subject">Please enter a valid subject</span>
             </form>
             <textarea class="form input" name="Message" id="Message" cols="10" rows="5" placeholder="Message" form="Contact-Form"></textarea>
             <input type="submit" value="{{contact.form_submit}}" form="Contact-Form" id="submitBtn">
