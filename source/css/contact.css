@@ -98,6 +98,10 @@ div.content.contacts {
     transition: .75s ease;
 }
 
+.error:last-child {
+    margin-bottom: 0;
+}
+
 span.error.display-block {
     display: block !important;
 }
