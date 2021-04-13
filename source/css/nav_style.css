@@ -327,6 +327,9 @@ li.nav-phone.title.searching {
         cursor: pointer;
     }
 
+    div.language-select-btn:hover, div.nav-phone.light-gray.lang.lang-text {
+        cursor: pointer;
+    }
     #langBtn:hover, .lang-text:hover {
         cursor: pointer;
         background-color: #eeeeee;

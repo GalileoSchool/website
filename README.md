@@ -33,4 +33,4 @@ You can find all of these in the `Makefile` file which you can use using the `ma
 
 ## License
 
-(c) Copyright 2019 GALILEO SCHOOL, s.r.o., all rights reserved.
+(c) Copyright 2020 GALILEO SCHOOL, s.r.o., all rights reserved.
