@@ -6,6 +6,8 @@ $(document).ready(function () {
     checkAutoHeight();
     window.addEventListener("resize", checkAutoHeight);
 
+    var desktop = true;
+
     if (desktop) {
         let form_inputs = document.querySelectorAll("div.form-input-cont > input:not([type='submit']):not([readonly])");
 
