@@ -88,7 +88,7 @@ div.nav-phone.lang > div {
     margin: auto;
     padding: 1vw;
     box-sizing: content-box;
-    transition: 2s linear;
+    transition: .4s ease;
 }
 
 .nav-phone .logo {
@@ -101,7 +101,7 @@ div.nav-phone.lang > div {
     margin-left: 0;
     font-size: 6vw;
     text-transform: uppercase;
-    transition: 2s linear;
+    transition: .4s ease;
 }
 
 .nav-phone {
@@ -321,12 +321,15 @@ li.nav-phone.title.searching {
 /* Tablet style */
 /* Why 670? Trial and error - testing values from 540 to 800 (Common phone and tablet widths) */
 /* Warning: Any changes made to this "conditional" such as changing the min-width will have to be repeated in nav_jquery.js file in the function check_resize() */
-@media screen and (min-width: 670px) {
+@media screen and (min-width: 653px) {
 
     div.language-select-btn:hover, div.nav-phone.light-gray.lang.lang-text {
         cursor: pointer;
     }
 
+    div.language-select-btn:hover, div.nav-phone.light-gray.lang.lang-text {
+        cursor: pointer;
+    }
     #langBtn:hover, .lang-text:hover {
         cursor: pointer;
         background-color: #eeeeee;
@@ -481,7 +484,7 @@ li.nav-phone.title.searching {
         position: sticky;
         top: 0;
         flex-direction: row;
-        max-height: 52px;
+        /* max-height: 52px; */
         -ms-flex-direction: row;
         -ms-flex-align: center;
         justify-content: center;
