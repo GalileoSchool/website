@@ -53,7 +53,8 @@ nav {
     margin-bottom: 0;
 }
 
-.phone-menu li:hover {
+.phone-menu li:not(.dropdown):hover,
+ul.sub-menu > li:hover {
     background-color: #c40000;
     color: #ffffff;
     cursor: pointer;
@@ -314,6 +315,57 @@ li.nav-phone.logo.searching img {
 li.nav-phone.title.searching {
     font-size: 3.7vw;
     transition: .55s linear !important;
+}
+
+div.sub-menu-btn.opened {
+    padding-bottom: 2vw;
+}
+
+div.sub-menu-btn.closed:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-size: large;
+    color: #ffffff;
+    content: "\f0d7";
+    margin-right: 5px;
+}
+
+div.sub-menu-btn.opened:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-size: large;
+    color: #ffffff;
+    content: "\f0d8";
+    margin-right: 5px;
+}
+
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.sub-menu.block.container {
+    padding: 8px;
+    background-color: #990000;
+    display: none;
+}
+
+ul.sub-menu.list {
+    list-style: none;
+    padding: 0;
 }
 
 /* Styles management based on screen width */
