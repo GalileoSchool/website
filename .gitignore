@@ -196,8 +196,6 @@ $RECYCLE.BIN/
 
 # Undesirable Auto-Created HTML Files
 components/en/interview_cards.html
-components/en/interview.html
-components/sk/interview.html
 components/sk/interview_cards.html
 
 # Unnecessary temporary text file auto-generated everytime a build happens
