@@ -16,7 +16,7 @@ module.exports = {
         Https.get(url, (resp) => {
             let data = '';
 
-            // A chunk of data has been received.
+            // A chunk of data has been received and appended to the rest of already recieved data.
             resp.on('data', (chunk) => {
                 data += chunk;
             });
@@ -24,7 +24,6 @@ module.exports = {
             // The whole response has been received. Print out the result.
             resp.on('end', () => {
                 response(data);
-                //console.log(data);
             });
 
             // An error has occured during our https request

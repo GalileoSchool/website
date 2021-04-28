@@ -160,16 +160,14 @@
         z-index: 6;
         top: 0;
         height: 100vh;
-        width: 60vw;
+        width: 70%;
         margin: auto;
-        left: 25%;
-        right: 60%;
+        left: 22%;
         text-align: center;
         -webkit-box-shadow: 0px 0px 8px 2px rgba(92,92,92,1);
         -moz-box-shadow: 0px 0px 8px 2px rgba(92,92,92,1);
         box-shadow: 0px 0px 8px 2px rgba(92,92,92,1);
         overflow: auto;
-        border-radius: 1%;
         transition: .55s ease;
         overflow: -moz-scrollbars-none;
         -ms-overflow-style: none;
@@ -286,7 +284,7 @@
     }
 
     #modal-close {
-        right: 2%;
+        right: 0;
         z-index: 5;
         top: 15px;
         padding: 7px;
@@ -351,6 +349,8 @@
     .card.interview > img {
         user-select: none;
         -webkit-user-drag: none;
+        height: 42%;
+        object-fit: cover;
     }
 
     .card.interview > .card-title {
@@ -432,6 +432,10 @@
 
 @media only screen and (min-width: 1024px) {
 
+    #modal-close {
+        right: 2%;
+    }
+
     .card.interview > .card-body > ul > li > img {
         border-radius: 10px;
         max-width: 250px;
@@ -494,8 +498,8 @@
 
     #modal-box {
         max-height: 100vh;
-        max-width: calc(1200px * 0.6);
-        left: 35%;
+        max-width: calc(60% * 0.9);
+        left: 25%;
         right: 60%;
     }
 

@@ -35,10 +35,6 @@ function parseNewsFile(data) {
         let news = doc.window.document.getElementById("nw_newsUl");
         writeFile(temp_file, news.innerHTML);
         return news;
-
-        /*doc = new jsdom.JSDOM(news.innerHTML);
-        if (!doc) throw new Error("Unexpected error occured while parsing the data, nullptr");
-        let hrefs = doc.window.document.links; // For debug*/
     }
     throw new Error(`Unexpected error occured while parsing the data. Data length: ${data ? "Null": data.length}`);
 }
@@ -62,7 +58,6 @@ function parseNewsIntoSections(newsHtml, limit, callback) {
         else
             break;
         i++;
-        //console.log(section.getElementsByClassName("gadgetTitle")[0].textContent);
     }
 
     if (!sections) throw new Error("Nullptr was found");
