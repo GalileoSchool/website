@@ -1,0 +1,85 @@
+#interviews-heading.admissions {
+    display: block !important;
+    font-size: xxx-large;
+    padding: 8px;
+    margin-top: 18px;
+    font-style: italic;
+    color: rgba(209, 57, 57, 0.925);
+    text-transform: capitalize;
+    text-decoration: underline;
+}
+
+div.card-deck.admissions {
+    text-align: center;
+    align-items: center;
+    padding: 2rem 0.5rem;
+}
+
+div.card-deck div.card.admiss {
+    background-color: #a60000;
+    color: white;
+    border-radius: 0;
+    border: none;
+    max-width: 80%;
+    width: 100%;
+}
+
+div.card-deck div.card.admiss img {
+    display: none;
+}
+
+div.card-deck div.card.admiss:last-child {
+    margin-bottom: 0;
+}
+
+div.card-deck div.card.admiss > .card-title {
+    width: 100%;
+    text-transform: uppercase;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+    font-size: 6vw;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    padding: 4px 12px;
+}
+
+@media screen and (min-width: 670px) {
+
+    div.card-deck.admissions {
+        justify-content: space-evenly;
+    }
+
+    div.card-deck div.card.admiss {
+        max-width: fit-content;
+    }
+
+    div.card-deck div.card.admiss:hover {
+        cursor: pointer;
+        background-color: #c40000;
+        transform: scale(1.05);
+        transition: ease .35s;
+    }
+
+    div.card-deck div.card.admiss img {
+        display: block;
+    }
+
+    div.card-deck div.card.admiss > .card-title {
+        border-top: 1px solid white;
+        font-size: 1.25rem;
+        padding: 8px 18px;
+    }
+
+}
+
+@media screen and (min-width: 1000px) {
+
+    div.card-deck div.card.admiss > .card-title {
+        border-top: 1px solid white;
+        font-size: 1.5rem;
+        padding: 10px 22px;
+    }
+
+    div.card-deck div.card.admiss {
+        max-width: 500px;
+    }
+}

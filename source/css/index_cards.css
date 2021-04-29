@@ -27,6 +27,10 @@
     transition: linear .15s;
 }
 
+.card.index:last-child {
+    margin-bottom: 0 !important;
+}
+
 .card.index > .card-body{
     font-style: italic;
     color: #dddddd;
