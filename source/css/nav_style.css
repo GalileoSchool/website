@@ -54,7 +54,9 @@ nav {
 }
 
 .phone-menu li:not(.dropdown):hover,
-ul.sub-menu > li:hover {
+ul.sub-menu > li:hover,
+.phone-menu li div.closed:active,
+.phone-menu li div.opened {
     background-color: #c40000;
     color: #ffffff;
     cursor: pointer;
@@ -317,11 +319,7 @@ li.nav-phone.title.searching {
     transition: .55s linear !important;
 }
 
-div.sub-menu-btn.opened {
-    padding-bottom: 2vw;
-}
-
-div.sub-menu-btn.closed:before {
+div.sub-menu-btn.closed::after {
     font-family: "Font Awesome 5 Free";
     font-weight: 600;
     display: inline-block;
@@ -332,10 +330,10 @@ div.sub-menu-btn.closed:before {
     font-size: large;
     color: #ffffff;
     content: "\f0d7";
-    margin-right: 5px;
+    margin-left: 8px;
 }
 
-div.sub-menu-btn.opened:before {
+div.sub-menu-btn.opened::after {
     font-family: "Font Awesome 5 Free";
     font-weight: 600;
     display: inline-block;
@@ -346,7 +344,7 @@ div.sub-menu-btn.opened:before {
     font-size: large;
     color: #ffffff;
     content: "\f0d8";
-    margin-right: 5px;
+    margin-left: 8px;
 }
 
 .flex {
@@ -360,6 +358,7 @@ div.sub-menu-btn.opened:before {
 .sub-menu.block.container {
     padding: 8px;
     background-color: #990000;
+    /* background-color: #c40000; */
     display: none;
 }
 
@@ -583,12 +582,54 @@ ul.sub-menu.list {
         color: #ffffff;
     }
 
-    .nav-desk li:hover {
+    .nav-desk li:hover,
+    .nav-desk li.nav-elem.dropdown.opened {
         box-shadow: 0px 0px 33px -14px rgba(0, 0, 0, 0.2);
-        transform: scale(1.05);
         background-color: #c60000;
         transition: linear 0.2s;
     }
+
+    .nav-desk li:not(.dropdown):hover {
+        transform: scale(1.05);
+    }
+
+    .nav-desk li.nav-elem.dropdown div.sub-menu {
+        position: absolute;
+        top: 50px;
+        z-index: 5;
+        width: auto;
+        padding: 16px;
+    }
+
+    .nav-desk li.nav-elem.dropdown div.sub-menu ul,
+    .nav-desk li.nav-elem.dropdown div.sub-menu ul li {
+        position: relative;
+        width: auto;
+        overflow-wrap: unset;
+        text-align: center;
+    }
+
+    .nav-desk li.nav-elem.dropdown div.sub-menu ul {
+        width: max-content;
+    }
+
+    .nav-desk li.nav-elem.dropdown div.sub-menu ul li {
+        padding: 0.75rem 1.5em;
+    }
+
+    /* .nav-desk li.nav-elem.dropdown div.sub-menu ul li::before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 600;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1.5;
+        font-size: medium;
+        color: #ffffff;
+        margin-right: 10px;
+        content: "\f30b";
+    } */
 
     .nav-elem {
         display: flex;

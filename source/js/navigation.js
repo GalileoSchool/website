@@ -11,7 +11,7 @@ $(document).ready(function () {
     const searchBtnExitImgSrc = getCloseImgUrl(searchBtnImgSrc, 'close_black');
     const searchBtn = $("#search");
     const langBtn = $("#langBtn");
-    const dropdowns = document.querySelectorAll(".phone-menu li div.sub-menu-btn");
+    const dropdowns = document.querySelectorAll("li div.sub-menu-btn");
 
     var isSearching = false;
     var viewport = new Viewport($(window).innerWidth(),$(window).innerHeight());
@@ -21,12 +21,6 @@ $(document).ready(function () {
 
     if(!isDesktop) {
         navbar.addClass('no-display');
-        for (var btn of dropdowns) {
-            $(btn).click(e => {
-                $(e.target.parentElement.children[1]).slideToggle("normal");
-                $(e.target).toggleClass('closed opened');
-            });
-        }
     }
 
     /*  Events Section  */
@@ -53,6 +47,14 @@ $(document).ready(function () {
     searchBtn.click(function(e){
         toggleSearch();
     });
+
+    for (var btn of dropdowns) {
+        $(btn).click(e => {
+            $(e.target.parentElement.children[1]).slideToggle("normal");
+            $(e.target).toggleClass('closed opened');
+            $(e.target.parentElement).toggleClass('closed opened');
+        });
+    }
 
 
     /*  Functions Section   */
