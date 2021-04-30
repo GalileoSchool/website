@@ -49,10 +49,12 @@ $(document).ready(function () {
     });
 
     for (var btn of dropdowns) {
-        $(btn).click(e => {
-            $(e.target.parentElement.children[1]).slideToggle("normal");
+        $(btn.parentElement).click(e => {
+            if (e.target.childElementCount == 0)
+                e.target = e.target.parentElement;
+            $(e.target.children[1]).slideToggle("normal");
+            $(e.target.children[0]).toggleClass('closed opened');
             $(e.target).toggleClass('closed opened');
-            $(e.target.parentElement).toggleClass('closed opened');
         });
     }
 

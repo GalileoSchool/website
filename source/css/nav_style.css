@@ -595,7 +595,7 @@ ul.sub-menu.list {
 
     .nav-desk li.nav-elem.dropdown div.sub-menu {
         position: absolute;
-        top: 50px;
+        top: 52px;
         z-index: 5;
         width: auto;
         padding: 16px;
