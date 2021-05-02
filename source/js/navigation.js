@@ -23,6 +23,13 @@ $(document).ready(function () {
         navbar.addClass('no-display');
     }
 
+    if (urlContains("/school/")) {
+        let arr = document.location.pathname.split('/');
+        document.getElementById(arr[arr.indexOf("school") + 1].toLowerCase().replace("%20", " ")).classList.add("active");
+        
+    }
+        
+
     /*  Events Section  */
 
     $(window).resize(function () { 
@@ -52,6 +59,9 @@ $(document).ready(function () {
         $(btn.parentElement).click(e => {
             if (e.target.childElementCount == 0)
                 e.target = e.target.parentElement;
+            if (e.target.tagName.toLowerCase() != "li")
+                return;
+            
             $(e.target.children[1]).slideToggle("normal");
             $(e.target.children[0]).toggleClass('closed opened');
             $(e.target).toggleClass('closed opened');
@@ -141,6 +151,10 @@ $(document).ready(function () {
     function getCloseImgUrl(url_of_img, name_of_file_no_extension) {
         var image_name = url_of_img.split('/').pop();
         return (url_of_img.replace(image_name, name_of_file_no_extension + '.png'));
+    }
+
+    function urlContains(string) {
+        return (document.location.pathname.indexOf(string) > -1) ? true : false;
     }
 
 });

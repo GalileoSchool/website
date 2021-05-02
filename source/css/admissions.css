@@ -22,15 +22,17 @@ div.card-deck div.card.admiss {
     border: none;
     max-width: 80%;
     width: 100%;
+    margin-bottom: 15px;
+    user-select: none;
 }
 
 div.card-deck div.card.admiss img {
     display: none;
 }
 
-div.card-deck div.card.admiss:last-child {
+/* div.card-deck div.card.admiss:last-child {
     margin-bottom: 0;
-}
+} */
 
 div.card-deck div.card.admiss > .card-title {
     width: 100%;
@@ -50,6 +52,9 @@ div.card-deck div.card.admiss > .card-title {
 
     div.card-deck div.card.admiss {
         max-width: fit-content;
+        min-width: 220px;
+        margin-bottom: 15px;
+        max-width: 500px;
     }
 
     div.card-deck div.card.admiss:hover {
@@ -65,8 +70,9 @@ div.card-deck div.card.admiss > .card-title {
 
     div.card-deck div.card.admiss > .card-title {
         border-top: 1px solid white;
-        font-size: 1.25rem;
+        font-size: 1.1rem;
         padding: 8px 18px;
+        border-bottom: 1px solid white;
     }
 
 }
@@ -79,7 +85,5 @@ div.card-deck div.card.admiss > .card-title {
         padding: 10px 22px;
     }
 
-    div.card-deck div.card.admiss {
-        max-width: 500px;
-    }
+    
 }
