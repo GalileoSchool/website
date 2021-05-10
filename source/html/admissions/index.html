@@ -4,10 +4,11 @@
     
 <head>
     {{head}}
+    <script src="{fill_parents}js/modules/Modal.js"></script>
 </head>
 
 <body>
-    <div id="modal-background" class="no-display"></div>
+    <div id="modal-background" class="admissions no-display"></div>
     {{navigation}}
     <div class="content">
         <div id="menu-overlay" class="transparent overlay no-display"></div>
@@ -17,11 +18,12 @@
         {{admiss_temp}}
     </div>
 
-    <div id="modal-close" class="no-display fixed top">
-        <img src="{fill_parents}images/icons/close.png" alt="">
+    <div id="modal-close" class="admissions modal-close no-display fixed top">
+        <img src="{fill_parents}images/icons/close_black.png" alt="">
     </div>
-    <div id="modal-box" class="card interview no-display"></div>
+    <div id="modal-box" class="admissions modal fixed no-display"></div>
     <!-- Scripts at the end to make sure everything else is already loaded . -->
     <script src="{fill_parents}js/carousel.js"></script>
+    <script src="{fill_parents}js/admissions.js"></script>
 </body>
 </html>

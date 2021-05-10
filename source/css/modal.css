@@ -1,0 +1,43 @@
+div.modal {
+    max-height: 100vh;
+    max-width: 100vw;
+    height: 100%;
+    width: 100%;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    color: black;
+    outline: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    z-index: 6;
+    padding: 6px;
+}
+
+div.modal div.modal-inner-wrapper,
+div.modal-inner-wrapper div.modal-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+    padding: 8px;
+}
+
+div.modal-text-wrapper p,
+div.modal-text-wrapper ol,
+div.modal-text-wrapper ul,
+div.modal-text-wrapper span {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+div.modal-close {
+    background-color: #cccccc;
+    border-radius: 0px;
+    border: 1px solid gray;
+}
