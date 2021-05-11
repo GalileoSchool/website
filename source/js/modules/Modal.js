@@ -38,7 +38,7 @@ class ModalHandler {
      * @param {ModalContainer} modalContainer 
      * @param {ModalViewer} modalViewer 
      */
-    constructor(modalContainer, modalViewer, bckg_scrolling = false) {
+    constructor(modalContainer, modalViewer, bckg_scrolling = false, sliding = true) {
         if (!modalContainer || !modalViewer)
             throw new Error("[ModalHandler] >>> {../ctor} >>> Object reference resulted in a nullptr");
         else {
@@ -47,6 +47,7 @@ class ModalHandler {
         }
 
         this.bckg_scrolling = bckg_scrolling;
+        this.sliding = sliding;
         this._initializeModal();
     }
 
@@ -98,7 +99,11 @@ class ModalHandler {
     }
 
     show() {
-        $(this.view.container.parentElement).removeClass("no-display");
+        // $(this.view.container.parentElement).removeClass("no-display");
+        if(this.sliding)
+            $(this.view.container.parentElement).slideDown(400);
+        else
+            $(this.view.container.parentElement).fadeIn(400);
         if (this.view.background && this.view.closeBtn) {
             $(this.view.background).removeClass("no-display");
             $(this.view.closeBtn).removeClass("no-display");
@@ -108,7 +113,8 @@ class ModalHandler {
     }
 
     hide() {
-        $(this.view.container.parentElement).addClass("no-display");
+        // $(this.view.container.parentElement).addClass("no-display");
+        $(this.view.container.parentElement).slideUp(400);
         $("body").removeClass("no-overflow");
         if (this.view.background && this.view.closeBtn) {
             $(this.view.background).addClass("no-display");
@@ -117,13 +123,31 @@ class ModalHandler {
     }
 
     toggle() {
-        $(this.view.container.parentElement).toggleClass("no-display");
+        // $(this.view.container.parentElement).toggleClass("no-display");
+        if(this.sliding)
+            $(this.view.container.parentElement).slideToggle(400);
+        else
+            $(this.view.container.parentElement).toggle();
         if (this.view.background && this.view.closeBtn) {
             $(this.view.background).toggleClass("no-display");
             $(this.view.closeBtn).toggleClass("no-display");
         }
         if (!this.bckg_scrolling)
             $("body").toggleClass("no-overflow");
+    }
+
+    // Function that's responsible for scrolling to the top of the given element
+    scrollToTop() {
+        try{
+            this.view.container.parentElement.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+              });
+        }
+        catch(err){
+            this.view.container.parentElement.scrollTop = 0;
+        }
     }
 }
 

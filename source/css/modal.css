@@ -41,3 +41,26 @@ div.modal-close {
     border-radius: 0px;
     border: 1px solid gray;
 }
+
+@media screen and (min-width: 670px) {
+    div#modal-box.modal {
+        display: none;
+        position: fixed;
+        flex-direction: column;
+        padding: 6px;
+        outline: 0;
+        z-index: 6;
+        max-width: 80%;
+        width: 80%;
+        height: 100vh;
+        right: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    div.modal-close {
+        z-index: 7;
+        right: 1%;
+    }
+}

@@ -27,9 +27,10 @@ function Click(target) {
     let textContainer = target.querySelector("div.admiss-text");
     Container = new ModalContainer(textContainer);
     if (!Handler)
-        Handler = new ModalHandler(Container, Viewer, false);
+        Handler = new ModalHandler(Container, Viewer, false, false);
     else
         Handler._loadNewContainer(Container);
     
     Handler.show();
+    Handler.scrollToTop();
 }
