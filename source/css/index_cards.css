@@ -27,10 +27,6 @@
     transition: linear .15s;
 }
 
-.card.index:last-child {
-    margin-bottom: 0 !important;
-}
-
 .card.index > .card-body{
     font-style: italic;
     color: #dddddd;
@@ -67,6 +63,10 @@ hr {
 @media screen and (max-width: 669px){
     .card.index {
         margin-left: 0 !important;
+    }
+
+    .card.index:last-child {
+        margin-bottom: 0 !important;
     }
 
     .card.index > .card-title {
