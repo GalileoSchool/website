@@ -99,7 +99,6 @@ class ModalHandler {
     }
 
     show() {
-        // $(this.view.container.parentElement).removeClass("no-display");
         if(this.sliding)
             $(this.view.container.parentElement).slideDown(400);
         else
@@ -113,7 +112,6 @@ class ModalHandler {
     }
 
     hide() {
-        // $(this.view.container.parentElement).addClass("no-display");
         $(this.view.container.parentElement).slideUp(400);
         $("body").removeClass("no-overflow");
         if (this.view.background && this.view.closeBtn) {
@@ -123,7 +121,6 @@ class ModalHandler {
     }
 
     toggle() {
-        // $(this.view.container.parentElement).toggleClass("no-display");
         if(this.sliding)
             $(this.view.container.parentElement).slideToggle(400);
         else
@@ -155,6 +152,8 @@ class ModalViewer {
     /**
      * 
      * @param {HTMLElement} modalBox 
+     * @param {HTMLElement} modalBckg 
+     * @param {HTMLElement} modalClose 
      */
     constructor(modalBox, modalBckg = null, modalClose = null) {
         if (!modalBox)
