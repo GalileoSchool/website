@@ -2,17 +2,23 @@ const Net = require('./NetHandler');
 const fs = require('fs');
 var path = require('path');
 const { F_OK } = require('constants');
-const temp_dir = "data\\";
+const temp_dir = 'data\\';
 const temp_file = temp_dir + 'news.txt';
 const school_url = 'https://galileoschool.edupage.org/news/';
 
+// Here I am customizing the output for the console, 
+// in order to identify errors or debug messages quicker by knowing in which file they occured.
+
+// This is due to the fact that I run and import javascript code from multiple other Javascript files.
+
+// If I write debug message into the normal console it appears as raw text, 
+// and therefore It's harder for me to identify where does the debug message come from
 var _privatelog = console.log;
 console.log = (message) => {
     _privatelog.apply(console, [`[${path.basename(__dirname)}] -> ${path.basename(__filename)}: ` + message]);
 }
 
-async function DownloadNews()
-{
+async function DownloadNews() {
     await checkDir();
     Net._getNews(school_url, async (response) => {
         // We check if our https request response is not empty

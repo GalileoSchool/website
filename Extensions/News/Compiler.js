@@ -1,3 +1,6 @@
+/** News object which was intended to parse each section from earlier downloaded Edupage News into usable texts
+ * @deprecated
+ */
 class News {
     
     /**
@@ -10,6 +13,8 @@ class News {
         this.body = null;
 
         this._parseHeading(this.section, (heading) => {
+            // Nullptr means Null Pointer; In simple words the object reference was not set to an instance of an object.
+            // ctor<...> stands for constructor()
             if (!heading) throw new Error("Nullptr found at [this._parseHeading] in class.News ctor<...>");
             this.heading = heading;
 
@@ -41,15 +46,13 @@ class News {
         callback(section.getElementsByClassName("plainText")[0].textContent);
     }
 
-    /**
+    /** Checks whether object was initialized successfully
      * 
-     * @returns {boolean}
+     * @returns {boolean} returns true if News object was successfully initialized else returns false 
      */
     _initiated() {
-        return (this.heading && this.body && (this.section == undefined)) ? true : false;
+        return !!(this.heading && this.body && (this.section == undefined));
     }
 }
 
-module.exports = {
-    News: News
-}
+module.exports = { News: News }
