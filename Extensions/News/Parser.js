@@ -1,8 +1,8 @@
 const fs = require('fs');
 var path = require('path');
-const jsdom = require("jsdom");
+const jsdom = require('jsdom');
 const { News } = require('./Compiler');
-const temp_dir = "data\\";
+const temp_dir = 'data\\';
 const temp_file = temp_dir + 'news.txt';
 const newsLimit = 3;
 
