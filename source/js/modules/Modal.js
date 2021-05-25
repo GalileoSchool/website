@@ -1,21 +1,28 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable camelcase */
+/* eslint-disable no-undef */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-unused-vars */
+/* eslint-disable indent */
+/* eslint-disable max-classes-per-file */
 class ModalContainer {
     /**
-     * 
-     * @param {HTMLElement} textContainer 
+     *
+     * @param {HTMLElement} textContainer
      */
     constructor(textContainer) {
-        if (!textContainer) throw new Error("[ModalContainer] >>> {../ctor} >>> Object reference resulted in a nullptr");
+        if (!textContainer) throw new Error('[ModalContainer] >>> {../ctor} >>> Object reference resulted in a nullptr');
         else this.container = textContainer;
 
         this.HtmlText = this._getHtmlText();
         this.rawText = this._getRawText();
 
-        if (!this.HtmlText || !this.rawText) throw new Error("[ModalContainer] >>> {../ctor} >>> Object reference resulted in a nullptr");
+        if (!this.HtmlText || !this.rawText) throw new Error('[ModalContainer] >>> {../ctor} >>> Object reference resulted in a nullptr');
     }
 
     /**
-     * 
-     * @param {HTMLElement} textContainer 
+     *
+     * @param {HTMLElement} textContainer
      * @returns {string} HTML Text
      */
     _getHtmlText() {
@@ -23,8 +30,8 @@ class ModalContainer {
     }
 
     /**
-     * 
-     * @param {HTMLElement} textContainer 
+     *
+     * @param {HTMLElement} textContainer
      * @returns {string} Raw Text
      */
      _getRawText() {
@@ -34,13 +41,12 @@ class ModalContainer {
 
 class ModalHandler {
     /**
-     * 
-     * @param {ModalContainer} modalContainer 
-     * @param {ModalViewer} modalViewer 
+     *
+     * @param {ModalContainer} modalContainer
+     * @param {ModalViewer} modalViewer
      */
     constructor(modalContainer, modalViewer, bckg_scrolling = false, sliding = true) {
-        if (!modalContainer || !modalViewer)
-            throw new Error("[ModalHandler] >>> {../ctor} >>> Object reference resulted in a nullptr");
+        if (!modalContainer || !modalViewer) throw new Error('[ModalHandler] >>> {../ctor} >>> Object reference resulted in a nullptr');
         else {
             this.container = modalContainer;
             this.view = modalViewer;
@@ -52,26 +58,24 @@ class ModalHandler {
     }
 
     /**
-     * 
-     * @param {ModalContainer} modalContainer 
+     *
+     * @param {ModalContainer} modalContainer
      */
-    _loadNewContainer(modalContainer) {
-        if (modalContainer)
-            this.container = modalContainer;
-        else throw new Error("[ModalHandler] >>> _loadNewContainer() >>> Object reference resulted in a nullptr");
+    loadNewContainer(modalContainer) {
+        if (modalContainer) this.container = modalContainer;
+        else throw new Error('[ModalHandler] >>> loadNewContainer() >>> Object reference resulted in a nullptr');
 
         this._resetModal();
         this._initializeModal();
     }
 
     /**
-     * 
-     * @param {ModalViewer} modalViewer 
+     *
+     * @param {ModalViewer} modalViewer
      */
-    _loadNewViewer(modalViewer) {
-        if (modalViewer)
-            this.view = modalViewer;
-        else throw new Error("[ModalHandler] >>> _loadNewViewer() >>> Object reference resulted in a nullptr");
+    loadNewViewer(modalViewer) {
+        if (modalViewer) this.view = modalViewer;
+        else throw new Error('[ModalHandler] >>> loadNewViewer() >>> Object reference resulted in a nullptr');
 
         this._resetModal();
         this._initializeModal();
@@ -79,70 +83,59 @@ class ModalHandler {
 
     _initializeModal() {
         if (this.container && this.view) {
-            if (this.view.txtBoxes.length < 1)
-                this.view._addTextWrapper("first-text-wrapper").innerHTML += this.container.HtmlText;
-            else
-                this.view.txtBoxes[0].innerHTML += this.container.HtmlText;
-        } else throw new Error("[ModalHandler] >>> _initializeModal() >>> Object reference resulted in a nullptr");
+            if (this.view.txtBoxes.length < 1) this.view._addTextWrapper('first-text-wrapper').innerHTML += this.container.HtmlText;
+            else this.view.txtBoxes[0].innerHTML += this.container.HtmlText;
+        } else throw new Error('[ModalHandler] >>> _initializeModal() >>> Object reference resulted in a nullptr');
     }
 
     _resetModal() {
         if (this.container && this.view) {
-            if (this.view.txtBoxes.length < 1)
-                this.view._addTextWrapper("first-text-wrapper").innerHTML = "";
+            if (this.view.txtBoxes.length < 1) this.view._addTextWrapper('first-text-wrapper').innerHTML = '';
             else {
-                for (let txtbox of this.view.txtBoxes)
-                    txtbox.innerHTML = "";
+                // eslint-disable-next-line no-restricted-syntax
+                for (const txtbox of this.view.txtBoxes) txtbox.innerHTML = '';
             }
-                
-        } else throw new Error("[ModalHandler] >>> _initializeModal() >>> Object reference resulted in a nullptr");
+        } else throw new Error('[ModalHandler] >>> _initializeModal() >>> Object reference resulted in a nullptr');
     }
 
     show() {
-        if(this.sliding)
-            $(this.view.container.parentElement).slideDown(400);
-        else
-            $(this.view.container.parentElement).fadeIn(400);
+        if (this.sliding) $(this.view.container.parentElement).slideDown(400);
+        else $(this.view.container.parentElement).fadeIn(400);
         if (this.view.background && this.view.closeBtn) {
-            $(this.view.background).removeClass("no-display");
-            $(this.view.closeBtn).removeClass("no-display");
+            $(this.view.background).removeClass('no-display');
+            $(this.view.closeBtn).removeClass('no-display');
         }
-        if (!this.bckg_scrolling)
-            $("body").addClass("no-overflow");
+        if (!this.bckg_scrolling) $('body').addClass('no-overflow');
     }
 
     hide() {
         $(this.view.container.parentElement).slideUp(400);
-        $("body").removeClass("no-overflow");
+        $('body').removeClass('no-overflow');
         if (this.view.background && this.view.closeBtn) {
-            $(this.view.background).addClass("no-display");
-            $(this.view.closeBtn).addClass("no-display");
+            $(this.view.background).addClass('no-display');
+            $(this.view.closeBtn).addClass('no-display');
         }
     }
 
     toggle() {
-        if(this.sliding)
-            $(this.view.container.parentElement).slideToggle(400);
-        else
-            $(this.view.container.parentElement).toggle();
+        if (this.sliding) $(this.view.container.parentElement).slideToggle(400);
+        else $(this.view.container.parentElement).toggle();
         if (this.view.background && this.view.closeBtn) {
-            $(this.view.background).toggleClass("no-display");
-            $(this.view.closeBtn).toggleClass("no-display");
+            $(this.view.background).toggleClass('no-display');
+            $(this.view.closeBtn).toggleClass('no-display');
         }
-        if (!this.bckg_scrolling)
-            $("body").toggleClass("no-overflow");
+        if (!this.bckg_scrolling) $('body').toggleClass('no-overflow');
     }
 
     // Function that's responsible for scrolling to the top of the given element
     scrollToTop() {
-        try{
+        try {
             this.view.container.parentElement.scrollTo({
                 top: 0,
                 left: 0,
-                behavior: 'smooth'
+                behavior: 'smooth',
               });
-        }
-        catch(err){
+        } catch (err) {
             this.view.container.parentElement.scrollTop = 0;
         }
     }
@@ -150,14 +143,13 @@ class ModalHandler {
 
 class ModalViewer {
     /**
-     * 
-     * @param {HTMLElement} modalBox 
-     * @param {HTMLElement} modalBckg 
-     * @param {HTMLElement} modalClose 
+     *
+     * @param {HTMLElement} modalBox
+     * @param {HTMLElement} modalBckg
+     * @param {HTMLElement} modalClose
      */
     constructor(modalBox, modalBckg = null, modalClose = null) {
-        if (!modalBox)
-            throw new Error("[ModalViewer] >>> {../ctor} >>> Object reference resulted in a nullptr");
+        if (!modalBox) throw new Error('[ModalViewer] >>> {../ctor} >>> Object reference resulted in a nullptr');
         else this.container = modalBox;
 
         if (modalBckg && modalClose) {
@@ -166,47 +158,46 @@ class ModalViewer {
         }
 
         this.container = this._addInnerWrapper();
-        this.txtBoxes = new Array();
-        this.Buttons = new Array();
+        this.txtBoxes = [];
+        this.Buttons = [];
     }
 
     /**
-     * 
+     *
      * @returns {HTMLElement}
      */
     _addInnerWrapper() {
-        this.container.innerHTML += `<div class="modal-inner-wrapper"></div>`;
+        this.container.innerHTML += '<div class="modal-inner-wrapper"></div>';
         return this.container.firstElementChild;
     }
 
     /**
-     * 
-     * @param {String} id 
+     *
+     * @param {String} id
      * @returns {HTMLElement}
      */
     _addTextWrapper(id) {
         this.container.innerHTML += `<div id="${id}" class="modal-text-wrapper"></div>`;
-        let wrapper = this.container.querySelector("#" + id + ".modal-text-wrapper");
+        const wrapper = this.container.querySelector(`#${id}.modal-text-wrapper`);
         this.txtBoxes.push(wrapper);
         return wrapper;
     }
 
     /**
-     * 
-     * @param {String} id 
-     * @param {String} text 
-     * @param {Function} clickCallback 
+     *
+     * @param {String} id
+     * @param {String} text
+     * @param {Function} clickCallback
      * @returns {HTMLElement}
      * @deprecated Not working yet as it should
      */
     _addButton(id, text) {
         this.container.innerHTML += `<button type="button" id="${id}" class="btn btn-primary">${text}</button>`;
-        var btn = this.container.querySelector("#" + id + ".btn");
-        if (!btn)
-            throw new Error("[ModalViewer] >>> _addButton() >>> Object reference resulted in a nullptr");
+        const btn = this.container.querySelector(`#${id}.btn`);
+        if (!btn) throw new Error('[ModalViewer] >>> _addButton() >>> Object reference resulted in a nullptr');
         this.Buttons.push(btn);
         return btn;
-    }
+  }
 }
 
-//export { ModalHandler, ModalViewer, ModalContainer };
+// export { ModalHandler, ModalViewer, ModalContainer };
