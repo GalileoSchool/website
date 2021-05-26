@@ -23,8 +23,11 @@ $(document).ready(() => {
     navbar.addClass('no-display');
   }
 
+  // We check here whether the url contains /school/ section
   if (urlContains('/school/')) {
+    // If it does we get in what type of school we are atm
     const arr = document.location.pathname.split('/');
+    // And then we set one of the coresponding tabs in the dropdown menu of 'About Us' to active
     document.getElementById(arr[arr.indexOf('school') + 1].toLowerCase().replace('%20', ' ')).classList.add('active');
   }
 
@@ -51,7 +54,9 @@ $(document).ready(() => {
   //   toggleSearch();
   // });
 
+
   for (const btn of dropdowns) {
+    // btn is shorthand for button
     $(btn.parentElement).click((e) => {
       if (e.target.childElementCount == 0) { e.target = e.target.parentElement; }
       if (e.target.tagName.toLowerCase() != 'li') { return; }
