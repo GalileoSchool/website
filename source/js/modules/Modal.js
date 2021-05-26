@@ -53,6 +53,8 @@ class ModalHandler {
      * @param {ModalViewer} modalViewer
      */
   constructor(modalContainer, modalViewer, bckg_scrolling = false, sliding = true) {
+    // ctor is a shorthand for constructor
+    // Nullptr means null pointer; The object reference that you made was not set to an instance of an object and thus resulted in a null object
     if (!modalContainer || !modalViewer) throw new Error('[ModalHandler] >>> ModalHandler..ctor() >>> Object reference resulted in a nullptr');
     else {
       this.container = modalContainer;
@@ -173,6 +175,8 @@ class ModalViewer {
      * @param {HTMLElement} modalClose
      */
   constructor(modalBox, modalBckg = null, modalClose = null) {
+    // ctor is a shorthand for constructor
+    // Nullptr means null pointer; The object reference that you made was not set to an instance of an object and thus resulted in a null object
     if (!modalBox) throw new Error('[ModalViewer] >>> ModalViewer..ctor() >>> Object reference resulted in a nullptr');
     else this.container = modalBox;
 
