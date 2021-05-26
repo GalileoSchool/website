@@ -1,10 +1,3 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
-/* eslint-disable linebreak-style */
-
-// import { ModalHandler, ModalViewer, ModalContainer } from './modules/Modal.js';
-
 const modalBox = document.getElementById('modal-box');
 const modalCloseBtn = document.getElementById('modal-close');
 const modalBckg = document.getElementById('modal-background');
@@ -13,7 +6,7 @@ let Handler;
 const Viewer = new ModalViewer(modalBox, modalBckg, modalCloseBtn);
 let Container;
 
-
+/** Adding clickEvent listener for close button on modal box */
 $(modalCloseBtn).click((e) => {
   if (!Handler) {
     e.preventDefault();
@@ -22,8 +15,7 @@ $(modalCloseBtn).click((e) => {
   Handler.hide();
 });
 
-// var btn = Viewer._addButton("modal-inner-close", "Back");
-// - Fix event listener getting ducked up when shown
+// var btn = Viewer._addButton("modal-inner-close", "Back"); - Fix event listener getting ducked up when shown
 
 /** Click Handler of Admissions
  *

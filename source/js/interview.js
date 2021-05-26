@@ -1,23 +1,4 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable max-len */
-/* eslint-disable linebreak-style */
-/* eslint-disable prefer-destructuring */
-/* eslint-disable no-plusplus */
-/* eslint-disable vars-on-top */
-/* eslint-disable no-var */
-/* eslint-disable no-loop-func */
-/* eslint-disable no-unused-vars */
-/* eslint-disable linebreak-style */
-/* eslint-disable func-names */
-/* eslint-disable no-bitwise */
-/* eslint-disable block-scoped-var */
-/* eslint-disable eqeqeq */
-/* eslint-disable linebreak-style */
-/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-use-before-define */
-/* eslint-disable camelcase */
-/* eslint-disable prefer-arrow-callback */
-/* eslint-disable no-undef */
 $(document).ready(function () {
   // Variables
   const cards = document.getElementsByClassName('card');
@@ -32,7 +13,7 @@ $(document).ready(function () {
   const closeBtn = $('#modal-close');
   const modal_box = $('#modal-box');
 
-  // Adding click event listener for every button in our interview navigation
+  // Adding a click event listener for every button in our interview navigation
   // (the one with student names)
   for (const tab of menu.children().children()) {
     tab.addEventListener('click', function (e) {
@@ -57,7 +38,7 @@ $(document).ready(function () {
     }
   });
 
-  // Adding click event listener for every student card on our interview page
+  // Adding a click event listener for every student card on our interview page
   for (const card of cards) {
     if (card.id != 'modal-box') {
       card.addEventListener('click', function (e) {
@@ -69,7 +50,7 @@ $(document).ready(function () {
     }
   }
 
-  // Adding click event listener to the button that's responsible for closing the modal box
+  // Adding a click event listener to the button that's responsible for closing the modal box
   closeBtn.click(function (e) {
     modifyUrl(null);
     if (isCardOpen && isDesktop()) {
@@ -79,7 +60,7 @@ $(document).ready(function () {
     } else { e.preventDefault(); }
   });
 
-  // Adding click event listener for the browser's back button
+  // Adding a click event listener for the browser's back button
   window.onpopstate = function (e) {
     checkUrlForPotentialParameters();
   };
@@ -92,7 +73,6 @@ $(document).ready(function () {
 
   /** Changes the content inside our modal box when user clicks on a tab in our interview menu
   *
-  // eslint-disable-next-line max-len
   * @param {HTMLElement} sender an Html element that is considered the sender to extract necessary things
   */
   function changeCard(sender) {
@@ -156,8 +136,8 @@ $(document).ready(function () {
   }
 
   /** Function that's responsible for changing the modal box content for the one provided
-     *  @param sender Since this function is used in an event of a html element, sender is the html element on which the event occured
-     * */
+  *  @param sender Since this function is used in an event of a html element, sender is the html element on which the event occured
+  */
   function changeCurrentCardContent(sender) {
     try {
       let newContent;
@@ -196,9 +176,9 @@ $(document).ready(function () {
   }
 
   /**
-     * @description Checks whether the current document dimensions fulfil the requirements to be considered a desktop viewport
-     * @returns Boolean
-     */
+  * @description Checks whether the current document dimensions fulfil the requirements to be considered a desktop viewport
+  * @returns Boolean
+  */
   function isDesktop() {
     if (window.innerWidth >= 670 && window.innerHeight >= 300) { return true; }
     return false;
@@ -206,7 +186,8 @@ $(document).ready(function () {
 
   // Function that's responsible for generating a hash from a string
   function hashCode(string) {
-    for (var i = 0, h = 0; i < string.length; i++) {
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0, h = 0; i < string.length; i++) {
       h = Math.imul(31, h) + string.charCodeAt(i) | 0;
     }
 
@@ -250,7 +231,6 @@ $(document).ready(function () {
     if (id == null) { build_url = build_url.split('?')[0]; }
 
     // This simply changes the current URL without reloading the page, by creating and activating another history entry without firing the haschanged event for the browser.
-    // eslint-disable-next-line no-restricted-globals
     history.pushState({
       id: 'interview',
     }, 'GALILEO | INTERVIEWS', build_url);

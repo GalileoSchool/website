@@ -1,9 +1,4 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable eqeqeq */
-/* eslint-disable camelcase */
 /* eslint-disable no-use-before-define */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 
 // get the carousel images
 const images = Array.from(document.querySelectorAll('.carousel-item img'));
@@ -42,10 +37,10 @@ function check_resize() {
 
 $(document).ready(() => {
   // Declaring variables/constants which I will be using later in the code
-  const carousel = '#carousel';
+  const carousel = $('#carousel');
 
-  $(carousel).carousel();
-  $(carousel).swipe({
+  carousel.carousel();
+  carousel.swipe({
     swipe(event, direction, distance, duration, fingerCount, fingerData) {
       if (direction == 'left') $(this).carousel('next');
       if (direction == 'right') $(this).carousel('prev');

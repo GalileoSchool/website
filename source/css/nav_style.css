@@ -28,16 +28,12 @@ nav {
     position: fixed;
     background-color: #a60000;
     z-index: 2;
-    padding: 8vw;
-    /* Prevents ul items being shifted to the right */
-    padding-left: 0px !important;
-    padding-right: 0px !important;
+    padding: 8vw 0px !important;
     top: auto !important;
 }
 
 .phone-menu li {
     padding: 2vw;
-    /*padding-bottom: 1vw;*/
     text-decoration: none;
     color: white;
     font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
@@ -135,6 +131,31 @@ div.nav-phone.lang > div {
     list-style-type: none;
 }
 
+.nav-phone > .left > div.nav-container-desktop {
+    display: none;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
+    max-height: 52px;
+    height: 100%;
+    margin-top: auto;
+    padding: 0px clamp(4px, -6px + 1vw, 8px);
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-phone > .left > div.nav-container-desktop > a {
+    margin: auto;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: clamp(1rem, 1rem + 1vw - 4px, 1.2rem);
+    color: darkslategray;
+}
+
+.nav-phone > .left > div.nav-container-desktop > a:hover,
+.nav-phone > .left > div.nav-container-desktop > a:active {
+    text-decoration: none;
+    color: #aaaaaa;
+}
+
 .nav-phone .language-dropdown {
     display: flex;
     flex-direction: column;
@@ -182,7 +203,7 @@ div.nav-phone.lang > div {
 }
 
 .darker-gray {
-    background-color: #cccccc;
+    background-color: #a0a0a0;
 }
 
 .hidden {
@@ -207,6 +228,7 @@ div.square {
 #logo-container {
     width: auto;
     margin: auto;
+    height: 100%;
 }
 
 #title {
@@ -226,6 +248,7 @@ div.square {
 #search {
     background-color: #cccccc;
     width: 10vw;
+    min-width: 10vw;
 }
 
 #search-img {
@@ -258,21 +281,15 @@ div.square {
     color: ghostwhite !important;
 }
 
-.title-cont-open-nav {
-    margin-bottom: 0.5vw;
-    padding-bottom: 0.5vw;
-}
-
 /* The rest */
 .content {
     z-index: 0;
-    /*padding-top: 2px;*/
     text-align: center;
     transition: ease .75s;
 }
 
 .lang-text {
-    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
     font-weight: 500;
     font-size: 5.6vw;
     position: relative;
@@ -358,7 +375,6 @@ div.sub-menu-btn.opened::after {
 .sub-menu.block.container {
     padding: 8px;
     background-color: #990000;
-    /* background-color: #c40000; */
     display: none;
 }
 
@@ -372,7 +388,7 @@ ul.sub-menu.list {
 /* Tablet style */
 /* Why 670? Trial and error - testing values from 540 to 800 (Common phone and tablet widths) */
 /* Warning: Any changes made to this "conditional" such as changing the min-width will have to be repeated in nav_jquery.js file in the function check_resize() */
-@media screen and (min-width: 653px) {
+@media screen and (min-width: 670px) {
 
     div.language-select-btn:hover, div.nav-phone.light-gray.lang.lang-text {
         cursor: pointer;
@@ -394,11 +410,24 @@ ul.sub-menu.list {
 
     #search {
         width: calc(520px*0.1);
+        min-width: calc(520px*0.1);
         height: 52px;
         margin: auto;
         margin-bottom: 0;
         margin-left: 0;
         margin-right: 0;
+    }
+
+    .nav-phone > .left > div.nav-container-desktop {
+        display: flex;
+    }
+
+    div#title {
+        font-size: clamp(2.5rem, 2rem + 1vw, 3rem);
+    }
+
+    #log-container {
+        height: 100%;
     }
 
     .search-container {
@@ -422,10 +451,13 @@ ul.sub-menu.list {
         transition: all 1s linear;
     }
 
-    li.nav-phone.title.searching {
+    /* In future when search will be available decrease the font-size of title
+        in order to fit into nav bar */
+        
+    /* li.nav-phone.title.searching {
         font-size: calc(670px*0.047);
         transition: 1s linear;
-    }
+    } */
 
     .search-container > input:focus {
         border: none !important;
@@ -535,7 +567,6 @@ ul.sub-menu.list {
         position: sticky;
         top: 0;
         flex-direction: row;
-        /* max-height: 52px; */
         -ms-flex-direction: row;
         -ms-flex-align: center;
         justify-content: center;
@@ -618,20 +649,6 @@ ul.sub-menu.list {
         padding: 0.75rem 1.5em;
     }
 
-    /* .nav-desk li.nav-elem.dropdown div.sub-menu ul li::before {
-        font-family: "Font Awesome 5 Free";
-        font-weight: 600;
-        display: inline-block;
-        font-style: normal;
-        font-variant: normal;
-        text-rendering: auto;
-        line-height: 1.5;
-        font-size: medium;
-        color: #ffffff;
-        margin-right: 10px;
-        content: "\f30b";
-    } */
-
     .nav-elem {
         display: flex;
         justify-content: center;
@@ -667,11 +684,6 @@ ul.sub-menu.list {
         height: auto !important;
         transition: all 1s linear;
     }
-
-    li.nav-phone.title.searching {
-        font-size: calc(670px*0.063);
-        transition: 1s linear;
-    }
 }
 
 /* Bigger screens */
@@ -689,11 +701,6 @@ ul.sub-menu.list {
         width: 61px !important;
         height: auto !important;
         transition: all 1s linear;
-    }
-    
-    li.nav-phone.title.searching {
-        font-size: calc(670px*0.063);
-        transition: 1s linear;
     }
     
     .nav-desk > ul:nth-child(2)  {

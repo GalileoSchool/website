@@ -200,5 +200,3 @@ components/sk/interview_cards.html
 
 # Unnecessary temporary text file auto-generated everytime a build happens
 Extensions/News/data/*
-
-# End of https://www.gitignore.io/api/node,macos,windows,sublimetext,visualstudiocode

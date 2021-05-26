@@ -46,7 +46,7 @@
 }
 
 .card.interview > .card-body > h2 {
-    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
     letter-spacing: 2.5;
 }
 
@@ -69,10 +69,11 @@
 .card-deck.interview:last-child .card.interview:last-child {
     margin-bottom: 0;
 }
+
 .card.interview > .card-title {
     width: 100%;
     text-transform: uppercase;
-    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
     border-bottom: 1.5px solid white;
     line-height: 2;
     margin-bottom: 0 !important;
@@ -85,7 +86,7 @@
 
 .card.interview > .card-body > h5 {
     line-height: 1.5;
-    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
     padding: 6px 8px;
     font-style: normal;
 }
@@ -233,7 +234,7 @@
         height: 100%;
         padding-left: 0;
         color: #ffffff;
-        font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+        font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
     }
 
     nav#modal-navigation > ul > li {
@@ -364,7 +365,7 @@
     .card.interview > .card-title {
         width: 100%;
         text-transform: uppercase;
-        font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+        font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
         font-size: 2.2vw;
         font-weight: 400;
         border-bottom: 1.5px solid white;
@@ -379,7 +380,7 @@
 
     .card.interview > .card-body > h5 {
         line-height: 1.5;
-        font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+        font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
         padding: 6px 8px;
         font-size: 2.2vw;
         font-style: normal;
