@@ -205,16 +205,12 @@ $(document).ready(function () {
     // Multiple parameters are divided with "&" symbol ex. (https:/www.galileoschool.sk/interviews/index.html?id=518421&showPhotos=false)
     // I decided to use id because each interview card has its own UID and it's easier to compare things if you know what you are comparing
     const id = url.searchParams.get('id');
-    if (id && id != null) {
+    if (id) {
       for (const card of cards) {
-        if (card.id == 'modal-box') { break; }
-
-        if (hashCode(card.id) == id) { loadcard = card; }
-
-        if (hashCode(card.id) == hashCode(id)) { loadcard = card; }
-
-
-        if (hashCode(card.id.toLowerCase()) == hashCode(id.toLowerCase())) { loadcard = card; }
+        if (card.id == 'modal-box') break;
+        else if (hashCode(card.id) == id) loadcard = card;
+        else if (hashCode(card.id) == hashCode(id)) loadcard = card;
+        else if (hashCode(card.id.toLowerCase()) == hashCode(id.toLowerCase())) loadcard = card;
       }
 
       if (loadcard === null) { console.error(`Provided ID [${id}] seems to be invalid!`); } else if (!isCardOpen) { document.getElementById(loadcard.id).click(); } else { changeCard(loadcard); }

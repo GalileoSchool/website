@@ -7,16 +7,18 @@
 class ModalContainer {
   /**
      *
-     * @param {HTMLElement} textContainer
+     * @param {HTMLElement} textContainer - The html element that contains the text that we would like to parse into our modal-box
      */
   constructor(textContainer) {
-    if (!textContainer) throw new Error('[ModalContainer] >>> {../ctor} >>> Object reference resulted in a nullptr');
+    // ctor is a shorthand for constructor
+    // Nullptr means null pointer; The object reference that you made was not set to an instance of an object and thus resulted in a null object
+    if (!textContainer) throw new Error('[ModalContainer] >>> ModalContainer..ctor() >>> Object reference resulted in a nullptr');
     else this.container = textContainer;
 
     this.HtmlText = this._getHtmlText();
     this.rawText = this._getRawText();
 
-    if (!this.HtmlText || !this.rawText) throw new Error('[ModalContainer] >>> {../ctor} >>> Object reference resulted in a nullptr');
+    if (!this.HtmlText || !this.rawText) throw new Error('[ModalContainer] >>> ModalContainer..ctor() >>> Object reference resulted in a nullptr');
   }
 
   /**
@@ -51,7 +53,7 @@ class ModalHandler {
      * @param {ModalViewer} modalViewer
      */
   constructor(modalContainer, modalViewer, bckg_scrolling = false, sliding = true) {
-    if (!modalContainer || !modalViewer) throw new Error('[ModalHandler] >>> {../ctor} >>> Object reference resulted in a nullptr');
+    if (!modalContainer || !modalViewer) throw new Error('[ModalHandler] >>> ModalHandler..ctor() >>> Object reference resulted in a nullptr');
     else {
       this.container = modalContainer;
       this.view = modalViewer;
@@ -171,7 +173,7 @@ class ModalViewer {
      * @param {HTMLElement} modalClose
      */
   constructor(modalBox, modalBckg = null, modalClose = null) {
-    if (!modalBox) throw new Error('[ModalViewer] >>> {../ctor} >>> Object reference resulted in a nullptr');
+    if (!modalBox) throw new Error('[ModalViewer] >>> ModalViewer..ctor() >>> Object reference resulted in a nullptr');
     else this.container = modalBox;
 
     if (modalBckg && modalClose) {
