@@ -1,42 +1,42 @@
 <!-- Header -->
 <!-- The header usually contains the logo and a navigation bar -->
 <!-- Navigation bar -->
-    <nav>
-        <!-- Navigation for smaller devices -->
-        <div id="nav-bar" class="nav-phone">
-            <!-- Items which should be on the left -->
-            <div class="left">
-                <!-- Search button -->
-                <!-- <div class="search-container close">
-                    <input type="search" name="searchInp" id="search_box">
-                </div>
-                <div id="search" class="nav-phone search">
-                    <img id="search-img" src="{fill_parents}images/icons/search.png">
-                </div> -->
-                <div class="nav-container-desktop">
-                    <a href="#">Edupage</a>
-                </div>
-                <!-- School logo -->
-                <div id="logo-container" class="nav-phone school-logo-container">
-                    <li class="nav-phone logo">
-                        <img id="logo" src="{fill_parents}images/logo.jpg">
-                    </li>
-                    <li class="nav-phone title">
-                        <div id="title">Galileo School</div>
-                    </li>
-                </div>
+<nav>
+    <!-- Navigation for smaller devices -->
+    <div id="nav-bar" class="nav-phone">
+        <!-- Items which should be on the left -->
+        <div class="left">
+            <!-- Search button -->
+            <div class="search-container close">
+                <input type="search" name="searchInp" onkeyup="searchSites(this.value, true)" id="search_box" />
             </div>
-            <!-- Items which should be on the right -->
-            <div class="right">
-
-                {{nav.lang_select}}
-                
-                <!-- Button for opening navigation bar dropdown -->
-                <div id="nav-btn" class="nav-phone toggle square">
-                    <img id="menu-img" src="{fill_parents}images/icons/menu.png">
-                </div>
+            <div id="search" class="nav-phone search">
+                <img id="search-img" src="{fill_parents}images/icons/search.png">
+            </div>
+            <div class="nav-container-desktop">
+                <a href="#">Edupage</a>
+            </div>
+            <!-- School logo -->
+            <div id="logo-container" class="nav-phone school-logo-container">
+                <li class="nav-phone logo">
+                    <img id="logo" src="{fill_parents}images/logo.jpg">
+                </li>
+                <li class="nav-phone title">
+                    <div id="title">Galileo School</div>
+                </li>
             </div>
         </div>
-    </nav>
+        <!-- Items which should be on the right -->
+        <div class="right">
 
-    {{nav.menu}}
+            {{nav.lang_select}}
+
+            <!-- Button for opening navigation bar dropdown -->
+            <div id="nav-btn" class="nav-phone toggle square">
+                <img id="menu-img" src="{fill_parents}images/icons/menu.png">
+            </div>
+        </div>
+    </div>
+</nav>
+
+{{nav.menu}}

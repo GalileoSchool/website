@@ -22,60 +22,60 @@
  */
 class InterviewCard {
 
-	constructor(image, title, quickinfo, longdesc, pathToPhotosFolderFromWebRoot, student) {
-		this.image = image;
-		this.title = title;
-		this.student = student;
-		this.quickinfo = quickinfo;
-		this.longdesc = longdesc;
-		this.path = pathToPhotosFolderFromWebRoot;
-		this.photos = [];
-		this.hasPhotos = false;
-		
-		if (this.path == null)
-			return;
-		var succ = this._getPhotos();
-		this.hasPhotos = succ;
-		if(!succ)
-			console.error("Missing photos for " + this.student + " interview card");
-	}
+    constructor(image, title, quickinfo, longdesc, pathToPhotosFolderFromWebRoot, student) {
+        this.image = image;
+        this.title = title;
+        this.student = student;
+        this.quickinfo = quickinfo;
+        this.longdesc = longdesc;
+        this.path = pathToPhotosFolderFromWebRoot;
+        this.photos = [];
+        this.hasPhotos = false;
 
-	/**
-	 * This is a private function that shouldn't be accessed from outside this class declaration, it is responsible for loading photos
-	 */
-	_getPhotos() {
-		try {
-			var files = fs.readdirSync(getDirname() + '/source/' + this.path);
-			if (this._countPictures(files) < 1)
-				return false;
-			
-			files.forEach(file => {
-				var ext = getFileExtension(file);
-				if (ext === "jpg" || ext === "png" || ext === "svg") {
-					var src = (this.path + file);
-					var name = file.split('.')[0];
-					var photo = { name: name, source: src };
-					this.photos.push(photo);
-				}
-			});
-			return true;
-		} catch (error) {
-			console.log(error);
-			return false;	
-		}
-	}
+        if (this.path == null)
+            return;
+        var succ = this._getPhotos();
+        this.hasPhotos = succ;
+        if (!succ)
+            console.error("Missing photos for " + this.student + " interview card");
+    }
 
-	_countPictures(files) {
-		var count = 0;
-		files.forEach(file => {
-			if (file.includes(".jpg") || file.includes(".png") || file.includes(".svg"))
-				count++;
-		});
-		return count;
-	}
+    /**
+     * This is a private function that shouldn't be accessed from outside this class declaration, it is responsible for loading photos
+     */
+    _getPhotos() {
+        try {
+            var files = fs.readdirSync(getDirname() + '/source/' + this.path);
+            if (this._countPictures(files) < 1)
+                return false;
 
-	getCode() {
-		return `
+            files.forEach(file => {
+                var ext = getFileExtension(file);
+                if (ext === "jpg" || ext === "png" || ext === "svg") {
+                    var src = (this.path + file);
+                    var name = file.split('.')[0];
+                    var photo = { name: name, source: src };
+                    this.photos.push(photo);
+                }
+            });
+            return true;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+
+    _countPictures(files) {
+        var count = 0;
+        files.forEach(file => {
+            if (file.includes(".jpg") || file.includes(".png") || file.includes(".svg"))
+                count++;
+        });
+        return count;
+    }
+
+    getCode() {
+            return `
 		<div id="${this.student.replace(' ', '_')}" class="card interview">
 			<img class="card-img-top" src="{fill_parents}${this.image}" alt="Photo">
 			<h4 class="card-title">${this.title}</h4>
@@ -447,10 +447,33 @@ fs.writeFileSync(getDirname() + '/build/css/style.css', cssConcatenated)
 console.log('Composed all CSS files into style.css')
 // finally, we transpile html files and copy non-html files
 let sourceFiles = glob.sync(getDirname() + '/source/**/*', { nodir: true })
+
+
+//#region searcher.js data collector
+//Get the available languages for the website, through the components dir.
+let langComponents = glob.sync(getDirname() + '/components/*').filter((p, i, args) => fs.lstatSync(p).isDirectory()).map((p, i, args) => p.split('/').pop())
+
+//Get the list of all the html files and create a json file containing all the available html files for the searcher to work with.
+//List of all the (to be built) html files.
+let htmlFiles = sourceFiles.filter((path, index, args) => path.includes('/html/') && isHtmlFile(path)).map((filePath, index, args) => filePath.split('/source/html')[1])
+
+//The final array to be written inside of the json file.
+//0 - html paths, 1 - languages
+let fArray = [htmlFiles, langComponents]
+
+//Convert the html files path array into a stringified json array
+let jsonstring = JSON.stringify(fArray)
+
+//Write all the available html files into htmlfiles.json file used by the searcher.js
+fs.writeFile(getDirname() + '/build/files/htmlfiles.json', jsonstring, (err) => err ? console.log(err.message) : 'Successfully created the htmlfiles.json collection.')
+//#endregion
+
+
 for (const sourceFile of sourceFiles) {
 	// identifies the new file to be created
 	
 	const fileToCreate = getBuildFilePathFromSourceFilePath(sourceFile)
+
 	// note to future contributors: if you're going to use the html folder 
 	// for something other than .html files, use filePath.includes('/html/')
 	if (isHtmlFile(sourceFile)) {
