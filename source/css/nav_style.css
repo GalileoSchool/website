@@ -346,6 +346,7 @@ div.sub-menu-btn.closed::after {
     line-height: 1;
     font-size: large;
     color: #ffffff;
+    /* IF YOU WONDER WHAT THIS DOES, PLEASE CLICK THE FOLLOWING LINK https://letmegooglethat.com/?q=css+content */
     content: "\f0d7";
     margin-left: 8px;
 }

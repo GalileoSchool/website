@@ -14,14 +14,13 @@ $(document).ready(function () {
   const modal_box = $('#modal-box');
 
   // Adding a click event listener for every button in our interview navigation
-  // (the one with student names)
   for (const tab of menu.children().children()) {
     tab.addEventListener('click', function (e) {
-      if (!isCardAlreadyOpened(this.id)) { changeCard(this); } else { e.preventDefault(); }
+      if (!isCardAlreadyOpened(this.id)) { updateModalBox(this); } else { e.preventDefault(); }
     });
   }
 
-  // Checking for browser resize event (simply this fires when browser is resized)
+  // Browser resize handler, executes the following function
   $(window).resize(function () {
     if (!isDesktop()) {
       modal_box.addClass('no-display');
@@ -44,8 +43,8 @@ $(document).ready(function () {
       card.addEventListener('click', function (e) {
         modifyUrl(hashCode(this.id));
         if (isDesktop()) {
-          cardDesktop(this);
-        } else if (!isCardOpenPhone) { cardPhone(this); }
+          openCardDesktop(this);
+        } else if (!isCardOpenPhone) { openCardPhone(this); }
       });
     }
   }
@@ -54,7 +53,7 @@ $(document).ready(function () {
   closeBtn.click(function (e) {
     modifyUrl(null);
     if (isCardOpen && isDesktop()) {
-      cardDesktop(e);
+      openCardDesktop(e);
     } else if (isCardOpenPhone && !isDesktop()) {
       cardTogglePhone(currentCardPhone);
     } else { e.preventDefault(); }
@@ -73,13 +72,13 @@ $(document).ready(function () {
 
   /** Changes the content inside our modal box when user clicks on a tab in our interview menu
   *
-  * @param {HTMLElement} sender an Html element that is considered the sender to extract necessary things
+  * @param {HTMLElement} sender Html element that is considered to be the caller of the function
   */
-  function changeCard(sender) {
+  function updateModalBox(sender) {
     modifyUrl(hashCode(sender.id.replace('_menu', '')));
     modal_box.animate({ height: '0px' }, 200).delay(680).animate({ height: '100vh' }, 200);
     setTimeout(() => {
-      changeCurrentCardContent(sender);
+      updateModalContent(sender);
       setTimeout(() => {
         elementScrollToTop('modal-box');
       }, 900);
@@ -87,12 +86,12 @@ $(document).ready(function () {
   }
 
   // Function that's responsible for calling the cardTogglePhone function with the right parameters
-  function cardPhone(e) {
+  function openCardPhone(e) {
     if (!isCardOpen) { cardTogglePhone(e); } else { cardTogglePhone(null); }
   }
 
   // Function that's responsible for opening up the modal box and freezing the background
-  function cardDesktop(e) {
+  function openCardDesktop(e) {
     // Check if card ain't already opened
     if (!isCardOpen) { cardToggleDesktop(e); } else { cardToggleDesktop(null); }
     // Freezing background
@@ -138,7 +137,7 @@ $(document).ready(function () {
   /** Function that's responsible for changing the modal box content for the one provided
   *  @param sender Since this function is used in an event of a html element, sender is the html element on which the event occured
   */
-  function changeCurrentCardContent(sender) {
+  function updateModalContent(sender) {
     try {
       let newContent;
       if (sender != null && sender != undefined) { newContent = document.getElementById(sender.id.replace('_menu', '')).innerHTML; } else { newContent = null; }
@@ -147,7 +146,7 @@ $(document).ready(function () {
       setActiveNavTab(sender.id);
     } catch (err) {
       console.error(err);
-      throw new Error(`[${changeCurrentCardContent.name}] > NullReferenceException: Object reference not set to an instance of an object`);
+      throw new Error(`[${updateModalContent.name}] > NullReferenceException: Object reference not set to an instance of an object`);
     }
   }
 
@@ -213,16 +212,21 @@ $(document).ready(function () {
         else if (hashCode(card.id.toLowerCase()) == hashCode(id.toLowerCase())) loadcard = card;
       }
 
-      if (loadcard === null) { console.error(`Provided ID [${id}] seems to be invalid!`); } else if (!isCardOpen) { document.getElementById(loadcard.id).click(); } else { changeCard(loadcard); }
+      if (loadcard === null) { console.error(`Provided ID [${id}] seems to be invalid!`); } else if (!isCardOpen) { document.getElementById(loadcard.id).click(); } else { updateModalBox(loadcard); }
     }
   }
 
-  // Function that's responsible for modifying the URL without reloading the page
+  /**
+   * Function that's responsible for modifying the URL without reloading the page
+   * @param {String} id - hashed id of the card that is opened
+   */
   function modifyUrl(id) {
     let build_url;
     if (window.location.href.indexOf('id=') !== -1) {
       build_url = window.location.href.replace(window.location.href.split('id=')[1], id);
-    } else { build_url = (`${window.location.href}?id=${id}`); }
+    } else {
+      build_url = (`${window.location.href}?id=${id}`);
+    }
 
     if (id == null) { build_url = build_url.split('?')[0]; }
 
