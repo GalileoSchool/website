@@ -156,6 +156,23 @@ var F = {
         return F.getFormattedSiteName(extUrl);
     },
     /**
+     * Method used to substitute the regex match provided in the content provided with empty string.
+     * @param {String} content The content to be trimmed.
+     * @param {RegExpMatchArray} regex The regular expression to match in the content.
+     * @returns {String} The trimmed content string.
+     * @example
+     * var contentText = "---Some example ---text - with an ellipse."
+     * 
+     * //remove character '-' when there is 2 or more of it in a row.
+     * contentText = F.trimContent(contentText, /[\-]{2,}/gm)
+     * console.log(contentText)
+     * 
+     * //output: Some example text - with an ellipse.
+     */
+    trimContent(content, regex) {
+        return content.replace(regex, "");
+    },
+    /**
      * Method used for separating the site names containing upper-cased letters, but are joined into one word, or are separated by a `_`.
      * @param {String} siteName The name of the site to be fixed.
      * @returns {String} Formatted site name based on the upper-cased characters preceded by a space.
@@ -369,7 +386,7 @@ async function searchSites(value, onlySearchCurrentSite = false, onlySearchCurre
                 if (!text) {
                     return;
                 }
-                let txt = F.getSiteContent(text, "div.content", true);
+                let txt = F.trimContent(F.getSiteContent(text, "div.content", true), /^\s*/gmu);
                 let data = F.includesCI(txt, value);
                 let c = data[0];
                 txt = data[1];
