@@ -23,7 +23,7 @@ const C = {
     /**
      * The number of characters to display with the searched value, when highlight previewing is enabled.
      */
-    PREVIEW_LENGTH: 20,
+    PREVIEW_LENGTH: 35,
     /**
      * The maximum number of returned preview lines containing the searched value per a website.
      * @deprecated For now only returning one preview.
@@ -54,10 +54,16 @@ var F = {
      */
     isEmpty: (text) => text == null || text == undefined || text.length <= 0,
     /**
+     * Method used to change the starting letter of the text provided to upper-case.
+     * @param {String} text The text provided.
+     * @returns {String} The text with an upper-cased first character.
+     */
+    toUpperCaseInvariant: (text) => text.substr(0, 1).toUpperCase() + text.substr(1),
+    /**
      * Method used for counting the number of times the needle provided can be found in the text provided.
      * @param {String} text Text to be searched in.
      * @param {String} needle The value to be searched for inside of the text.
-     * @returns The number of times the needle can be found inside of the text parameter provided.
+     * @returns {Number} The number of times the needle can be found inside of the text parameter provided.
      */
     countOccurrences: (text, needle) => text.split(needle).length - 1,
     /**
@@ -74,6 +80,120 @@ var F = {
      * @returns True if the needle was found in the text, otherwise, false.
      */
     containsCI: (text, needle) => text.toLowerCase().includes(needle.toLowerCase()),
+    /**
+     * Method used for searching and finding the first occurence of the needle provided in the text provided and returning the zero-based index.
+     * @param {String} text The text in which the needle is searched.
+     * @param {String} needle The searched text.
+     * @returns {Number} The zero-based index of the first occurence of the needle searched for in the text.
+     */
+    includes: (text, needle) => text.indexOf(needle),
+    /**
+     * Method used for `case-insensitive` searching and finding the first occurence of the needle provided in the text provided and returning the zero-based index.
+     * @param {String} text The text in which the needle is searched.
+     * @param {String} needle The searched text.
+     * @param {Boolean} noTag Check text only; ignoring html tags. (false)
+     * @returns {[Number,String]} The zero-based index of the first occurence of the needle searched for;in the text, and the text it searched. (when using `noTag=true` changes to the text string are made, thus return the text for preview purpose)
+     */
+    includesCI: (text, needle, noTag = false) => {
+        if (!noTag) return [text.toLowerCase().indexOf(needle.toLowerCase()), text];
+        text = text.replace(/\<!--[^]*?--\>|\<[^]*?>/gm, "").trim();
+        return [text.toLowerCase().indexOf(needle.toLowerCase()), text];
+    },
+    /**
+     * Method used for getting the content of the website.
+     * @param {String} htmlText The html site in which to search for the content.
+     * @param {String} contentSearchQuery The search query used in the `document.querySelectorAll()` method.
+     * @param {Boolean} noTag Check text only; ignoring html tags. (false)
+     * @return {String} The content of the website.
+     */
+    getSiteContent: (htmlText, contentSearchQuery, noTag = false) => {
+        let doc = document.createElement("html");
+        doc.innerHTML = htmlText;
+
+        //Quick get round for image link error.
+        let imgs = doc.getElementsByTagName("img");
+        for (i in imgs) {
+            let img = imgs[i];
+            img.src = "";
+        }
+
+        let contEl = doc.querySelector(contentSearchQuery);
+        if (!contEl) return "";
+        if (noTag) {
+            return contEl.innerText;
+        }
+        return contEl.innerHTML;
+    },
+    /**
+     * Method used for getting predicted name from the url provided based on the root directory of the websites.
+     * @param {String} url The url provided.
+     * @param {String} rootDir The root directory of the website.
+     * @returns {String} The predicted name of the site.
+     */
+    getPossibleSiteName: (url, rootDir) => {
+        if (!rootDir.endsWith("/")) rootDir += "/";
+        const extUrl = url.split(rootDir).pop().split(".")[0];
+        let sUrl = extUrl.split("/");
+        if (sUrl.length > 1) {
+            let siteName = sUrl.pop();
+            const siteLang = sUrl[0];
+            if (siteName.toLowerCase() == "index") {
+                let pDirName = sUrl.pop();
+                let lMax = pDirName.length;
+                while (sUrl.length > 0 && pDirName.length <= 3) {
+                    const tmpDir = sUrl.pop();
+                    if (tmpDir.length > lMax) {
+                        lMax = tmpDir.length;
+                        pDirName = tmpDir;
+                    }
+                }
+                if (pDirName.length <= 3) return `Homepage (${pDirName})`;
+                return F.getFormattedSiteName(pDirName) + (siteLang.length === 2 ? ` (${siteLang})` : "");
+            }
+            return F.getFormattedSiteName(siteName);
+        }
+        if (extUrl.toLowerCase() == "index") return "Homepage";
+        return F.getFormattedSiteName(extUrl);
+    },
+    /**
+     * Method used for separating the site names containing upper-cased letters, but are joined into one word, or are separated by a `_`.
+     * @param {String} siteName The name of the site to be fixed.
+     * @returns {String} Formatted site name based on the upper-cased characters preceded by a space.
+     */
+    getFormattedSiteName: (siteName) => {
+        if (siteName.includes("_")) {
+            return siteName.split("_").map((str, i, args) => F.toUpperCaseInvariant(str)).join(" ");
+        }
+        const reg = new RegExp(/\B[A-Z]/g);
+        let fSiteName = siteName.match(reg);
+        if (!fSiteName) return F.toUpperCaseInvariant(siteName);
+        fSiteName = fSiteName.map((str, i, args) => " " + str);
+        return F.toUpperCaseInvariant(siteName.split(reg).map((str, i, args) => str + (fSiteName.pop() || "")).join(""));
+    },
+    /**
+     * Method used for returning the preview of the value searched in the text.
+     * @param {String} text The text used to find the value.
+     * @param {Number} index The zero-based index of the found value in the text.
+     * @param {String} value The searched value.
+     * @param {Number} maxLength The maximal length of the returning preview string. (C.PREVIEW_LENGTH)
+     * @param {Boolean} highlight Highlight the searched value in the preview returned. (false)
+     * @returns The preview string of the searched string in the text provided.
+     */
+    getPreview: (text, index, value, maxLength = C.PREVIEW_LENGTH, highlight = false) => {
+        let prev = value;
+        let a = maxLength - value.length;
+        if (a > 0) {
+            let div = Math.round(a / 2);
+            let start = index - div;
+            if (start < 0) {
+                div += start;
+                start = 0;
+            }
+            prev = text.substr(start, C.PREVIEW_LENGTH);
+            if (highlight) prev = F.highlightSearchText(prev, value, "yellow", "black");
+        }
+        return prev;
+    },
     /**
      * Method used for displaying the error message when the website was opened as a file.
      */
@@ -133,40 +253,75 @@ var F = {
     }
 }
 
-//Initial check whether the url scheme is correct
+//Initial check whether the url scheme is correct; writes an error message into the browser console if error occures.
 F.urlSchemeCheck(true);
 
 /**
  * The available paths of the html files.
  */
 var WEBSITE_PATHS = null;
+
+/**
+ * The available languages for the website.
+ */
 var WEBSITE_LANGUAGES = null;
+
+//Private variables
+//Used for controling whether to display the highlighted version of the current website or the original.
 var currentWebsiteChanged = false;
+//Used to retain the original content of the website; non-highlighted version
+//only used when the variable currentWebsiteChanged is TRUE 
 var currentWebsiteOriginalContent = "";
 
 if (C.CURRENT_URL_SCHEME_CORRECT) loadWebsitePaths().then((val) => {
     if (val instanceof String || val instanceof Boolean) {
+        //Error occured while fetching the json file containing the websites and languages available.
         console.log(val)
     } else {
-        //console.log("Assigning the WEBSITE_PATHS variable...");
+
+        //Assign the available WEBSITES and LANGUAGES of the website.
         WEBSITE_PATHS = val[0];
         WEBSITE_LANGUAGES = val[1];
-        //console.log(WEBSITE_PATHS, WEBSITE_LANGUAGES);
-        searchSites("home");
+
+        //Debug only
+        //searchSites("card", false, true, true, true);
     }
 });
 
 /**
- * Method used for searching the website/s for the value provided.
+ * Method used for searching the website/s for the `value` provided.
  * @param {String} value The search string.
  * @param {Boolean} onlySearchCurrentSite Search for the value only on the current website. (false)
  * @param {Boolean} onlySearchCurrentLang Search for the value only in the current language of the website. (false)
- * @param {Boolean} returnHighlighedPreview Additionally to retuning the name of the website, return a preview for the searched value within the website. (false)
+ * @param {Boolean} showPreview Get the preview of the searched value in the text provided. (false)
+ * @param {Boolean} highlighedPreview If `showPreview = true`, then highlight the searched value in the preview text. (false)
  * @returns The list of file paths containing the value searched; preview text - if preview is enabled.
+ * @example
+ * //When searching in the current website.
+ * //Call the next function on an input for example:
+ * 
+ * <input type="text" onkeyup="searchSites(this.value, true)" />
+ * //This will allow for the highlighting of the current website when the this.value exceeds the length of C.MIN_SEARCH_LENGTH
+ * 
+ * 
+ * //When searching all the available sites.
+ * //This function can be called in another function that will organize the data returned into a list and display it on site.
+ * let results: Promise<Object[][] | null> = searchSites("example", false, false, true, false)
+ * if(!results) console.log("No results found.")
+ * else{
+ *  results.then((res) => {
+ *      for(let i = 0; i < res.length; i++){
+ *          const data = res[i]
+ *          const siteHref = data[0]
+ *          const sitePrev = data[1]
+ *          console.log(`Site found: ${siteHref} | Preview line: ${sitePrev}`)
+ *      }
+ *  })
+ * }
  */
-async function searchSites(value, onlySearchCurrentSite = false, onlySearchCurrentLang = false, returnHighlighedPreview = false) {
+async function searchSites(value, onlySearchCurrentSite = false, onlySearchCurrentLang = false, showPreview = false, highlighedPreview = false) {
     if (!C.CURRENT_URL_SCHEME_CORRECT || WEBSITE_PATHS == null) {
-        console.log("Null value found.")
+        console.log("Null value found.");
         return null;
     }
 
@@ -183,7 +338,6 @@ async function searchSites(value, onlySearchCurrentSite = false, onlySearchCurre
 
     //If the searcher and highlighter is used on the current website only
     if (onlySearchCurrentSite) {
-
         let contentElm = document.querySelectorAll("div.content")[0];
         //Store the original innerHTML of the div.content element.
         if (!currentWebsiteChanged) {
@@ -193,6 +347,8 @@ async function searchSites(value, onlySearchCurrentSite = false, onlySearchCurre
         if (F.containsCI(currentWebsiteOriginalContent, value)) {
             //Replace the current innerHTML of the div.content element with the temp highlighted content.
             contentElm.innerHTML = F.highlightSearchText(currentWebsiteOriginalContent, value);
+        } else {
+            contentElm.innerHTML = currentWebsiteOriginalContent;
         }
         return;
     }
@@ -206,21 +362,95 @@ async function searchSites(value, onlySearchCurrentSite = false, onlySearchCurre
     for (let j = 0; j < langs.length; j++) {
         for (let i = 0; i < WEBSITE_PATHS.length; i++) {
 
-            let d = `${C.HTML_FILE_PATH}/${langs[j]}${WEBSITE_PATHS[i]}`;
+            const d = `${C.HTML_FILE_PATH}/${langs[j]}${WEBSITE_PATHS[i]}`;
             //let d = "../../html/" + langs[j] + WEBSITE_PATHS[i];
-            console.log(d);
+
             await readFileText(d).then((text) => {
                 if (!text) {
                     return;
                 }
-                let c = F.containsCI(text, value);
-                if (c) {
-                    sites.push(d);
+                let txt = F.getSiteContent(text, "div.content", true);
+                let data = F.includesCI(txt, value);
+                let c = data[0];
+                txt = data[1];
+                if (c >= 0) {
+                    let prev = "";
+                    if (showPreview) {
+                        prev = F.getPreview(txt, c, value, C.PREVIEW_LENGTH, highlighedPreview);
+                    }
+                    sites.push([d, prev]);
                 }
             }, (reason) => console.log(reason));
         }
     }
-    console.log("The sites array:", sites);
+    //Debug
+    //console.log("The sites array:", sites);
+    return sites;
+}
+
+/**
+ * Method used for searching the sites for the value provided.
+ * @param {String} value The value provided by the input.
+ * @param {String} resultBoxId The result `div` to be used for displaying the list.
+ * @param {Boolean} onlyCurrentLanguage Search in the sites of the current language only. (false)
+ * @param {Boolean} showPreviews Show the preview of the first occurence for each result. (false)
+ */
+function searchSitesWithResult(value, resultBoxId, onlyCurrentLanguage = false, showPreviews = false) {
+    var resultBox = document.getElementById(resultBoxId);
+    if (!resultBox) {
+        console.error("The resultBoxId provided is incorrect.");
+        return;
+    }
+
+    const results = searchSites(value, false, onlyCurrentLanguage, showPreviews, true);
+    if (results) {
+
+        let buildResultList = (list) => {
+            let r = "<ul class=\"searcher-result-list\">";
+            for (i in list) {
+                r += list[i];
+            }
+            r += "</ul>";
+            return r;
+        };
+
+        let buildResultItem = (args) => {
+            const link = args[0];
+            let linkName = F.getPossibleSiteName(link, "/html/");
+            const preview = args[1];
+            let lItem = "<li class=\"searcher-result-item\">";
+            let lHref = `<a href="${link}" class="searcher-result-link">${linkName}`;
+            let lPrev = preview || preview.length > 0 ? `<span class="searcher-result-preview">${preview}</span></a>` : "</a>";
+            lItem += lHref + lPrev + "</li>";
+            return lItem;
+        };
+
+        results.then((objs) => {
+            if (!objs || objs.length <= 0) {
+                resultBox.innerHTML = "No results.";
+                resultBox.style.display = "none";
+                return;
+            }
+            resultBox.style.display = "block";
+            let rList = [];
+            for (i in objs) {
+                rList.push(buildResultItem(objs[i]));
+            }
+            if (!rList) return;
+            resultBox.innerHTML = buildResultList(rList);
+        });
+        return;
+    }
+    resultBox.innerHTML = "No results.";
+    resultBox.style.display = "none";
+}
+
+/**
+ * Method used for searching for the value provided in-site.
+ * @param {String} value 
+ */
+function searchInSite(value) {
+    searchSites(value, true);
 }
 
 /**

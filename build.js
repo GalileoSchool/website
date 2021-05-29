@@ -98,7 +98,8 @@ class InterviewCard {
 
 const fs = require('fs') // for manipulation of files
 const glob = require('glob') // for finding the right files
-const Handlebars = require('handlebars') // for using handlebars
+const Handlebars = require('handlebars'); // for using handlebars
+const { Exception } = require('handlebars/runtime');
 
 // syntax for compound components
 const OPENING_SIGNATURE = ':^) ' // notice the space on end
@@ -316,8 +317,7 @@ function getHTMLCodeFromJSON(json_object) {
 	// Here I check if the last card added to row was 3rd in the row if not I have to manually add card deck end block
 	if (counter !== 0) {
 		for (i = 0; i < (3 - counter); i++) {
-			string_builder += `
-			<div class="card interview hidden"></div>`;
+			string_builder += `<div class="card interview hidden"></div>`;
 		}
 		string_builder += card_deck_end;
 		counter = 0;
@@ -326,13 +326,31 @@ function getHTMLCodeFromJSON(json_object) {
 }
 
 function writeInterviewCardHTMLCodeToFile(language, HTML, files) {
-	if (language == "english" || language == "en" || language == "En" || language == "EN" || language == "English") language = "en";
-	if (language == "slovak" || language == "sk" || language == "SK" || language == "Sk" || language == "Slovak") language = "sk";
+
+	language = language.toLowerCase()
+
+	switch (language) {
+		case "english":
+		case "en":
+			language = "en"
+			break
+		case "slovak":
+		case "sk":
+			language = "sk"
+			break
+		default:
+			language = language.length > 2 ? language.substr(0, 3) : language
+			break
+	}
+
 	var file = files.find(obj => {
-		return obj.language === language;
-	});
+		return obj.language === language
+	})
+
+	if (!file) return
+
 	// Writing the final compiled HTML code into file
-	fs.writeFileSync(file.src, HTML);
+	fs.writeFileSync(file.src, HTML)
 }
 
 function transpileJsonInterviewCardsToHTML(enJson, skJson) {
@@ -344,9 +362,19 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 		var files = [];
 
 		// Checking if there is Slovak and English version of the interviews
-		if (!enJson || enJson == "") { file = skJson.split('/').pop().split('.')[0] + ".html"; languages.push('sk'); }
-		else if (!skJson || skJson == "") { file = enJson.split('/').pop().split('.')[0] + ".html"; languages.push('en'); }
-		else { file = enJson.split('/').pop().split('.')[0] + ".html"; languages.push('sk'); languages.push('en'); }
+		if (!enJson || enJson == "") {
+			file = skJson.split('/').pop().split('.')[0] + ".html";
+			languages.push('sk');
+		}
+		else if (!skJson || skJson == "") {
+			file = enJson.split('/').pop().split('.')[0] + ".html";
+			languages.push('en');
+		}
+		else {
+			file = enJson.split('/').pop().split('.')[0] + ".html";
+			languages.push('sk');
+			languages.push('en');
+		}
 
 		// Creating new object for each language and adding it to my files[] array 
 		languages.forEach(language => {

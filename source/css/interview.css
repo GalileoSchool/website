@@ -25,11 +25,11 @@
     width: 100vw;
     height: 100vh;
     overflow-y: auto;
-    background-color: rgba(166,0,0,1);
+    background-color: rgba(166, 0, 0, 1);
     transition: .75s ease;
 }
 
-.card.interview > .card-body > ul {
+.card.interview>.card-body>ul {
     padding: 10px;
     margin: auto;
     list-style: none;
@@ -41,22 +41,22 @@
     align-items: center;
 }
 
-.card.interview > .card-body > .card-text {
+.card.interview>.card-body>.card-text {
     margin-bottom: 10px;
 }
 
-.card.interview > .card-body > h2 {
+.card.interview>.card-body>h2 {
     font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
     letter-spacing: 2.5;
 }
 
-.card.interview > .card-body > ul > li {
+.card.interview>.card-body>ul>li {
     padding: 5px;
     flex-grow: 2;
     flex-shrink: 1;
 }
 
-.card.interview > .card-body > ul > li > img {
+.card.interview>.card-body>ul>li>img {
     border-radius: 5px;
     width: 100%;
     height: auto;
@@ -70,7 +70,7 @@
     margin-bottom: 0;
 }
 
-.card.interview > .card-title {
+.card.interview>.card-title {
     width: 100%;
     text-transform: uppercase;
     font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
@@ -79,19 +79,19 @@
     margin-bottom: 0 !important;
 }
 
-.card.interview > .card-body {
+.card.interview>.card-body {
     padding-top: .55rem;
     user-select: text;
 }
 
-.card.interview > .card-body > h5 {
+.card.interview>.card-body>h5 {
     line-height: 1.5;
     font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
     padding: 6px 8px;
     font-style: normal;
 }
 
-.card.interview > .card-body {
+.card.interview>.card-body {
     font-family: 'Times New Roman', Times, serif;
 }
 
@@ -115,46 +115,37 @@
     transition: .15s ease;
 }
 
-#modal-close > img {
+#modal-close>img {
     width: 38px;
     height: auto;
 }
 
 @media screen and (min-width: 670px) {
-
     body::-webkit-scrollbar {
         width: 0;
     }
-
     body {
         overflow: -moz-scrollbars-none;
         -ms-overflow-style: none;
     }
-
     .vertical {
         flex-direction: column;
     }
-
     .fixed {
         position: fixed;
     }
-
     .top {
         top: 0;
     }
-
     .rigth {
         right: 0;
     }
-
     .content.interview {
         margin-top: 0;
     }
-
     #modal-box::-webkit-scrollbar {
         width: 0;
     }
-
     #modal-box {
         display: block;
         position: fixed;
@@ -165,50 +156,42 @@
         margin: auto;
         left: 22%;
         text-align: center;
-        -webkit-box-shadow: 0px 0px 8px 2px rgba(92,92,92,1);
-        -moz-box-shadow: 0px 0px 8px 2px rgba(92,92,92,1);
-        box-shadow: 0px 0px 8px 2px rgba(92,92,92,1);
+        -webkit-box-shadow: 0px 0px 8px 2px rgba(92, 92, 92, 1);
+        -moz-box-shadow: 0px 0px 8px 2px rgba(92, 92, 92, 1);
+        box-shadow: 0px 0px 8px 2px rgba(92, 92, 92, 1);
         overflow: auto;
         transition: .55s ease;
         overflow: -moz-scrollbars-none;
         -ms-overflow-style: none;
     }
-
-    #modal-box > .card-body > div.card-text {
+    #modal-box>.card-body>div.card-text {
         background-color: rgb(194, 40, 40);
         border-radius: 1%;
         padding: 10px;
     }
-
-    #modal-box > .card-body > div.card-text > p {
+    #modal-box>.card-body>div.card-text>p {
         font-size: larger;
     }
-
-    #modal-box > .card-body > h2 {
+    #modal-box>.card-body>h2 {
         line-height: 2;
         font-style: italic;
     }
-
-    #modal-box > .card-body > h5 {
+    #modal-box>.card-body>h5 {
         font-size: 3vw;
         line-height: 2;
     }
-
-    #modal-box > .card-title {
+    #modal-box>.card-title {
         font-size: 3.5vw;
         line-height: 2.5;
     }
-
-    #modal-box > img {
+    #modal-box>img {
         margin-top: 10px;
         max-width: 400px;
         max-height: 400px;
     }
-
-    #modal-box > h4 {
+    #modal-box>h4 {
         border-bottom: none;
     }
-
     #interviews-heading {
         display: block;
         font-size: 1.2rem;
@@ -217,7 +200,6 @@
         color: rgba(209, 57, 57, 0.925);
         text-transform: capitalize;
     }
-
     nav#modal-navigation {
         z-index: 5;
         height: 100vh;
@@ -226,8 +208,7 @@
         width: 20vw;
         user-select: none;
     }
-
-    nav#modal-navigation > ul {
+    nav#modal-navigation>ul {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -236,54 +217,45 @@
         color: #ffffff;
         font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
     }
-
-    nav#modal-navigation > ul > li {
+    nav#modal-navigation>ul>li {
         margin-bottom: 4px;
         margin-top: 4px;
         font-size: 105%;
         padding: 3px 1px;
         text-align: center;
     }
-
-    nav#modal-navigation > ul > li > div {
+    nav#modal-navigation>ul>li>div {
         padding: 8px 6px;
     }
-
     #modal-background {
         display: block;
         position: fixed;
         width: 100vw;
         height: 100vh;
         background-color: rgba(185, 104, 104, 0.95);
-        z-index: 4;
+        z-index: 5;
         user-select: none;
     }
-
-    nav#modal-navigation > ul > li:hover,  
-    nav#modal-navigation > ul > li:active{
+    nav#modal-navigation>ul>li:hover,
+    nav#modal-navigation>ul>li:active {
         cursor: pointer;
         transform: scale(1.15);
         background-color: #ce0303;
         transition: .35s ease;
     }
-
-    nav#modal-navigation > ul > li:active {
+    nav#modal-navigation>ul>li:active {
         background-color: #eb0101 !important;
     }
-
-    nav#modal-navigation > ul > li.active {
+    nav#modal-navigation>ul>li.active {
         background-color: #eb0101 !important;
         transform: scale(1.1);
     }
-
-    nav#modal-navigation > ul > li:first-child {
+    nav#modal-navigation>ul>li:first-child {
         margin-top: 0;
     }
-
-    nav#modal-navigation > ul > li:last-child {
+    nav#modal-navigation>ul>li:last-child {
         margin-bottom: 0;
     }
-
     #modal-close {
         right: 0;
         z-index: 5;
@@ -294,56 +266,48 @@
         border-radius: 50%;
         transition: .55s ease;
     }
-
-    #modal-close > img {
+    #modal-close>img {
         -webkit-user-drag: none;
     }
-
-    #modal-close:hover, #modal-close:active {
+    #modal-close:hover,
+    #modal-close:active {
         cursor: pointer;
         background-color: rgba(215, 12, 18, 0.85);
         transform: scale(0.88);
         transition: .55s ease;
     }
-
     #modal-close:hover {
         transform: rotate(90deg);
         transition: .9s ease;
     }
-
     #modal-close:active {
         background-color: rgba(215, 12, 18, 0.65);
         transform: scale(0.68);
         transition: .55s ease;
     }
-
-    #modal-close > img {
+    #modal-close>img {
         width: 38px;
         height: auto;
     }
-
     .card-deck.interview {
         flex-direction: row;
         padding: 0px 3%;
     }
-
     .card-deck.interview:last-child {
         padding-top: 3%;
     }
-
     .card.interview {
         background-color: rgba(166, 0, 0, 0.9);
         color: #ffffff;
         user-select: none;
         -webkit-user-drag: none;
-        -webkit-box-shadow: 10px 10px 8px 2px rgba(92,92,92,1);
-        -moz-box-shadow: 10px 10px 8px 2px rgba(92,92,92,1);
-        box-shadow: 10px 10px 8px 2px rgba(92,92,92,1);
+        -webkit-box-shadow: 10px 10px 8px 2px rgba(92, 92, 92, 1);
+        -moz-box-shadow: 10px 10px 8px 2px rgba(92, 92, 92, 1);
+        box-shadow: 10px 10px 8px 2px rgba(92, 92, 92, 1);
         transition: .55s ease;
         border-radius: 0;
         border: none;
     }
-
     .card.interview:not(#modal-box):hover {
         transform: scale(1.12);
         cursor: pointer;
@@ -352,8 +316,7 @@
         box-shadow: 5px 5px 8px 2px rgb(37, 37, 37, 0.93);
         transition: .55s ease;
     }
-
-    .card.interview > img {
+    .card.interview>img {
         user-select: none;
         -webkit-user-drag: none;
         height: 100%;
@@ -361,8 +324,7 @@
         object-fit: cover;
         border-radius: 0;
     }
-
-    .card.interview > .card-title {
+    .card.interview>.card-title {
         width: 100%;
         text-transform: uppercase;
         font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
@@ -372,26 +334,22 @@
         line-height: 2;
         margin-bottom: 0 !important;
     }
-
-    .card.interview > .card-body {
+    .card.interview>.card-body {
         padding-top: .55rem;
         user-select: text;
     }
-
-    .card.interview > .card-body > h5 {
+    .card.interview>.card-body>h5 {
         line-height: 1.5;
         font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
         padding: 6px 8px;
         font-size: 2.2vw;
         font-style: normal;
     }
-
-    .card.interview > .card-body {
+    .card.interview>.card-body {
         font-size: 2vw;
         font-family: 'Times New Roman', Times, serif;
     }
-
-    .card.interview > .card-body > ul {
+    .card.interview>.card-body>ul {
         padding: 10px;
         margin: auto;
         list-style: none;
@@ -402,119 +360,93 @@
         justify-content: center;
         align-items: center;
     }
-
-    .card.interview > .card-body > ul > li {
+    .card.interview>.card-body>ul>li {
         padding: 5px;
         flex-grow: 2;
         flex-shrink: 1;
     }
-
-    .card.interview > .card-body > ul > li > img {
+    .card.interview>.card-body>ul>li>img {
         border-radius: 5px;
         max-width: 400;
         width: 100%;
         height: auto;
     }
-
 }
 
 @media only screen and (min-width: 800px) {
-
-    .card.interview > .card-body > h5 {
+    .card.interview>.card-body>h5 {
         line-height: 2;
     }
-
-    .card.interview > .card-body {
+    .card.interview>.card-body {
         font-style: italic;
     }
-
     #interviews-heading {
         font-size: 1.3rem;
     }
-
     .card.interview:not(#modal-box):hover {
         transform: scale(1.08);
         transition: .55s ease;
     }
-
 }
 
 @media only screen and (min-width: 1024px) {
-
     #modal-close {
         right: 2%;
     }
-
-    .card.interview > .card-body > ul > li > img {
+    .card.interview>.card-body>ul>li>img {
         border-radius: 10px;
         max-width: 250px;
         max-height: 250px;
     }
-
-    .card.interview > .card-title {
+    .card.interview>.card-title {
         font-size: 1.7rem;
     }
-
-    .card.interview > .card-body > h5 {
+    .card.interview>.card-body>h5 {
         font-size: 1.5rem;
     }
-
-    .card.interview > .card-body {
+    .card.interview>.card-body {
         font-size: 1.3rem;
     }
-
     #interviews-heading {
         font-size: 1.7rem;
     }
-
     .card.interview:not(#modal-box):hover {
         transform: scale(1.06);
         transition: .55s ease;
     }
-
-    #modal-box > .card-body > p {
+    #modal-box>.card-body>p {
         font-size: 1.5rem;
     }
-
-    #modal-box > .card-body > h5 {
+    #modal-box>.card-body>h5 {
         font-size: 1.7rem;
     }
-
-    #modal-box > .card-title {
+    #modal-box>.card-title {
         font-size: 1.9rem;
     }
-
-    #modal-box > .card-body > h2 {
+    #modal-box>.card-body>h2 {
         font-size: 2.5vw;
     }
-
-    #modal-box > .card-body > div.card-text {
-        
+    #modal-box>.card-body>div.card-text {
         border-radius: 2%;
         padding: 20px;
     }
 }
 
 @media only screen and (min-width: 1200px) {
-
     nav#modal-navigation {
         width: 240px;
     }
-
     #interviews-heading {
         font-size: 2rem;
     }
-
     #modal-box {
         max-height: 100vh;
         max-width: calc(60% * 0.9);
         left: 25%;
         right: 60%;
     }
-
     .card.interview:not(#modal-box):hover {
         transform: scale(1.04);
         transition: .55s ease;
     }
-
-} 
+}
