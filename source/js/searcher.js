@@ -1,9 +1,65 @@
-//  script used for searching text withing the websites available for viewing
-//  the paths of all the available html files are taken from the json file provided when building the website
-//  the function used for searching is called:
+//  MIT License
 //
-//      searchSites(value: String, onlySearchCurrentSite:Boolean = false, onlySearchCurrentLang: Boolean = false, returnHighlighedPreviewFirstOccurrence: Boolean = false)
+//  Copyright (c) 2021 Radovan Jakubčík
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+//  
+//
+//  Searcher API
+//
+//  Author: Radovan Jakubcik
+//
+//  Summary:
+//  Searcher API enables highlighting of the current website content, live search throughout the included websites of the project,
+//  handling of GET request searching in the so called search website. (The website used for sole purpose of searching/displaying results of search)
+//  Enables the users to search for content in real-time or after pressing the 'return' key. (Enter)
+//  Quick and fluent searching of the content is done by loading the content of the website, afterwards inserting the content into the sessionStorage object
+//  using the available languages as the keys in the sessionStorage object. The content is saved under the language and is an object with the following properties
+//  path, content and because the sessionStorage only allows for the storage of strings. The object is afterwards converted into JSON format and stored.
+//    
+//
+//  Requirements:
+//  The script will only work if the url scheme used when loading the website is HTTP or HTTPS for CORS request, otherwise it will automatically be disabled.
+//
+//  Web browser (version) requirements for Session Storage object:
+//  Chrome - 4.0
+//  Microsoft Edge - 8.0
+//  Firefox - 3.5
+//  Safari - 4.0
+//  Opera - 11.5
+//  Safari (iOS) - 3.2
+//  Android Browser - 90
+//  Opera Mobile - 12
+//  Chrome (Android) - 90
+//  Firefox (Android) - 87
+//  Samsung Internet - 4
+//
+//  Script uses the file provided in by the constant defined (is editable):
+//  
+//  C.FILE_PATH
+//
+//  This file has to be created before using this script.
+//
+//  Default file is called: htmlfiles.json
+//  The structure of the file should be as follows (JSON format):
+//  [[The list of websites],[The list of languages]]
+//  [["/example/index.html","/index.html","/example2/example/index.html"],["en","sk"]]
 
 const CURRENT_URL_SCHEME = location.protocol.split(":")[0].toUpperCase();
 
@@ -149,8 +205,7 @@ var F = {
     getSiteGetRequestData: (stringQuery) => {
         const searchQuery = location.search;
         if (F.isEmpty(searchQuery)) return null;
-        //const rExpStr = "(\?|\&)(" + stringQuery + ").*?\&";
-        //
+
         let rExp = new RegExp(`(\\?|\\&)(${stringQuery}).+?\\&{1,}.+?\\b\\=|(\\?|\\&)(${stringQuery}).+`, "gm");
         let splitSQ = searchQuery.match(rExp);
         if (splitSQ) {
@@ -355,7 +410,7 @@ var F = {
     /**
      * Method used for displaying the error message when the website was opened as a file.
      */
-    urlSchemeErrorMsg: () => console.error("Searcher API will be disabled as the url scheme is not http or https."),
+    urlSchemeErrorMsg: () => console.error("Searcher API will be disabled, because the url scheme must be http or https for CORS request."),
     /**
      * Method used for handling the current url scheme.
      * @param {Boolean} displayMessage If an error occurres display the error message in the console.
@@ -645,8 +700,9 @@ async function readFileText(path) {
  */
 async function __initSearcher() {
     return loadWebsitePaths().then((val) => {
-        if (val instanceof String || val instanceof Boolean) {
+        if (!val || val instanceof String || val instanceof Boolean) {
             //Error occured while fetching the json file containing the websites and languages available.
+            console.error("Searcher API cannot be loaded as an unexpected error occured while initializing.")
             return false;
         } else {
 
