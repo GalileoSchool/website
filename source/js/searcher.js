@@ -24,7 +24,7 @@ const C = {
      */
     PREVIEW_LENGTH: 35,
     /**
-     * The maximum number of returned preview lines containing the searched value per a website.
+     * The maximum number of returned preview lines containing the searched value per website.
      */
     PREVIEW_COUNT: 3,
     /**
@@ -193,7 +193,7 @@ var F = {
                     }
                 }
                 if (pDirName.length <= 3) return `Homepage (${pDirName})`;
-                return F.getFormattedSiteName(pDirName) + (siteLang.length === 2 ? ` (${ siteLang })` : "");
+                return F.getFormattedSiteName(pDirName) + (siteLang.length === 2 ? ` (${siteLang})` : "");
             }
             return F.getFormattedSiteName(siteName);
         }
@@ -437,10 +437,12 @@ if (C.CURRENT_URL_SCHEME_CORRECT) {
  * @param {Boolean} onlySearchCurrentLang Search for the value only in the current language of the website. (false)
  * @param {Boolean} showPreview Get the preview of the searched value in the text provided. (false)
  * @param {Boolean} highlighedPreview If `showPreview = true`, then highlight the searched value in the preview text. (false)
- * @returns The list of file paths containing the value searched; preview text - if preview is enabled.
+ * @param {Number} previewLength The length of the preview text displayed after searching. (C.PREVIEW_LENGTH)
+ * @param {Number} previewCount The maximum number of previews displayed. (C.PREVIEW_COUNT)
+ * @returns The list of file paths containing the value searched; preview text - if previewing is enabled.
  * @example
  * //When searching in the current website.
- * //Call the next function on an input for example:
+ * //Call the next function on input for example:
  * 
  * <input type="text" onkeyup="searchSites(this.value, true)" />
  * //This will allow for the highlighting of the current website when the this.value exceeds the length of C.MIN_SEARCH_LENGTH
@@ -448,7 +450,7 @@ if (C.CURRENT_URL_SCHEME_CORRECT) {
  * 
  * //When searching all the available sites.
  * //This function can be called in another function that will organize the data returned into a list and display it on site.
- * let results: Promise<Object[][] | null> = searchSites("example", false, false, true, false)
+ * let results: Promise<[[string, [string]]] | null> = searchSites("example", false, false, true, false, 50, 3)
  * if(!results) console.log("No results found.")
  * else{
  *  results.then((res) => {
@@ -456,7 +458,7 @@ if (C.CURRENT_URL_SCHEME_CORRECT) {
  *          const data = res[i]
  *          const siteHref = data[0]
  *          const sitePrev = data[1]
- *          console.log(`Site found: ${siteHref} | Preview line: ${sitePrev}`)
+ *          console.log(`Site found: ${siteHref} | Preview lines: ${sitePrev}`)
  *      }
  *  })
  * }
