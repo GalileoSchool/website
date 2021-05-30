@@ -11,7 +11,10 @@
     <div class="content">
         <div id="menu-overlay" class="transparent overlay no-display"></div>
         {{carousel}}
-
+        <div id="search_results_full" class="search-result-fullview"></div>
+        <script type="text/javascript">
+            getRequestSearch("search_results_full", false, true, 100, 3);
+        </script>
     </div>
 
     <!-- Scripts at the end to make sure everything else is already loaded. -->

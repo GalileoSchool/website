@@ -8,7 +8,8 @@
         <div class="left">
             <!-- Search button -->
             <div class="search-container close">
-                <input type="search" name="searchInp" onkeyup="searchSitesWithResult(this.value, 'search_results', false, true)" id="search_box" />
+                <!---->
+                <input type="search" name="searchInp" onchange="sendSearch(this.value, 'search.html')" onkeyup="searchSitesWithResult(this.value, 'search_results', false, true),searchInSite(this.value)" id="search_box" />
             </div>
             <div id="search" class="nav-phone search">
                 <img id="search-img" src="{fill_parents}images/icons/search.png">
