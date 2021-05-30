@@ -1,3 +1,4 @@
+//The anonymouse function inside of the ready method will be executed when the current document element is ready to use.
 $(document).ready(function () {
     const body = document.getElementById("main-body");
     var autoHeightApplied = false;
@@ -138,10 +139,7 @@ $(document).ready(function () {
             autoHeightApplied = true;
         });
     }
-
 });
-
-
 
 /**
  * 
