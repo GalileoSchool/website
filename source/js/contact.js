@@ -68,7 +68,6 @@ $(document).ready(function () {
 
             if (!validate(document.getElementById("Message"))) {
                 elem.preventDefault();
-                return;
             }
         });
     }
@@ -80,14 +79,10 @@ $(document).ready(function () {
      * @param {String} class2 - to class
      */
     function changeClass(elem, class1, class2) {
-        if (elem.classList.contains(class1)) {
-            elem.classList.remove(class1);
+        if (!elem.classList.contains(class2)) {
             elem.classList.add(class2);
+            if (elem.classList.contains(class1)) elem.classList.remove(class1);
         }
-        else if (elem.classList.contains(class2))
-            return;
-        else
-            elem.classList.add(class2);
     }
 
     function valid(element) {
@@ -158,14 +153,16 @@ function autoHeight(body, callback) {
  */
 function validate(elem, email = false) {
     var string = elem.value;
-    if (!string || string == null || string == undefined) return false;
+    if (!string) return false;
 
     string = string.trim();
 
-    if (email) {
-        if (string.length < 1) return false;
+    if (email && string) {
         string = escape(string);
-        return (emailValidate(string) && string.length >= 4 && string.indexOf("@") > 0 && string.split("@")[1].indexOf(".") > 2 && (string.split(".")[1].length > 1)) ? true : false;
+        
+        //Removed from the return check, after changing the regex pattern for email validation to RFC 5322 compliant one.
+        // && string.length >= 4 && string.indexOf("@") > 0 && string.split("@")[1].indexOf(".") > 2 && (string.split(".")[1].length > 1)
+        return emailValidate(string);
     }
 
     return (string.length >= 4) ? true : false;
@@ -178,7 +175,10 @@ function validate(elem, email = false) {
  * @returns {boolean}
  */
 function emailValidate(email) {
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+    //RFC 5322 compliant regex for testing email addresses
+    return /(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(email);
+    //Old
+    //return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
 }
 
 function sendMail() {
