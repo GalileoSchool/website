@@ -154,7 +154,7 @@ $(document).ready(function () {
     }
 
     function urlContains(string) {
-        return (document.location.pathname.indexOf(string) > -1) ? true : false;
+        return location.pathname.includes(string);
     }
 
 });
