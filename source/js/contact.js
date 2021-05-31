@@ -86,13 +86,11 @@ $(document).ready(function () {
     }
 
     function valid(element) {
-        //console.log("valid() called!");
         changeClass(element.target.parentElement, "invalid", "valid");
         hideErrorMsg(element.target);
     }
 
     function invalid(element) {
-        //console.log("invalid() called!");
         changeClass(element.target.parentElement, "valid", "invalid");
         showErrorMsg(element.target);
     }
@@ -169,8 +167,8 @@ function validate(elem, email = false) {
         
 }
 
-/** Checks whether the given string is a valid email
- * 
+/**
+ * Checks whether the given string is a valid email
  * @param {String} email 
  * @returns {boolean}
  */
