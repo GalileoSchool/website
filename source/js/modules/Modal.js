@@ -101,7 +101,6 @@ class ModalHandler {
     if (this.container && this.view) {
       if (this.view.txtBoxes.length < 1) this.view._addTextWrapper('first-text-wrapper').innerHTML = '';
       else {
-        // eslint-disable-next-line no-restricted-syntax
         for (const txtbox of this.view.txtBoxes) txtbox.innerHTML = '';
       }
     } else throw new Error('[ModalHandler] >>> _initializeModal() >>> Object reference resulted in a nullptr');
