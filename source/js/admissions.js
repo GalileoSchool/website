@@ -15,7 +15,7 @@ $(modalCloseBtn).click((e) => {
   Handler.hide();
 });
 
-// var btn = Viewer._addButton("modal-inner-close", "Back"); - Fix event listener getting ducked up when shown
+// TODO: var btn = Viewer._addButton("modal-inner-close", "Back"); - Fix event listener getting ducked up when shown
 
 /** Click Handler of Admissions
  *
