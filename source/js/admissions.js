@@ -1,5 +1,3 @@
-//import { ModalHandler, ModalViewer, ModalContainer } from './modules/Modal.js';
-
 const modalBox = document.getElementById("modal-box");
 const modalCloseBtn = document.getElementById("modal-close");
 const modalBckg = document.getElementById("modal-background");
