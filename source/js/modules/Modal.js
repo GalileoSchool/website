@@ -208,5 +208,3 @@ class ModalViewer {
         return btn;
     }
 }
-
-//export { ModalHandler, ModalViewer, ModalContainer };
