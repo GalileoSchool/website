@@ -73,8 +73,8 @@ $(document).ready(function () {
     }
 
     /**
-     * 
-     * @param {HTMLElement} elem 
+     * Method used for changing the class1 provided for the class2 provided in the elem provided
+     * @param {HTMLElement} elem The html element provided
      * @param {String} class1 - from class
      * @param {String} class2 - to class
      */
@@ -96,27 +96,25 @@ $(document).ready(function () {
     }
 
     /**
-     * 
-     * @param {HTMLElement} target 
+     * Show error message
+     * @param {HTMLElement} target The input to which the error message is connected.
      */
     function showErrorMsg(target) {
         var id = target.getAttribute("name");
         var span = document.querySelector(`span.error.msg[input="${id}"]`);
 
         $(span).show(100);
-        //span.classList.add("display-block");
     }
 
     /**
-     * 
-     * @param {HTMLElement} target 
+     * Hide error message
+     * @param {HTMLElement} target The input to which the error message is connected.
      */
     function hideErrorMsg(target) {
         var id = target.getAttribute("name");
         var span = document.querySelector(`span.error.msg[input="${id}"]`);
 
         $(span).hide(100);
-        //span.classList.remove("display-block");
     }
 
     /**
@@ -135,19 +133,19 @@ $(document).ready(function () {
 });
 
 /**
- * 
- * @param {HTMLElement} body 
- * @param {Function} callback 
+ * Method used for determining whether the main-body element needs to be fixed in height
+ * @param {HTMLElement} body The main-body element
+ * @param {Function} callback The callback function determining whether the main-body element needs to be fixed in height
  */
 function autoHeight(body, callback) {
     callback((body.scrollHeight < (window.innerHeight - (window.innerWidth / 10))) ? body : false);
 }
 
-/** Checks whether the given string is a valid input
- * 
- * @param {HTMLElement} elem 
- * @param {boolean} email 
- * @returns {boolean}
+/** 
+ * Checks whether the given input is valid
+ * @param {HTMLElement} elem The input element into which the user has inputted data
+ * @param {boolean} email Should the input value be tested as an email
+ * @returns {boolean} True if the input is valid, otherwise, false
  */
 function validate(elem, email = false) {
     var string = elem.value;
@@ -169,8 +167,8 @@ function validate(elem, email = false) {
 
 /**
  * Checks whether the given string is a valid email
- * @param {String} email 
- * @returns {boolean}
+ * @param {String} email The email string to validate
+ * @returns {boolean} True if the email string is RFC 5322 compliant, otherwise, false
  */
 function emailValidate(email) {
     //RFC 5322 compliant regex for testing email addresses
@@ -179,6 +177,9 @@ function emailValidate(email) {
     //return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
 }
 
+/**
+ * Method used for sending the email
+ */
 function sendMail() {
     try {
         let name = document.getElementById("Name").value;
