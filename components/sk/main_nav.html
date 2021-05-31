@@ -1,16 +1,29 @@
 <!-- Each of these li (list item) elements represents a button in our menu -->
 <li onclick="location.href='{fill_parents_html}sk/index.html'" class="nav-elem">
-    <div>Hlavná Stránka</div>
+    <div class="nav-elem-text">Hlavná Stránka</div>
 </li>
-<li onclick="location.href='#'" class="nav-elem">
-    <div>Profil Školy</div>
+<li class="nav-elem dropdown closed">
+    <div class="nav-elem-text sub-menu-btn closed">O Škole</div>
+    <div class="sub-menu block container">
+        <ul class="sub-menu list flex column">
+            <li id="kindergarten" onclick="location.href='{{kindergarten.link}}'">Škôlka</li>
+            <li id="primary school" onclick="location.href='{{primary_school.link}}'">Základná Škola</li>
+            <li id="high school" onclick="location.href='{{high_school.link}}'">Gymnázium</li>
+        </ul>
+    </div>
 </li>
+<!-- <li onclick="location.href='#'" class="nav-elem">
+    <div class="nav-elem-text">Novinky</div>
+</li> -->
 <li onclick="location.href='https://galileoschool.edupage.org/znamky/'" class="nav-elem">
-    <div>Žiacka Knižka</div>
+    <div class="nav-elem-text">Žiacka Knižka</div>
 </li>
-<li onclick="location.href='#'" class="nav-elem">
-    <div>Prijímacie Pohovory</div>
+<li onclick="location.href='{fill_parents_html}sk/interviews/index.html'" class="nav-elem">
+    <div>Absolventi</div>
 </li>
-<li onclick="location.href='#'" class="nav-elem">
-    <div>Kontakty</div>
+<li onclick="location.href='{fill_parents_html}sk/admissions/index.html'" class="nav-elem">
+    <div class="nav-elem-text">Prijímacie Pohovory</div>
+</li>
+<li onclick="location.href='{fill_parents_html}sk/contact us/index.html'" class="nav-elem">
+    <div class="nav-elem-text">Kontakty</div>
 </li>

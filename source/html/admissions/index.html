@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- This indention is totally legal and we are 100% certain about this -->
+<html lang="en">
+    
+<head>
+    {{head}}
+    <script src="{fill_parents}js/modules/Modal.js"></script>
+</head>
+
+<body>
+    <div id="modal-background" class="admissions no-display"></div>
+    {{navigation}}
+    <div class="content">
+        <div id="menu-overlay" class="transparent overlay no-display"></div>
+        {{carousel}}
+
+        {{admissions.title}}
+        {{admiss_temp}}
+    </div>
+
+    <div id="modal-close" class="admissions modal-close no-display fixed top">
+        <img src="{fill_parents}images/icons/close_black.png" alt="">
+    </div>
+    <div id="modal-box" class="admissions modal fixed"></div>
+    <!-- Scripts at the end to make sure everything else is already loaded. -->
+    <script src="{fill_parents}js/carousel.js"></script>
+    <script src="{fill_parents}js/admissions.js"></script>
+</body>
+</html>

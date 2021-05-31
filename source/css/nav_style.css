@@ -53,7 +53,10 @@ nav {
     margin-bottom: 0;
 }
 
-.phone-menu li:hover {
+.phone-menu li:not(.dropdown):hover,
+ul.sub-menu > li:hover,
+.phone-menu li div.closed:active,
+.phone-menu li div.opened {
     background-color: #c40000;
     color: #ffffff;
     cursor: pointer;
@@ -88,7 +91,7 @@ div.nav-phone.lang > div {
     margin: auto;
     padding: 1vw;
     box-sizing: content-box;
-    transition: 2s linear;
+    transition: .4s ease;
 }
 
 .nav-phone .logo {
@@ -101,7 +104,7 @@ div.nav-phone.lang > div {
     margin-left: 0;
     font-size: 6vw;
     text-transform: uppercase;
-    transition: 2s linear;
+    transition: .4s ease;
 }
 
 .nav-phone {
@@ -316,17 +319,68 @@ li.nav-phone.title.searching {
     transition: .55s linear !important;
 }
 
+div.sub-menu-btn.closed::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-size: large;
+    color: #ffffff;
+    content: "\f0d7";
+    margin-left: 8px;
+}
+
+div.sub-menu-btn.opened::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-size: large;
+    color: #ffffff;
+    content: "\f0d8";
+    margin-left: 8px;
+}
+
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.sub-menu.block.container {
+    padding: 8px;
+    background-color: #990000;
+    /* background-color: #c40000; */
+    display: none;
+}
+
+ul.sub-menu.list {
+    list-style: none;
+    padding: 0;
+}
+
 /* Styles management based on screen width */
 
 /* Tablet style */
 /* Why 670? Trial and error - testing values from 540 to 800 (Common phone and tablet widths) */
 /* Warning: Any changes made to this "conditional" such as changing the min-width will have to be repeated in nav_jquery.js file in the function check_resize() */
-@media screen and (min-width: 670px) {
+@media screen and (min-width: 653px) {
 
     div.language-select-btn:hover, div.nav-phone.light-gray.lang.lang-text {
         cursor: pointer;
     }
 
+    div.language-select-btn:hover, div.nav-phone.light-gray.lang.lang-text {
+        cursor: pointer;
+    }
     #langBtn:hover, .lang-text:hover {
         cursor: pointer;
         background-color: #eeeeee;
@@ -391,7 +445,7 @@ li.nav-phone.title.searching {
         display: block;
         position: fixed;
         background-color: rgba(160, 160, 160, 0.377);
-        z-index: 1;
+        z-index: 2;
         height: 100%;
         width: 100%;
     }
@@ -481,7 +535,7 @@ li.nav-phone.title.searching {
         position: sticky;
         top: 0;
         flex-direction: row;
-        max-height: 52px;
+        /* max-height: 52px; */
         -ms-flex-direction: row;
         -ms-flex-align: center;
         justify-content: center;
@@ -528,12 +582,55 @@ li.nav-phone.title.searching {
         color: #ffffff;
     }
 
-    .nav-desk li:hover {
+    .nav-desk li:hover,
+    .nav-desk li.nav-elem.dropdown div.sub-menu ul li.active,
+    .nav-desk li.nav-elem.dropdown.opened {
         box-shadow: 0px 0px 33px -14px rgba(0, 0, 0, 0.2);
-        transform: scale(1.05);
         background-color: #c60000;
         transition: linear 0.2s;
     }
+
+    .nav-desk li:not(.dropdown):hover {
+        transform: scale(1.05);
+    }
+
+    .nav-desk li.nav-elem.dropdown div.sub-menu {
+        position: absolute;
+        top: 52px;
+        z-index: 5;
+        width: auto;
+        padding: 16px 0px;
+    }
+
+    .nav-desk li.nav-elem.dropdown div.sub-menu ul,
+    .nav-desk li.nav-elem.dropdown div.sub-menu ul li {
+        position: relative;
+        width: auto;
+        overflow-wrap: unset;
+        text-align: center;
+    }
+
+    .nav-desk li.nav-elem.dropdown div.sub-menu ul {
+        width: max-content;
+    }
+
+    .nav-desk li.nav-elem.dropdown div.sub-menu ul li {
+        padding: 0.75rem 1.5em;
+    }
+
+    /* .nav-desk li.nav-elem.dropdown div.sub-menu ul li::before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 600;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1.5;
+        font-size: medium;
+        color: #ffffff;
+        margin-right: 10px;
+        content: "\f30b";
+    } */
 
     .nav-elem {
         display: flex;
@@ -582,19 +679,23 @@ li.nav-phone.title.searching {
     #main-nav > li {
         padding-right: calc(520px*0.05);
         padding-left: calc(520px*0.05);
-        }
+    }
 
-        li.nav-phone.logo.searching img {
-            width: 61px !important;
-            height: auto !important;
-            transition: all 1s linear;
-        }
+    #title {
+        letter-spacing: -0.15vw;
+    }
+
+    li.nav-phone.logo.searching img {
+        width: 61px !important;
+        height: auto !important;
+        transition: all 1s linear;
+    }
     
-        li.nav-phone.title.searching {
-            font-size: calc(670px*0.063);
-            transition: 1s linear;
-        }
-        
+    li.nav-phone.title.searching {
+        font-size: calc(670px*0.063);
+        transition: 1s linear;
+    }
+    
     .nav-desk > ul:nth-child(2)  {
         width: 300px;
     }

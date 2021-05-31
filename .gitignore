@@ -194,10 +194,11 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.gitignore.io/api/node,macos,windows,sublimetext,visualstudiocode
-
 # Undesirable Auto-Created HTML Files
 components/en/interview_cards.html
-components/en/interview.html
-components/sk/interview.html
 components/sk/interview_cards.html
+
+# Unnecessary temporary text file auto-generated everytime a build happens
+Extensions/News/data/*
+
+# End of https://www.gitignore.io/api/node,macos,windows,sublimetext,visualstudiocode

@@ -1,16 +1,29 @@
 <!-- Each of these li (list item) elements represents a button in our menu -->
 <li onclick="location.href='{fill_parents_html}en/index.html'" class="nav-elem">
-    <div class="nav-elem-text">Main Page</div>
+    <div class="nav-elem-text">Home</div>
 </li>
-<li onclick="location.href='#'" class="nav-elem">
-    <div class="nav-elem-text">About Us</div>
+<li class="nav-elem dropdown closed">
+    <div class="nav-elem-text sub-menu-btn closed">About Us</div>
+    <div class="sub-menu block container">
+        <ul class="sub-menu list flex column">
+            <li id="kindergarten" onclick="location.href='{{kindergarten.link}}'">Kindergarten</li>
+            <li id="primary school" onclick="location.href='{{primary_school.link}}'">Primary School</li>
+            <li id="high school" onclick="location.href='{{high_school.link}}'">High School</li>
+        </ul>
+    </div>
 </li>
+<!-- <li onclick="location.href='#'" class="nav-elem">
+    <div class="nav-elem-text">News</div>
+</li> -->
 <li onclick="location.href='https://galileoschool.edupage.org/znamky/'" class="nav-elem">
     <div class="nav-elem-text">Edupage</div>
 </li>
-<li onclick="location.href='#'" class="nav-elem">
+<li onclick="location.href='{fill_parents_html}en/interviews/index.html'" class="nav-elem">
+    <div class="nav-elem-text">Graduates</div>
+</li>
+<li onclick="location.href='{fill_parents_html}en/admissions/index.html'" class="nav-elem">
     <div class="nav-elem-text">Admissions</div>
 </li>
-<li onclick="location.href='#'" class="nav-elem">
-    <div class="nav-elem-text">Contacts</div>
+<li onclick="location.href='{fill_parents_html}en/contact us/index.html'" class="nav-elem">
+    <div class="nav-elem-text">Contact Us</div>
 </li>

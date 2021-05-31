@@ -256,11 +256,11 @@ function joinPathofFile(filepath) {
 	if(getNumberOfParentFolders(filepath) == 0)
 		return;
 	var string_builder = joinRepeatedString(getNumberOfParentFolders(filepath) - 1, '../');
-	var path_parts = filepath.split('html/')[1];
-	if(path_parts.indexOf('en/') != -1)
-		string_builder += path_parts.replace('en/','sk/');
+	var path_parts = filepath.split('/html')[1];
+	if(path_parts.indexOf('/en/') != -1)
+		string_builder += path_parts.replace('/en/','sk/');
 	else
-		string_builder += path_parts.replace('sk/', 'en/');
+		string_builder += path_parts.replace('/sk/', 'en/');
 	return string_builder;
 }
 

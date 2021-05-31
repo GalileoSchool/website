@@ -2,15 +2,16 @@ $(document).ready(function () {
     const navbar = $("#nav-desk");
     const primary_navigation = $("#main-nav");
     const secondary_navigation = $("#sub-nav");
-    const phonebar = $('#nav-phone');
+    const phonebar = $("#nav-phone");
     const phone_nav = $("#nav-phone-list");
     const navBtn = $("#nav-btn");
-    const navBtnImgSrc = $("#menu-img").attr('src');
-    const navBtnExitImgSrc = getCloseImgUrl(navBtnImgSrc, 'close');
-    const searchBtnImgSrc = $("#search-img").attr('src');
-    const searchBtnExitImgSrc = getCloseImgUrl(searchBtnImgSrc, 'close_black');
+    const navBtnImgSrc = $("#menu-img").attr("src");
+    const navBtnExitImgSrc = getCloseImgUrl(navBtnImgSrc, "close");
+    const searchBtnImgSrc = $("#search-img").attr("src");
+    const searchBtnExitImgSrc = getCloseImgUrl(searchBtnImgSrc, "close_black");
     const searchBtn = $("#search");
     const langBtn = $("#langBtn");
+    const dropdowns = document.querySelectorAll("li div.sub-menu-btn");
 
     var isSearching = false;
     var viewport = new Viewport($(window).innerWidth(),$(window).innerHeight());
@@ -19,8 +20,15 @@ $(document).ready(function () {
     var isPhoneMenuOpen = false;
 
     if(!isDesktop) {
-        navbar.addClass('no-display');
+        navbar.addClass("no-display");
     }
+
+    if (urlContains("/school/")) {
+        let arr = document.location.pathname.split("/");
+        document.getElementById(arr[arr.indexOf("school") + 1].toLowerCase().replace("%20", " ")).classList.add("active");
+        
+    }
+        
 
     /*  Events Section  */
 
@@ -47,46 +55,59 @@ $(document).ready(function () {
         toggleSearch();
     });
 
+    for (var btn of dropdowns) {
+        $(btn.parentElement).click(e => {
+            if (e.target.childElementCount == 0)
+                e.target = e.target.parentElement;
+            if (e.target.tagName.toLowerCase() != "li")
+                return;
+            
+            $(e.target.children[1]).slideToggle("normal");
+            $(e.target.children[0]).toggleClass("closed opened");
+            $(e.target).toggleClass("closed opened");
+        });
+    }
+
 
     /*  Functions Section   */
 
     function toggleDesktopMenu() {
         isSubMenuOpen = !isSubMenuOpen;
-        if($('html').scrollTop() != 0)
+        if($("html").scrollTop() != 0)
             $("html, body").animate({ scrollTop: 0 }, "slow");
         secondary_navigation.slideToggle();
         toggleMenuBtnImg();
-        $('.content').toggleClass('blur');
-        $('#menu-overlay').toggleClass('no-display');
+        $(".content").toggleClass("blur");
+        $("#menu-overlay").toggleClass("no-display");
     }
 
     function togglePhoneMenu(toggle = true) {
         isPhoneMenuOpen = !isPhoneMenuOpen;
         if(isSearching)
             toggleSearch();
-        $('.left').toggleClass("red-wine");
-        $('#search').toggleClass("no-display");
+        $(".left").toggleClass("red-wine");
+        $("#search").toggleClass("no-display");
         langBtn.toggleClass("no-display");
-        $('.language-dropdown').toggleClass("no-display");
-        $('#title').toggleClass("title-open-nav");
-        $('#logo').toggleClass("logo-img-open-nav");
-        $('.logo').toggleClass("logo-open-nav");
-        $('.title').toggleClass("title-cont-open-nav");
-        $('nav').toggleClass("scroll-menu");
+        $(".language-dropdown").toggleClass("no-display");
+        $("#title").toggleClass("title-open-nav");
+        $("#logo").toggleClass("logo-img-open-nav");
+        $(".logo").toggleClass("logo-open-nav");
+        $(".title").toggleClass("title-cont-open-nav");
+        $("nav").toggleClass("scroll-menu");
         toggleMenuBtnImg();
         phone_nav.slideToggle("fast");
     }
 
     function toggleSearch() {
-        $('li.logo').toggleClass('searching');
-        $('li.title').toggleClass('searching');
-        $('.search-container').toggleClass('close');
+        $("li.logo").toggleClass("searching");
+        $("li.title").toggleClass("searching");
+        $(".search-container").toggleClass("close");
         isSearching = !isSearching;
         toggleSearchBtnImg();
     }
 
     function resetToPhoneMenu() {
-        navbar.addClass('no-display');
+        navbar.addClass("no-display");
         if(isSubMenuOpen) {
             secondary_navigation.slideUp();
             isSubMenuOpen = !isSubMenuOpen;
@@ -95,18 +116,18 @@ $(document).ready(function () {
     }
 
     function resetToDesktop() {
-        navbar.removeClass('no-display');
+        navbar.removeClass("no-display");
         if(isPhoneMenuOpen) {
             phone_nav.slideUp();
-            $('.left').removeClass("red-wine");
-            $('#search').removeClass("no-display");
+            $(".left").removeClass("red-wine");
+            $("#search").removeClass("no-display");
             langBtn.removeClass("no-display");
-            $('.language-dropdown').removeClass("no-display");
-            $('#title').removeClass("title-open-nav");
-            $('#logo').removeClass("logo-img-open-nav");
-            $('.logo').removeClass("logo-open-nav");
-            $('.title').removeClass("title-cont-open-nav");
-            $('nav').removeClass("scroll-menu");
+            $(".language-dropdown").removeClass("no-display");
+            $("#title").removeClass("title-open-nav");
+            $("#logo").removeClass("logo-img-open-nav");
+            $(".logo").removeClass("logo-open-nav");
+            $(".title").removeClass("title-cont-open-nav");
+            $("nav").removeClass("scroll-menu");
             isPhoneMenuOpen = !isPhoneMenuOpen;
             toggleMenuBtnImg();
         }
@@ -114,22 +135,26 @@ $(document).ready(function () {
 
     function toggleMenuBtnImg() {
         if(isSubMenuOpen || isPhoneMenuOpen)
-            $('#menu-img').attr('src', navBtnExitImgSrc);
+            $("#menu-img").attr("src", navBtnExitImgSrc);
         else
-            $('#menu-img').attr('src', navBtnImgSrc);
+            $("#menu-img").attr("src", navBtnImgSrc);
 
     }
 
     function toggleSearchBtnImg() {
         if(isSearching)
-            $("#search-img").attr('src', searchBtnExitImgSrc);
+            $("#search-img").attr("src", searchBtnExitImgSrc);
         else
-            $("#search-img").attr('src', searchBtnImgSrc);
+            $("#search-img").attr("src", searchBtnImgSrc);
     }
 
     function getCloseImgUrl(url_of_img, name_of_file_no_extension) {
-        var image_name = url_of_img.split('/').pop();
-        return (url_of_img.replace(image_name, name_of_file_no_extension + '.png'));
+        var image_name = url_of_img.split("/").pop();
+        return (url_of_img.replace(image_name, name_of_file_no_extension + ".png"));
+    }
+
+    function urlContains(string) {
+        return location.pathname.includes(string);
     }
 
 });
