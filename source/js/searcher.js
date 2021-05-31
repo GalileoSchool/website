@@ -169,21 +169,23 @@ var F = {
      * @return {String} The content of the website.
      */
     getSiteContent: (htmlText, contentSearchQuery, noTag = false) => {
+        
+        //Create pseudo html document in memory.
         let doc = document.createElement("html");
+        
         doc.innerHTML = htmlText;
 
-        //Quick get round for image link error.
+        //Quick get round for image link error. Remove image src attribute.
         let imgs = doc.getElementsByTagName("img");
         for (i in imgs) {
             let img = imgs[i];
             img.src = "";
         }
-
+        
+        //Select the content using the search query provided.
         let contEl = doc.querySelector(contentSearchQuery);
         if (!contEl) return "";
-        if (noTag) {
-            return contEl.innerText;
-        }
+        if (noTag) return contEl.innerText;
         return contEl.innerHTML;
     },
     /**
@@ -328,8 +330,7 @@ var F = {
         return r;
     },
     /**
-     * Method used for formating the data sent with the `
-            GET ` request.
+     * Method used for formating the data sent with the `GET` request.
      * @param {String} value The data to be formatted.
      * @param {Boolean} trimSpaces Remove unnecessary whitespaces. 
      * @example
@@ -359,7 +360,9 @@ var F = {
         let r = data.replace(regExp, " ");
         regExp = new RegExp(/\B(\%27)/gm);
         r = r.replace(regExp, "'");
-        //Add more character replacements when found.
+        
+        //Add more character replacements here if needed.
+        
         return r;
     },
     /**
@@ -384,7 +387,7 @@ var F = {
     buildResultItem: (args) => {
         const link = args[0];
         let linkName = F.getPossibleSiteName(link, "/html/");
-        const previews = args[1]; //TODO: check if it gets the correct preview.
+        const previews = args[1];
         let lItem = "<li class=\"searcher-result-item\">";
         let lHref = `<a href="${link}" class="searcher-result-link">${linkName}`;
         let lPrev = "";
@@ -526,7 +529,8 @@ async function searchSites(value, onlySearchCurrentSite = false, onlySearchCurre
 
     if (F.isEmpty(value) || value.length < C.MIN_SEARCH_LENGTH) {
 
-        //Check if only the search is for the current opened website and replace with original text when the length of the value is less than C.MIN_SEARCH_LENGTH or null.
+        //Check if only the search is for the current opened website
+        //Replace with original text when the length of the value is less than C.MIN_SEARCH_LENGTH or null.
         if (onlySearchCurrentSite && currentWebsiteChanged) {
             let contentElm = document.querySelectorAll(C.WEBSITE_CONTENT_ELEMENT_QUERY)[0];
             contentElm.innerHTML = currentWebsiteOriginalContent;
@@ -570,10 +574,9 @@ async function searchSites(value, onlySearchCurrentSite = false, onlySearchCurre
             const siteUrl = siteObj.path;
             var txt = siteObj.content;
             const d = `${C.HTML_FILE_PATH}/${langs[j]}${siteUrl}`;
-            //let d = "../../html/" + langs[j] + WEBSITE_PATHS[i];
 
             let data = F.getOccurences(txt, value, previewCount);
-            if (data && data.length > 0) {
+            if (data) {
                 let prev = [];
                 for (let di = 0; di < data.length; di++) {
                     if (showPreview) {
