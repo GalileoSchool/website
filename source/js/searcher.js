@@ -576,7 +576,7 @@ async function searchSites(value, onlySearchCurrentSite = false, onlySearchCurre
             const d = `${C.HTML_FILE_PATH}/${langs[j]}${siteUrl}`;
 
             let data = F.getOccurences(txt, value, previewCount);
-            if (data) {
+            if (data && data.length > 0) {
                 let prev = [];
                 for (let di = 0; di < data.length; di++) {
                     if (showPreview) {
