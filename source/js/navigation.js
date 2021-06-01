@@ -22,7 +22,6 @@ $(document).ready(() => {
     if (!isDesktop) {
         navbar.addClass('no-display');
     }
-  });
 
     // We check here whether the url contains /school/ section
     if (urlContains('/school/')) {
@@ -101,10 +100,10 @@ $(document).ready(() => {
         $('li.title').toggleClass('searching');
         $('.search-container').toggleClass('close');
         isSearching = !isSearching;
-        if (isSearching) $("input#search_box").focus();
+        if (isSearching) $('input#search_box').focus();
         else {
-            $("div#search_results").fadeOut("fast");
-            $("input#search_box").blur();
+            $('div#search_results').fadeOut('fast');
+            $('input#search_box').blur();
         }
         toggleSearchBtnImg();
     }
@@ -135,7 +134,6 @@ $(document).ready(() => {
             toggleMenuBtnImg();
         }
     }
-  }
 
     function toggleMenuBtnImg() {
         if (isSubMenuOpen || isPhoneMenuOpen) { $('#menu-img').attr('src', navBtnExitImgSrc); } else { $('#menu-img').attr('src', navBtnImgSrc); }
@@ -171,7 +169,7 @@ class Viewport {
   get isDesktop() {
     return this._isDesktop;
   }
-  
+
   get width() {
     return this.Width;
   }
@@ -179,5 +177,4 @@ class Viewport {
   get height() {
     return this.Height;
   }
-  
 }
