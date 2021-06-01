@@ -12,13 +12,13 @@ class ModalContainer {
   constructor(textContainer) {
     // ctor is a shorthand for constructor
     // Nullptr means null pointer; The object reference that you made was not set to an instance of an object and thus resulted in a null object
-    if (!textContainer) throw new Error('[ModalContainer] >>> ModalContainer..ctor() >>> Object reference resulted in a nullptr');
+    if (!textContainer) throw new Error('[ModalContainer] >>> ModalContainer.constructor() >>> Object reference resulted in a nullptr');
     else this.container = textContainer;
 
     this.HtmlText = this._getHtmlText();
     this.rawText = this._getRawText();
 
-    if (!this.HtmlText || !this.rawText) throw new Error('[ModalContainer] >>> ModalContainer..ctor() >>> Object reference resulted in a nullptr');
+    if (!this.HtmlText || !this.rawText) throw new Error('[ModalContainer] >>> ModalContainer.constructor() >>> Object reference resulted in a nullptr');
   }
 
   /**
@@ -55,7 +55,7 @@ class ModalHandler {
   constructor(modalContainer, modalViewer, bckg_scrolling = false, sliding = true) {
     // ctor is a shorthand for constructor
     // Nullptr means null pointer; The object reference that you made was not set to an instance of an object and thus resulted in a null object
-    if (!modalContainer || !modalViewer) throw new Error('[ModalHandler] >>> ModalHandler..ctor() >>> Object reference resulted in a nullptr');
+    if (!modalContainer || !modalViewer) throw new Error('[ModalHandler] >>> ModalHandler.constructor() >>> Object reference resulted in a nullptr');
     else {
       this.container = modalContainer;
       this.view = modalViewer;
@@ -101,7 +101,6 @@ class ModalHandler {
     if (this.container && this.view) {
       if (this.view.txtBoxes.length < 1) this.view._addTextWrapper('first-text-wrapper').innerHTML = '';
       else {
-        // eslint-disable-next-line no-restricted-syntax
         for (const txtbox of this.view.txtBoxes) txtbox.innerHTML = '';
       }
     } else throw new Error('[ModalHandler] >>> _initializeModal() >>> Object reference resulted in a nullptr');
@@ -177,7 +176,7 @@ class ModalViewer {
   constructor(modalBox, modalBckg = null, modalClose = null) {
     // ctor is a shorthand for constructor
     // Nullptr means null pointer; The object reference that you made was not set to an instance of an object and thus resulted in a null object
-    if (!modalBox) throw new Error('[ModalViewer] >>> ModalViewer..ctor() >>> Object reference resulted in a nullptr');
+    if (!modalBox) throw new Error('[ModalViewer] >>> ModalViewer.constructor() >>> Object reference resulted in a nullptr');
     else this.container = modalBox;
 
     if (modalBckg && modalClose) {

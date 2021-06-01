@@ -30,6 +30,7 @@
         "no-bitwise" : "off",
         "func-names" : "off",
         "vars-on-top" : "off",
-        "prefer-destructuring" : "off"
+        "prefer-destructuring" : "off",
+        "no-plusplus" : "off"
     }
 }

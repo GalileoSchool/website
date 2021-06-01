@@ -22,6 +22,7 @@ $(document).ready(() => {
     if (!isDesktop) {
         navbar.addClass('no-display');
     }
+  });
 
     // We check here whether the url contains /school/ section
     if (urlContains('/school/')) {
@@ -134,6 +135,7 @@ $(document).ready(() => {
             toggleMenuBtnImg();
         }
     }
+  }
 
     function toggleMenuBtnImg() {
         if (isSubMenuOpen || isPhoneMenuOpen) { $('#menu-img').attr('src', navBtnExitImgSrc); } else { $('#menu-img').attr('src', navBtnImgSrc); }
@@ -159,22 +161,23 @@ class Viewport {
      * @param {Number} width
      * @param {Number} height
      */
-    constructor(width, height) {
-        if (width >= 670) { this._isDesktop = true; } else { this._isDesktop = false; }
+  constructor(width, height) {
+    if (width >= 670) { this._isDesktop = true; } else { this._isDesktop = false; }
 
-        this.Width = width;
-        this.Height = height;
-    }
+    this.Width = width;
+    this.Height = height;
+  }
 
-    get isDesktop() {
-        return this._isDesktop;
-    }
+  get isDesktop() {
+    return this._isDesktop;
+  }
+  
+  get width() {
+    return this.Width;
+  }
 
-    get width() {
-        return this.Width;
-    }
-
-    get height() {
-        return this.Height;
-    }
+  get height() {
+    return this.Height;
+  }
+  
 }
