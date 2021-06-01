@@ -105,11 +105,10 @@ div.modal-text-wrapper > ol > p.warning::after {
 
 div.modal-text-wrapper > ol > li > p {
     letter-spacing: 0.5px;
-    /* font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif; */
 }
 
 div.modal-text-wrapper > ol > li > h6 {
-    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
     text-transform: uppercase;
     font-weight: 600;
     margin-top: 1.25rem;
@@ -127,12 +126,12 @@ div.modal-text-wrapper > ol > li > div > ul {
     padding-left: 0px;
     padding-bottom: 12px;
     margin-bottom: 8px;
-    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
     font-size: medium;
 }
 
 div.modal-text-wrapper * {
-    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif !important;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif !important;
 }
 
 div.modal-text-wrapper > ol > li > ol.abc {
@@ -162,14 +161,10 @@ div.modal-close.admissions img {
     overflow: hidden;
 }
 
-/* div.card-deck div.card.admiss:last-child {
-    margin-bottom: 0;
-} */
-
 div.card-deck div.card.admiss > .card-title {
     width: 100%;
     text-transform: uppercase;
-    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
     font-size: 6vw;
     margin-top: .5rem;
     margin-bottom: .5rem;

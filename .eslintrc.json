@@ -6,7 +6,8 @@
         "node": true
     },
     "extends": [
-        "airbnb-base"
+        "airbnb-base",
+        "eslint:recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -16,5 +17,20 @@
         "ecmaVersion": 2018
     },
     "rules": {
+        "eqeqeq": "off",
+        "linebreak-style": "off",
+        "no-undef": "off",
+        "camelcase" : "off",
+        "no-restricted-syntax" : "off",
+        "no-loop-func" : "off",
+        "no-underscore-dangle" : "off",
+        "no-unused-vars" : "off",
+        "prefer-arrow-callback" : "off",
+        "block-scoped-var" : "off",
+        "no-bitwise" : "off",
+        "func-names" : "off",
+        "vars-on-top" : "off",
+        "prefer-destructuring" : "off",
+        "no-plusplus" : "off"
     }
 }
