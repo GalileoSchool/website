@@ -84,11 +84,6 @@ div.nav-phone.lang>div {
     transition: 1.5s linear;
 }
 
-#search_box,
-#search_box:focus {
-    text-transform: capitalize;
-}
-
 .nav-phone .logo>img {
     width: 8vw;
     height: 8vw;
