@@ -95,7 +95,7 @@ div.nav-phone.lang>div {
     margin: auto;
     padding: 1vw;
     box-sizing: content-box;
-    transition: .4s ease;
+    transition: .25s ease;
 }
 
 .nav-phone .logo {
@@ -108,7 +108,7 @@ div.nav-phone.lang>div {
     margin-left: 0;
     font-size: 6vw;
     text-transform: uppercase;
-    transition: .4s ease;
+    transition: .25s ease;
 }
 
 .nav-phone {
@@ -343,13 +343,13 @@ div.square {
 li.nav-phone.logo.searching img {
     width: 5vw !important;
     height: 5vw !important;
-    padding: 0 !important;
-    transition: all .55s linear;
+    padding: 0;
+    transition: all .25s linear;
 }
 
 li.nav-phone.title.searching {
     font-size: 3.7vw;
-    transition: .55s linear !important;
+    transition: .25s linear !important;
 }
 
 div.sub-menu-btn.closed::after {
@@ -529,7 +529,8 @@ span.searcher-result-preview:last-child {
     }
 
     div#title {
-        font-size: clamp(2.5rem, 2rem + 1vw, 3rem);
+        font-size: clamp(2rem, 2rem + 1vw, 3rem);
+        transition: .25s linear;
     }
 
     #log-container {
@@ -551,16 +552,16 @@ span.searcher-result-preview:last-child {
     li.nav-phone.logo.searching img {
         width: 51px !important;
         height: auto !important;
-        transition: all 1s linear;
+        transition: all .25s linear;
     }
 
     /* In future when search will be available decrease the font-size of title
         in order to fit into nav bar */
 
-    /* li.nav-phone.title.searching {
-        font-size: calc(670px*0.047);
-        transition: 1s linear;
-    } */
+    li.nav-phone.title.searching div#title {
+        font-size: clamp(1rem, 100% - 10%, 2rem);
+        transition: 0.25s linear;
+    } 
 
     .search-container > input:focus {
         border: none !important;
@@ -569,11 +570,13 @@ span.searcher-result-preview:last-child {
         -moz-box-shadow: inset 0px 0px 20px -8px rgba(139, 139, 139, 0.8);
         box-shadow: inset 0px 0px 20px -8px rgba(139, 139, 139, 0.8);
     }
+
     .nav-desk {
         position: sticky;
         top: 0;
         z-index: 3;
     }
+
     #menu-overlay {
         display: block;
         position: fixed;
@@ -582,18 +585,22 @@ span.searcher-result-preview:last-child {
         height: 100%;
         width: 100%;
     }
+
     #nav-bar {
         max-height: calc(670px*0.1);
         max-width: 100vw;
     }
+
     div.right {
         height: 52px !important;
         margin-top: auto;
     }
+
     div.square {
         width: calc(520px*0.1) !important;
         height: 52px;
     }
+
     div.nav-phone.lang {
         width: calc(520px*0.1);
         height: 52px;
@@ -612,7 +619,7 @@ span.searcher-result-preview:last-child {
         padding: calc(670px*0.01);
         padding-bottom: 2px;
         padding-top: 2px;
-        transition: all 1s linear;
+        transition: all .25s linear;
     }
     .nav-phone .title {
         font-size: calc(670px*0.063);
@@ -763,8 +770,14 @@ span.searcher-result-preview:last-child {
     li.nav-phone.logo.searching img {
         width: 61px !important;
         height: auto !important;
-        transition: all 1s linear;
+        padding: 2px calc(670px*0.01);
+        transition: all .25s linear;
     }
+
+    li.nav-phone.title.searching div#title {
+        font-size: clamp(2rem, 100%, 3rem);
+        transition: 0.25s linear;
+    } 
 }
 
 
@@ -784,11 +797,6 @@ span.searcher-result-preview:last-child {
         width: 61px !important;
         height: auto !important;
         transition: all 1s linear;
-    }
-
-    li.nav-phone.title.searching {
-        font-size: calc(670px*0.063);
-        transition: 1s linear;
     }
     
     .nav-desk > ul:nth-child(2)  {
