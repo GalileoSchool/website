@@ -54,7 +54,6 @@ $(document).ready(() => {
   //   toggleSearch();
   // });
 
-
   for (const btn of dropdowns) {
     // btn is shorthand for button
     $(btn.parentElement).click((e) => {
@@ -172,4 +171,3 @@ class Viewport {
   get height() {
     return this.Height;
   }
-}
