@@ -19,7 +19,7 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
-//  
+//
 //
 //  Searcher API
 //
@@ -32,10 +32,23 @@
 //  Quick and fluent searching of the content is done by loading the content of the website, afterwards inserting the content into the sessionStorage object
 //  using the available languages as the keys in the sessionStorage object. The content is saved under the language and is an object with the following properties
 //  path, content and because the sessionStorage only allows for the storage of strings. The object is afterwards converted into JSON format and stored.
-//    
+//
+//  Author Notes:
+//  !IMPORTANT: DO NOT TOUCH, CHANGE, EDIT, REMOVE OR IN ANY KIND MODIFY THE FUNCTION CALLED 'F.getSiteGetRequestData', WITHOUT HAVING ANY KNOWLEDGE ABOUT
+//              GET REQUESTS, REGULAR EXPRESSIONS AND DEEP UNDERSTANDING OF THE SEARCHER API BACKGROUND FUNCTIONALITY. THE METHOD USED FOR READING THE GET REQUEST
+//              STRING QUERY IS SPECIFIC AND UNIQUE TO SEARCHER API.
+//
+//  How to load the website with HTTP/S protocol:
+//      1. Option is to load it while running a localhost server for example, XAMPP server will load Apache that is directly accessed using HTTP protocol in the browser
+//          using the website http:// localhost, or when you have certificate using https:// localhost
+//
+//      2. Option is to load this website using GitHub Sites (which uses the HTTPS protocol)
+//
+//      Otherwise, the searcher API will be disabled.
+//
 //
 //  Requirements:
-//  The script will only work if the url scheme used when loading the website is HTTP or HTTPS for CORS request, otherwise it will automatically be disabled.
+//  The script will only work if the url scheme used when loading the website is HTTP or HTTPS for CORS request, otherwise it will be automatically disabled.
 //
 //  Web browser (version) requirements for Session Storage object:
 //  Chrome - 4.0
@@ -51,16 +64,20 @@
 //  Samsung Internet - 4
 //
 //  Script uses the file provided in by the constant defined (is editable):
-//  
+//
 //  C.FILE_PATH
 //
 //  This file has to be created before using this script.
 //
-//  Default file is called: htmlfiles.json
+//  Default file is called: availablefiles.json
+//
 //  The structure of the file should be as follows (JSON format):
 //  [[The list of websites],[The list of languages]]
 //  [["/example/index.html","/index.html","/example2/example/index.html"],["en","sk"]]
 
+/**
+ * The current url scheme used when accessing the website. (Requires HTTP/S)
+ */
 const CURRENT_URL_SCHEME = location.protocol.split(":")[0].toUpperCase();
 
 /**
@@ -68,9 +85,21 @@ const CURRENT_URL_SCHEME = location.protocol.split(":")[0].toUpperCase();
  */
 const C = {
     /**
-     * The path to the file containing all the available html files.
+     * The path to the file containing all the available website files, including the languages available for the website.
      */
-    FILE_PATH: location.href.split("/html/")[0] + "/files/htmlfiles.json",
+    // The website files are exactly the same for all the available languages, thus every new website file added can be found in every language folder.
+    // Since this assumption is true, then only variable in finding all the files on the website is the languages available, therefore this json file contains
+    // the websites and the languages at the same time as there is no need to separate them, since the number of websites and languages available is low.
+    // Then fetching(reading) one file is less taxing and only one async function is used to load the whole script.
+    FILE_PATH: location.href.split("/html/")[0] + "/files/availablefiles.json",
+    /**
+     * The zero-based index position of the collection of `website files paths` in the `C.FILE_PATH` file, after being converted into an array using `JSON.parse()`.
+     */
+    WEBSITES_INDEX: 0,
+    /**
+     * The zero-based index position of the collection of `languages` in the `C.FILE_PATH` file, after being converted into an array using `JSON.parse()`.
+     */
+    LANGUAGES_INDEX: 1,
     /**
      * The path to the html directory containing all the html files.
      */
@@ -158,6 +187,7 @@ var F = {
      */
     includesCI: (text, needle, noTag = false) => {
         if (!noTag) return [text.toLowerCase().indexOf(needle.toLowerCase()), text];
+        // Tag removing reges (tags and html comments)
         text = text.replace(/\<!--[^]*?--\>|\<[^]*?>/gm, "").trim();
         return [text.toLowerCase().indexOf(needle.toLowerCase()), text];
     },
@@ -169,24 +199,25 @@ var F = {
      * @return {String} The content of the website.
      */
     getSiteContent: (htmlText, contentSearchQuery, noTag = false) => {
-        
-        //Create pseudo html document in memory.
+
+        // Create pseudo html document in memory.
         let doc = document.createElement("html");
-        
+
         doc.innerHTML = htmlText;
 
-        //Quick get round for image link error. Remove image src attribute.
+        // Quick get round for image link error.
+        // Remove the link for loading the image for the image elements, because it throws errors when the content is being loaded.
         let imgs = doc.getElementsByTagName("img");
         for (i in imgs) {
             let img = imgs[i];
             img.src = "";
         }
-        
-        //Select the content using the search query provided.
-        let contEl = doc.querySelector(contentSearchQuery);
-        if (!contEl) return "";
-        if (noTag) return contEl.innerText;
-        return contEl.innerHTML;
+
+        // Select the content using the search query provided.
+        let contentElement = doc.querySelector(contentSearchQuery);
+        if (!contentElement) return "";
+        if (noTag) return contentElement.innerText;
+        return contentElement.innerHTML;
     },
     /**
      * Method used for getting the string content of the provided string, based on the starting position and ending position.
@@ -203,6 +234,7 @@ var F = {
      * Method used for getting the search value from the search query in the url.
      * @param {String} stringQuery The string query flag to search for in order to get the search value.
      * @returns {String} The searched value.
+     * @description Do not touch this method, because it handles the `GET` request data in the url link, any mistake in this function can cause the code to malfunction.
      */
     getSiteGetRequestData: (stringQuery) => {
         const searchQuery = location.search;
@@ -234,27 +266,54 @@ var F = {
      */
     getPossibleSiteName: (url, rootDir) => {
         if (!rootDir.endsWith("/")) rootDir += "/";
+        // Get the extra Url string found after the root directory, can also be called the path to the website file.
         const extUrl = url.split(rootDir).pop().split(".")[0];
+        // The split Url - the extra Url split into more string using the '/' character.
         let sUrl = extUrl.split("/");
+        // If the link is located in a subfolder.
         if (sUrl.length > 1) {
+            // Get the name of the displayed website, last string from the collection of strings in the split Url variable, because the name of the website file
+            // is always at the end of the whole url string.
             let siteName = sUrl.pop();
+            // This will return the current language of the displayed website.
             const siteLang = sUrl[0];
+            // If the name of the website is index - this means that the website is the main page of the subfolder
+            // but the name of the website is not index, because it is just the abbriviation used for the browser to display the file as the main website of the subfolder,
+            // thus the real name of the website is the subfolder it represents.
             if (siteName.toLowerCase() == "index") {
+                // The parent Directory Name of the subfolder the website is representing.
                 let pDirName = sUrl.pop();
+                // The last Maximum length of the parent Directory Name - this variable is afterwards used in searcher for the most probable name of the website.
                 let lMax = pDirName.length;
+                // The searching algorithm is based on the assumption that the real name of the website must have more than 3 letters in it's name
+                // thus the searcher checks all the possible parent folders until it reaches the end and chooses the one with the highest probability of being
+                // the real name of the website. The probability is basically searching the for longest name.
                 while (sUrl.length > 0 && pDirName.length <= 3) {
+                    // This represents a temporary Directory - this is used for getting the next directory name in the collection for checking whether the name
+                    // is longer than the last directory provided.
                     const tmpDir = sUrl.pop();
+                    // If the name of the temporary Directory is longer than the last Maximum length than change the last parent Directory Name and last Maximum length
+                    // to the current temporary Directory
                     if (tmpDir.length > lMax) {
+                        // Change last Maximum to the length of the name of the temporary Directory 
                         lMax = tmpDir.length;
+                        // Change the parent Directory Name to the temporary Directory
                         pDirName = tmpDir;
                     }
                 }
+                // The the length of the parent Directory Name is less than 3 letters, that it is recorded as a label for the Homepage
+                // Example: the parent Directory Name = en; than the value returned is Homepage (en)
                 if (pDirName.length <= 3) return `Homepage (${pDirName})`;
+                // Is the parent Directory Name is longer than 3 characters then return the name and if the language of the website is exactly 2 letters long than
+                // add the language of the website. Example: ThisIsAnExample (en)
                 return F.getFormattedSiteName(pDirName) + (siteLang.length === 2 ? ` (${siteLang})` : "");
             }
+            // Get the website name based on the rules provided in the method 'getFormattedSiteName(string)'
             return F.getFormattedSiteName(siteName);
         }
+        // The file located on top of the directories in the root folder and is the index website.
         if (extUrl.toLowerCase() == "index") return "Homepage";
+        // Any other file located in the root directory, but are not the index pages.
         return F.getFormattedSiteName(extUrl);
     },
     /**
@@ -265,28 +324,50 @@ var F = {
      * @example
      * var contentText = "---Some example ---text - with an ellipse."
      * 
-     * //remove character '-' when there is 2 or more of it in a row.
+     * // remove character '-' when there is 2 or more of it in a row.
      * contentText = F.trimContent(contentText, /[\-]{2,}/gm)
      * console.log(contentText)
      * 
-     * //output: Some example text - with an ellipse.
+     * // output: Some example text - with an ellipse.
      */
     trimContent(content, regex) {
         return content.replace(regex, "");
     },
     /**
-     * Method used for separating the site names containing upper-cased letters, but are joined into one word, or are separated by a `_`.
+     * Method used for separating the site names containing `upper-cased` letters, or are separated by a `_`, one at a time.
      * @param {String} siteName The name of the site to be fixed.
      * @returns {String} Formatted site name based on the upper-cased characters preceded by a space.
+     * @example
+     * // The variables are assigned the example strings
+     * var contentText = "ThisIsAnExampleOfUpperCasedName";
+     * var contentText2 = "this_is_an_example_of_underscores_name";
+     * 
+     * // The variables are formatted using the 'getFormattedSiteName(string)' function.
+     * var formattedContentText = F.getFormattedSiteName(contentText);
+     * var formattedContentText2 = F.getFormattedSiteName(contentText2);
+     * 
+     * // Print out the differences
+     * console.log("contentText:",contentText,"| formattedContentText:", formattedContentText);
+     * console.log("contentText2:",contentText2,"| formattedContentText2:",formattedContentText2);
+     * 
+     * // Outputs:
+     * // contentText: ThisIsAnExampleOfUpperCasedName | formattedContentText: This Is An Example Of Upper Cased Name
+     * // contentText2: this_is_an_example_of_underscores_name | formattedContentText2: This Is An Example Of Underscores Name
      */
     getFormattedSiteName: (siteName) => {
+        // If siteName contains the underscore character ('_'), it will automatically get replaced with a space.
         if (siteName.includes("_")) {
             return siteName.split("_").map((str, i, args) => F.toUpperCaseInvariant(str)).join(" ");
         }
+        // Check for upper cased letters in the string.
         const reg = new RegExp(/\B[A-Z]/g);
+        // found Site Name is the collection of all the upper-cased letters in the site Name parameter.
         let fSiteName = siteName.match(reg);
+        // If found Site Name is null; meaning no match have been found return the site Name parameter but capitalized.
         if (!fSiteName) return F.toUpperCaseInvariant(siteName);
+        // Add a space before each match found by the regex expression.
         fSiteName = fSiteName.map((str, i, args) => " " + str);
+        // Return the upper-cased variant of the site name after being joined together.
         return F.toUpperCaseInvariant(siteName.split(reg).map((str, i, args) => str + (fSiteName.pop() || "")).join(""));
     },
     /**
@@ -299,16 +380,24 @@ var F = {
      * @returns The preview string of the searched string in the text provided.
      */
     getPreview: (text, index, value, maxLength = C.PREVIEW_LENGTH, highlight = false) => {
+        // The preview variable is assigned the searched value, because if the length of the value is longer than the maximum length allowed for returning
+        // then the preview returns the searched value without highlighting.
         let prev = value;
         let a = maxLength - value.length;
+        // If there is unused capacity for the preview string to be constructed then get the surrounding letters as the preview.
         if (a > 0) {
+            // Divide the left capacity from the maximum length allowed to get the amount of characters to get from before the searched value in the content.
             let div = Math.round(a / 2);
+            // Get the starting position (zero-based index) in the text provided based on the index of the searched value and the left capacity of starting letters.
             let start = index - div;
+            // If start is a negative number, then set the start = 0, thus shifting the starting position to the beginning of the text provided.
             if (start < 0) {
-                div += start;
                 start = 0;
             }
+            // Get the preview substring from the starting position to the maxLength provided, if the length is larget than the length of the text variable,
+            // then the substr is until the end of the text provided.
             prev = text.substr(start, maxLength);
+            // If the preview is supposed to be highlighted, then highlight the preview text in yellow and black colors.
             if (highlight) prev = F.highlightSearchText(prev, value, "yellow", "black");
         }
         return prev;
@@ -321,10 +410,16 @@ var F = {
      * @returns The list of zero-based indices of the occurences of the searched value in the text.
      */
     getOccurences: (text, value, countOccurrences = 1) => {
+        // The return variable
         var r = [];
+        // The last index of the searched value in the text provided.
         var curIndex = text.indexOf(value);
+        // Until the length of r is less than the allowed number of occurrences to be found and the last index is larger or equal to zero
+        // append the last index into the r variable to be returned.
         while (r.length < countOccurrences && curIndex >= 0) {
+            // Append the last index into the r list.
             r.push(curIndex);
+            // Change the last index to the next index of the searched value.
             curIndex = text.indexOf(value, curIndex + value.length);
         }
         return r;
@@ -334,15 +429,15 @@ var F = {
      * @param {String} value The data to be formatted.
      * @param {Boolean} trimSpaces Remove unnecessary whitespaces. 
      * @example
-     * //For example `Example is bad.` (Remove the 3 space between `is` and `bad` and replace with a single `space`)
+     * // For example `Example is bad.` (Remove the 3 space between `is` and `bad` and replace with a single `space`)
      * let exampleStr = "Example is   bad."
      * let noTrim = getRequestDataFormatter(exampleStr, false)
      * let trim = getRequestDataFormatter(exampleStr)
      * 
      * console.log("noTrim:",noTrim,"| Trim:",trim)
      * 
-     * //':;:' - is the substitute for the 'space' character.
-     * //output: noTrim: Example:;:is:;::;::;:bad. | Trim: Example:;:is:;:bad.
+     * // ':;:' - is the substitute for the 'space' character.
+     * // output: noTrim: Example:;:is:;::;::;:bad. | Trim: Example:;:is:;:bad.
      * @returns {String} Formatted `GET` request data string.
      */
     getRequestDataFormatter: (value, trimSpaces = true) => {
@@ -360,9 +455,9 @@ var F = {
         let r = data.replace(regExp, " ");
         regExp = new RegExp(/\B(\%27)/gm);
         r = r.replace(regExp, "'");
-        
-        //Add more character replacements here if needed.
-        
+
+        // Add more character replacements here if needed.
+
         return r;
     },
     /**
@@ -427,7 +522,7 @@ var F = {
     /**
      * Alias function for the method `console.log(message, ...optionalParams)`.
      * @param {*} message The message to display.
-     * @param  {...any} args Optional arguments to be displayed with the message.
+     * @param {...any} args Optional arguments to be displayed with the message.
      */
     print: (message, ...args) => args.length > 0 ? console.log(message, args) : console.log(message),
     /**
@@ -443,13 +538,18 @@ var F = {
         let newText = "";
         for (let i = 0; i < text.length - search.length; i++) {
             if (text[i] === "<") {
-                const fCB = text.indexOf(">", i);
-                newText += text.substr(i, fCB - i);
-                i = fCB;
+                // Get the first Closing Bracket after the opening bracket.
+                const firstClosingBracket = text.indexOf(">", i);
+                newText += text.substr(i, firstClosingBracket - i);
+                i = firstClosingBracket;
             }
-            let sTxt = text.substr(i, search.length);
-            if (sTxt.toLowerCase() === search.toLowerCase()) {
-                newText += ` <span style="background-color:${backgroundcolor};color:${color}" search-highlight>${sTxt}</span>`;
+            // sub Text - the temporary text constructed from the substring of the original text starting on the position 'i' and ending at the length of
+            // the searched text 'search'. This will select exactly the same number of characters from the 'i' position in the 'text' string and creates a temporary
+            // string that is compared to the searched 'search' text.
+            let subTxt = text.substr(i, search.length);
+            // if the sub Text is the searched text then highlight it, otherwise, append the character to the end of the newText string.
+            if (subTxt.toLowerCase() === search.toLowerCase()) {
+                newText += ` <span style="background-color:${backgroundcolor};color:${color}" search-highlight>${subTxt}</span>`;
                 i += search.length - 1;
             } else {
                 newText += text[i];
@@ -459,7 +559,7 @@ var F = {
     }
 }
 
-//Initial check whether the url scheme is correct; writes an error message into the browser console if error occures.
+// Initial check whether the url scheme is correct; writes an error message into the browser console if error occures.
 F.urlSchemeCheck(true);
 
 /**
@@ -472,11 +572,11 @@ var WEBSITE_PATHS = null;
  */
 var WEBSITE_LANGUAGES = null;
 
-//Private variables
-//Used for controling whether to display the highlighted version of the current website or the original.
+// Private variables
+// Used for controling whether to display the highlighted version of the current website or the original.
 var currentWebsiteChanged = false;
-//Used to retain the original content of the website; non-highlighted version
-//only used when the variable currentWebsiteChanged is TRUE 
+// Used to retain the original content of the website; non-highlighted version
+// only used when the variable currentWebsiteChanged is TRUE 
 var currentWebsiteOriginalContent = "";
 
 /**
@@ -484,6 +584,7 @@ var currentWebsiteOriginalContent = "";
  */
 var __initDone = null;
 
+// If the current url scheme is correct (HTTP/S) then initialize the searcher API.
 if (C.CURRENT_URL_SCHEME_CORRECT) {
     __initDone = __initSearcher();
 }
@@ -499,15 +600,15 @@ if (C.CURRENT_URL_SCHEME_CORRECT) {
  * @param {Number} previewCount The maximum number of previews displayed. (C.PREVIEW_COUNT)
  * @returns The list of file paths containing the value searched; preview text - if previewing is enabled.
  * @example
- * //When searching in the current website.
- * //Call the next function on input for example:
+ * // When searching in the current website.
+ * // Call the next function on input for example:
  * 
  * <input type="text" onkeyup="searchSites(this.value, true)" />
- * //This will allow for the highlighting of the current website when the this.value exceeds the length of C.MIN_SEARCH_LENGTH
+ * // This will allow for the highlighting of the current website when the this.value exceeds the length of C.MIN_SEARCH_LENGTH
  * 
  * 
- * //When searching all the available sites.
- * //This function can be called in another function that will organize the data returned into a list and display it on site.
+ * // When searching all the available sites.
+ * // This function can be called in another function that will organize the data returned into a list and display it on site.
  * let results: Promise<[[string, [string]]] | null> = searchSites("example", false, false, true, false, 50, 3)
  * if(!results) console.log("No results found.")
  * else{
@@ -529,61 +630,76 @@ async function searchSites(value, onlySearchCurrentSite = false, onlySearchCurre
 
     if (F.isEmpty(value) || value.length < C.MIN_SEARCH_LENGTH) {
 
-        //Check if only the search is for the current opened website
-        //Replace with original text when the length of the value is less than C.MIN_SEARCH_LENGTH or null.
+        // Check if only the search is for the current opened website
+        // Replace with original text when the length of the value is less than C.MIN_SEARCH_LENGTH or null.
         if (onlySearchCurrentSite && currentWebsiteChanged) {
-            let contentElm = document.querySelectorAll(C.WEBSITE_CONTENT_ELEMENT_QUERY)[0];
-            contentElm.innerHTML = currentWebsiteOriginalContent;
+            // The content Element from the HTML document.
+            let contentElement = document.querySelectorAll(C.WEBSITE_CONTENT_ELEMENT_QUERY)[0];
+            contentElement.innerHTML = currentWebsiteOriginalContent;
+            // Displaying the original content of the website.
             currentWebsiteChanged = false;
         }
+        // None found
         return null;
     }
 
-    //If the searcher and highlighter is used on the current website only
+    // If the searcher and highlighter is used on the current website only
     if (onlySearchCurrentSite) {
-        let contentElm = document.querySelectorAll(C.WEBSITE_CONTENT_ELEMENT_QUERY)[0];
-        //Store the original innerHTML of the div.content element.
+        let contentElement = document.querySelectorAll(C.WEBSITE_CONTENT_ELEMENT_QUERY)[0];
+        // Store the original innerHTML of the div.content element.
         if (!currentWebsiteChanged) {
-            currentWebsiteOriginalContent = contentElm.innerHTML;
+            currentWebsiteOriginalContent = contentElement.innerHTML;
+            // Displaying the highlighted content of the website.
             currentWebsiteChanged = true;
         }
         if (F.containsCI(currentWebsiteOriginalContent, value)) {
-            //Replace the current innerHTML of the div.content element with the temp highlighted content.
-            contentElm.innerHTML = F.highlightSearchText(currentWebsiteOriginalContent, value);
+            // Replace the current innerHTML of the div.content element with the temp highlighted content.
+            contentElement.innerHTML = F.highlightSearchText(currentWebsiteOriginalContent, value);
         } else {
-            contentElm.innerHTML = currentWebsiteOriginalContent;
+            contentElement.innerHTML = currentWebsiteOriginalContent;
         }
         return;
     }
 
-    //Create the collection of the languages based on this methods language parameter.
+    // Create the collection of the languages based on this methods language parameter.
     let langs = onlySearchCurrentLang ? [C.CURRENT_LANG] : WEBSITE_LANGUAGES;
 
-    //The empty array that will be returned as the search result of the searched value.
+    // The empty array that will be returned as the search result of the searched value.
     let sites = [];
 
     for (let j = 0; j < langs.length; j++) {
+        // Getting the content from the sessionStorage under the key = langs[j] and parsing it into an array of the custom object {path, content}
         const sitesArr = JSON.parse(sessionStorage.getItem(langs[j]) || null);
 
-        //In null skip this language.
+        // In null skip this language.
         if (!sitesArr) continue;
 
         for (let i = 0; i < sitesArr.length; i++) {
 
-            const siteObj = sitesArr[i]; //properties: path, content
+            // properties: path, content
+            const siteObj = sitesArr[i];
+            // the path to the website files
             const siteUrl = siteObj.path;
+            // the content of the website
             var txt = siteObj.content;
-            const d = `${C.HTML_FILE_PATH}/${langs[j]}${siteUrl}`;
 
+            // The direct path to the website file from the root directory.
+            const directPath = `${C.HTML_FILE_PATH}/${langs[j]}${siteUrl}`;
+
+            // Returns the list of all the zero-based indices of the searched value in the txt variable.
             let data = F.getOccurences(txt, value, previewCount);
             if (data && data.length > 0) {
+                // The preview array
                 let prev = [];
                 for (let di = 0; di < data.length; di++) {
+                    // If the search is supposed to show the preview in the website.
                     if (showPreview) {
+                        // The preview/s of the searched value in the txt provided.
                         prev.push(F.getPreview(txt, data[di], value, previewLength, highlighedPreview))
                     }
                 }
-                sites.push([d, prev]);
+                // Append the current directPath and preview array into the sites to be returned array.
+                sites.push([directPath, prev]);
             }
         }
     }
@@ -604,16 +720,30 @@ function searchSitesWithResult(value, resultBoxId, onlyCurrentLanguage = false, 
         return;
     }
 
+    // Get the results of the searched value in the websites.
     const results = searchSites(value, false, onlyCurrentLanguage, showPreviews, true, C.PREVIEW_LENGTH, 1);
+
+    // If there are results handle the results data. Otherwise, display 'No results.' (alternative when the element doesn't hide) and hide the 
+    // element showing the results.
     if (results) {
 
+        // Handling the Promise<any> object returned by the searchSites() function. This is an asynchronous object returned, thus it has to be awaited or
+        // the function 'then(...args)' allows the website to run without freezing while awaiting the results, but the results will be displayed only after
+        // they are ready to be displayed. This means that they will not show up immediately as in normal programming (synchronous), but once the object
+        // is ready to be displayed, thus the programmer, nor user have any control over the time the results will be displayed.
+        // The time it usually takes when searching for the value after the data is loaded in the sessionStorage object is in microseconds, but the displaying
+        // part takes around 0.075s - 0.15s (quite slow, when compared to the results being found in the content, but for usual user it is imperceptible).
         results.then((objs) => {
+            // If no results display 'No results' and hide the element.
             if (!objs || objs.length <= 0) {
                 resultBox.innerHTML = "No results.";
                 resultBox.style.display = "none";
                 return;
             }
+            // Show the element that will display the results.
             resultBox.style.display = "block";
+            // The result List string that is constructed in the function F.buildResultListFull(results)
+            // Constructs an unordered list with list items (results).
             let rList = F.buildResultListFull(objs);
             resultBox.innerHTML = rList;
         });
@@ -704,14 +834,14 @@ async function readFileText(path) {
 async function __initSearcher() {
     return loadWebsitePaths().then((val) => {
         if (!val || val instanceof String || val instanceof Boolean) {
-            //Error occured while fetching the json file containing the websites and languages available.
+            // Error occured while fetching the json file containing the websites and languages available.
             console.error("Searcher API cannot be loaded as an unexpected error occured while initializing.")
             return false;
         } else {
 
-            //Assign the available WEBSITES and LANGUAGES of the website.
-            WEBSITE_PATHS = val[0];
-            WEBSITE_LANGUAGES = val[1];
+            // Assign the available WEBSITES and LANGUAGES of the website.
+            WEBSITE_PATHS = val[C.WEBSITES_INDEX];
+            WEBSITE_LANGUAGES = val[C.LANGUAGES_INDEX];
 
             /**
              * Method used for checking if the key can be found in the sessionStorage object.
@@ -729,37 +859,64 @@ async function __initSearcher() {
                 return temp.filter((lang, i, args) => !testSessionStorageForKey(lang));
             };
 
+            /**
+             * Method used for loading the content of the websites provided into the `sessionStorage` object.
+             * @param {[string]} langs The languages available on the website.
+             * @param {[string]} paths The paths to the included files of the website.
+             */
             var loadDataToSessionStorage = async(langs, paths) => {
+                // Loop through all the available languages for the website.
                 for (let j = 0; j < langs.length; j++) {
+                    // Assign the key used in the sessionStorage - in this case the language of the website is the key.
                     const key = langs[j];
+                    // If the sessionStorage already contains the key, then skip this language.
                     if (sessionStorage.getItem(key)) continue;
+                    // The array into which the object {path, content} will be stored for the websites and afterwards this array will be stored as
+                    // a stringified JSON into the sessionStorage object under the current key.
                     var data = [];
-                    var arrSearchIndex = 0;
                     for (let i = 0; i < paths.length; i++) {
+                        // The path to the website that will be loaded. Path cannot be changed, thus constant.
                         const path = paths[i];
-                        if (C.EXCLUDED_SITES_FROM_SEARCH.includes(path.substr(1), arrSearchIndex)) {
-                            arrSearchIndex += 1;
+                        // Check if the website is excluded from being searched by the search API in the C.EXCLUDED_SITES_FROM_SEARCH constant. If true skip.
+                        if (C.EXCLUDED_SITES_FROM_SEARCH.includes(path.substr(1))) {
                             continue;
                         }
-                        const d = `${C.HTML_FILE_PATH}/${langs[j]}${path}`;
 
-                        await readFileText(d).then((text) => {
+                        // The direct path to the website file. Cannot be changed otherwise an error occures, thus constant.
+                        const directPath = `${C.HTML_FILE_PATH}/${langs[j]}${path}`;
+
+                        // Fetch the file a handle the content search.
+                        await readFileText(directPath).then((text) => {
+                            // If the provided 'text' parameter is null/false, than return, because an error occured or there is no content.
                             if (!text) {
                                 return;
                             }
+                            // The text got from the website from the element provided by this constant 'C.WEBSITE_CONTENT_ELEMENT_QUERY'
+                            // /^\s*/gmu - is the regex expression for removing all the empty lines and spaces before the text. The flags 'gmu'
+                            // mean: g - global (throughout the text), m - multiline (search on all lines), u - unicode (match full unicode)
                             const txt = F.trimContent(F.getSiteContent(text, C.WEBSITE_CONTENT_ELEMENT_QUERY, true), /^\s*/gmu);
+                            // create the object to be stored in the data array.
                             const value = { path: paths[i], content: txt };
+                            // append the content into the data array - the data array is always new for each language.
                             data.push(value);
 
-                        }, (reason) => console.error(reason));
+                        }, (reason) => {
+                            // Report error when fetching the file.
+                            console.error(reason);
+                        });
 
                     }
+                    // Add the current data array into the sessionStorage object under the language key.
+                    // To get the data from sessionStorage object use the language key as follows: sessionStorage.get("yourkey") -> returns all the data
+                    // under the key "yourkey". This data has to be parsed by JSON.parse(returnedData), in order to work with the data.
                     sessionStorage.setItem(key, JSON.stringify(data));
                 }
             }
 
+            // Get all the missing keys in the sessionStorage (all the missing languages)
             let missingKeys = getMissedKeys();
 
+            // If there are found to be missing keys then load the content from the missing keys.
             if (missingKeys && missingKeys.length > 0) {
 
                 loadDataToSessionStorage(missingKeys, WEBSITE_PATHS);

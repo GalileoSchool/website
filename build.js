@@ -477,24 +477,29 @@ console.log('Composed all CSS files into style.css')
 let sourceFiles = glob.sync(getDirname() + '/source/**/*', { nodir: true })
 
 
-//#region searcher.js data collector
-//Get the available languages for the website, through the components dir.
-let langComponents = glob.sync(getDirname() + '/components/*').filter((p, i, args) => fs.lstatSync(p).isDirectory()).map((p, i, args) => p.split('/').pop())
+// Get the available languages for the website, through the components dir.
+let langComponents = glob.sync(getDirname() + '/components/*').filter((path, index, args) => fs.lstatSync(path).isDirectory()).map((path, index, args) => path.split('/').pop())
 
-//Get the list of all the html files and create a json file containing all the available html files for the searcher to work with.
-//List of all the (to be built) html files.
+// Get the list of all the html files and create a json file containing all the available html files for the searcher to work with.
+// List of all the (to be built) html files.
 let htmlFiles = sourceFiles.filter((path, index, args) => path.includes('/html/') && isHtmlFile(path)).map((filePath, index, args) => filePath.split('/source/html')[1])
 
-//The final array to be written inside of the json file.
-//0 - html paths, 1 - languages
-let fArray = [htmlFiles, langComponents]
+// The array containing the html files and languages, to be written inside of the json file.
+// IMPORTANT!
+// If the order of the objects inside of the array is changed, change the indices defined in the searcher.js under the variables:
+// C.WEBSITES_INDEX, C.LANGUAGES_INDEX
+//
+// Default: htmlFiles, langComponents
+// Searcher Default: C.WEBSITES_INDEX = 0, C.LANGUAGES_INDEX = 1
+let htmlLangUnionArray = [htmlFiles, langComponents]
 
-//Convert the html files path array into a stringified json array
-let jsonstring = JSON.stringify(fArray)
+// Convert the html files path array into a stringified json array
+let jsonString = JSON.stringify(htmlLangUnionArray)
 
-//Write all the available html files into htmlfiles.json file used by the searcher.js
-fs.writeFile(getDirname() + '/build/files/htmlfiles.json', jsonstring, (err) => err ? console.log(err.message) : 'Successfully created the htmlfiles.json collection.')
-//#endregion
+// Write all the available html files into availablefiles.json file used by the searcher.js
+fs.writeFile(getDirname() + '/build/files/availablefiles.json', jsonString, (err) => {
+	if(err) throw new Error(err.message)
+})
 
 
 for (const sourceFile of sourceFiles) {
