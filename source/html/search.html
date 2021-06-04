@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!-- This indention is totally legal and we are 100% certain about this -->
+<html lang="en">
+
+<head>
+    {{head}}
+</head>
+
+<body>
+    {{navigation}}
+    <div class="content">
+        <div id="menu-overlay" class="transparent overlay no-display"></div>
+        {{carousel}}
+        <div id="search_results_full" class="search-result-fullview"></div>
+        <script type="text/javascript">
+            getRequestSearch("search_results_full", false, true, 100, 3);
+        </script>
+    </div>
+
+    <!-- Scripts at the end to make sure everything else is already loaded. -->
+    <script src="{fill_parents}js/carousel.js"></script>
+</body>
+
+</html>

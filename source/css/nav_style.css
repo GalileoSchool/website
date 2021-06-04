@@ -1,4 +1,6 @@
 /* In general, we are using vw (view-width) units = browser's content window width */
+
+
 /* vw units will scale with the content window -> responsive website */
 
 html {
@@ -12,14 +14,17 @@ body {
     overflow-x: hidden;
 }
 
+
 /* Prevent user selecting / highlighting on navbar  */
+
 nav {
     user-select: none;
 }
 
+
 /* Mobile viewport first, serves as a foundation that can be expanded using queries */
 
-.phone-menu > ul {
+.phone-menu>ul {
     display: none;
     margin: auto;
     width: 100vw;
@@ -50,7 +55,7 @@ nav {
 }
 
 .phone-menu li:not(.dropdown):hover,
-ul.sub-menu > li:hover,
+ul.sub-menu>li:hover,
 .phone-menu li div.closed:active,
 .phone-menu li div.opened {
     background-color: #c40000;
@@ -58,12 +63,14 @@ ul.sub-menu > li:hover,
     cursor: pointer;
 }
 
+
 /* Nav-Phone */
+
 div.nav-phone.lang {
     width: 10vw;
 }
 
-div.nav-phone.lang > div {
+div.nav-phone.lang>div {
     margin: auto;
 }
 
@@ -77,17 +84,13 @@ div.nav-phone.lang > div {
     transition: 1.5s linear;
 }
 
-#search_box, #search_box:focus {
-    text-transform: capitalize;
-}
-
-.nav-phone .logo > img {
+.nav-phone .logo>img {
     width: 8vw;
     height: 8vw;
     margin: auto;
     padding: 1vw;
     box-sizing: content-box;
-    transition: .4s ease;
+    transition: .25s ease;
 }
 
 .nav-phone .logo {
@@ -100,7 +103,7 @@ div.nav-phone.lang > div {
     margin-left: 0;
     font-size: 6vw;
     text-transform: uppercase;
-    transition: .4s ease;
+    transition: .25s ease;
 }
 
 .nav-phone {
@@ -109,7 +112,7 @@ div.nav-phone.lang > div {
     justify-content: space-between;
 }
 
-.nav-phone > .left {
+.nav-phone>.left {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -120,7 +123,7 @@ div.nav-phone.lang > div {
     width: 100%;
 }
 
-.nav-phone > .right {
+.nav-phone>.right {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -131,7 +134,7 @@ div.nav-phone.lang > div {
     list-style-type: none;
 }
 
-.nav-phone > .left > div.nav-container-desktop {
+.nav-phone>.left>div.nav-container-desktop {
     display: none;
     font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
     max-height: 52px;
@@ -142,7 +145,7 @@ div.nav-phone.lang > div {
     align-items: center;
 }
 
-.nav-phone > .left > div.nav-container-desktop > a {
+.nav-phone>.left>div.nav-container-desktop>a {
     margin: auto;
     text-transform: uppercase;
     font-weight: 600;
@@ -150,8 +153,8 @@ div.nav-phone.lang > div {
     color: darkslategray;
 }
 
-.nav-phone > .left > div.nav-container-desktop > a:hover,
-.nav-phone > .left > div.nav-container-desktop > a:active {
+.nav-phone>.left>div.nav-container-desktop>a:hover,
+.nav-phone>.left>div.nav-container-desktop>a:active {
     text-decoration: none;
     color: #aaaaaa;
 }
@@ -175,7 +178,7 @@ div.nav-phone.lang > div {
     height: 10vw;
 }
 
-.nav-phone .language-dropdown-content > li {
+.nav-phone .language-dropdown-content>li {
     background-color: unset;
 }
 
@@ -183,11 +186,13 @@ div.nav-phone.lang > div {
     height: 100%;
 }
 
-.nav-phone > img {
+.nav-phone>img {
     height: 100%;
 }
 
+
 /* Pre-made styling classes */
+
 .light-gray {
     background-color: #e4e4e4;
 }
@@ -224,7 +229,9 @@ div.square {
     transition: ease 1s;
 }
 
+
 /* Styling elements using ID */
+
 #logo-container {
     width: auto;
     margin: auto;
@@ -261,13 +268,16 @@ div.square {
     width: 100%;
 }
 
-#menu-img, #search-img {
+#menu-img,
+#search-img {
     height: 5.5vw;
     width: auto;
     margin: auto;
 }
 
+
 /* Logo + title CSS */
+
 .logo-open-nav {
     margin-left: 3vw;
 }
@@ -281,7 +291,9 @@ div.square {
     color: ghostwhite !important;
 }
 
+
 /* The rest */
+
 .content {
     z-index: 0;
     text-align: center;
@@ -297,7 +309,7 @@ div.square {
     cursor: default;
 }
 
-.nav-elem > div {
+.nav-elem>div {
     margin: auto;
     text-transform: uppercase;
 }
@@ -311,10 +323,10 @@ div.square {
     max-height: 100%;
     height: 100%;
     width: 30vw;
-    transition: 1.5s linear;
+    transition: 250ms linear;
 }
 
-.search-container > input {
+.search-container>input {
     max-height: 100%;
     height: 100%;
     border: none;
@@ -327,13 +339,13 @@ div.square {
 li.nav-phone.logo.searching img {
     width: 5vw !important;
     height: 5vw !important;
-    padding: 0 !important;
-    transition: all .55s linear;
+    padding: 0;
+    transition: all .25s linear;
 }
 
 li.nav-phone.title.searching {
     font-size: 3.7vw;
-    transition: .55s linear !important;
+    transition: .25s linear !important;
 }
 
 div.sub-menu-btn.closed::after {
@@ -384,31 +396,121 @@ ul.sub-menu.list {
     padding: 0;
 }
 
+
+/* Searcher styles */
+
+div.search-result {
+    outline: none;
+    border: none;
+    display: none;
+    position: absolute;
+    margin: 0;
+    max-height: 500px;
+    max-width: 300px;
+    overflow-y: auto;
+    background-color: #fcfcfc;
+    box-shadow: 0px 0px 5px 0px #050505;
+    transition: 350ms;
+    top: 70px;
+    left: 0px;
+    z-index: 4;
+}
+
+
+/* Search result box on the search website */
+
+div.search-result-fullview {
+    outline: none;
+    border: none;
+    margin: 0;
+    background-color: #fcfcfc;
+    box-shadow: 0px 0px 5px 0px #050505;
+    transition: 350ms;
+}
+
+ul.searcher-result-list,
+ol.searcher-result-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+li.searcher-result-item {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-width: 200px;
+}
+
+a.searcher-result-link {
+    border-left: 7px solid grey;
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    color: #255255;
+    transition: 150ms;
+}
+
+a.searcher-result-link:hover {
+    background-color: #e0e0e0;
+    color: #010101;
+    border-left-color: #a60000;
+}
+
+a.searcher-result-link:visited {
+    text-decoration: unset;
+    color: unset;
+}
+
+span.searcher-result-preview {
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+    color: #696969;
+    font-size: small;
+    background-color: #f5f5f5f8;
+    padding: 3px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    margin-bottom: 3px;
+}
+
+span.searcher-result-preview:last-child {
+    margin-bottom: 0px;
+}
+
+
+/* End of Searcher styles */
+
+
 /* Styles management based on screen width */
 
+
 /* Tablet style */
+
+
 /* Why 670? Trial and error - testing values from 540 to 800 (Common phone and tablet widths) */
+
+
 /* Warning: Any changes made to this "conditional" such as changing the min-width will have to be repeated in nav_jquery.js file in the function check_resize() */
-@media screen and (min-width: 653px) {
 
-    div.language-select-btn:hover, div.nav-phone.light-gray.lang.lang-text {
+@media screen and (min-width: 670px) {
+    div.language-select-btn:hover,
+    div.nav-phone.light-gray.lang.lang-text {
         cursor: pointer;
     }
-
-    div.language-select-btn:hover, div.nav-phone.light-gray.lang.lang-text {
+    div.language-select-btn:hover,
+    div.nav-phone.light-gray.lang.lang-text {
         cursor: pointer;
     }
-    #langBtn:hover, .lang-text:hover {
+    #langBtn:hover,
+    .lang-text:hover {
         cursor: pointer;
         background-color: #eeeeee;
         transition: .1s linear;
     }
-
-    #langBtn:active, .lang-text:active {
+    #langBtn:active,
+    .lang-text:active {
         background-color: #bbbbbb;
         transition: .1s linear;
     }
-
     #search {
         width: calc(520px*0.1);
         min-width: calc(520px*0.1);
@@ -418,62 +520,51 @@ ul.sub-menu.list {
         margin-left: 0;
         margin-right: 0;
     }
-
-    .nav-phone > .left > div.nav-container-desktop {
+    .nav-phone>.left>div.nav-container-desktop {
         display: flex;
     }
-
     div#title {
-        font-size: clamp(2.5rem, 2rem + 1vw, 3rem);
+        font-size: clamp(2rem, 2rem + 1vw, 3rem);
+        transition: .25s linear;
     }
-
     #log-container {
         height: 100%;
     }
-
     .search-container {
         max-height: 52px;
         margin-top: auto;
         max-width: 180px;
         width: 180px;
-        transition: 1.5s linear;
     }
-
-    .search-container > input {
+    .search-container>input {
         max-height: 52px;
         height: 52px;
         width: 100%;
         font-size: 20px;
     }
-
     li.nav-phone.logo.searching img {
         width: 51px !important;
         height: auto !important;
-        transition: all 1s linear;
+        transition: all .25s linear;
     }
-
     /* In future when search will be available decrease the font-size of title
         in order to fit into nav bar */
-        
-    /* li.nav-phone.title.searching {
-        font-size: calc(670px*0.047);
-        transition: 1s linear;
-    } */
-
-    .search-container > input:focus {
+    li.nav-phone.title.searching div#title {
+        font-size: clamp(1rem, 100% - 10%, 2rem);
+        transition: 0.25s linear;
+    }
+    .search-container>input:focus {
         border: none !important;
         outline: none !important;
         -webkit-box-shadow: inset 0px 0px 20px -8px rgba(139, 139, 139, 0.8);
         -moz-box-shadow: inset 0px 0px 20px -8px rgba(139, 139, 139, 0.8);
         box-shadow: inset 0px 0px 20px -8px rgba(139, 139, 139, 0.8);
     }
-
     .nav-desk {
         position: sticky;
         top: 0;
         z-index: 3;
     }
-
     #menu-overlay {
         display: block;
         position: fixed;
@@ -482,86 +573,72 @@ ul.sub-menu.list {
         height: 100%;
         width: 100%;
     }
-
-    #nav-bar{
+    #nav-bar {
         max-height: calc(670px*0.1);
         max-width: 100vw;
     }
-
-    div.right{
+    div.right {
         height: 52px !important;
         margin-top: auto;
     }
-
     div.square {
         width: calc(520px*0.1) !important;
         height: 52px;
     }
-
-    div.nav-phone.lang{
+    div.nav-phone.lang {
         width: calc(520px*0.1);
         height: 52px;
     }
-
-    .lang-text{
+    .lang-text {
         font-size: calc(520px*0.056);
     }
-
-    #menu-img, #search-img{
+    #menu-img,
+    #search-img {
         height: calc(520px*0.055);
         width: auto;
     }
-
-    .nav-phone .logo > img {
+    .nav-phone .logo>img {
         height: 61px;
         width: auto;
         padding: calc(670px*0.01);
         padding-bottom: 2px;
         padding-top: 2px;
-        transition: all 1s linear;
+        transition: all .25s linear;
     }
-
-    .nav-phone .title{
+    .nav-phone .title {
         font-size: calc(670px*0.063);
         margin-left: 0;
         transition: 1s linear;
     }
-
-    .nav-phone .language-dropdown-content{
+    .nav-phone .language-dropdown-content {
         top: calc(520px*0.1);
         height: calc(520px*0.1);
     }
-
-    .nav-phone .search-input{
+    .nav-phone .search-input {
         height: calc(520px*0.0755);
         font-size: calc(520px*0.035);
         padding: calc(520px*0.01);
         padding-top: 0;
-        padding-bottom: 0; 
+        padding-bottom: 0;
         border: 0.5px solid #dddddd;
         height: 52px;
     }
-
-    input.search-input{
+    input.search-input {
         width: calc(520px*0.4);
         max-height: calc(520px*0.1);
     }
-
-    .nav-phone .logo{
+    .nav-phone .logo {
         margin: auto;
         margin-right: 0;
     }
-
-    .nav-desk li{
+    .nav-desk li {
         padding: calc(520px*0.018);
         font-size: calc(420px*0.045);
     }
-
     #language:hover {
         background-color: #e7e7e7;
         cursor: pointer;
     }
-
     #main-nav {
         display: flex;
         display: -ms-flexbox;
@@ -583,26 +660,24 @@ ul.sub-menu.list {
         color: #ffffff;
         font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
     }
-
-    #main-nav > li {
+    #main-nav>li {
         padding-right: calc(520px*0.025);
         padding-left: calc(520px*0.025);
         height: 52px;
     }
-
-    #main-nav > li:hover,  #sub-nav > li:hover {
+    #main-nav>li:hover,
+    #sub-nav>li:hover {
         cursor: pointer;
     }
-
-    #main-nav, #sub-nav {
+    #main-nav,
+    #sub-nav {
         user-select: none;
     }
-
-    .nav-desk > ul:nth-child(2) {
+    .nav-desk>ul:nth-child(2) {
         display: none;
         position: absolute;
         right: 0;
-        width:  250px;
+        width: 250px;
         height: auto;
         margin: auto;
         padding: 30px 0;
@@ -613,7 +688,6 @@ ul.sub-menu.list {
         background-color: #a60000;
         color: #ffffff;
     }
-
     .nav-desk li:hover,
     .nav-desk li.nav-elem.dropdown div.sub-menu ul li.active,
     .nav-desk li.nav-elem.dropdown.opened {
@@ -621,11 +695,9 @@ ul.sub-menu.list {
         background-color: #c60000;
         transition: linear 0.2s;
     }
-
     .nav-desk li:not(.dropdown):hover {
         transform: scale(1.05);
     }
-
     .nav-desk li.nav-elem.dropdown div.sub-menu {
         position: absolute;
         top: 52px;
@@ -633,7 +705,6 @@ ul.sub-menu.list {
         width: auto;
         padding: 16px 0px;
     }
-
     .nav-desk li.nav-elem.dropdown div.sub-menu ul,
     .nav-desk li.nav-elem.dropdown div.sub-menu ul li {
         position: relative;
@@ -641,30 +712,24 @@ ul.sub-menu.list {
         overflow-wrap: unset;
         text-align: center;
     }
-
     .nav-desk li.nav-elem.dropdown div.sub-menu ul {
         width: max-content;
     }
-
     .nav-desk li.nav-elem.dropdown div.sub-menu ul li {
         padding: 0.75rem 1.5em;
     }
-
     .nav-elem {
         display: flex;
         justify-content: center;
     }
-    
     li:last-child {
         border-right: none;
     }
-
-    #nav-btn:hover{
+    #nav-btn:hover {
         cursor: pointer;
         background-color: #c40000;
         transition: ease 0.7s;
     }
-
     #search:hover {
         background-color: #e9e9e9;
         cursor: pointer;
@@ -679,37 +744,35 @@ ul.sub-menu.list {
 }
 
 @media only screen and (min-width: 780px) {
-
     li.nav-phone.logo.searching img {
         width: 61px !important;
         height: auto !important;
-        transition: all 1s linear;
+        padding: 2px calc(670px*0.01);
+        transition: all .25s linear;
+    }
+    li.nav-phone.title.searching div#title {
+        font-size: clamp(2rem, 100%, 3rem);
+        transition: 0.25s linear;
     }
 }
 
+
 /* Bigger screens */
+
 @media only screen and (min-width: 1100px) {
-    #main-nav > li {
+    #main-nav>li {
         padding-right: calc(520px*0.05);
         padding-left: calc(520px*0.05);
     }
-
     #title {
         letter-spacing: -0.15vw;
     }
-
     li.nav-phone.logo.searching img {
         width: 61px !important;
         height: auto !important;
         transition: all 1s linear;
     }
-
-    li.nav-phone.title.searching {
-        font-size: calc(670px*0.063);
-        transition: 1s linear;
-    }
-    
-    .nav-desk > ul:nth-child(2)  {
+    .nav-desk>ul:nth-child(2) {
         width: 300px;
     }
 }

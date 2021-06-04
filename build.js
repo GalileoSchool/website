@@ -22,60 +22,60 @@
  */
 class InterviewCard {
 
-	constructor(image, title, quickinfo, longdesc, pathToPhotosFolderFromWebRoot, student) {
-		this.image = image;
-		this.title = title;
-		this.student = student;
-		this.quickinfo = quickinfo;
-		this.longdesc = longdesc;
-		this.path = pathToPhotosFolderFromWebRoot;
-		this.photos = [];
-		this.hasPhotos = false;
-		
-		if (this.path == null)
-			return;
-		var succ = this._getPhotos();
-		this.hasPhotos = succ;
-		if(!succ)
-			console.error("Missing photos for " + this.student + " interview card");
-	}
+    constructor(image, title, quickinfo, longdesc, pathToPhotosFolderFromWebRoot, student) {
+        this.image = image;
+        this.title = title;
+        this.student = student;
+        this.quickinfo = quickinfo;
+        this.longdesc = longdesc;
+        this.path = pathToPhotosFolderFromWebRoot;
+        this.photos = [];
+        this.hasPhotos = false;
 
-	/**
-	 * This is a private function that shouldn't be accessed from outside this class declaration, it is responsible for loading photos
-	 */
-	_getPhotos() {
-		try {
-			var files = fs.readdirSync(getDirname() + '/source/' + this.path);
-			if (this._countPictures(files) < 1)
-				return false;
-			
-			files.forEach(file => {
-				var ext = getFileExtension(file);
-				if (ext === "jpg" || ext === "png" || ext === "svg") {
-					var src = (this.path + file);
-					var name = file.split('.')[0];
-					var photo = { name: name, source: src };
-					this.photos.push(photo);
-				}
-			});
-			return true;
-		} catch (error) {
-			console.log(error);
-			return false;	
-		}
-	}
+        if (this.path == null)
+            return;
+        var succ = this._getPhotos();
+        this.hasPhotos = succ;
+        if (!succ)
+            console.error("Missing photos for " + this.student + " interview card");
+    }
 
-	_countPictures(files) {
-		var count = 0;
-		files.forEach(file => {
-			if (file.includes(".jpg") || file.includes(".png") || file.includes(".svg"))
-				count++;
-		});
-		return count;
-	}
+    /**
+     * This is a private function that shouldn't be accessed from outside this class declaration, it is responsible for loading photos
+     */
+    _getPhotos() {
+        try {
+            var files = fs.readdirSync(getDirname() + '/source/' + this.path);
+            if (this._countPictures(files) < 1)
+                return false;
 
-	getCode() {
-		return `
+            files.forEach(file => {
+                var ext = getFileExtension(file);
+                if (ext === "jpg" || ext === "png" || ext === "svg") {
+                    var src = (this.path + file);
+                    var name = file.split('.')[0];
+                    var photo = { name: name, source: src };
+                    this.photos.push(photo);
+                }
+            });
+            return true;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+
+    _countPictures(files) {
+        var count = 0;
+        files.forEach(file => {
+            if (file.includes(".jpg") || file.includes(".png") || file.includes(".svg"))
+                count++;
+        });
+        return count;
+    }
+
+    getCode() {
+            return `
 		<div id="${this.student.replace(' ', '_')}" class="card interview">
 			<img class="card-img-top" src="{fill_parents}${this.image}" alt="Photo">
 			<h4 class="card-title">${this.title}</h4>
@@ -98,7 +98,8 @@ class InterviewCard {
 
 const fs = require('fs') // for manipulation of files
 const glob = require('glob') // for finding the right files
-const Handlebars = require('handlebars') // for using handlebars
+const Handlebars = require('handlebars'); // for using handlebars
+const { Exception } = require('handlebars/runtime');
 
 // syntax for compound components
 const OPENING_SIGNATURE = ':^) ' // notice the space on end
@@ -316,8 +317,7 @@ function getHTMLCodeFromJSON(json_object) {
 	// Here I check if the last card added to row was 3rd in the row if not I have to manually add card deck end block
 	if (counter !== 0) {
 		for (i = 0; i < (3 - counter); i++) {
-			string_builder += `
-			<div class="card interview hidden"></div>`;
+			string_builder += `<div class="card interview hidden"></div>`;
 		}
 		string_builder += card_deck_end;
 		counter = 0;
@@ -326,13 +326,31 @@ function getHTMLCodeFromJSON(json_object) {
 }
 
 function writeInterviewCardHTMLCodeToFile(language, HTML, files) {
-	if (language == "english" || language == "en" || language == "En" || language == "EN" || language == "English") language = "en";
-	if (language == "slovak" || language == "sk" || language == "SK" || language == "Sk" || language == "Slovak") language = "sk";
+
+	language = language.toLowerCase()
+
+	switch (language) {
+		case "english":
+		case "en":
+			language = "en"
+			break
+		case "slovak":
+		case "sk":
+			language = "sk"
+			break
+		default:
+			language = language.length > 2 ? language.substr(0, 3) : language
+			break
+	}
+
 	var file = files.find(obj => {
-		return obj.language === language;
-	});
+		return obj.language === language
+	})
+
+	if (!file) return
+
 	// Writing the final compiled HTML code into file
-	fs.writeFileSync(file.src, HTML);
+	fs.writeFileSync(file.src, HTML)
 }
 
 function transpileJsonInterviewCardsToHTML(enJson, skJson) {
@@ -344,9 +362,19 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 		var files = [];
 
 		// Checking if there is Slovak and English version of the interviews
-		if (!enJson || enJson == "") { file = skJson.split('/').pop().split('.')[0] + ".html"; languages.push('sk'); }
-		else if (!skJson || skJson == "") { file = enJson.split('/').pop().split('.')[0] + ".html"; languages.push('en'); }
-		else { file = enJson.split('/').pop().split('.')[0] + ".html"; languages.push('sk'); languages.push('en'); }
+		if (!enJson || enJson == "") {
+			file = skJson.split('/').pop().split('.')[0] + ".html";
+			languages.push('sk');
+		}
+		else if (!skJson || skJson == "") {
+			file = enJson.split('/').pop().split('.')[0] + ".html";
+			languages.push('en');
+		}
+		else {
+			file = enJson.split('/').pop().split('.')[0] + ".html";
+			languages.push('sk');
+			languages.push('en');
+		}
 
 		// Creating new object for each language and adding it to my files[] array 
 		languages.forEach(language => {
@@ -447,10 +475,38 @@ fs.writeFileSync(getDirname() + '/build/css/style.css', cssConcatenated)
 console.log('Composed all CSS files into style.css')
 // finally, we transpile html files and copy non-html files
 let sourceFiles = glob.sync(getDirname() + '/source/**/*', { nodir: true })
+
+
+// Get the available languages for the website, through the components dir.
+let langComponents = glob.sync(getDirname() + '/components/*').filter((path, index, args) => fs.lstatSync(path).isDirectory()).map((path, index, args) => path.split('/').pop())
+
+// Get the list of all the html files and create a json file containing all the available html files for the searcher to work with.
+// List of all the (to be built) html files.
+let htmlFiles = sourceFiles.filter((path, index, args) => path.includes('/html/') && isHtmlFile(path)).map((filePath, index, args) => filePath.split('/source/html')[1])
+
+// The array containing the html files and languages, to be written inside of the json file.
+// IMPORTANT!
+// If the order of the objects inside of the array is changed, change the indices defined in the searcher.js under the variables:
+// C.WEBSITES_INDEX, C.LANGUAGES_INDEX
+//
+// Default: htmlFiles, langComponents
+// Searcher Default: C.WEBSITES_INDEX = 0, C.LANGUAGES_INDEX = 1
+let htmlLangUnionArray = [htmlFiles, langComponents]
+
+// Convert the html files path array into a stringified json array
+let jsonString = JSON.stringify(htmlLangUnionArray)
+
+// Write all the available html files into availablefiles.json file used by the searcher.js
+fs.writeFile(getDirname() + '/build/files/availablefiles.json', jsonString, (err) => {
+	if(err) throw new Error(err.message)
+})
+
+
 for (const sourceFile of sourceFiles) {
 	// identifies the new file to be created
 	
 	const fileToCreate = getBuildFilePathFromSourceFilePath(sourceFile)
+
 	// note to future contributors: if you're going to use the html folder 
 	// for something other than .html files, use filePath.includes('/html/')
 	if (isHtmlFile(sourceFile)) {

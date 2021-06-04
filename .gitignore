@@ -200,3 +200,4 @@ components/sk/interview_cards.html
 
 # Unnecessary temporary text file auto-generated everytime a build happens
 Extensions/News/data/*
+reloc.js
