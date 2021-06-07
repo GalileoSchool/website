@@ -1,12 +1,40 @@
+/* Second option
 #interviews-heading.admissions {
     display: block !important;
     font-size: xxx-large;
     padding: 8px;
-    margin-top: 18px;
+    margin: 18px 0;
+    font-style: italic;
+    color: #a60000;
+    text-transform: capitalize;
+    text-decoration: underline;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
+    background: linear-gradient(135deg, #fafafa11,#e5e4e2);
+    box-shadow: 0px -5px 5px 0px #252525aa;
+}*/
+
+/* #interviews-heading.admissions {
+    display: block !important;
+    font-size: xxx-large;
+    padding: 8px;
+    margin: 18px 0;
     font-style: italic;
     color: rgba(209, 57, 57, 0.925);
     text-transform: capitalize;
     text-decoration: underline;
+} */
+
+#interviews-heading.admissions {
+    display: block !important;
+    font-size: xxx-large;
+    padding: 8px;
+    margin: 18px 0;
+    color: #a60000;
+    text-transform: capitalize;
+    /* text-decoration: underline; */
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
+    background: linear-gradient(0deg, #fafafa9a,#e5e4e2);
+    box-shadow: 0px -5px 5px 0px #252525aa;
 }
 
 div.card-deck.admissions {
@@ -174,7 +202,10 @@ div.card-deck div.card.admiss > .card-title {
 @media screen and (min-width: 670px) {
 
     #interviews-heading.admissions {
-        margin-top: calc(2rem - 5px);
+        margin: calc(2rem - 5px) 0;
+        box-shadow: unset;
+        background: unset;
+        text-decoration: underline;
     }
 
     div.card-deck.admissions {
