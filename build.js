@@ -460,7 +460,9 @@ if (!success)
 	return;
 // second, we prepare all components
 const enComponents = makeComponentDictionary(getDirname() + '/components/{*,en/*}.html')
+console.log(enComponents);
 const skComponents = makeComponentDictionary(getDirname() + '/components/{*,sk/*}.html')
+console.log(skComponents)
 // third, we compose all css files into a single one
 console.log('Beginning CSS composition into style.css')
 // find all css files inside css folder
