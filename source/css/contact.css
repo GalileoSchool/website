@@ -269,7 +269,7 @@ div.contact-form.container .flex.center {
     }
 
     div.contact-form.container {
-        display: flex;
+        display: none !important;
         flex-direction: row;
         justify-content: space-between;
         padding: 0;
