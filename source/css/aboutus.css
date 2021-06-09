@@ -111,7 +111,12 @@ div.card-footer button {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: max-content;
+        /* height: max-content; */
+        background-color: unset;
+    }
+
+    .card.about .card-content div {
+        background-color: #a60000;
     }
 
     .card.about .card-content .card-title {
@@ -143,6 +148,10 @@ div.card-footer button {
         height: 100%;
     }
 
+    .card.about div.card-content div.card-body:not([style]) {
+        background-color: #a60000;
+    }
+
     .card.about div.card-content div.card-body .card-text.long,
     .card.about div.card-content div.card-body .card-text.long p {
         background-color: #eeeeee;
@@ -172,6 +181,10 @@ div.card-footer button {
     .card.about {
         margin-bottom: 7%;
         width: 90%;
+    }
+
+    .card.about .card-content {
+        height: max-content;
     }
 
     .card.about:nth-child(even) {

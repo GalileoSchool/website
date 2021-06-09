@@ -2,15 +2,16 @@
 const { F_OK } = require('constants');
 const fs = require('fs');
 const Path = require('path');
-const glob = require("glob");
+const glob = require('glob');
 const Mdir = __dirname; // The directory of where this current javascript is located
-const readline = require("readline");
+const readlineSync = require('readline-sync');
 
 
 const C = {
-    dPath: Mdir + '/../source/files/AboutUs', // Directory path of AboutUs files
+    dPath: Mdir + '/../source/files/AboutUs/', // Directory path of AboutUs files
     path: Mdir + '/../components/', // Components folder path
     separator: '[Section]', // Separator used in text files to separate each paragraph
+    jsonFile: 'AboutUs.json',
     school: {
         kindergarten: 'kindergarten',
         primary: 'primaryschool',
@@ -33,8 +34,8 @@ class Paragraph {
      */
     constructor(object) {
         this.title = object.title;
-        this.short = object.text.short;
-        this.long = object.text.long;
+        this.short = object.text ? object.text.short : object.short;
+        this.long = object.text ? object.text.long : object.long;
         this.language = object.language;
         this.folder = object.folder;
         this.photo = object.photo ? object.photo : null;
@@ -117,9 +118,9 @@ function parseString(string) {
  */
 function getStringFromArray(array) {
     let str_builder = '';
-
+    //console.log(array);
     for (var par of array)
-        str_builder += par.getDefaultHtmlCode();
+        str_builder += new Paragraph(par).getDefaultHtmlCode();
     
     return str_builder;
 }
@@ -135,13 +136,14 @@ async function createComponent(Fpath = null, name, string, language, append_file
     Fpath = Fpath ? Fpath : C.path;
     const component = `:^) ${name} :::`;
     let path = Path.join(Fpath, language, `${fileName}.html`);
-    writeFile(path, `${component}\n${string}`, append_file);
+    writeFile(path, `${component}\r\n${string}`, append_file);
+    console.log(`Successfully created component ${component},\nAppend File Mode: ${append_file}`);
 }
 
 /** Asynchronously writes a string to a file
  * 
- * @param {String} path 
- * @param {String} string 
+ * @param {String} path Path of the file
+ * @param {String} string String to write into the file
  * @param {Boolean} appendFile 
  * @returns {void}
  */
@@ -167,53 +169,87 @@ function writeFile(path, string, appendFile) {
     }
 }
 
+/** Creates a Json file with our data
+ * 
+ * @param {Array} array Array of paragraph objects
+ */
+function saveAsJson(array) {
+    fs.writeFileSync(C.dPath + C.jsonFile, JSON.stringify(array, null, 4), {flag: 'w+', mode: 0666});
+}
+
+/** Loads a Json file and returns its content decoded
+ * 
+ * @param {String} file Path to the Json file 
+ * @returns {String}
+ */
+function loadFromJson(file) {
+    return JSON.parse(fs.readFileSync(file, { mode: 0666 }));
+}
+
+/** Creates components files from array
+ * 
+ * @param {Array} array 
+ */
+function arrayIntoComponents(array) {
+    array.map((section, sectionIndex) => {
+        section.content.map(content => {
+            //console.log(content);
+            let string = getStringFromArray(content.data);
+            if(sectionIndex == 0)
+                createComponent(C.path, section.folder, string, content.language, false, 'about');
+            else
+                createComponent(C.path, section.folder, string, content.language, true, 'about');
+        });
+    });
+}
+
 Files(C.dPath, async res => {
     var arr = await createFilesArray(res);
     var folders = getFolders(C.dPath);
-    var arr2 = [];
+    let arr2 = [];
     var temp = [];
-
-    arr.map(file => {
-        for (var res of parseString(fs.readFileSync(file.path, 'utf8')))
-            arr2.push(new Paragraph({title: res.title, text: { short: res.short, long: res.long }, language: file.language, folder: file.folder.toLowerCase()}));
-    });
-
-    folders.map(folder => {
-        // getFolders(C.path).map(language => {
-        //     // arr2.filter(para => folder.toLowerCase() === para.folder)
-        //     temp.push({ folder: folder.toLowerCase(), content: {language: language.toLowerCase(), data: arr2.filter(para => folder.toLowerCase() === para.folder && language.toLowerCase() === para.language.toLowerCase())}});
-        // });
-        let temp2 = [];
-        getFolders(C.path).map(language => {
-            temp2.push({ language: language.toLowerCase(), data: arr2.filter(para => folder.toLowerCase() === para.folder && language.toLowerCase() === para.language.toLowerCase()) });
-        });
-
-        temp.push({folder: folder.toLowerCase(), content: temp2})
-    });
-
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
-
-    rl.question("Would you like to create a JSON file for the AboutUs? Yes/No\n", (ans) => {
-        switch (ans.toLowerCase()) {
-            case "no":
-                temp.map((section, sectionIndex) => {
-                    section.content.map(content => {
-                        let string = getStringFromArray(content.data);
-                        if(sectionIndex == 0)
-                            createComponent(C.path, section.folder, string, content.language, false, 'about');
-                        else
-                            createComponent(C.path, section.folder, string, content.language, true, 'about');
-                    });
-                });
-                console.log("Successfully created component");
-            case "yes":
-                //
-            default:
-                rl.close();
+    var skip = false;
+    console.log(`Searching for Json file ${C.jsonFile} at [${Path.join(C.dPath, C.jsonFile)}]\n`);
+    var found = fs.existsSync(Path.join(C.dPath, C.jsonFile)) ? true : false;
+    console.log(`Found: ${found}\n`);
+    
+    if (found) {
+        if(readlineSync.question(`\nWould you like to fetch the AboutUs data from ${C.jsonFile}? Yes/No\n`).toLowerCase() === 'yes') {
+            temp = loadFromJson(Path.join(C.dPath, C.jsonFile));
+            skip = true;
         }
-    });
+    }
+          
+    if (!skip) {
+        arr.map(file => {
+            for (var res of parseString(fs.readFileSync(file.path, 'utf8')))
+                arr2.push(new Paragraph({title: res.title, text: { short: res.short, long: res.long }, language: file.language, folder: file.folder.toLowerCase()}));
+        });
+    
+        folders.map(folder => {
+            let temp2 = [];
+            getFolders(C.path).map(language => {
+                temp2.push({ language: language.toLowerCase(), data: arr2.filter(para => folder.toLowerCase() === para.folder && language.toLowerCase() === para.language.toLowerCase()) });
+            });
+    
+            temp.push({folder: folder.toLowerCase(), content: temp2})
+        });
+    }
+
+    console.log(temp);
+    if (!temp) throw new Error('Object reference not set to an instance of an object');
+
+    switch (readlineSync.question("\nWould you like to create a new JSON file for the AboutUs? Yes/No\n").toLowerCase()) {
+        case "no":
+            arrayIntoComponents(temp); // Creating components files
+            break;
+        case "yes":
+            saveAsJson(temp); // Creating json file
+            arrayIntoComponents(temp); // Creating components files
+            break;
+        default:
+            arrayIntoComponents(temp); // Creating components files
+            break;
+    }
 
 });
