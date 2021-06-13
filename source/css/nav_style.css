@@ -449,13 +449,13 @@ div.search-result {
     display: none;
     position: absolute;
     margin: 0;
-    max-height: 500px;
-    max-width: 300px;
+    max-height: 600px;
+    max-width: 100%;
+    width: 100%;
     overflow-y: auto;
     background-color: #fcfcfc;
-    box-shadow: 0px 0px 5px 0px #050505;
     transition: 350ms;
-    top: 70px;
+    top: calc(10vw);
     left: 0px;
     z-index: 4;
 }
@@ -479,9 +479,15 @@ ol.searcher-result-list {
     list-style: none;
 }
 
-li.searcher-result-item {
+ul li.searcher-result-item {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     min-width: 200px;
+}
+
+div.search-result-fullview ul li.searcher-result-item {
+    margin-bottom: 5px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
 }
 
 a.searcher-result-link {
@@ -536,6 +542,34 @@ span.searcher-result-preview:last-child {
 /* Warning: Any changes made to this "conditional" such as changing the min-width will have to be repeated in nav_jquery.js file in the function check_resize() */
 
 @media screen and (min-width: 670px) {
+
+    div.search-result {
+        outline: none;
+        border: none;
+        display: none;
+        position: absolute;
+        margin: 0;
+        max-height: 500px;
+        max-width: 300px;
+        overflow-y: auto;
+        background-color: #fcfcfc;
+        box-shadow: 0px 0px 5px 0px #050505;
+        transition: 350ms;
+        top: 70px;
+        left: 0px;
+        z-index: 4;
+    }
+
+    li.searcher-result-item {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-width: 200px;
+    }
+
+    div.search-result-fullview ul li.searcher-result-item {
+        border: none;
+        margin-bottom: .5rem;
+    }
+
     div.language-select-btn:hover,
     div.nav-phone.light-gray.lang.lang-text {
         cursor: pointer;
@@ -858,6 +892,19 @@ span.searcher-result-preview:last-child {
 /* Bigger screens */
 
 @media only screen and (min-width: 1100px) {
+
+    div.search-result-fullview {
+        outline: none;
+        border: none;
+        margin: 0;
+        background-color: #fcfcfc;
+        box-shadow: none;
+        transition: 350ms;
+        width: 85%;
+        padding: 14px 0px;
+        margin: auto;
+    }
+
     #main-nav>li {
         padding-right: calc(520px*0.05);
         padding-left: calc(520px*0.05);

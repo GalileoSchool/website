@@ -8,26 +8,32 @@
                     {
                         "title": "Modern, accredited, recognised",
                         "short": "Modern, accredited education in English language. The aim is to prepare students to enrol the best universities worldwide. GALILEO HIGH SCHOOL is accredited by the Ministry of Education and is the first International Pearson Edexcel Centre in Slovakia. This provides for the award of international qualification certificates recognised across the globe.",
-                        "long": "The teaching goal of GALILEO SCHOOL is to prepare students to overcome any barriers there might be to an immediate and smooth transition to the university studies. The ability of a student to understand the content of the subject in English language is essential for such. Hence acquiring the knowledge content and skills in academic subjects in English is the fundamental principle of GALILEO SCHOOL.",
+                        "long": [
+                            "The teaching goal of GALILEO SCHOOL is to prepare students to overcome any barriers there might be to an immediate and smooth transition to the university studies. The ability of a student to understand the content of the subject in English language is essential for such. Hence acquiring the knowledge content and skills in academic subjects in English is the fundamental principle of GALILEO SCHOOL."
+                        ],
                         "language": "en",
                         "folder": "highschool",
-                        "photo": "images/card_thumbnails/gym.jpg"
+                        "photo": null
                     },
                     {
                         "title": "Path to great universities",
                         "short": "The graduates of GALILEO SCHOOL study at the top universities, from Oxford and Cambridge, through Santa Clara in Silicon Valley, Kings College in London to Edinburgh and Glasgow in Scotland. Our students became successful in a variety of professional carrier, from a founder of a multimillion company in London, a GLOBSEC Young Leader 2019, a member of the Permanent Mission of Slovakia to the United Nations, to a researcher of sustainable energy in Africa or an IT safety researcher at the Oxford University.",
-                        "long": "Small class sizes, student-centred approach, and a focus on individual interest of a student. Students build a portfolio of knowledge, skills and international certificates tailored to their preferred future career. The teaching and learning use embedded streaming, lesson materials, communication and assignments online using Microsoft Teams and Office 365.",
+                        "long": [
+                            "Small class sizes, student-centred approach, and a focus on individual interest of a student. Students build a portfolio of knowledge, skills and international certificates tailored to their preferred future career. The teaching and learning use embedded streaming, lesson materials, communication and assignments online using Microsoft Teams and Office 365."
+                        ],
                         "language": "en",
                         "folder": "highschool",
-                        "photo": "images/card_thumbnails/primary_school.jpg"
+                        "photo": null
                     },
                     {
                         "title": "Individual approach to learning",
                         "short": "Education that focuses on academics is supported by plentiful opportunities to enhance the individual formation of a student. International competitions, internships, exchange trips with partner schools, cooperation with professionals and a support of an individual talent of each student are all part of the education experience at GALILEO SCHOOL.",
-                        "long": "Based on successful partnerships with Microsoft and Cisco the school has been recently able to provide the full academic teaching schedule via 100% online learning since the start of the pandemic. Students and teachers alike quickly adopted the online learning mode from the day one, exploring the benefits of modern technology and developing vital skills for future as a result of the pandemic. All resources, assignments, grades and communication are shared via the Microsoft Teams environment, with online classes streamed via Teams Meet or Cisco Webex Meet app.",
+                        "long": [
+                            "Based on successful partnerships with Microsoft and Cisco the school has been recently able to provide the full academic teaching schedule via 100% online learning since the start of the pandemic. Students and teachers alike quickly adopted the online learning mode from the day one, exploring the benefits of modern technology and developing vital skills for future as a result of the pandemic. All resources, assignments, grades and communication are shared via the Microsoft Teams environment, with online classes streamed via Teams Meet or Cisco Webex Meet app."
+                        ],
                         "language": "en",
                         "folder": "highschool",
-                        "photo": "images/card_thumbnails/kindergarten.jpg"
+                        "photo": null
                     }
                 ]
             },
@@ -37,7 +43,9 @@
                     {
                         "title": "Moderné, akreditované, uznávané",
                         "short": "Moderné, akreditované, anglické vzdelávanie ktorého cieľom je príprava na najlepšie univerzity na svete. Súkromné gymnázium GALILEO SCHOOL je zaradené do siete škôl SR a zároveň medzinárodným akreditovaným vzdelávacím centrom PEARSON EDEXCEL, poskytujúcim plnohodnotné vzdelávanie ukončené celosvetovo uznávanými stredoškolskými certifikátmi.",
-                        "long": "Súkromné gymnázium GALILEO SCHOOL si kladie za cieľ pripraviť svojich absolventov tak, aby pre nich neexistovali žiadne bariéry pre okamžitý a aktívny štart vo vysokoškolskom štúdiu. Neoceniteľnú rolu hrá schopnosť študenta akceptovať učivo na najvyššej úrovni vzdelávania v anglickom jazyku. Toto je možné dosiahnuť len priamo preberaním učiva jednotlivých predmetov strednej školy v tejto cudzej reči.",
+                        "long": [
+                            "Súkromné gymnázium GALILEO SCHOOL si kladie za cieľ pripraviť svojich absolventov tak, aby pre nich neexistovali žiadne bariéry pre okamžitý a aktívny štart vo vysokoškolskom štúdiu. Neoceniteľnú rolu hrá schopnosť študenta akceptovať učivo na najvyššej úrovni vzdelávania v anglickom jazyku. Toto je možné dosiahnuť len priamo preberaním učiva jednotlivých predmetov strednej školy v tejto cudzej reči."
+                        ],
                         "language": "sk",
                         "folder": "highschool",
                         "photo": null
@@ -45,7 +53,9 @@
                     {
                         "title": "Cesta na skvelé univerzity",
                         "short": "Absolventi gymnázia GALILEO SCHOOL pokračujú na svetoznámych univerzitách, počnúc od Oxfordu a Cambridge, cez Santa Clara v americkej Silicon Valley, Kings College v Londýne až po Edinburgh a Glasgow v Škótsku. Naši absolventi sú úspešnými mladými ľuďmi vo svojich odboroch, či už je to zakladateľ a manažér multimilionovej spoločnosti v Londýne, alebo Mladý líder GLOBSEC 2019, členka stálej misie Slovenskej republiky pri OSN, výskumníčka trvalo udržateľnej výroby energie v Afrike, alebo vedec počítačovej bezpečnosti na Oxfordskej univerzite.",
-                        "long": "Vyučovanie v malých skupinách, moderný prístup k študentovi ako individualite, a formovanie obsahu vydelávania podľa individuálnych potrieb študenta. Každý študent is počas štúdia buduje portfólio vedomostí, zručností a medzinárodných certifikátov podľa vlastných záujmov a smerovania budúcej kariéry. Vyučovanie má v sebe zapracované využitie moderných technológií ako video z výkladu učiva, učebné materiály online, komunikáciu a zadania domácich úloh online prostredníctvom platformy Microsoft Teams a Office 365.",
+                        "long": [
+                            "Vyučovanie v malých skupinách, moderný prístup k študentovi ako individualite, a formovanie obsahu vydelávania podľa individuálnych potrieb študenta. Každý študent is počas štúdia buduje portfólio vedomostí, zručností a medzinárodných certifikátov podľa vlastných záujmov a smerovania budúcej kariéry. Vyučovanie má v sebe zapracované využitie moderných technológií ako video z výkladu učiva, učebné materiály online, komunikáciu a zadania domácich úloh online prostredníctvom platformy Microsoft Teams a Office 365."
+                        ],
                         "language": "sk",
                         "folder": "highschool",
                         "photo": null
@@ -53,9 +63,357 @@
                     {
                         "title": "Individuálny prístup",
                         "short": "Vzdelanie v anglickom jazyku na vysokej odbornej úrovni je podporené množstvom možností na individuálnu profiláciu študenta. Medzinárodné súťaže, stáže, pobyty na zahraničných školách, spolupráca s odborníkmi z praxe z celého sveta, a podpora individuálneho talentu každého študenta je súčasťou štúdia.",
-                        "long": "Dlhodobá spolupráca s našimi partnermi Microsoft a Cisco sa ukázala kľúčovou v nedávnom období celosvetovej pandémie. Plnohodnotné vyučovanie na 100% prebiehalo od prvého dňa počas uzavretia školy. Prístup k hodinám, materiálom, zadaniam a komunikácia online bez obmedzení v prostredí Microsft Teams dáva predpoklad k vyššej flexibilite individuálnzch študijných plánov, hybridnému modelu vyučovania a prístupe k vzdelaniu formou online learning.",
+                        "long": [
+                            "Dlhodobá spolupráca s našimi partnermi Microsoft a Cisco sa ukázala kľúčovou v nedávnom období celosvetovej pandémie. Plnohodnotné vyučovanie na 100% prebiehalo od prvého dňa počas uzavretia školy. Prístup k hodinám, materiálom, zadaniam a komunikácia online bez obmedzení v prostredí Microsft Teams dáva predpoklad k vyššej flexibilite individuálnzch študijných plánov, hybridnému modelu vyučovania a prístupe k vzdelaniu formou online learning."
+                        ],
                         "language": "sk",
                         "folder": "highschool",
+                        "photo": null
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "folder": "kindergarten",
+        "content": [
+            {
+                "language": "en",
+                "data": [
+                    {
+                        "title": "Bilingual learning",
+                        "short": "The ability to become a fluent speaker of a foreign language decreases with age. Children who are three to five years old learn naturally and intuitively.  ",
+                        "long": [
+                            "The aim of preschool education is the balanced development of a child and getting ready for the schooling. Hence the Kindergarten programme is built around the requirements of the Primary School GALILEO SCHOOL.  The programme of GALILEO SCHOOL is a complete system of schooling that results in students being fully prepared for university education. ",
+                            "The GALILEO SCHOOL Kindergarten provides for bilingual education in both Slovak and English languages. The main goal is to initiate intrinsic motivation to study in English language. The English native speaker-teacher provides the first educational experience in English language for three-year-old children. Parents will notice the outcomes of bilingual education after several months, in a form children naming objects around themselves in both Slovak and English. ",
+                            "A thorough preparation for the Primary School is a subject of the last year in Kindergarten. Children discover the alphabet via the Jolly Phonics methodology and through regular lessons with an English native speaker-teacher. "
+                        ],
+                        "language": "en",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "Learning by playing",
+                        "short": "Every game is learning, to learn is to play",
+                        "long": [
+                            "The predominant method of active learning in Kindergarten is a game. The teacher facilitates the play based on the knowledge of the nature of the particular game and of the effect it has on the development of children. The game is equally entertaining, enjoyable and educational. Such game provides for happy, healthy development of children. Learning by playing is the most natural way of learning at this age. Children use the game to express themselves and to communicate, showing the nature of their personality traits. The game is not only an educational tool; it also serves the diagnostic purpose.           "
+                        ],
+                        "language": "en",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "Learning by experience",
+                        "short": "Children discover the world using their senses, they learn by experience",
+                        "long": [
+                            "The purpose of learning by experience comes is underlined by the fact that strong personal experience remains deeply remembered. Learning by experience allows to touch every child’s heart by the memory of a happy, joyful experience of adventurous day in Kindergarten. Children will remember their times in Kindergarten as happy days of their early childhood.",
+                            "The professional team of qualified teachers at GALILEO SCHOOL Kindergarten uses the methods of experience learning. Children are able to gain knowledge and skills naturally, without the need of hardship required in intentional learning. Thanks to the small class sizes we are able to show our wonderful world in its specific forms children can explore, smell, taste, feel – simply they can experience it."
+                        ],
+                        "language": "en",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "Learning outdoors",
+                        "short": "Learning happens both inside and outside. Classrooms are equipped with a direct access to the front gardens – outdoor classrooms.",
+                        "long": [
+                            "Outdoor learning doesn’t necessarily mean a trip to the deep forest. Every Kindergarten classroom has a direct access to the front garden, where children play in the shade of tall trees, on a soft lawn or in a sandpit. There are plenty of climbing frames, play-areas, slides, outdoor classrooms, gardening pots outside. ",
+                            "The birds nest in the trees above. In front of children a little owl grew up in spring. The front gardens housed lots of bird boxes regularly filled up with bird feed, so the birds can be observed all year round.            "
+                        ],
+                        "language": "en",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "The joy of discovery",
+                        "short": "Exploration changes the world of miracles into a world of facts and knowledge.",
+                        "long": [
+                            "Children from their early years like to explore the nature around them and nurture a positive view of nature. They like both the living and non-living nature, a lot of what they see is magical. Our experienced teachers in Kindergarten GALILEO SCHOOL make the use of exploration methods to bridge the world of magic and the world of facts and figures. ",
+                            "In a beautiful setting full of gardens, gardening pots for planting, children develop both their motor skills as well as their skills or observing, describing and justifying the action. The activities planned for children are based on simulations of the work of researchers. Children are exposed to sensory inputs to explore and research, so every experience is a discovery itself for the young children’s mind."
+                        ],
+                        "language": "en",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "Developing creativity and fantasy",
+                        "short": "Children’s paintings impress by their simplicity, naivety, emotions and originality.",
+                        "long": [
+                            "Childs painting is a unique phenomenon worth of a public display, gratitude and hence the classrooms of Kindergarten GALILEO SCHOOL are decorated by the artwork made by children. These displays are regularly updated. Parents take pride in the work of their children and store their paintings as they clearly see messages of their child’s life reflected in the drawings. Teachers refer back to the drawings to see the development of the child and a specific communication tool. Viewing such a drawing allows to enter the child’s feelings, fantasy and wishes of a young person. "
+                        ],
+                        "language": "en",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "Healthy and happy eating",
+                        "short": "A broad variety of healthy meals prepared by a team of creative cooks.",
+                        "long": [
+                            "Children get their appetite for food the most when they had spent time outside being active. In GALILEO SCHOOL children build a good rapport with food by taking part in the preparation of meals. The lunch soup tastes the best once handpicked parsnip greens are added. The recipes are often updated by the renowned chefs, regularly visiting our kitchen, to teach the modern culinary mastery, to be used in our canteen.  "
+                        ],
+                        "language": "en",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "All summer programme",
+                        "short": "The summer day programme is offered throughout the whole summer.",
+                        "long": [
+                            "The Kindergarten GALILEO SCHOOL is closed only during the regular school holidays as announced by the Ministry of Education of Slovak Republic. However, during the summer holidays, we offer a day programme on a weekly topical basis. Every week is focused on a specific theme, and the vocabulary and the conversations are based on the given theme. \t"
+                        ],
+                        "language": "en",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "The programme during the Corona pandemic",
+                        "short": "During the pandemic lockdown we switched to the online classes.",
+                        "long": [
+                            "GALILEO SCHOOL set up its own mobile Covid-19 testing centre in December 2020. Students, teachers, parents made a great use of being able to be tested on a weekly basis. This allowed for almost continuous functionality of the school in 2020/21. ",
+                            "The programme of the Kindergarten GALILEO SCHOOL cares for the development of digital competency in children, including the positive attitude to the information technology and their sensible use. Teachers use the Bee Bot, tablets and interactive whiteboards for teaching. ",
+                            "Teachers maintained the connection with children during the lockdown via online learning. It is hard to believe, yet both the teachers and the children were successful in overcoming this challenge.  \t"
+                        ],
+                        "language": "en",
+                        "folder": "kindergarten",
+                        "photo": null
+                    }
+                ]
+            },
+            {
+                "language": "sk",
+                "data": [
+                    {
+                        "title": "Bilingválna výučba",
+                        "short": "Schopnosť osvojiť si druhý jazyk vekom klesá. Vo veku 3 – 5 rokov je učenie jazyka pre dieťa prirodzené a intuitívne.",
+                        "long": [
+                            "Úlohou predprimárneho vzdelávania je optimálny rozvoj dieťaťa po všetkých stránkach a jeho pripravenosť na školské vzdelávanie. Program materskej školy GALILEO SCHOOL vychádza z požiadaviek bilingválneho programu základnej školy GALILEO SCHOOL, s ktorou spolu s gymnáziom tvoria ucelený edukačný systém, na konci ktorého je pripravenosť žiaka na štúdium na najprestížnejších univerzitách sveta. ",
+                            "Materská škola GALILEO SCHOOL zabezpečuje bilingválnu formu edukácie v slovenskom a anglickom jazyku. Hlavným cieľom je vzbudiť u detí prirodzený záujem o angličtinu. Prvý kontakt s angličtinou a anglicky hovoriacim lektorom majú už 3-ročné deti. Výsledky bilingválnej výučby vidia rodičia doma už po niekoľkých mesiacoch, kedy si deti osvojujú prvé anglické výrazy a dokážu pomenovať veci okolo seba v slovenskom i anglickom jazyku. ",
+                            "V poslednom ročníku materskej školy sú deti dôkladne pripravované na vstup do prvého ročníka základnej školy. Spoznávajú anglickú abecedu pomocou metódy Jolly Phonics a súčasťou výučby anglického jazyka sú v poslednom ročníku aj častejšie hodiny s natívne anglicky hovoriacim lektorom. "
+                        ],
+                        "language": "sk",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "Učenie hrou",
+                        "short": "Každá hra je učením a každé učenie je hrou.",
+                        "long": [
+                            "Dominantnou metódou a formou aktivizujúcej výučby v materskej škole GALILEO SCHOOL je hra. Učiteľ pri jej riadení vychádza z vedomostí o podstate, význame a dispozíciách rôznych druhov hier pre rozvoj osobnosti dieťaťa. Hra je pre dieťa zábavou, ľahkým učením sa, niečím, čím získava zdravie, šťastie a spokojnosť. Učenie hrou nadväzuje na vývin dieťaťa, dieťa sa najviac a najlepšie naučí práve v hre, a tým osobnostne napreduje. Dieťa sa hrou učí a vyjadruje, v hre prejavuje charakteristiky svojej osobnosti. Hra je v predprimárnom vzdelávaní významnou výučbovou i diagnostickou metódou."
+                        ],
+                        "language": "sk",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "Zážitkové učenie",
+                        "short": "Deti objavujú svet všetkými zmyslami, jednoducho ho zažívajú.",
+                        "long": [
+                            "Opodstatnenosť učenia zážitkom vychádza zo skutočnosti, že to, čo človek sám prežil, cítil, videl, zostáva zakotvené hlboko v jeho vedomí. Prostredníctvom zážitkového učenia možno preniknúť do srdca každého dieťaťa, a zároveň sa podieľať na tom, aby deti v materskej škole boli šťastné, spokojné, aby na roky detstva spomínali s úsmevom a s pocitom prežitej radosti.",
+                            "Profesionálny kvalifikovaný tím učiteľov v materskej škole GALILEO SCHOOL v edukačnom procese využíva metódy zážitkového učenia. Prostredníctvom zážitkov dieťa nadobúda nové poznatky a vedomosti, ktoré mu umožňujú jednoduchšie si osvojiť získané poznatky bez cieleného učenia. Vďaka nízkemu počtu detí v triede môžeme deťom ukázať svet v jeho konkrétnych podobách, môžu ho skúmať, ovoňať, ochutnať, chytiť - jednoducho ho môžu zažiť. "
+                        ],
+                        "language": "sk",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "Učenie v prírode",
+                        "short": "Výučba prebieha vo vnútri i vonku. Triedičky sú priamo prepojené s predzáhradkami – outdoorovými učebňami.",
+                        "long": [
+                            "Vyučovanie v prírode sa nemusí odohrávať len kdesi hlboko v lese. V materskej škole GALILEO SCHOOL sú triedičky priamo prepojené s predzáhradkami, kde sú deti v tesnom kontakte s prírodou v tieni urastených stromov, na mäkkom trávniku, alebo v pieskovisku. V areáli školy je množstvo preliezok, ihrísk, outdoorové učebne, pestovateľské hranty...",
+                            "V korunách stromov hniezdia vtáky. Tento rok sme pozorovali malú sovu, ktorá vyrastala pred zrakmi detí. V predzáhradkách deti osadili množstvo kŕmidiel, ktoré pravidelne plnia krmivom, a tak majú deti skvelú príležitosť pozorovať vtáctvo po celý rok.            "
+                        ],
+                        "language": "sk",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "Radosť z objavovania",
+                        "short": "Objavovanie mení svet zázrakov na svet faktov a informácií.",
+                        "long": [
+                            "Deti už od útleho detstva prejavujú radosť z objavovania prírody a pestujú si kladný vzťah k nej. Obľubujú témy zo živej i neživej prírody, mnohé z nich majú pre deti náznak kúzla. Skúsení učitelia materskej školy GALILEO SCHOOL práve prostredníctvom uplatňovania bádateľských metód umožňujú deťom postupne prechádzať z detského sveta zázrakov do sveta faktov a informácií.",
+                            "V krásnom areáli plnom záhradiek, hrantov na pestovanie rastliniek si deti zároveň rozvíjajú manuálne zručnosti i schopnosť pozorovať a zdôvodňovať uskutočňované činnosti. Vlastná prieskumná činnosť detí predškolského veku je založená na simulovaní práce vedcov. Dieťaťu predkladáme čo najviac podnetov pre objavovanie, skúmanie, pretože každá skúsenosť, ktorú zistí vlastnou aktivitou, je preň veľkým objavom."
+                        ],
+                        "language": "sk",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "Rozvoj tvorivosti a fantázie",
+                        "short": "Detská kresba udivuje svojou jednoduchosťou, naivitou, emocionalitou a originalitou.",
+                        "long": [
+                            "Výtvarný prejav dieťaťa je fenomén hodný vystavenia, obdivu a triedičky materskej školy GALILEO SCHOOL sú zdobené a pravidelne obmieňané práve vlastnoručnými prácami detí. Mnohí rodičia si starostlivo odkladajú prvé kresby svojich detí, vidia v nich špecifický odkaz a učitelia vo výtvarných prejavoch objavujú prekvapujúce vývinové skoky detí a špecifickú detskú reč. Práve cez kresbu je možné nahliadnuť do pocitov, fantázie a želaní detského jedinca."
+                        ],
+                        "language": "sk",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "Zdravá a pestrá strava",
+                        "short": "Najlepším kuchárom nemusí byť hlad, ale tím tvorivých kuchárov.",
+                        "long": [
+                            "Najlepšou podporou chuti do jedla je aktívny pobyt na čerstvom vzduchu. V GALILEO SCHOOL si deti pestujú kladný vzťah k jedlu aj vlastným podieľaním sa na jeho príprave. Polievočka s vlastnoručne nazbieranou petržlenovou vňaťou je najchutnejšia na svete. K chuti prispievajú aj recepty od majstrov kuchárov, ktorých pravidelne pozývame do našej kuchyne, aby nás naučili pripravovať moderné a pestré jedlá. "
+                        ],
+                        "language": "sk",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "Program na celé leto",
+                        "short": "V letných mesiacoch ponúkame denný letný tábor.",
+                        "long": [
+                            "Materská škola GALILEO SCHOOL je počas roka zatvorená iba v čase prázdnin, ktorých termín určuje ministerstvo školstva. Počas celého leta však poskytuje denný letný tábor v týždenných turnusoch. Každý týždeň sa zaoberá inou ústrednou témou, v ktorej si deti rozširujú anglickú terminológiu a schopnosť komunikovať. "
+                        ],
+                        "language": "sk",
+                        "folder": "kindergarten",
+                        "photo": null
+                    },
+                    {
+                        "title": "Koronový program",
+                        "short": "V čase korony sme prešli na on-line výučbu.",
+                        "long": [
+                            "Škola GALILEO SCHOOL v decembri 2020 zriadila svoje vlastné mobilné odberové miesto, ktoré bolo podľa potreby k dispozícii všetkým zamestnancom školy a tiež rodičom detí. To umožnilo v školskom roku 2020/2021 fungovať škole takmer nepretržite. ",
+                            "V programe materskej školy GALILEO SCHOOL je aj rozvoj digitálnej gramotnosti, ktorej súčasťou je budovanie kladného vzťahu k digitálnym technológiám a tiež určovanie rozumnej miery ich používania. Vo výučbe učitelia využívajú Bee-Bota, tablety aj interaktívnu tabuľu. ",
+                            "V čase lockdownu boli učitelia v pravidelnom kontakte so svojimi deťmi práve cez on-line výučbu. Znie to neuveriteľne, ale deti aj túto výzvu úspešne zvládli."
+                        ],
+                        "language": "sk",
+                        "folder": "kindergarten",
+                        "photo": null
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "folder": "primaryschool",
+        "content": [
+            {
+                "language": "en",
+                "data": [
+                    {
+                        "title": "A modern school",
+                        "short": "A modern school can promptly react to currents societal needs. The year of COVID has tested the preparedness of GALILEO SCHOOL in moving all education to the online environment. Currently, the activities done at school are focusing on the socialisation of the pupils, their return to the company of their classmates. We do realise we are preparing students for jobs that do not exist yet today - that is the modernness and visionary approach of GALILEO SCHOOL.",
+                        "long": [
+                            "There have been countless theoretical articles written about what a modern or a 21st-century school is. From our point of view, a modern school is one that can immediately react to impulses, situations, and current requirements of the society, as well as new challenges for the preparedness of the children for life after school in general. One of the competences of the 21st century is the digital literacy. The level of IT equipment has become a criterion in the evaluation process of the facility. The COVID period has tested this aspect of preparedness intransigently. In the times of thorough collapse of the education system, GALILEO SCHOOL completely transitioned to on-line learning. Our teachers have overseen programs offered to the whole Slovakia – for example, a set of dictation exercises read by famous actors and artists.",
+                            "However, the post-COVID period has brought new needs. Even though the world and society are changing, moving forward with great speed, the 21st century school will keep the same mission – to educate and bring up the youth. The issue of social skills and morale has proven to be the key. A modern school reacts to the societal needs instantly.",
+                            "Despite fast changes in science and technology, a person, in essence, remains the same. The emotive processes and their course do not change, and their management has become more challenging in today’s stimuli-rich world. In this aspect, a modern school plays an imperative role. The moral education is becoming not only the subject taught with certain periodicity, but extends throughout all other subjects, and is becoming a common part of everyday life at school, at home, and is a part of one’s actions.",
+                            "The conditions for mastering the moral and social behaviours are not created solely by a good quality curriculum. The personality of a teacher too plays an important role, since they lead by example, carry out their job with enthusiasm and commitment, and prepare for the lessons scrupulously. In this manner, they themselves encourage the students’ interest in the covered topics as well as their effort to attend to their work conscientiously. The approach to the student is an equally important facet – the student becomes a partner. If the child is not forced to hide the lack of knowledge behind lies (the reason is often not laziness or unwillingness to cooperate, but insufficient understanding or slower comprehension), there is no need to come up with excuses, and it is much easier to behave in a moral manner.  If the teacher becomes a true example of a person constantly working to improve themselves instead of seeming as an all-knowing and never-mistaken mentor, they rid the students of feelings of inferiority and provide them with room to accept themselves as unique beings - beings able to overcome their own defects, not fearful of making mistakes that come with life, but learning to work with and learn from them. ",
+                            "The development of all moral attributes, suppression of aggressivity, emotional intelligence, self-reflection and care of a healthy mentality are all parts of the educational process."
+                        ],
+                        "language": "en",
+                        "folder": "primaryschool",
+                        "photo": null
+                    },
+                    {
+                        "title": "A transnational school",
+                        "short": "GALILEO SCHOOL would like to address all parents, who are looking for a school with English as the language of instruction with individual approach to students, a school, in which a computer and the internet are a natural part of the educational process.",
+                        "long": [
+                            "Europe and the European union have nowadays become very frequent topics of conversation. Let us also add, that it is our children, whose road to Europe we are opening. However, this fact proposes itself with multiple tasks to tackle. It is our duty to equip the next generation accordingly for this journey – with education, and last, but not least, a communication tool – the language.  ",
+                            "The efforts of foreign language inclusion into education are constantly moving towards lower and lower age groups. It is the young children who can acquire a good quality basis for their future language capabilities in a playful manner, without the feeling of studying and in a very short time span. ",
+                            "In the education program, GALILEO SCHOOL unites the intensive language teaching requirements with very high content standards approved by the Ministry of Education of Slovak Republic. The teaching of subjects is conducted in English with the use of original textbooks written in the English language as well. Only the subject of Slovak Language is taught in Slovak in the full extent of approved educational plans, with the full lesson allocation. Mathematics is taught in both Slovak and English languages. ",
+                            "Our school is approved by the Ministry of Education and is included in the Slovak school network. The rector of Constantine the Philosopher University in Nitra has taken upon himself the role of the guarantor of the learning process.",
+                            "GALILEO SCHOOL would like to address the parents, who refuse the traditional teaching norms and are looking for a school with individual approach to students, a school, in which a computer and the internet are a natural part of the educational process.",
+                            "A low number of students per class (approx. 16), a high-quality equipment and an experienced teaching staff with innovative ambitions are all a guarantee of an excellent quality education."
+                        ],
+                        "language": "en",
+                        "folder": "primaryschool",
+                        "photo": null
+                    },
+                    {
+                        "title": "A bilingual school",
+                        "short": "The European Union programs promote the idea of everyone in the Central-European area speaking the minimum of three languages passively. It is possible to reach this goal if we start with the foreign-language education in the pre-school age of children. ",
+                        "long": [
+                            "The term bilingual is mostly connected to the category of high schools – specifically grammar schools. It is a widely known fact, that the ability to acquire a foreign language becomes lesser with age. Based on scientific observations, the space between 2 and 13 years of age is regarded as the optimum for foreign language acquisition. Researchers in the field of psycholinguistics, e. g. S. D. Krashan, specify the ideal limit to the pre-school age of 5 – 6 years.",
+                            "They connect easier foreign language acquisition in this age with the following:",
+                            "- The plasticity and flexibility of higher nervous functions in child age, which is lost after the maturing period,",
+                            "- The biological predisposition and the so-called imprinting; according to the Nobel prize winner K. Lorenz, if this age is not utilized for the study of a second language, the chance to acquire the language easily, efficiently, and effortlessly is lost,",
+                            "- The physiological processes of lateralization, the gradual specialisation of language centres in the left hemisphere of the brain (in first graders); this process is finished in puberty which  marks the end of the optimal age of language acquisition,",
+                            "- The so-called non-specific way, where the process of foreign language acquisition transpires in natural game-like situations,",
+                            "- The time factor; in contrast with studying behind the desk, where the contact of the pupil with the language is restricted to a specific hour, with non-specific learning, the number of hours devoted to language stimulation is significantly higher,",
+                            "- The natural pronunciation in foreign language, which is generally achieved only in childhood (as proven by the research of J. Asher and R. Garcia).",
+                            "Private English Primary school GALILEO SCHOOL also takes the preparation of the pupils for bilingual education into account. The pre-school class of the GALILEO SCHOOL kindergarten for children in the age of five to six is devoted to this mission. The combination of English and Slovak languages is not restrictive in the choice of school in the higher grades either. We have therefore decided for the obligatory subjects of Slovak Language and partly Mathematics to be taught in Slovak, respecting the content and performance standards for elementary schools approved by the Ministry of Education of Slovak republic.",
+                            "The European Union programs promote the idea of everyone in the Central-European area speaking the minimum of three languages passively. It is possible to reach this goal if we start with the foreign-language education in the pre-school age of children. ",
+                            "We would like to thank PhDr. Oľga Árochová, CSc. for providing materials used in this section."
+                        ],
+                        "language": "en",
+                        "folder": "primaryschool",
+                        "photo": null
+                    },
+                    {
+                        "title": "A creative school",
+                        "short": "In a creative school, the pupil does not have to memorise vast amounts of data, they learn to find it, work with it, and apply it in practice.",
+                        "long": [
+                            "In a creative school, the pupils themselves take an active part in the educational process, acquire the curriculum by their own exploration, and with the help of a teacher are able to search for information connected with the topic, to subsequently compile it in a form of a project or a discussion post. The content is adopted naturally and non-violently, and plots direct connections between the theoretical knowledge and its use in everyday life. The pupils learn to understand the relationships among occurrences, reasons, and consequences. They find the purpose of education, opening the amazing world of knowledge and bringing joy and satisfaction.",
+                            "The teacher takes up the role of a coordinator, as a managing and guiding subject, as a helpful hand in explanations and clarifications. This work is very demanding for the personality of the teacher and their preparation for classes. It requires individual approach to pupils, a closer familiarization with each of them, the choice of a suitable method and technique. In this manner, the work becomes creative for the teacher as well and offers a vast array of options of the use of individual creative capabilities and subsequently greater satisfaction from the work."
+                        ],
+                        "language": "en",
+                        "folder": "primaryschool",
+                        "photo": null
+                    }
+                ]
+            },
+            {
+                "language": "sk",
+                "data": [
+                    {
+                        "title": "Moderná škola",
+                        "short": "Moderná škola dokáže okamžite reagovať na aktuálne potreby spoločnosti. Koronarok preveril pripravenosť školy GALILEO SCHOOL preniesť výučbu do on-line priestoru. V súčasnosti sa aktivity školy sústreďujú na socializáciu žiakov, ich návrat do kolektívu. Uvedomujeme si, že žiakov pripravujeme na pracovné pozície, ktoré dnes ešte neexistujú. V tom je modernosť a vizionárstvo GALILEO SCHOOL.",
+                        "long": [
+                            "Teoretických článkov o tom, čo je to moderná škola, alebo škola 21. storočia, bolo popísaných neúrekom. Z nášho pohľadu je moderná škola taká, ktorá dokáže okamžite reagovať na podnety a situácie, na momentálne potreby spoločnosti a nové výzvy pripravenosti detí na samotný život.",
+                            "Jednou z kompetencií 21. storočia je aj digitálna gramotnosť. Vybavenosť školy IT technikou sa stala kritériom hodnotenia zariadenia. A doba koronová túto pripravenosť škôl preverila nekompromisne. V čase všeobecného kolapsu vzdelávacieho systému GALILEO SCHOOL prešla na kompletné on-line vzdelávanie. Pod taktovkou našich učiteľov vznikali programy, ktoré sme ponúkli celému Slovensku – napríklad celý súbor diktátov, čítaných známymi hercami a umelcami.",
+                            "Doba postkoronová priniesla však nové potreby. Hoci sa svet a spoločnosť mení, napreduje závratným tempom, škola aj v 21. storočí bude mať rovnakú úlohu - vzdelávať a vychovávať mladých ľudí. Problematika sociálnych zručností a morálky sa ukázala ako kľúčová. A moderná škola reaguje na potreby spoločnosti okamžite.",
+                            "Napriek rýchlym zmenám vo vede a technike, človek vo svojej podstate zostáva stále rovnaký. Emočné procesy a ich priebeh sa nemenia, a ich zvládanie je v dnešnom, na podnety oveľa bohatšom svete, oveľa náročnejšie. V tomto smere hrá moderná škola naozaj nezameniteľnú úlohu. Morálna výchova sa stáva nielen predmetom vyučovaným s určitou periodicitou, ale prelína sa všetkými predmetmi, stáva sa bežnou súčasťou každodenného života v škole, doma, je súčasťou konania jednotlivca.",
+                            "Podmienky na osvojenie si morálneho a sociálneho chovania sa nevytvárajú len kvalitným kurikulom. Dôležitú úlohu hrá osobnosť učiteľa, ktorý sám musí ísť príkladom, vykonáva svoju prácu s nadšením, odovzdanosťou, svedomite sa pripravuje na vyučovacie hodiny. Sám tak podnecuje záujem žiakov o problematiku a snahu svedomite pristupovať ku svojej práci. Rovnako dôležitým aspektom je prístup ku žiakovi, keď zo žiaka sa stáva partner. Ak nie je dieťa nútené zakrývať nevedomosť klamstvom, /často spočívajúcu nie v lenivosti a neochote spolupracovať, ale v nedostatočnom porozumení či pomalšom chápaní /, nemusí si vymýšľať výhovorky, je preň oveľa ľahšie chovať sa morálne. Ak učiteľ nestavia vlastnú osobu do role vševedúceho a nechybujúceho mentora, a sám je príkladom neustálej práce na sebe samom, zbavuje dieťa pocitu menejcennosti a otvára mu priestor ku akceptácii seba samého ako jedinečnej bytosti, ktorá prekonáva vlastné nedostatky úsilím, nebojí sa chýb, ktoré sú stálou súčasťou života, ale učí sa ich naprávať a poučiť sa z nich.",
+                            "Súčasťou vyučovania je rozvoj všetkých morálnych vlastností, potláčanie agresivity, rozvoj emocionálnej inteligencie, sebareflexie, výchova zdravej osobnosti."
+                        ],
+                        "language": "sk",
+                        "folder": "primaryschool",
+                        "photo": null
+                    },
+                    {
+                        "title": "Nadnárodná škola",
+                        "short": "GALILEO SCHOOL chce osloviť rodičov, ktorí hľadajú školu s vyučovacím jazykom anglickým, s individuálnym prístupom k žiakom, školu, v ktorej počítač a internet je prirodzenou súčasťou vyučovacieho procesu.",
+                        "long": [
+                            "Európa, Európska Únia - to sú dnes hádam najskloňovanejšie slová. A jedným dychom dodávame, že cestu do Európy otvárame predovšetkým svojim deťom. Tento fakt však kladie nejednu úlohu aj pred nás. Na cestu do EÚ musíme nasledujúcu generáciu dostatočne vybaviť. Vzdelaním a v neposlednom rade dorozumievacím prostriedkom - jazykom.",
+                            "Snahy o zavedenie výučby cudzieho jazyka sa presúvajú do stále nižších vekových kategórií. Práve malé deti si hravo a bez pocitu učenia sa dokážu osvojiť v pomerne krátkom čase kvalitné základy budúcich jazykových znalostí.",
+                            "GALILEO SCHOOL vo svojom programe spája požiadavky na intenzívnu výučbu jazykov a zároveň náročné požiadavky obsahových štandardov schválených Ministerstvom školstva SR. Výučba predmetov prebieha v anglickom jazyku pomocou originálnych anglicky písaných učebníc. Iba slovenský jazyk je vyučovaný po slovensky v plnom rozsahu schválených učebných plánov, s kompletnou hodinovou dotáciou. Matematika prebieha v slovenskom i anglickom jazyku.",
+                            "Naša škola je schválená Ministerstvom školstva SR a je zaradená do siete škôl SR. Garanciu nad učebným procesom prevzal rektor Univerzity Konštantína Filozofa v Nitre.",
+                            "GALILEO SCHOOL chce osloviť rodičov, ktorí odmietajú tradičné formy výučby a hľadajú školu s individuálnym prístupom k žiakom, školu, v ktorej počítač a internet je prirodzenou súčasťou vyučovacieho procesu.",
+                            "Nízky počet žiakov v triede cca 16 detí, kvalitné vybavenie a skúsený učiteľský zbor s inovačnými ambíciami sú zárukou vysokej kvality vzdelávania."
+                        ],
+                        "language": "sk",
+                        "folder": "primaryschool",
+                        "photo": null
+                    },
+                    {
+                        "title": "Bilingválna škola",
+                        "short": "Programy Európskej únie propagujú názor, že v stredoeurópskom priestore by mal každý ovládať aspoň pasívne tri jazyky. Je to možné dosiahnuť, ak sa s inojazyčnou výučbou začne už v predškolskom veku.",
+                        "long": [
+                            "S pojmom bilingválny sa stretávame skôr v kategórii stredných škôl - predovšetkým gymnázií.",
+                            "Je všeobecne známe, že schopnosť osvojiť si, teda naučiť sa cudzí jazyk vekom klesá. Na základe vedeckých pozorovaní za optimálne obdobie nadobúdania inojazyčných schopností sa považuje vek medzi 2. a 13. rokom života. Bádatelia v oblasti psycholingvistiky, ako napr. S. D. Krashan kladie ideálny limit už do predškolského veku, do obdobia 5 - 6 rokov.",
+                            "Ľahšie osvojovanie si cudzích jazykov v detskom veku sa dáva do súvislosti:",
+                            "- S plasticitou a flexibilitou vyššej nervovej činnosti v detskom veku, ktorá sa po období dospievania stráca.",
+                            "- S biologickou preddispozíciou a tzv. imprintingom (vpečatením). Podľa nositeľa Nobelovej ceny K. Lorenza, ak sa nevyužije toto obdobie pre učenie sa druhému jazyku, stratí sa šanca naučiť sa cudzí jazyk ľahko a efektívne bez vynaloženia veľkej námahy.",
+                            "- S fyziologickými procesmi tzv. lateralizácie, t.j. postupného umiestňovania rečových centier v ľavej hemisfére mozgu (u pravákov). Tento proces končí v puberte a tým spravidla končí aj optimálne obdobie pre osvojovanie si cudzieho jazyka.",
+                            "- S tzv. nešpecifickou cestou t.j. spôsob osvojovania si cudzieho jazyka v prirodzených hrových situáciách.",
+                            "- S časovým faktorom. Na rozdiel od učenia sa v lavici, keď je žiak v kontakte s jazykom iba určitú hodinu, pri nešpecifickom učení je počet hodín určený pre jazykovú stimuláciu podstatne väčší.",
+                            "- S prirodzenou výslovnosťou v cudzom jazyku, ktorá sa spravidla dá získať iba v detstve. (potvrdzujú to výskumy J. Ashera a R. Garciu)",
+                            "Súkromná základná škola GALILEO SCHOOL ráta aj s vlastnou prípravou svojich žiakov na bilingválnu výučbu. Tomuto slúži trieda predškolákov materskej školy GALILEO SCHOOL určená deťom vo veku od piatich do šiestich rokov. Kombinácia anglického a slovenského jazyka nie je obmedzujúca pri výbere školy ani vo vyšších ročníkoch. Preto sme sa rozhodli povinné predmety slovenský jazyk a čiastočne aj matematiku vyučovať v slovenskom jazyku rešpektujúc obsahové a výkonové štandardy schválené Ministerstvom školstva Slovenskej republiky platné pre základné školy.",
+                            "Programy Európskej únie Sokrates a Leonardo da Vinci propagujú názor, že v stredoeurópskom priestore by mal každý ovládať aspoň pasívne tri jazyky. Je to možné dosiahnuť, ak sa s inojazyčnou výučbou začne už v predškolskom veku.",
+                            "Ďakujeme PhDr. Oľge Árochovej, CSc. Za poskytnuté materiály, z ktorých sme vychádzali v tejto kapitole."
+                        ],
+                        "language": "sk",
+                        "folder": "primaryschool",
+                        "photo": null
+                    },
+                    {
+                        "title": "Tvorivá škola",
+                        "short": "V tvorivej škole žiak nemusí memorovať množstvo údajov, učí sa ich nachádzať, pracovať s nimi a aplikovať ich do praxe.",
+                        "long": [
+                            "V tvorivej škole sa žiak sám aktívne zapája do vyučovacieho procesu, učivo si osvojuje vlastným bádaním, s pomocou učiteľa si dokáže aj sám vyhľadáva informácie ku danej téme a následne ich spracúva vo forme projektu, či príspevku do diskusie. Učivo tak prijíma nenásilne a prirodzene, nachádza priamu súvislosť medzi teoretickými poznatkami a ich využitím v praktickom živote. Učí sa chápať vzťah medzi dejmi, príčinami a následkami. Nachádza zmysel vzdelávania, otvárajúci fantastický svet poznania a prinášajúci radosť a uspokojenie.",
+                            "Učiteľ vystupuje v úlohe koordinátora, ako riadiaci a usmerňujúci subjekt, ako pomoc pri vysvetľovaní a objasňovaní. Táto práca je veľmi náročná na osobnosť učiteľa a jeho prípravu na vyučovanie. Vyžaduje nutnosť osobného prístupu k žiakom, bližšie spoznanie každého z nich, voľbu vhodnej metódy a prístupu. Týmto sa však stáva tvorivou i pre samotného učiteľa a prináša mu široké možnosti využitia vlastných tvorivých schopností a následne väčšie uspokojenie z vlastnej práce."
+                        ],
+                        "language": "sk",
+                        "folder": "primaryschool",
                         "photo": null
                     }
                 ]

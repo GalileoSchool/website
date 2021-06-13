@@ -57,7 +57,7 @@ class Paragraph {
             </div>
             <div class="card-body">
                 <div class="card-text long">
-                    <p>${this.long}</p>
+                ${this.long.map(photo =>`<p>${photo}</p>`).join('<br>')}
                 </div>
             </div>
             <div class="card-footer">
@@ -102,8 +102,9 @@ function parseString(string) {
         let parsedSections = [];
 
         sections.map(section => { // We iterate through every parsed section
-            let para = section.split('\r\n').filter(sentence => sentence ? true : false); // Splitting sections into paragraphs by new line and removing empty lines
-            parsedSections.push({ title: para[0], short: para[1], long: para[2] }); // Pushing a parsed section object into an array
+            let para = section.split('\r\n').filter(sentence => sentence.trim() ? true : false); // Splitting sections into paragraphs by new line and removing empty lines
+            //console.log(para.slice(2, para.length));
+            parsedSections.push({ title: para[0], short: para[1], long: para.slice(2,para.length) }); // Pushing a parsed section object into an array
         });
 
         return parsedSections; // return array of parsed sections as a callback
@@ -151,12 +152,12 @@ function writeFile(path, string, appendFile) {
     try {
         switch (appendFile) {
             case true:
-                fs.appendFile(path, string, { flag: 'a+', mode: 0666 }, (err) => {
+                fs.appendFile(path, `${string}\r\n`, { flag: 'a+', mode: 0666 }, (err) => {
                     if (err) throw new Error(err);
                 });
                 break;
             case false:
-                fs.writeFile(path, string, { flag: 'w+', mode: 0666 }, (err) => {
+                fs.writeFile(path, `${string}\r\n`, { flag: 'w+', mode: 0666 }, (err) => {
                     if (err) throw new Error(err);
                 });
                 break;
@@ -203,6 +204,17 @@ function arrayIntoComponents(array) {
     });
 }
 
+/**
+ * 
+ * @param {Array} array 
+ * @deprecated This will be added later on, it should check whether Json file contains objects with paths to photos and ask whether to combine them with newly parsed objects array of data
+ */
+function checkJsonForPhotos(parsedJson) {
+    let arr = parsedJson;
+
+    return parsedJson;
+}
+
 Files(C.dPath, async res => {
     var arr = await createFilesArray(res);
     var folders = getFolders(C.dPath);
@@ -214,7 +226,7 @@ Files(C.dPath, async res => {
     console.log(`Found: ${found}\n`);
     
     if (found) {
-        if(readlineSync.question(`\nWould you like to fetch the AboutUs data from ${C.jsonFile}? Yes/No\n`).toLowerCase() === 'yes') {
+        if (readlineSync.question(`\nWould you like to fetch the AboutUs data from ${C.jsonFile}? Yes/No\n`).toLowerCase() === 'yes') {
             temp = loadFromJson(Path.join(C.dPath, C.jsonFile));
             skip = true;
         }
