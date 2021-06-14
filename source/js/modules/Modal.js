@@ -17,8 +17,8 @@ class ModalContainer {
 
     this.HtmlText = this._getHtmlText();
     this.rawText = this._getRawText();
-
-    if (!this.HtmlText || !this.rawText) throw new Error('[ModalContainer] >>> ModalContainer.constructor() >>> Object reference resulted in a nullptr');
+    
+    if (!this.HtmlText && !this.rawText) throw new Error('[ModalContainer] >>> ModalContainer.constructor() >>> Object reference resulted in a nullptr');
   }
 
   /**

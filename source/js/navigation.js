@@ -24,7 +24,7 @@ $(document).ready(() => {
     }
 
     // We check here whether the url contains /school/ section
-    if (urlContains('/school/')) {
+    if (urlContains('/school/') && !urlContains('/summer/')) {
         // If it does we get in what type of school we are atm
         const arr = document.location.pathname.split('/');
         // And then we set one of the coresponding tabs in the dropdown menu of 'About Us' to active

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!-- This indention is totally legal and we are 100% certain about this -->
+<html lang="en">
+    
+<head>
+    {{head}}
+    <script src="{fill_parents}js/modules/Modal.js"></script>
+    <style>
+        .modal-inner-wrapper,
+        .modal-text-wrapper,
+        .modal.fixed.admissions {
+            width: 100%;
+            height: 100%;
+            padding: 0 !important;
+        }
+
+        .modal a {
+            width: 100%;
+            margin: auto;
+            background-color: rgba(196, 196, 196, 0.8);
+            font-weight: bold;
+            padding: 4px;
+            font-size: medium;
+        }
+
+        .modal.pop-up {
+            max-width: 95%;
+            max-height: 20%;
+            display: none;
+            margin: auto;
+            margin-top: 0;
+            background-color: #a60000;
+            color: whitesmoke;
+            font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
+        }
+
+        .modal.pop-up .content .body,
+        .modal.pop-up .content .footer {
+            padding: 4px;
+            font-size: small;
+        }
+        .modal.pop-up .content .footer {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: auto;
+        }
+
+        .modal.pop-up .content .footer button {
+            position: relative;
+            padding: 0px 8px;
+        }
+
+        .modal.pop-up .content .header {
+            padding: 6px;
+            font-size: medium;
+        }
+
+        .modal.pop-up .content,
+        .modal.pop-up .content > div {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="modal-background" class="admissions no-display"></div>
+    {{navigation}}
+    <div class="content">
+        <div id="menu-overlay" class="transparent overlay no-display"></div>
+        {{carousel}}
+        <!-- {{summerSchool.title}} -->
+
+        <div class="card-deck index admissions">
+            {{summerSchool.Cards}}
+        </div>
+    </div>
+
+    <div id="modal-close" class="admissions modal-close no-display fixed top">
+        <img src="{fill_parents}images/icons/close_black.png" alt="">
+    </div>
+    <div id="modal-box" class="admissions modal fixed"></div>
+    <div id="pop-up" class="fixed top modal pop-up">
+        <div class="content" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="header">
+
+            </div>
+            <div class="body">
+
+            </div>
+            <div class="footer">
+                <button onclick="hideMsgBox()" id="close-pop" style="height: 100%; border: none; background-color: #ffffffcc; font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif; font-size: large; font-weight: bold; float: right;">X</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts at the end to make sure everything else is already loaded. -->
+    <script src="{fill_parents}js/carousel.js"></script>
+    <script>
+        if(iFramesSupported) {
+            const modalBox = document.getElementById('modal-box');
+            const modalCloseBtn = document.getElementById('modal-close');
+            const modalBckg = document.getElementById('modal-background');
+
+            let Handler;
+            const Viewer = new ModalViewer(modalBox, modalBckg, modalCloseBtn);
+            let Container;
+
+            /** Adding clickEvent listener for close button on modal box */
+            $(modalCloseBtn).click((e) => {
+            if (!Handler) {
+                e.preventDefault();
+                throw new Error('Handler was not set before calling modalCloseBtn clickEvent');
+            }
+            Handler.hide();
+            });
+
+            // TODO: var btn = Viewer._addButton("modal-inner-close", "Back"); - Fix event listener getting ducked up when shown
+
+            /** Click Handler of Admissions
+             *
+             * @param {HTMLElement} target
+             */
+            function Click(target) {
+            const textContainer = target.querySelector('div.admiss-text');
+            Container = new ModalContainer(textContainer);
+            if (!Handler) {
+                Handler = new ModalHandler(Container, Viewer, false, false);
+            } else { Handler.loadNewContainer(Container); }
+
+            Handler.show();
+            Handler.scrollToTop();
+            }
+        }
+    </script>
+    <script>
+        if(!iFramesSupported) {
+            function Click(target) {
+                const alternative = target.querySelector('div.alt-text').innerHTML;
+                showMsgBox("Whoops... say no to PDF", `${alternative}`);
+            }
+
+            function showMsgBox(title, content) {
+                hideMsgBox();
+                let HtmlElement = document.getElementById('pop-up');
+                HtmlElement.children[0].children[0].innerHTML = title;
+                HtmlElement.children[0].children[1].innerHTML = content;
+                $("#" + HtmlElement.id).slideDown(300);
+                // setTimeout(() => {hideMsgBox();}, 7000);
+            }
+
+            function hideMsgBox() {
+                $('#pop-up').slideUp(300);
+            }
+        }
+    </script>
+</body>
+
+</html>
