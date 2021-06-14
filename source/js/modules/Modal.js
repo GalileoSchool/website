@@ -189,6 +189,30 @@ class ModalViewer {
     this.Buttons = [];
   }
 
+  /**
+   * 
+   * @returns {HTMLElement}
+   */
+  getContainer() {
+    return this.container;
+  }
+
+  /**
+   * 
+   * @returns {HTMLElement[]}
+   */
+   getTxtBoxes() {
+    return this.txtBoxes;
+  }
+
+  /**
+   * 
+   * @returns {HTMLElement[]}
+   */
+   getButtons() {
+    return this.Buttons;
+  }
+
   /** Adds a new `Content` wrapping element into the modal-box
      *
      * @returns {HTMLElement}
