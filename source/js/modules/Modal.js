@@ -52,7 +52,7 @@ class ModalHandler {
      * @param {ModalContainer} modalContainer
      * @param {ModalViewer} modalViewer
      */
-  constructor(modalContainer, modalViewer, bckg_scrolling = false, sliding = true) {
+  constructor(modalContainer, modalViewer, bckg_scrolling = false, sliding = true, time = 400) {
     // ctor is a shorthand for constructor
     // Nullptr means null pointer; The object reference that you made was not set to an instance of an object and thus resulted in a null object
     if (!modalContainer || !modalViewer) throw new Error('[ModalHandler] >>> ModalHandler.constructor() >>> Object reference resulted in a nullptr');
@@ -63,6 +63,7 @@ class ModalHandler {
 
     this.bckg_scrolling = bckg_scrolling;
     this.sliding = sliding;
+    this.time = time;
     this._initializeModal();
   }
 
@@ -108,10 +109,11 @@ class ModalHandler {
 
   /**
      * `Show the modal-box`
+     * @param {Number} time The time for the modal box to slide down
      */
   show() {
-    if (this.sliding) $(this.view.container.parentElement).slideDown(400);
-    else $(this.view.container.parentElement).fadeIn(400);
+    // if (this.sliding) $(this.view.container.parentElement).animate({ height: '100vh' }, time);
+    $(this.view.container.parentElement).css({ height: '0vh', display: 'block' }).animate({ height: '100vh' }, this.time);
     if (this.view.background && this.view.closeBtn) {
       $(this.view.background).removeClass('no-display');
       $(this.view.closeBtn).removeClass('no-display');
@@ -121,21 +123,27 @@ class ModalHandler {
 
   /**
      * `Hide the modal-box`
+     * @param {Number} time The time for the modal box to slide up
      */
   hide() {
-    $(this.view.container.parentElement).slideUp(400);
-    $('body').removeClass('no-overflow');
-    if (this.view.background && this.view.closeBtn) {
-      $(this.view.background).addClass('no-display');
-      $(this.view.closeBtn).addClass('no-display');
-    }
+    $(this.view.container.parentElement).animate({ height: '0vh' }, this.time);
+    let time = new Viewport($(window).innerWidth(), $(window).innerHeight()).isDesktop ? (this.time * 2) : this.time;
+    setTimeout(() => {
+      $(this.view.container.parentElement).css({ display: 'none' });
+      $('body').removeClass('no-overflow');
+      if (this.view.background && this.view.closeBtn) {
+        $(this.view.background).addClass('no-display');
+        $(this.view.closeBtn).addClass('no-display');
+      }
+    },(time));
+    
   }
 
   /**
      * `Toggles the visibility of the modal-box`
      */
   toggle() {
-    if (this.sliding) $(this.view.container.parentElement).slideToggle(400);
+    if (this.sliding) $(this.view.container.parentElement).slideToggle(3000);
     else $(this.view.container.parentElement).toggle();
     if (this.view.background && this.view.closeBtn) {
       $(this.view.background).toggleClass('no-display');
