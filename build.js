@@ -81,9 +81,9 @@ class InterviewCard {
 			<h4 class="card-title">${this.title}</h4>
 			<div class="card-body">
 				<h5 class="card-subtitle">${this.student}</h5>
+				<p class="card-text">${this.quickinfo}</p>
 				<div class="card-text">
-					<p class="card-text">${this.quickinfo}</p>
-					<p class="card-text card-long-desc no-display">${this.longdesc}</p>
+					<div class="card-text card-long-desc no-display">${this.longdesc.split('\r\n').map(sentence => `<p class="card-text card-long-desc">${sentence}</p>`).join('')}</div>
 				</div>
 				${this.hasPhotos ? `<h2 class="no-display">Gallery</h2>` : ``}
 				<ul class="card-images no-display">
@@ -460,9 +460,9 @@ if (!success)
 	return;
 // second, we prepare all components
 const enComponents = makeComponentDictionary(getDirname() + '/components/{*,en/*}.html')
-console.log(enComponents);
+//console.log(enComponents);
 const skComponents = makeComponentDictionary(getDirname() + '/components/{*,sk/*}.html')
-console.log(skComponents)
+//console.log(skComponents)
 // third, we compose all css files into a single one
 console.log('Beginning CSS composition into style.css')
 // find all css files inside css folder
