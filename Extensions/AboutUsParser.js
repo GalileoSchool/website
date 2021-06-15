@@ -40,7 +40,7 @@ class Paragraph {
     getDefaultHtmlCode() {
             return `<div class="card about">
         <div class="card-img">
-            ${this.photo ? `<img src="{fill_parents}images/${Path.parse(C.dPath).base}/${this.photo}" class="card-img-top" alt="Picture Not Available!">` : ''}
+            ${this.photo ? `<img src="{fill_parents}images/${Path.parse(C.dPath).base.toLowerCase()}/${this.photo}" class="card-img-top" alt="Picture Not Available!">` : ''}
         </div>
         <div class="card-content">
             <div>
