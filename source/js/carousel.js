@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 
 // get the carousel images
-const images = Array.from(document.querySelectorAll('.carousel-item img'));
+const images = Array.from(document.querySelectorAll('.carousel-item img:not([style])'));
 // get the source strings
 const imageSources = images.map((image) => image.getAttribute('src'));
 // get the alternate mobile source strings

@@ -1,0 +1,95 @@
+[
+    {
+        "folder": "pearson",
+        "content": [
+            {
+                "language": "en",
+                "data": [
+                    {
+                        "title": "IGCSE Exams",
+                        "short": "The IGCSE curriculum is studied by students in Gym 1 and 2. Galileo High School is a Test Centre for Pearson, which is a world-wide educational organisation. The IGCSE subjects that are taught at Galileo High School are Biology, Business, Chemistry, Computer Science, English as a Second Language, French, Geography, German, History, Mathematics, Further Pure Mathematics, Physics and Spanish.",
+                        "long": [
+                            "For students to be successful in the 21st Century, the IGCSE Curriculum provides opportunities for the students to develop higher level critical thinking skills, which encourages them to become independent learners.",
+                            "All IGCSE subjects are assessed via external examinations and the grade range is 9-1.",
+                            "Students choose their IGCSE subjects after having meetings and consultations with the School’s College Counsellor, teachers, and their parents. IGCSE’s are important for students as it is the first step towards higher education.",
+                            "For further information please contact the school’s exams officer at [exams.officer@gsedu.sk](mailto:exams.officer@gsedu.sk)"
+                        ],
+                        "language": "en",
+                        "folder": "pearson",
+                        "photo": null
+                    },
+                    {
+                        "title": "International A Level Brief",
+                        "short": "The International A Level (IAL) curriculum is studied by students in Gym 3 and 4. Galileo High School is a Test Centre for Pearson, which is a world-wide educational organisation. The IAL subjects that are taught at Galileo High School are Biology, Business, Chemistry, French, German, History, Mathematics, Further Mathematics, Physics, Psychology and Spanish.",
+                        "long": [
+                            "The A Level qualification is still recognised by universities around the world as the main pathway for students to be successful in. The IAL qualification is taught using a modular structure and the subject takes two years to complete, with the International Advanced Subsidiary Level (IAS) being completed in the first year. The IAS is equivalent to half an A Level. The second year is called an Advanced level.",
+                            "IAS and IAL subjects are assessed via external examinations and the grade range for IAS is A-E and the IAL grade range is A*-E.",
+                            "Students that have completed the IAL qualification at Galileo High School have been successful in applying and studying at universities across the globe.",
+                            "Students choose their IAL subjects after having meetings and consultations with the School’s College Counsellor, teachers, and their parents. IAL’s are important as it helps the students to become successful independent lifelong learners.",
+                            "For further information, please contact the school’s exams officer at [exams.officer@gsedu.sk](mailto:exams.officer@gsedu.sk)"
+                        ],
+                        "language": "en",
+                        "folder": "pearson",
+                        "photo": null
+                    },
+                    {
+                        "title": "Private Candidates IGCSE/A level",
+                        "short": "As Galileo High School is recognised and approved by Pearson to be an International Test Centre for Central Europe, Private Candidates are eligible to be entered to take exams for both the IGCSE and the International A Level (IAL) qualifications.",
+                        "long": [
+                            "The IGCSE subjects that are available for Private Candidates to take an examination are Biology, Business, Chemistry, Computer Science, English as a Second Language, French, Geography, German, History, Mathematics, Further Pure Mathematics, Physics and Spanish.",
+                            "The IAL subjects that are available to Private Candidates to take an examination are Biology, Business, Chemistry, Economics, French, German, History, Mathematics, Further Mathematics, Physics, Psychology and Spanish.",
+                            "If you are a Private Candidate and you would like to be entered for an IGCSE or an IAL qualification, please contact the school’s exams officer at [exams.officer@gsedu.sk](mailto:exams.officer@gsedu.sk)"
+                        ],
+                        "language": "en",
+                        "folder": "pearson",
+                        "photo": null
+                    }
+                ]
+            },
+            {
+                "language": "sk",
+                "data": [
+                    {
+                        "title": "IGCSE skúšky",
+                        "short": "Študenti prvého a druhého ročníka gymnázia sa vzdelávajú podľa kurikula medzinárodného programu IGCSE. GALILEO SCHOOL je vzdelávacím a skúškovým centrom Pearson, renomovanej vzdelávacej spoločnosti, ktorej certifikáty sú uznávané na celom svete. Študenti sa pripravujú na tieto skúšky v predmetoch: Biology, Business, Chemistry, Computer Science, English as a Second Language, French Language, Geography, German Language, History, Mathematics, Further Pure Mathematics, Physics a Spanish Language.",
+                        "long": [
+                            "Moderné kurikulum IGCSE prepája vedomosti s rozvojom zručností pre 21.storočie. Študenti majú možnosť aplikovať kritické myslenie, riešiť problematické úlohy a napredovať k samostatnosti pri učení sa.",
+                            "Všetky skúšky sa konajú na pôde školy a sú hodnotené na stupnici od 1 po 9 externými hodnotiteľmi v Anglicku.",
+                            "Výber predmetov na skúšky IGCSE je predmetom konzultácií a spolupráce žiaka, učiteľov, rodičov a poradcu pre univerzitné štúdium. Certifikáty skúšok IGCSE sú dôležitou súčasťou portfólia študentov pri prijímaní na univerzitné štúdium v zahraničí.",
+                            "Pre viac informácií prosím kontaktujte školkého administrátora emailom na  exams.officer@gsedu.sk"
+                        ],
+                        "language": "sk",
+                        "folder": "pearson",
+                        "photo": null
+                    },
+                    {
+                        "title": "Skúšky International A level",
+                        "short": "Študenti tretieho a štvrtého ročníka gymnázia sa vzdelávajú podľa kurikula medzinárodného programu International A level (IAL). GALILEO SCHOOL je vzdelávacím a skúškovým centrom Pearson, renomovanej vzdelávacej spoločnosti, ktorej certifikáty sú uznávané na celom svete. Študenti sa pripravujú na tieto skúšky v predmetoch: Biology, Business, Chemistry,  French Language, German Language, History, Mathematics, Further Mathematics, Physics a Spanish Language.",
+                        "long": [
+                            "Certifikáty A level skúšok sú anglickou maturitnou skúškou, ukončujúcou stredoškolské vzdelanie v Anglicku. Certifikáty A level sú vstupnou bránou na najlepšie univerzity na celom svete. Program štúdia je rozdelený na dva roky, na konci prvého sa konajú skúšky International Advanced Subsidary – IAS, an konci druhého roka štúdia potom International Advanced level skúšky, niekedy označované ako IAL.",
+                            "Všetky skúšky sa konajú na pôde školy a sú hodnotené na stupnici od A/A* po E externými hodnotiteľmi v Anglicku.",
+                            "Dobré výsledky skúšok A level zabezpečili úspešné prijatie na univerzity po celom svete a dali predpoklad na úspešné zvládnutie štúdia na zahraničných univerzitách. ",
+                            "Výber predmetov na skúšky IAL je predmetom konzultácií a spolupráce žiaka, učiteľov, rodičov a poradcu pre univerzitné štúdium. Certifikáty skúšok IAL sú dôležitou súčasťou portfólia študentov pri prijímaní na univerzitné štúdium v zahraničí.",
+                            "Pre viac informácií prosím kontaktujte školkého administrátora emailom na  exams.officer@gsedu.sk"
+                        ],
+                        "language": "sk",
+                        "folder": "pearson",
+                        "photo": null
+                    },
+                    {
+                        "title": "Externí záujemci o skúšky IGCSE/A level",
+                        "short": "GALILEO SCHOOL je vzdelávacím a skúškovým centrom Pearson, renomovanej vzdelávacej spoločnosti, ktorej certifikáty sú uznávané na celom svete. Externí záujemci sa môžu prihlásiť na skúšky IGCSE ako aj International A level. ",
+                        "long": [
+                            "Predmety z ktorých môžu externí kandidáti vykonať skúšky IGCSE sú nasledovné: Biology, Business, Chemistry, Computer Science, English as a Second Language, French, Geography, German, History, Mathematics, Further Pure Mathematics, Physics and Spanish.",
+                            "Predmety z ktorých môžu externí kanddáti vykonať skúšky International A level sú nasledovné: Biology, Business, Chemistry, Economics, French, German, History, Mathematics, Further Mathematics, Physics, Psychology and Spanish.",
+                            "V prípade záujmu o vykonanie skúšky, alebo v prípade otázok, prosím kontaktujte školkého administrátora emailom na  exams.officer@gsedu.sk"
+                        ],
+                        "language": "sk",
+                        "folder": "pearson",
+                        "photo": null
+                    }
+                ]
+            }
+        ]
+    }
+]

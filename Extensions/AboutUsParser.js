@@ -12,11 +12,7 @@ const C = {
     path: Mdir + '/../components/', // Components folder path
     separator: '[Section]', // Separator used in text files to separate each paragraph
     jsonFile: 'AboutUs.json',
-    school: {
-        kindergarten: 'kindergarten',
-        primary: 'primaryschool',
-        gym: 'highschool',
-    },
+    componentName: 'about',
 };
 
 var getFolders = source => fs.readdirSync(Path.join(source))
@@ -44,7 +40,7 @@ class Paragraph {
     getDefaultHtmlCode() {
             return `<div class="card about">
         <div class="card-img">
-            ${this.photo ? `<img src="{fill_parents}${this.photo}" class="card-img-top" alt="Picture Not Available!">` : ''}
+            ${this.photo ? `<img src="{fill_parents}images/${Path.parse(C.dPath).base}/${this.photo}" class="card-img-top" alt="Picture Not Available!">` : ''}
         </div>
         <div class="card-content">
             <div>
@@ -57,7 +53,7 @@ class Paragraph {
             </div>
             <div class="card-body">
                 <div class="card-text long">
-                ${this.long.map(photo =>`<p>${photo}</p>`).join('<br>')}
+                ${this.long.map(par =>`<p>${par}</p>`).join('<br>')}
                 </div>
             </div>
             <div class="card-footer">
@@ -103,7 +99,6 @@ function parseString(string) {
 
         sections.map(section => { // We iterate through every parsed section
             let para = section.split('\r\n').filter(sentence => sentence.trim() ? true : false); // Splitting sections into paragraphs by new line and removing empty lines
-            //console.log(para.slice(2, para.length));
             parsedSections.push({ title: para[0], short: para[1], long: para.slice(2,para.length) }); // Pushing a parsed section object into an array
         });
 
@@ -119,7 +114,6 @@ function parseString(string) {
  */
 function getStringFromArray(array) {
     let str_builder = '';
-    //console.log(array);
     for (var par of array)
         str_builder += new Paragraph(par).getDefaultHtmlCode();
     
@@ -132,12 +126,14 @@ function getStringFromArray(array) {
  * @param {String} string String that will be written inside the component
  * @param {String} language
  * @param {Boolean} append_file Whether to append or overwrite already existing file 
+ * @param {Boolean} nestedComponent Whether the component is nested or not
  */
-async function createComponent(Fpath = null, name, string, language, append_file = true, fileName = 'school') {
+async function createComponent(Fpath = null, name, string, language, append_file = true, nestedComponent = true, fileName = null) {
+    fileName = fileName ? fileName : C.componentName;
     Fpath = Fpath ? Fpath : C.path;
-    const component = `:^) ${name} :::`;
+    const component = nestedComponent ? `:^) ${name} :::\r\n` : '';
     let path = Path.join(Fpath, language, `${fileName}.html`);
-    writeFile(path, `${component}\r\n${string}`, append_file);
+    writeFile(path, `${component}${string}`, append_file);
     console.log(`Successfully created component ${component},\nAppend File Mode: ${append_file}`);
 }
 
@@ -175,7 +171,7 @@ function writeFile(path, string, appendFile) {
  * @param {Array} array Array of paragraph objects
  */
 function saveAsJson(array) {
-    fs.writeFileSync(C.dPath + C.jsonFile, JSON.stringify(array, null, 4), {flag: 'w+', mode: 0666});
+    fs.writeFileSync(Path.join(C.dPath, C.jsonFile), JSON.stringify(array, null, 4), {flag: 'w+', mode: 0666});
 }
 
 /** Loads a Json file and returns its content decoded
@@ -192,14 +188,14 @@ function loadFromJson(file) {
  * @param {Array} array 
  */
 function arrayIntoComponents(array) {
+    var nested = array.length > 1;
     array.map((section, sectionIndex) => {
         section.content.map(content => {
-            //console.log(content);
             let string = getStringFromArray(content.data);
             if(sectionIndex == 0)
-                createComponent(C.path, section.folder, string, content.language, false, 'about');
+                createComponent(C.path, section.folder, string, content.language, false, nested);
             else
-                createComponent(C.path, section.folder, string, content.language, true, 'about');
+                createComponent(C.path, section.folder, string, content.language, true, nested);
         });
     });
 }
@@ -215,15 +211,55 @@ function checkJsonForPhotos(parsedJson) {
     return parsedJson;
 }
 
+/** Counts the number of subdirectories in a directory
+ * 
+ * @param {String} dir Path to your directory where you'd like to count subdirectories
+ * @returns {Number} count of subdirectories
+ */
+function getDirLength(dir) {
+    dir = Path.normalize(dir);
+    var parse = dir.split('\\'),
+        index = parse.indexOf(Path.parse(dir).base);
+    return Math.floor(parse.length - index);
+}
+
+if (readlineSync.keyInYN("Would you like to try and parse custom files? ")) {
+    let folders = getFolders(Path.normalize(`${C.dPath}../`)),
+        index = readlineSync.keyInSelect(folders, "Please pick a directory holding your custom file/s..."),
+        path = Path.normalize(`${C.dPath}../${folders[index]}`);
+    
+    console.log(`\r\nYou picked '${folders[index]}'`);
+    if (readlineSync.keyInYN(`Is "${path}" the correct path?`))
+        C.dPath = path;
+    else
+        throw new Error("Fatal error, couldn't get the right path for custom parsing");
+    
+    C.componentName = readlineSync.question("\r\nWhat would you like your component to be named?\r\n").trim();
+    C.componentName = C.componentName.includes('.') ? C.componentName.split('.')[0] : C.componentName;
+
+    if (readlineSync.keyInYN('Would you like to create a Json file for your parsed objects?')) {
+        C.jsonFile = readlineSync.question("\r\nWhat would you like your json file to be named?\r\n").trim();
+        C.jsonFile = C.jsonFile.includes('.') ? (`${C.jsonFile.split('.')[0]}.json`) : `${C.jsonFile}.json`;
+    } else {
+        C.jsonFile = null;
+    }
+}
+
 Files(C.dPath, async res => {
     var arr = await createFilesArray(res);
-    var folders = getFolders(C.dPath);
-    let arr2 = [];
-    var temp = [];
-    var skip = false;
-    console.log(`Searching for Json file ${C.jsonFile} at [${Path.join(C.dPath, C.jsonFile)}]\n`);
-    var found = fs.existsSync(Path.join(C.dPath, C.jsonFile)) ? true : false;
-    console.log(`Found: ${found}\n`);
+    console.log(C.dPath);
+    var folders = getDirLength(C.dPath) > 1 ? getFolders(C.dPath) : [Path.parse(Path.normalize(C.dPath)).base],
+        arr2 = [],
+        temp = [],
+        skip = false,
+        found = false;
+    
+    if (C.jsonFile) {
+        console.log(`Searching for Json file ${C.jsonFile} at [${Path.join(C.dPath, C.jsonFile ? C.jsonFile : '')}]\n`);
+        found = fs.existsSync(Path.join(C.dPath, C.jsonFile)) ? true : false;
+        console.log(`Found: ${found}\n`);
+    }
+    
     
     if (found) {
         if (readlineSync.question(`\nWould you like to fetch the AboutUs data from ${C.jsonFile}? Yes/No\n`).toLowerCase() === 'yes') {
@@ -243,13 +279,17 @@ Files(C.dPath, async res => {
             getFolders(C.path).map(language => {
                 temp2.push({ language: language.toLowerCase(), data: arr2.filter(para => folder.toLowerCase() === para.folder && language.toLowerCase() === para.language.toLowerCase()) });
             });
-    
-            temp.push({folder: folder.toLowerCase(), content: temp2})
+            temp.push({ folder: folder.toLowerCase(), content: temp2 })
         });
     }
 
     console.log(temp);
     if (!temp) throw new Error('Object reference not set to an instance of an object');
+
+    if (skip) {
+        arrayIntoComponents(temp); // Creating components files
+        return;
+    }
 
     switch (readlineSync.question("\nWould you like to create a new JSON file for the AboutUs? Yes/No\n").toLowerCase()) {
         case "no":

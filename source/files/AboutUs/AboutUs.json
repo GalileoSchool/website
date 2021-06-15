@@ -13,7 +13,7 @@
                         ],
                         "language": "en",
                         "folder": "highschool",
-                        "photo": null
+                        "photo": "highschool/modern.jpg"
                     },
                     {
                         "title": "Path to great universities",
@@ -23,7 +23,7 @@
                         ],
                         "language": "en",
                         "folder": "highschool",
-                        "photo": null
+                        "photo": "highschool/uni.jpg"
                     },
                     {
                         "title": "Individual approach to learning",
@@ -33,7 +33,7 @@
                         ],
                         "language": "en",
                         "folder": "highschool",
-                        "photo": null
+                        "photo": "highschool/individual.jpg"
                     }
                 ]
             },
@@ -48,7 +48,7 @@
                         ],
                         "language": "sk",
                         "folder": "highschool",
-                        "photo": null
+                        "photo": "highschool/modern.jpg"
                     },
                     {
                         "title": "Cesta na skvelé univerzity",
@@ -58,7 +58,7 @@
                         ],
                         "language": "sk",
                         "folder": "highschool",
-                        "photo": null
+                        "photo": "highschool/uni.jpg"
                     },
                     {
                         "title": "Individuálny prístup",
@@ -68,7 +68,7 @@
                         ],
                         "language": "sk",
                         "folder": "highschool",
-                        "photo": null
+                        "photo": "highschool/individual.jpg"
                     }
                 ]
             }
@@ -90,7 +90,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/bilingual.JPG"
                     },
                     {
                         "title": "Learning by playing",
@@ -100,7 +100,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/playing.JPG"
                     },
                     {
                         "title": "Learning by experience",
@@ -111,7 +111,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/experience.JPG"
                     },
                     {
                         "title": "Learning outdoors",
@@ -122,7 +122,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/outdoors.JPG"
                     },
                     {
                         "title": "The joy of discovery",
@@ -133,7 +133,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/discovery.JPG"
                     },
                     {
                         "title": "Developing creativity and fantasy",
@@ -143,7 +143,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/creativity.JPG"
                     },
                     {
                         "title": "Healthy and happy eating",
@@ -153,7 +153,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/food.JPG"
                     },
                     {
                         "title": "All summer programme",
@@ -163,7 +163,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/summer.JPG"
                     },
                     {
                         "title": "The programme during the Corona pandemic",
@@ -175,7 +175,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/corona.JPG"
                     }
                 ]
             },
@@ -192,7 +192,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/bilingual.JPG"
                     },
                     {
                         "title": "Učenie hrou",
@@ -202,7 +202,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/playing.JPG"
                     },
                     {
                         "title": "Zážitkové učenie",
@@ -213,7 +213,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/experience.JPG"
                     },
                     {
                         "title": "Učenie v prírode",
@@ -224,7 +224,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/outdoors.JPG"
                     },
                     {
                         "title": "Radosť z objavovania",
@@ -235,7 +235,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/discovery.JPG"
                     },
                     {
                         "title": "Rozvoj tvorivosti a fantázie",
@@ -245,7 +245,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/creativity.JPG"
                     },
                     {
                         "title": "Zdravá a pestrá strava",
@@ -255,7 +255,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/food.JPG"
                     },
                     {
                         "title": "Program na celé leto",
@@ -265,7 +265,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/summer.JPG"
                     },
                     {
                         "title": "Koronový program",
@@ -277,7 +277,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": null
+                        "photo": "kindergarten/corona.JPG"
                     }
                 ]
             }
@@ -301,7 +301,7 @@
                         ],
                         "language": "en",
                         "folder": "primaryschool",
-                        "photo": null
+                        "photo": "primarySchool/modern.JPG"
                     },
                     {
                         "title": "A transnational school",
@@ -316,7 +316,7 @@
                         ],
                         "language": "en",
                         "folder": "primaryschool",
-                        "photo": null
+                        "photo": "primarySchool/transnational.JPG"
                     },
                     {
                         "title": "A bilingual school",
@@ -336,7 +336,7 @@
                         ],
                         "language": "en",
                         "folder": "primaryschool",
-                        "photo": null
+                        "photo": "primarySchool/bilingual.JPG"
                     },
                     {
                         "title": "A creative school",
@@ -347,7 +347,7 @@
                         ],
                         "language": "en",
                         "folder": "primaryschool",
-                        "photo": null
+                        "photo": "primarySchool/creativity.JPG"
                     }
                 ]
             },
@@ -367,7 +367,7 @@
                         ],
                         "language": "sk",
                         "folder": "primaryschool",
-                        "photo": null
+                        "photo": "primarySchool/modern.JPG"
                     },
                     {
                         "title": "Nadnárodná škola",
@@ -382,7 +382,7 @@
                         ],
                         "language": "sk",
                         "folder": "primaryschool",
-                        "photo": null
+                        "photo": "primarySchool/transnational.JPG"
                     },
                     {
                         "title": "Bilingválna škola",
@@ -403,7 +403,7 @@
                         ],
                         "language": "sk",
                         "folder": "primaryschool",
-                        "photo": null
+                        "photo": "primarySchool/bilingual.JPG"
                     },
                     {
                         "title": "Tvorivá škola",
@@ -414,7 +414,7 @@
                         ],
                         "language": "sk",
                         "folder": "primaryschool",
-                        "photo": null
+                        "photo": "primarySchool/creativity.JPG"
                     }
                 ]
             }

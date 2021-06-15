@@ -1,3 +1,22 @@
+<style>
+    .special {
+        height: clamp(150px, 40vw ,400px); 
+        object-fit: cover;
+    }
+
+    @media screen and (min-width: 670px) {
+        .special {
+            height: clamp(210px, 25vw ,480px); 
+        }
+
+        .clickable:hover {
+            cursor: pointer;
+            transform: scale(1.01);
+            transition: .4s;
+        }
+    }
+</style>
+
 <!-- The link below explains how a bootstrap carousel works -->
 <!-- https://getbootstrap.com/docs/4.3/components/carousel/ -->
 <div id="carousel" class="carousel slide" data-ride="carousel">
@@ -7,6 +26,7 @@
         <li data-target="#carousel" data-slide-to="1"></li>
         <li data-target="#carousel" data-slide-to="2"></li>
         <li data-target="#carousel" data-slide-to="3"></li>
+        <li data-target="#carousel" data-slide-to="4"></li>
     </ol>
     <!-- Carousel content -->
     <div class="carousel-inner">
@@ -43,6 +63,14 @@
             <div class="carousel-caption">
                 <p class="slide-text">
                     {{carousel_contents.4-text}}
+                </p>
+            </div>
+        </div>
+        <div class="carousel-item clickable" onclick="location.href='{fill_parents_html}en/PearsonEdexcel/index.html'">
+            <img class="d-block w-100 carousel-img special" src="{fill_parents}images/carousel/carousel5.jpg" style alt="Picture Not Available!">
+            <div class="carousel-caption">
+                <p class="slide-text">
+                    {{carousel_contents.5-text}}
                 </p>
             </div>
         </div>
