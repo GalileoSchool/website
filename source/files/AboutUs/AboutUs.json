@@ -1,11 +1,8 @@
-[
-    {
+[{
         "folder": "highschool",
-        "content": [
-            {
+        "content": [{
                 "language": "en",
-                "data": [
-                    {
+                "data": [{
                         "title": "Modern, accredited, recognised",
                         "short": "Modern, accredited education in English language. The aim is to prepare students to enrol the best universities worldwide. GALILEO HIGH SCHOOL is accredited by the Ministry of Education and is the first International Pearson Edexcel Centre in Slovakia. This provides for the award of international qualification certificates recognised across the globe.",
                         "long": [
@@ -13,7 +10,7 @@
                         ],
                         "language": "en",
                         "folder": "highschool",
-                        "photo": "highschool/modern.jpg"
+                        "photo": "highSchool/modern.jpg"
                     },
                     {
                         "title": "Path to great universities",
@@ -23,7 +20,7 @@
                         ],
                         "language": "en",
                         "folder": "highschool",
-                        "photo": "highschool/uni.jpg"
+                        "photo": "highSchool/uni.jpg"
                     },
                     {
                         "title": "Individual approach to learning",
@@ -33,14 +30,13 @@
                         ],
                         "language": "en",
                         "folder": "highschool",
-                        "photo": "highschool/individual.jpg"
+                        "photo": "highSchool/individual.jpg"
                     }
                 ]
             },
             {
                 "language": "sk",
-                "data": [
-                    {
+                "data": [{
                         "title": "Moderné, akreditované, uznávané",
                         "short": "Moderné, akreditované, anglické vzdelávanie ktorého cieľom je príprava na najlepšie univerzity na svete. Súkromné gymnázium GALILEO SCHOOL je zaradené do siete škôl SR a zároveň medzinárodným akreditovaným vzdelávacím centrom PEARSON EDEXCEL, poskytujúcim plnohodnotné vzdelávanie ukončené celosvetovo uznávanými stredoškolskými certifikátmi.",
                         "long": [
@@ -48,7 +44,7 @@
                         ],
                         "language": "sk",
                         "folder": "highschool",
-                        "photo": "highschool/modern.jpg"
+                        "photo": "highSchool/modern.jpg"
                     },
                     {
                         "title": "Cesta na skvelé univerzity",
@@ -58,7 +54,7 @@
                         ],
                         "language": "sk",
                         "folder": "highschool",
-                        "photo": "highschool/uni.jpg"
+                        "photo": "highSchool/uni.jpg"
                     },
                     {
                         "title": "Individuálny prístup",
@@ -68,7 +64,7 @@
                         ],
                         "language": "sk",
                         "folder": "highschool",
-                        "photo": "highschool/individual.jpg"
+                        "photo": "highSchool/individual.jpg"
                     }
                 ]
             }
@@ -76,11 +72,9 @@
     },
     {
         "folder": "kindergarten",
-        "content": [
-            {
+        "content": [{
                 "language": "en",
-                "data": [
-                    {
+                "data": [{
                         "title": "Bilingual learning",
                         "short": "The ability to become a fluent speaker of a foreign language decreases with age. Children who are three to five years old learn naturally and intuitively.  ",
                         "long": [
@@ -181,8 +175,7 @@
             },
             {
                 "language": "sk",
-                "data": [
-                    {
+                "data": [{
                         "title": "Bilingválna výučba",
                         "short": "Schopnosť osvojiť si druhý jazyk vekom klesá. Vo veku 3 – 5 rokov je učenie jazyka pre dieťa prirodzené a intuitívne.",
                         "long": [
@@ -285,11 +278,9 @@
     },
     {
         "folder": "primaryschool",
-        "content": [
-            {
+        "content": [{
                 "language": "en",
-                "data": [
-                    {
+                "data": [{
                         "title": "A modern school",
                         "short": "A modern school can promptly react to currents societal needs. The year of COVID has tested the preparedness of GALILEO SCHOOL in moving all education to the online environment. Currently, the activities done at school are focusing on the socialisation of the pupils, their return to the company of their classmates. We do realise we are preparing students for jobs that do not exist yet today - that is the modernness and visionary approach of GALILEO SCHOOL.",
                         "long": [
@@ -353,8 +344,7 @@
             },
             {
                 "language": "sk",
-                "data": [
-                    {
+                "data": [{
                         "title": "Moderná škola",
                         "short": "Moderná škola dokáže okamžite reagovať na aktuálne potreby spoločnosti. Koronarok preveril pripravenosť školy GALILEO SCHOOL preniesť výučbu do on-line priestoru. V súčasnosti sa aktivity školy sústreďujú na socializáciu žiakov, ich návrat do kolektívu. Uvedomujeme si, že žiakov pripravujeme na pracovné pozície, ktoré dnes ešte neexistujú. V tom je modernosť a vizionárstvo GALILEO SCHOOL.",
                         "long": [
