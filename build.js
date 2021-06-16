@@ -83,7 +83,7 @@ class InterviewCard {
 				<h5 class="card-subtitle">${this.student}</h5>
 				<p class="card-text">${this.quickinfo}</p>
 				<div class="card-text">
-					<div class="card-text card-long-desc no-display">${this.longdesc.split('\r\n').map(sentence => `<p class="card-text card-long-desc">${sentence}</p>`).join('')}</div>
+					<div class="card-text card-long-desc no-display">${this.longdesc.split('\r\n').map(sentence => `<p class="card-text card-long-desc no-display">${sentence}</p>`).join('')}</div>
 				</div>
 				${this.hasPhotos ? `<h2 class="no-display">Gallery</h2>` : ``}
 				<ul class="card-images no-display">
