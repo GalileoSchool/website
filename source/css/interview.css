@@ -45,7 +45,7 @@
     margin-bottom: 10px;
 }
 
-.card.interview > .card-body > h2 {
+.card.interview>.card-body>h2 {
     font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
     letter-spacing: 2.5;
 }
@@ -70,7 +70,7 @@
     margin-bottom: 0;
 }
 
-.card.interview > .card-title {
+.card.interview>.card-title {
     width: 100%;
     text-transform: uppercase;
     font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
@@ -128,7 +128,6 @@
         overflow: -moz-scrollbars-none;
         -ms-overflow-style: none;
     }
-
     .vertical {
         flex-direction: column;
     }
@@ -141,11 +140,9 @@
     .rigth {
         right: 0;
     }
-
     .content.interview {
         margin-top: 0;
     }
-
     #modal-box::-webkit-scrollbar {
         width: 0;
     }
@@ -299,7 +296,6 @@
         flex-direction: row;
         padding: 0px 3%;
     }
-
     .card-deck.interview:last-child {
         padding-top: 3%;
     }
@@ -326,7 +322,7 @@
     .card.interview>img {
         user-select: none;
         -webkit-user-drag: none;
-        height: 100%;
+        /* height: 100%; */
         max-height: 22vw;
         object-fit: cover;
         border-radius: 0;
@@ -397,12 +393,10 @@
 }
 
 @media only screen and (min-width: 1024px) {
-
     #modal-close {
         right: 2%;
     }
-
-    .card.interview > .card-body > ul > li > img {
+    .card.interview>.card-body>ul>li>img {
         border-radius: 10px;
         max-width: 250px;
         max-height: 250px;

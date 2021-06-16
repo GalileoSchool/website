@@ -27,7 +27,7 @@ div.card-content {
 }
 
 .card.about div.card-content div.card-body {
-    background-color: #dddddd;
+    background-color: #eeeeee;
     color: black;
     padding: 0;
 }
@@ -83,7 +83,7 @@ div.card-footer button {
     background-color: #960000;
     color: white;
     padding: .75rem;
-    border-top: 1px solid rgba(0,0,0,.125);
+    border-top: 1px solid rgba(0, 0, 0, .125);
 }
 
 @media screen and (min-width: 670px) {
@@ -91,19 +91,15 @@ div.card-footer button {
         width: 100%;
         padding: 0 2%;
     }
-
     .card.about {
         margin-bottom: 5%;
     }
-
     .card.about:nth-child(odd) {
         flex-direction: row;
     }
-
     .card.about:nth-child(even) {
         flex-direction: row-reverse;
     }
-
     .card.about .card-content {
         width: calc(55%*0.99);
         margin: 0 auto;
@@ -114,58 +110,48 @@ div.card-footer button {
         /* height: max-content; */
         background-color: unset;
     }
-
     .card.about .card-content div {
         background-color: #a60000;
     }
-
     .card.about .card-content .card-title {
         padding: 4px;
         border-bottom: 1px solid whitesmoke;
         box-shadow: 0px 0px 4px 0px whitesmoke;
     }
-
     .card.about .card-content .card-footer {
         bottom: 0;
         width: 100%;
         box-shadow: 0px 0px 4px 0px whitesmoke;
     }
-
     .card.about .card-content .card-footer button:hover {
         cursor: pointer;
         background-color: #c60000;
         outline: none;
     }
-
     .card.about .card-content .card-footer button:focus {
         outline: none;
     }
-
     .card.about div.card-content div.card-body {
         background-color: inherit;
         color: rgb(30, 30, 30);
         padding: 0;
         height: 100%;
     }
-
     .card.about div.card-content div.card-body:not([style]) {
         background-color: #a60000;
     }
-
     .card.about div.card-content div.card-body .card-text.long,
     .card.about div.card-content div.card-body .card-text.long p {
         background-color: #eeeeee;
         height: max-content;
         margin: 0;
     }
-
     .card.about .card-img {
         width: 45%;
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
-
     .card.about .card-img img {
         height: 100%;
         object-fit: cover;
@@ -177,20 +163,16 @@ div.card-footer button {
         width: 100%;
         padding: 2% 5%;
     }
-
     .card.about {
         margin-bottom: 7%;
         width: 90%;
     }
-
     .card.about .card-content {
         height: max-content;
     }
-
     .card.about:nth-child(even) {
         margin-left: auto;
     }
-
     div.card-text.short p {
         line-clamp: 5;
         -webkit-line-clamp: 5;
