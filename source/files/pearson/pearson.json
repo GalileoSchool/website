@@ -27,7 +27,7 @@
                     ],
                     "language": "en",
                     "folder": "pearson",
-                    "photo": "a_level.jpg"
+                    "photo": "a_level.JPG"
                 },
                 {
                     "title": "Private Candidates IGCSE/A level",
@@ -39,7 +39,7 @@
                     ],
                     "language": "en",
                     "folder": "pearson",
-                    "photo": "private.jpg"
+                    "photo": "private.JPG"
                 }
             ]
         },
@@ -70,7 +70,7 @@
                     ],
                     "language": "sk",
                     "folder": "pearson",
-                    "photo": "a_level.jpg"
+                    "photo": "a_level.JPG"
                 },
                 {
                     "title": "Externí záujemci o skúšky IGCSE/A level",
@@ -82,7 +82,7 @@
                     ],
                     "language": "sk",
                     "folder": "pearson",
-                    "photo": "private.jpg"
+                    "photo": "private.JPG"
                 }
             ]
         }

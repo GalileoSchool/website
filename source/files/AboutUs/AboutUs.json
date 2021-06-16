@@ -10,7 +10,7 @@
                         ],
                         "language": "en",
                         "folder": "highschool",
-                        "photo": "highSchool/modern.jpg"
+                        "photo": "highSchool/modern.JPG"
                     },
                     {
                         "title": "Path to great universities",
@@ -20,7 +20,7 @@
                         ],
                         "language": "en",
                         "folder": "highschool",
-                        "photo": "highSchool/uni.jpg"
+                        "photo": "highSchool/uni.JPG"
                     },
                     {
                         "title": "Individual approach to learning",
@@ -30,7 +30,7 @@
                         ],
                         "language": "en",
                         "folder": "highschool",
-                        "photo": "highSchool/individual.jpg"
+                        "photo": "highSchool/individual.JPG"
                     }
                 ]
             },
@@ -44,7 +44,7 @@
                         ],
                         "language": "sk",
                         "folder": "highschool",
-                        "photo": "highSchool/modern.jpg"
+                        "photo": "highSchool/modern.JPG"
                     },
                     {
                         "title": "Cesta na skvelé univerzity",
@@ -54,7 +54,7 @@
                         ],
                         "language": "sk",
                         "folder": "highschool",
-                        "photo": "highSchool/uni.jpg"
+                        "photo": "highSchool/uni.JPG"
                     },
                     {
                         "title": "Individuálny prístup",
@@ -64,7 +64,7 @@
                         ],
                         "language": "sk",
                         "folder": "highschool",
-                        "photo": "highSchool/individual.jpg"
+                        "photo": "highSchool/individual.JPG"
                     }
                 ]
             }
