@@ -861,9 +861,6 @@ span.searcher-result-preview:last-child {
 
 
 @media screen and (max-width: 299px) {
-    /* .nav-phone .title {
-        font-size: 5vw !important;
-    } */
 
     .search-container > input {
         position: absolute;
@@ -886,8 +883,6 @@ span.searcher-result-preview:last-child {
     }
 
 }
-
-
 
 /* Bigger screens */
 
