@@ -322,7 +322,6 @@
     .card.interview>img {
         user-select: none;
         -webkit-user-drag: none;
-        /* height: 100%; */
         max-height: 22vw;
         object-fit: cover;
         border-radius: 0;

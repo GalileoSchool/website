@@ -83,7 +83,9 @@ class InterviewCard {
 				<h5 class="card-subtitle">${this.student}</h5>
 				<p class="card-text">${this.quickinfo}</p>
 				<div class="card-text">
-					<div class="card-text card-long-desc no-display">${this.longdesc.split('\r\n').map(sentence => `<p class="card-text card-long-desc no-display">${sentence}</p>`).join('')}</div>
+					<div class="card-text card-long-desc no-display">
+					${this.longdesc.split('\r\n').map(sentence => `<p class="card-text card-long-desc no-display">${sentence}</p>`).join('')}
+					</div>
 				</div>
 				${this.hasPhotos ? `<h2 class="no-display">Gallery</h2>` : ``}
 				<ul class="card-images no-display">
@@ -99,6 +101,8 @@ class InterviewCard {
 const fs = require('fs') // for manipulation of files
 const glob = require('glob') // for finding the right files
 const Handlebars = require('handlebars'); // for using handlebars
+const readlineSync = require('readline-sync');
+const parser = require('./Extensions/AboutUsParser');
 const { Exception } = require('handlebars/runtime');
 
 // syntax for compound components
@@ -419,6 +423,9 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 		return false;
 	}
 }
+
+if (readlineSync.keyInYN("\r\nWould you like to run the parser for updating document parsed web pages?\r\n"))
+	parser.AboutUs();
 
 // first we prepare all the folders in the build folder
 // create the target build/ folder if it doesn't exist yet

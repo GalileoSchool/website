@@ -24,8 +24,7 @@ var getFiles = ((source, callback) => {
 
 class Paragraph {
     /**
-     * 
-     * @param {Object} object 
+     * @param {Object} object An object holding necessary data 
      */
     constructor(object) {
         this.title = object.title;
@@ -37,7 +36,7 @@ class Paragraph {
     }
 
     getDefaultHtmlCode() {
-            return `<div class="card about">
+        return `<div class="card about">
         <div class="card-img">
             ${this.photo ? `<img src="{fill_parents}images/${Path.parse(C.ModulePath).base.toLowerCase()}/${this.photo}" class="card-img-top" alt="Picture Not Available!">` : ''}
         </div>
@@ -143,7 +142,7 @@ function createComponent(Finalpath = null, name, content, language, append_file 
     console.log(`Successfully created component ${component},\r\nAppend File Mode: ${append_file}`);
 }
 
-/** Asynchronously writes a string to a file
+/** Synchronously writes a string into a file or appends it
  * 
  * @param {String} path Path of the file
  * @param {String} string String to write into the file
@@ -151,20 +150,15 @@ function createComponent(Finalpath = null, name, content, language, append_file 
  * @returns {void}
  */
 function writeFile(path, string, appendFile) {
-    try {
-        switch (appendFile) {
-            case true:
-                fs.appendFileSync(path, `${string}\r\n`, { flag: 'a+', mode: 0666 });
-                break;
-            case false:
-                fs.writeFileSync(path, `${string}\r\n`, { flag: 'w+', mode: 0666 });
-                break;
-            default:
-                throw new Error('No valid action was chosen for writing a file!');
-        }
-    } catch (error) {
-        console.error(error)
-        return;
+    switch (appendFile) {
+        case true:
+            fs.appendFileSync(path, `${string}\r\n`, { flag: 'a+', mode: 0666 });
+            break;
+        case false:
+            fs.writeFileSync(path, `${string}\r\n`, { flag: 'w+', mode: 0666 });
+            break;
+        default:
+            throw new Error('No valid action was chosen for writing a file!');
     }
 }
 
@@ -181,15 +175,15 @@ function saveAsJson(array) {
  * @param {String} file Path to the Json file 
  * @returns {String} parsed Json file content
  */
-function loadFromJson(file) {
+function loadFromJsonFile(file) {
     return JSON.parse(fs.readFileSync(file, { mode: 0666 }));
 }
 
 /** Creates component files from objects array
  * 
- * @param {Array} array 
+ * @param {Array} array Array of objects to be created as component
  */
-function arrayIntoComponents(array) {
+function transpileArrayIntoComponents(array) {
     var nested = array.length > 1;
     array.map((section, sectionIndex) => {
         section.content.map(content => {
@@ -218,108 +212,105 @@ function checkJsonForPhotos(parsedJson) {
  * @param {String} dir Path to your directory where you'd like to count subdirectories
  * @returns {Number} count of subdirectories
  */
-function getDirLength(dir) {
+function countSubDirs(dir) {
     dir = Path.normalize(dir);
     var parse = dir.split('\\'),
         index = parse.indexOf(Path.parse(dir).base);
     return Math.floor(parse.length - index);
 }
 
-// Main loop starts here, actual script execution starts here
+function AboutUs() {
+    // Main loop starts here, actual script execution starts here
 
-// First we ask user whether he would like to try and parse a custom file
-if (readlineSync.keyInYN("Would you like to try and parse custom files? ")) {
-    // If yes we let him choose from folders we found in /files/ directory which one
-    let folders = getFolders(Path.normalize(`${C.ModulePath}../`)),
-        index = readlineSync.keyInSelect(folders, "Please pick a directory holding your custom file/s..."),
-        path = Path.normalize(`${C.ModulePath}../${folders[index]}`);
-    
-    // We confirm the path to the module he picked is correct and then continue if not, we break the script
-    console.log(`\r\nYou picked '${folders[index]}'`);
-    if (readlineSync.keyInYN(`Is "${path}" the correct path?`))
-        C.ModulePath = path;
-    else
-        throw new Error("Fatal error, couldn't get the right path for custom parsing");
-    
-    // We ask the user to input the name of the component to create from the module
-    C.componentName = readlineSync.question("\r\nWhat would you like your component to be named?\r\n").trim();
-    C.componentName = C.componentName.includes('.') ? C.componentName.split('.')[0] : C.componentName;
+    // First we ask the user whether the user would like to try and parse a custom file
+    if (readlineSync.keyInYN("Would you like to try and parse custom files? ")) {
+        // If yes we let the user choose from folders we found in /files/ directory which one
+        let folders = getFolders(Path.normalize(`${C.ModulePath}../`)),
+            index = readlineSync.keyInSelect(folders, "Please pick a directory holding your custom file/s..."),
+            path = Path.normalize(`${C.ModulePath}../${folders[index]}`);
+        
+        // We confirm the path to the module that the user picked is correct and then continue if not, we break the script
+        console.log(`\r\nYou picked '${folders[index]}'`);
+        if (readlineSync.keyInYN(`Is "${path}" the correct path?`))
+            C.ModulePath = path;
+        else
+            throw new Error("Fatal error, couldn't get the right path for custom parsing");
+        
+        // We ask the user to input the name of the component to create from the module
+        C.componentName = readlineSync.question("\r\nWhat would you like your component to be named?\r\n").trim();
+        C.componentName = C.componentName.includes('.') ? C.componentName.split('.')[0] : C.componentName;
 
-    // We ask whether the user would like to create/use a Json file for his module
-    if (readlineSync.keyInYN('Would you like to create/use a Json file for your parsed objects?')) {
-        // If yes we ask the user to input the name of the Json file
-        C.jsonFile = readlineSync.question("\r\nWhat would you like your json file to be named?\r\n").trim();
-        C.jsonFile = C.jsonFile.includes('.') ? (`${C.jsonFile.split('.')[0]}.json`) : `${C.jsonFile}.json`;
-    } else {
-        C.jsonFile = null;
-    }
-}
-
-// We get all the readable files from our module's directory
-Files(C.ModulePath, async res => {
-    var arr = await createFilesArray(res);
-    // Here we check whether it's a nested module or not, and declare necessary variables
-    var folders = getDirLength(C.ModulePath) > 1 ? getFolders(C.ModulePath) : [Path.parse(Path.normalize(C.ModulePath)).base],
-        arr2 = [],
-        temp = [],
-        skip = false,
-        found = false;
-    
-    // If Json File is set we try to search for it and print our result to the user
-    if (C.jsonFile) {
-        console.log(`Searching for Json file ${C.jsonFile} at [${Path.join(C.ModulePath, C.jsonFile ? C.jsonFile : '')}]\n`);
-        found = fs.existsSync(Path.join(C.ModulePath, C.jsonFile)) ? true : false;
-        console.log(`Found: ${found}\n`);
-    }
-    
-    // If we found the Json file we ask the user whether he wants to use the data inside the file
-    if (found) {
-        if (readlineSync.question(`\nWould you like to fetch the AboutUs data from ${C.jsonFile}? Yes/No\n`).toLowerCase() === 'yes') {
-            temp = loadFromJson(Path.join(C.ModulePath, C.jsonFile));
-            skip = true;
+        // We ask whether the user would like to create/use a Json file for his module
+        if (readlineSync.keyInYN('Would you like to create/use a Json file for your parsed objects?')) {
+            // If yes we ask the user to input the name of the Json file
+            C.jsonFile = readlineSync.question("\r\nWhat would you like your json file to be named?\r\n").trim();
+            C.jsonFile = C.jsonFile.includes('.') ? (`${C.jsonFile.split('.')[0]}.json`) : `${C.jsonFile}.json`;
+        } else {
+            C.jsonFile = null;
         }
     }
-    
-    // If the user decides not to use the data from the Json file, we have to parse the files that we retrieved earlier on
-    if (!skip) {
-        // We iterate each file and parse its content which is then pushed into an array
-        arr.map(file => {
-            for (var res of parseString(fs.readFileSync(file.path, 'utf8')))
-                arr2.push(new Paragraph({title: res.title, text: { short: res.short, long: res.long }, language: file.language, folder: file.folder.toLowerCase()}));
-        });
-    
-        // For each nested component and language inside our module we sort the above parsed objects, organization 
-        folders.map(folder => {
-            let temp2 = [];
-            getFolders(C.ComponentsPath).map(language => {
-                temp2.push({ language: language.toLowerCase(), data: arr2.filter(para => folder.toLowerCase() === para.folder && language.toLowerCase() === para.language.toLowerCase()) });
+
+    // We get all the readable files from our module's directory
+    Files(C.ModulePath, async res => {
+        var arr = await createFilesArray(res);
+        // Here we check whether it's a nested module or not, and declare necessary variables
+        var folders = countSubDirs(C.ModulePath) > 1 ? getFolders(C.ModulePath) : [Path.parse(Path.normalize(C.ModulePath)).base],
+            arr2 = [],
+            temp = [],
+            skip = false,
+            found = false;
+        
+        // If Json File is set we try to search for it and print our result to the user
+        if (C.jsonFile) {
+            console.log(`Searching for Json file ${C.jsonFile} at [${Path.join(C.ModulePath, C.jsonFile ? C.jsonFile : '')}]\n`);
+            found = fs.existsSync(Path.join(C.ModulePath, C.jsonFile)) ? true : false;
+            console.log(`Found: ${found}\n`);
+        }
+        
+        // If we found the Json file we ask the user whether he wants to use the data inside the file
+        if (found) {
+            if (readlineSync.question(`\nWould you like to fetch the AboutUs data from ${C.jsonFile}? Yes/No\n`).toLowerCase() === 'yes') {
+                temp = loadFromJsonFile(Path.join(C.ModulePath, C.jsonFile));
+                skip = true;
+            }
+        }
+        
+        // If the user decides not to use the data from the Json file, we have to parse the files that we retrieved earlier on
+        if (!skip) {
+            // We iterate each file and parse its content which is then pushed into an array
+            arr.map(file => {
+                for (var res of parseString(fs.readFileSync(file.path, 'utf8')))
+                    arr2.push(new Paragraph({title: res.title, text: { short: res.short, long: res.long }, language: file.language, folder: file.folder.toLowerCase()}));
             });
-            temp.push({ folder: folder.toLowerCase(), content: temp2 })
-        });
-    }
+        
+            // For each nested component and language inside our module we sort the above parsed objects, organization 
+            folders.map(folder => {
+                let temp2 = [];
+                getFolders(C.ComponentsPath).map(language => {
+                    temp2.push({ language: language.toLowerCase(), data: arr2.filter(para => folder.toLowerCase() === para.folder && language.toLowerCase() === para.language.toLowerCase()) });
+                });
+                temp.push({ folder: folder.toLowerCase(), content: temp2 })
+            });
+        }
 
-    // Last debug message and check of our array of Objects before they are converted into a component
-    console.log(temp);
-    if (!temp) throw new Error('Object reference not set to an instance of an object');
+        // Last debug message and check of our array of Objects before they are converted into a component
+        console.log(temp);
+        if (!temp) throw new Error('Object reference not set to an instance of an object');
 
-    // If we used the data from our Json file there is no reason to ask the user whether he wants to create a new Json file so it's skipped
-    if (skip) {
-        arrayIntoComponents(temp); // Creating components files
-        return;
-    }
+        // If we used the data from our Json file there is no reason to ask the user whether he wants to create a new Json file so it's skipped
+        if (!skip) {
+            // This is self-explanatory
+            switch (readlineSync.question("\nWould you like to create a new JSON file for the AboutUs? Yes/No\n").toLowerCase()) {
+                case "yes":
+                    saveAsJson(temp); // Creating json file
+                    break;
+            }
+        }
 
-    // This is self-explanatory
-    switch (readlineSync.question("\nWould you like to create a new JSON file for the AboutUs? Yes/No\n").toLowerCase()) {
-        case "no":
-            arrayIntoComponents(temp); // Creating components files
-            break;
-        case "yes":
-            saveAsJson(temp); // Creating json file
-            arrayIntoComponents(temp); // Creating components files
-            break;
-        default:
-            arrayIntoComponents(temp); // Creating components files
-            break;
-    }
+        transpileArrayIntoComponents(temp); // Creating components files
+    });
+}
 
-});
+module.exports = {
+    AboutUs : AboutUs
+}

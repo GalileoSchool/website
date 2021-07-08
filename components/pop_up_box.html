@@ -84,7 +84,7 @@
 
 <script>
     function showMsgBox(title, content) {
-        hideMsgBox();
+        hideMsgBox(); // In case the pop-up box is open we close it
         let HtmlElement = document.getElementById('pop-up');
         HtmlElement.children[0].children[0].innerHTML = title;
         HtmlElement.children[0].children[1].innerHTML = content;
