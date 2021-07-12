@@ -23,7 +23,7 @@ $(document).ready(() => {
         navbar.addClass('no-display');
     }
 
-    // We check here whether the url contains /school/ section
+    // We check here whether the url contains /school/ or /summer/ section
     if (urlContains('/school/') && !urlContains('/summer/')) {
         // If it does we get in what type of school we are atm
         const arr = document.location.pathname.split('/');

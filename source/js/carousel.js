@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 
-// get the carousel images
+// get the carousel image elements except those that have the style attribute ":not([style])" 
 const images = Array.from(document.querySelectorAll('.carousel-item img:not([style])'));
 // get the source strings
 const imageSources = images.map((image) => image.getAttribute('src'));

@@ -1,3 +1,9 @@
+// A quick dev tool created by myself to make my life much easier with parsing documents into sections or boxes
+// Parsable documents can be parsed into individual sections/boxes automatically with the html code being the output
+// Input is a parsable document like those of About Us section, parses them and formats them into an html code
+// Automatically creates components with the output html code, therefore after running a document through this parser immediately usable component is created
+// All documents that you'd like to parse should be located in "source > files > [component folder] > [language] > [your files]" ex "source\files\pearson\en\en.txt"
+
 //regex link for paragraph searching: https://regex101.com/r/UhgGAR/1
 const fs = require('fs');
 const Path = require('path');
@@ -35,6 +41,11 @@ class Paragraph {
         this.photo = object.photo ? object.photo : null;
     }
 
+    /**
+     * Because as things might get added, the html code we would like the parser to produce may change from thing to thing... 
+     * so that everyone can add html output of their own to fit their needs, 
+     * but this one I have added is the default one to be used if you would like to produce html just like that one on AboutUs page.
+     */
     getDefaultHtmlCode() {
         return `<div class="card about">
         <div class="card-img">
@@ -101,8 +112,8 @@ function parseString(string) {
     let parsedSections = [];
 
     sections.map(section => { // We iterate through every parsed section
-        let para = section.split('\r\n').filter(sentence => sentence.trim() ? true : false); // Splitting sections into paragraphs by new line and removing empty lines
-        parsedSections.push({ title: para[0], short: para[1], long: para.slice(2,para.length) }); // Pushing a parsed section object into an array
+        let paragraph = section.split('\r\n').filter(sentence => sentence.trim() ? true : false); // Splitting sections into paragraphs by new line and removing empty lines
+        parsedSections.push({ title: paragraph[0], short: paragraph[1], long: paragraph.slice(2,paragraph.length) }); // Pushing a parsed section object into an array
     });
 
     return parsedSections; // return array of parsed sections as a callback
@@ -162,11 +173,11 @@ function writeFile(path, string, appendFile) {
     }
 }
 
-/** Creates a Json file with our data
+/** Creates a Json file with our data stringified as Json
  * 
- * @param {Array} array Array of `new Paragraph()` objects
+ * @param {String} string string to be stringified and saved as a json file
  */
-function saveAsJson(array) {
+function saveAsJson(string) {
     return fs.writeFileSync(Path.join(C.ModulePath, C.jsonFile), JSON.stringify(array, null, 4), {flag: 'w+', mode: 0666});
 }
 
@@ -287,7 +298,7 @@ function AboutUs() {
             folders.map(folder => {
                 let temp2 = [];
                 getFolders(C.ComponentsPath).map(language => {
-                    temp2.push({ language: language.toLowerCase(), data: arr2.filter(para => folder.toLowerCase() === para.folder && language.toLowerCase() === para.language.toLowerCase()) });
+                    temp2.push({ language: language.toLowerCase(), data: arr2.filter(paragraph => folder.toLowerCase() === paragraph.folder && language.toLowerCase() === paragraph.language.toLowerCase()) });
                 });
                 temp.push({ folder: folder.toLowerCase(), content: temp2 })
             });
@@ -314,3 +325,5 @@ function AboutUs() {
 module.exports = {
     AboutUs : AboutUs
 }
+
+AboutUs();

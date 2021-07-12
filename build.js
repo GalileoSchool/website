@@ -221,7 +221,6 @@ function autoFillParentFolders(filepath, file_content) {
 	while(file_content.indexOf('{fill_parents_html}') != -1) {
 		file_content = file_content.replace('{fill_parents_html}', joinRepeatedString(getNumberOfParentFolders(path,'html') - 1,'../'));
 	}
-	// console.log("Parent Folders AutoFill Complete On The File: " + path);
 	return file_content;
 }
 
@@ -424,8 +423,11 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 	}
 }
 
-if (readlineSync.keyInYN("\r\nWould you like to run the parser for updating document parsed web pages?\r\n"))
-	parser.AboutUs();
+// This has been commented out/deprected due to the fact that user interaction is not being allowed during runtime if you would like to use this
+// rework AboutUsParser.js module so it fits your needs and doesn't need user interaction 
+
+/*if (readlineSync.keyInYN("\r\nWould you like to run the parser for updating document parsed web pages?\r\n"))
+	parser.AboutUs();*/
 
 // first we prepare all the folders in the build folder
 // create the target build/ folder if it doesn't exist yet
@@ -467,9 +469,7 @@ if (!success)
 	return;
 // second, we prepare all components
 const enComponents = makeComponentDictionary(getDirname() + '/components/{*,en/*}.html')
-//console.log(enComponents);
 const skComponents = makeComponentDictionary(getDirname() + '/components/{*,sk/*}.html')
-//console.log(skComponents)
 // third, we compose all css files into a single one
 console.log('Beginning CSS composition into style.css')
 // find all css files inside css folder

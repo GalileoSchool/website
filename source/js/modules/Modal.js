@@ -112,7 +112,6 @@ class ModalHandler {
      * @param {Number} time The time for the modal box to slide down
      */
   show() {
-    // if (this.sliding) $(this.view.container.parentElement).animate({ height: '100vh' }, time);
     $(this.view.container.parentElement).css({ height: '0vh', display: 'block' }).animate({ height: '100vh' }, this.time);
     if (this.view.background && this.view.closeBtn) {
       $(this.view.background).removeClass('no-display');
