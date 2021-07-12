@@ -192,7 +192,7 @@ div.contact-form.container .flex.center {
     }
 }
 
-@media only screen and (min-width: 653px) {
+@media only screen and (min-width: 670px) {
 
     div.map.container {
         padding: 0;
@@ -269,7 +269,7 @@ div.contact-form.container .flex.center {
     }
 
     div.contact-form.container {
-        display: none;
+        display: none !important;
         flex-direction: row;
         justify-content: space-between;
         padding: 0;

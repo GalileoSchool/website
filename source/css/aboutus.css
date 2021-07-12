@@ -1,0 +1,180 @@
+.card-deck.about {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.card.about {
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    margin-bottom: 1.25rem;
+}
+
+.card.about:last-child {
+    margin-bottom: 0;
+}
+
+div.card-img img {
+    border-radius: 0;
+}
+
+div.card-content {
+    background-color: #a60000;
+    color: white;
+}
+
+.card.about div.card-content div.card-body {
+    background-color: #eeeeee;
+    color: black;
+    padding: 0;
+}
+
+.card.about div.card-content div.card-title {
+    margin: 0;
+}
+
+div.card-content div.card-title h3 {
+    margin: 0;
+    padding: 2%;
+    font-size: x-large;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
+}
+
+div.card-text.short p {
+    display: -webkit-box;
+    overflow: hidden;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    transition: .25s linear;
+}
+
+div.card-text.short p.full {
+    -webkit-line-clamp: 20;
+    transition: .25s linear;
+}
+
+div.card-text.short,
+div.card-text.long {
+    padding: .75rem 1.25rem;
+}
+
+div.card-body div.card-text.long {
+    display: none;
+}
+
+.card.about div.card-footer {
+    padding: 0;
+    margin: 0;
+    border-top: 0;
+}
+
+div.card-footer button {
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
+    width: 100%;
+    height: auto;
+    border: 0;
+    background-color: #960000;
+    color: white;
+    padding: .75rem;
+    border-top: 1px solid rgba(0, 0, 0, .125);
+}
+
+@media screen and (min-width: 670px) {
+    .card-deck.about {
+        width: 100%;
+        padding: 0 2%;
+    }
+    .card.about {
+        margin-bottom: 5%;
+    }
+    .card.about:nth-child(odd) {
+        flex-direction: row;
+    }
+    .card.about:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+    .card.about .card-content {
+        width: calc(55%*0.99);
+        margin: 0 auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* height: max-content; */
+        background-color: unset;
+    }
+    .card.about .card-content div {
+        background-color: #a60000;
+    }
+    .card.about .card-content .card-title {
+        padding: 4px;
+        border-bottom: 1px solid whitesmoke;
+        box-shadow: 0px 0px 4px 0px whitesmoke;
+    }
+    .card.about .card-content .card-footer {
+        bottom: 0;
+        width: 100%;
+        box-shadow: 0px 0px 4px 0px whitesmoke;
+    }
+    .card.about .card-content .card-footer button:hover {
+        cursor: pointer;
+        background-color: #c60000;
+        outline: none;
+    }
+    .card.about .card-content .card-footer button:focus {
+        outline: none;
+    }
+    .card.about div.card-content div.card-body {
+        background-color: inherit;
+        color: rgb(30, 30, 30);
+        padding: 0;
+        height: 100%;
+    }
+    .card.about div.card-content div.card-body:not([style]) {
+        background-color: #a60000;
+    }
+    .card.about div.card-content div.card-body .card-text.long,
+    .card.about div.card-content div.card-body .card-text.long p {
+        background-color: #eeeeee;
+        height: max-content;
+        margin: 0;
+    }
+    .card.about .card-img {
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .card.about .card-img img {
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .card-deck.about {
+        width: 100%;
+        padding: 2% 5%;
+    }
+    .card.about {
+        margin-bottom: 7%;
+        width: 90%;
+    }
+    .card.about .card-content {
+        height: max-content;
+    }
+    .card.about:nth-child(even) {
+        margin-left: auto;
+    }
+    div.card-text.short p {
+        line-clamp: 5;
+        -webkit-line-clamp: 5;
+    }
+}

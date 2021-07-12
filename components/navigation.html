@@ -8,13 +8,19 @@
         <div class="left">
             <!-- Search button -->
             <div class="search-container close">
-                <input type="search" name="searchInp" onchange="sendSearch(this.value, 'search.html')" onkeyup="searchSitesWithResult(this.value, 'search_results', false, true),searchInSite(this.value)" id="search_box" />
+                <input type="search" name="searchInp" id="search_box" onkeyup="searchSitesWithResult(this.value, 'search_results', false, true),searchInSite(this.value)"/>
+                <script>
+                    document.getElementById('search_box').addEventListener('keypress', (e) =>{
+                        if(e.keyCode === 13 && e.target.value.length > 2)
+                            sendSearch(e.target.value, 'search.html');
+                    });
+                </script>
             </div>
             <div id="search" class="nav-phone search">
                 <img id="search-img" src="{fill_parents}images/icons/search.png">
             </div>
             <div class="nav-container-desktop">
-                <a href="#">Edupage</a>
+                <a href="https://galileoschool.edupage.org/znamky/">Edupage</a>
             </div>
             <!-- School logo -->
             <div id="logo-container" class="nav-phone school-logo-container">

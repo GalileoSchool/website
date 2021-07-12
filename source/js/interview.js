@@ -185,9 +185,9 @@ $(document).ready(function () {
 
   // Function that's responsible for generating a hash from a string
   function hashCode(string) {
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0, h = 0; i < string.length; i++) {
-      h = Math.imul(31, h) + string.charCodeAt(i) | 0;
+    let h = 0;
+    for (let i = 0; i < string.length; i++) {
+      h += Math.imul(31, h) + string.charCodeAt(i) | 0;
     }
 
     return h;
