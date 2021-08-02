@@ -175,10 +175,10 @@ function writeFile(path, string, appendFile) {
 
 /** Creates a Json file with our data stringified as Json
  * 
- * @param {String} string string to be stringified and saved as a json file
+ * @param {Object} object object to be stringified and saved as a json file
  */
-function saveAsJson(string) {
-    return fs.writeFileSync(Path.join(C.ModulePath, C.jsonFile), JSON.stringify(array, null, 4), {flag: 'w+', mode: 0666});
+function saveAsJson(object) {
+    return fs.writeFileSync(Path.join(C.ModulePath, C.jsonFile), JSON.stringify(object, null, 4), {flag: 'w+', mode: 0666});
 }
 
 /** Loads a Json file and returns its content parsed
