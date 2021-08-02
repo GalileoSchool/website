@@ -102,7 +102,8 @@ const fs = require('fs') // for manipulation of files
 const glob = require('glob') // for finding the right files
 const Handlebars = require('handlebars'); // for using handlebars
 const readlineSync = require('readline-sync');
-const parser = require('./Extensions/AboutUsParser');
+// this is commented out so as to not interrupt the transpilation
+// const parser = require('./Extensions/AboutUsParser');
 const { Exception } = require('handlebars/runtime');
 
 // syntax for compound components
