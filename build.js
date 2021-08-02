@@ -81,9 +81,11 @@ class InterviewCard {
 			<h4 class="card-title">${this.title}</h4>
 			<div class="card-body">
 				<h5 class="card-subtitle">${this.student}</h5>
+				<p class="card-text">${this.quickinfo}</p>
 				<div class="card-text">
-					<p class="card-text">${this.quickinfo}</p>
-					<p class="card-text card-long-desc no-display">${this.longdesc}</p>
+					<div class="card-text card-long-desc no-display">
+					${this.longdesc.split('\r\n').map(sentence => `<p class="card-text card-long-desc no-display">${sentence}</p>`).join('')}
+					</div>
 				</div>
 				${this.hasPhotos ? `<h2 class="no-display">Gallery</h2>` : ``}
 				<ul class="card-images no-display">
@@ -99,6 +101,8 @@ class InterviewCard {
 const fs = require('fs') // for manipulation of files
 const glob = require('glob') // for finding the right files
 const Handlebars = require('handlebars'); // for using handlebars
+const readlineSync = require('readline-sync');
+const parser = require('./Extensions/AboutUsParser');
 const { Exception } = require('handlebars/runtime');
 
 // syntax for compound components
@@ -217,7 +221,6 @@ function autoFillParentFolders(filepath, file_content) {
 	while(file_content.indexOf('{fill_parents_html}') != -1) {
 		file_content = file_content.replace('{fill_parents_html}', joinRepeatedString(getNumberOfParentFolders(path,'html') - 1,'../'));
 	}
-	// console.log("Parent Folders AutoFill Complete On The File: " + path);
 	return file_content;
 }
 
@@ -419,6 +422,12 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 		return false;
 	}
 }
+
+// This has been commented out/deprected due to the fact that user interaction is not being allowed during runtime if you would like to use this
+// rework AboutUsParser.js module so it fits your needs and doesn't need user interaction 
+
+/*if (readlineSync.keyInYN("\r\nWould you like to run the parser for updating document parsed web pages?\r\n"))
+	parser.AboutUs();*/
 
 // first we prepare all the folders in the build folder
 // create the target build/ folder if it doesn't exist yet

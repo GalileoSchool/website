@@ -23,8 +23,8 @@ $(document).ready(() => {
         navbar.addClass('no-display');
     }
 
-    // We check here whether the url contains /school/ section
-    if (urlContains('/school/')) {
+    // We check here whether the url contains /school/ or /summer/ section
+    if (urlContains('/school/') && !urlContains('/summer/')) {
         // If it does we get in what type of school we are atm
         const arr = document.location.pathname.split('/');
         // And then we set one of the coresponding tabs in the dropdown menu of 'About Us' to active
@@ -37,7 +37,7 @@ $(document).ready(() => {
     $(window).resize(() => {
         // Since Javascript has an automatic garbage collection we don't have to worry
         // about disposing the old object
-        viewport = new Viewport($(window).innerWidth() + 17, $(window).innerHeight());
+        viewport = new Viewport($(window).innerWidth(), $(window).innerHeight());
         isDesktop = viewport.isDesktop;
         if (isDesktop) {
             resetToDesktop();
