@@ -16,6 +16,13 @@
 // this acts as if you had multiple components, but put into one file
 //  and accessed using {{component.subcomponent}}
 
+// Different systems use different newline characters, so we make sure to get
+// the correct one
+// Note that the order in the expression is important.
+// https://dirask.com/posts/JavaScript-split-string-by-new-line-character-k1wEQp
+const { EOL } = require('os')
+const NEWLINE_STRING = EOL
+
 /** Allows us to create an interview card object that has its own pre-made local functions to make our lives easier
  * 
  * @description Creating an instance of this class with the right parameters allows us to use its local functions. Example would be using the function getCode() to get a fully formatted html code of the card with the content from the parameters.
@@ -84,7 +91,7 @@ class InterviewCard {
 				<p class="card-text">${this.quickinfo}</p>
 				<div class="card-text">
 					<div class="card-text card-long-desc no-display">
-					${this.longdesc.split('\r\n').map(sentence => `<p class="card-text card-long-desc no-display">${sentence}</p>`).join('')}
+					${this.longdesc.split(NEWLINE_STRING).map(sentence => `<p class="card-text card-long-desc no-display">${sentence}</p>`).join('')}
 					</div>
 				</div>
 				${this.hasPhotos ? `<h2 class="no-display">Gallery</h2>` : ``}
@@ -165,10 +172,10 @@ function makeComponentDictionary(globPattern) {
 		if (fileString.indexOf(OPENING_SIGNATURE) == 0) {
 
 			// split by sections / subcomponents
-			let sections = fileString.split('\r\n' + OPENING_SIGNATURE)
+			let sections = fileString.split(NEWLINE_STRING + OPENING_SIGNATURE)
 			sections[0] = sections[0].replace(OPENING_SIGNATURE, '')
 			// separate sections into name and content
-			sections = sections.map(section => section.split(CLOSING_SIGNATURE + '\r\n'))
+			sections = sections.map(section => section.split(CLOSING_SIGNATURE + NEWLINE_STRING))
 			// add component sections to dictionary
 			let componentDict = {}
 			sections.forEach(
@@ -532,6 +539,7 @@ for (const sourceFile of sourceFiles) {
 		transpileUsingNestedHandlebars(startFile, enFileToCreate, enComponents)
 		transpileUsingNestedHandlebars(startFile, skFileToCreate, skComponents)
 
+		console.log('Transpiled file', sourceFile, 'to', skFileToCreate, 'and', enFileToCreate)
 	} else if (isCssFile(sourceFile)) {
 		console.log('Skipped CSS file', sourceFile)
 
