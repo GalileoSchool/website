@@ -31,6 +31,21 @@ Don't make changes to the files in the build folder, as they will be overridden 
 
 You can find all of these in the `Makefile` file which you can use using the `make` command (if you get it installed - this should be done for you on Mac and UNIX systems).
 
+## Deploying
+
+Once the website is built in the build folder, you can deploy it (which basically means means replacing the public folder with contents of the build folder).
+
+An example way how to do it from console from repo directory (careful, this will irreversibly erase anything in the destination repository):
+```
+cd build
+git init
+git add .
+git commit -m "Deploy"
+git remote add origin git@github.com:galileoschool/galileoschool.github.io.git
+git push -fu origin master
+cd ..
+```
+
 ## License
 
 (c) Copyright 2021 GALILEO SCHOOL, s.r.o., all rights reserved.
