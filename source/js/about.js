@@ -5,11 +5,11 @@ $(document).ready(function () {
 
     /**
      * Function responsible for hiding and showing long texts on expandable boxes
+     * @param {HTMLElement} caller - Html element that invoked the function
      */
     function toggleShowLongText(caller = null) {
-        caller = caller ?? this.parentElement.parentElement;// Caller is the base elment the card element from which the function was called
+        caller = isHtmlElement(caller) ? caller : this.parentElement.parentElement;// Caller is the base elment the card element from which the function was called
                                                             // As we know buttons in cards are wrapped in multiple wrappers so we have to reach the base element
-
         let img = caller.parentElement.children[0].children[0]; // We select image element
         let skip_img_styling;
         if (img) { // If the text block contains an image we check whether it needs a css fixing or no
@@ -37,5 +37,13 @@ $(document).ready(function () {
 
         // Removing the temporary id that we've set earlier
         textContainer.removeAttribute('id');
+    }
+
+    function isHtmlElement(object) {
+        try {
+            return object instanceof HTMLElement;
+        } catch (error) {
+            return false;
+        }
     }
 });
