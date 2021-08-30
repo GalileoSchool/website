@@ -22,6 +22,7 @@
 // https://dirask.com/posts/JavaScript-split-string-by-new-line-character-k1wEQp
 const { EOL } = require('os')
 const NEWLINE_STRING = EOL
+const IMAGE_CLOUD_URL = 'https://res.cloudinary.com/galileoschool/image/upload/galileo_web/';
 
 /** Allows us to create an interview card object that has its own pre-made local functions to make our lives easier
  * 
@@ -211,6 +212,7 @@ function transpileUsingNestedHandlebars(fileString, fileToCreate, components) {
 	}
 	// write output to file
 	fileString = autoFillParentFolders(fileToCreate, fileString);
+	fileString = autoFillCloudinary(fileString);
 	fileString = languageFillPath(fileToCreate, fileString);
 	fs.writeFileSync(fileToCreate, fileString)
 }
@@ -228,6 +230,18 @@ function autoFillParentFolders(filepath, file_content) {
 	}
 	while(file_content.indexOf('{fill_parents_html}') != -1) {
 		file_content = file_content.replace('{fill_parents_html}', joinRepeatedString(getNumberOfParentFolders(path,'html') - 1,'../'));
+	}
+	return file_content;
+}
+
+/** Identifies and auto-fills cloud accessed files url
+ * 
+ * @param {*} file_content Content of the file
+ * @returns {String} The string with filled placeholders
+ */
+function autoFillCloudinary(file_content) {
+	while(file_content.indexOf('{cloudinary}') != -1) {
+		file_content = file_content.replace('{cloudinary}', IMAGE_CLOUD_URL);
 	}
 	return file_content;
 }
