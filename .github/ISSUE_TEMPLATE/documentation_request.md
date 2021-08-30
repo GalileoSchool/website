@@ -1,5 +1,5 @@
 ---
-name: Documentation_Request
+name: Documentation Request
 about: Create a request to flesh out any project documentation
 title: "[Documentation Request]"
 labels: documentation, enhancement, help wanted
