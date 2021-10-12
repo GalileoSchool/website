@@ -721,7 +721,7 @@ function searchSitesWithResult(value, resultBoxId, onlyCurrentLanguage = false, 
     }
 
     // Get the results of the searched value in the websites.
-    const results = searchSites(value, false, onlyCurrentLanguage, showPreviews, true, C.PREVIEW_LENGTH, 1);
+    const results = searchSites(value.toLowerCase(), false, onlyCurrentLanguage, showPreviews, true, C.PREVIEW_LENGTH, 1);
 
     // If there are results handle the results data. Otherwise, display 'No results.' (alternative when the element doesn't hide) and hide the 
     // element showing the results.
@@ -758,7 +758,7 @@ function searchSitesWithResult(value, resultBoxId, onlyCurrentLanguage = false, 
  * @param {String} value 
  */
 function searchInSite(value) {
-    searchSites(value, true);
+    searchSites(value.toLowerCase(), true);
 }
 
 /**
@@ -776,10 +776,10 @@ async function getRequestSearch(resultBoxId, onlyCurrentLanguage = false, showPr
     }
     const searchValue = F.getSiteGetRequestData("search");
     const results = await searchSites(searchValue, false, onlyCurrentLanguage, showPreviews, true, showPreviewLength, showPreviewsPerPage);
-    if (results) {
+    if (results && results != null && results.length > 0) {
         resultBox.innerHTML = F.buildResultListFull(results);
     } else {
-        resultBox.innerHTML = "No results.";
+        resultBox.innerHTML = `No results were found for '${searchValue}'`;
     }
 }
 
@@ -797,7 +797,7 @@ function __testSQ() {
  * @param {String} site The path to the external site - after the language folder. Used for searching and displaying the results.
  */
 function sendSearch(value, site, trimWhitespaces = true) {
-    const formattedData = F.getRequestDataFormatter(value, trimWhitespaces);
+    const formattedData = F.getRequestDataFormatter(value.toLowerCase(), trimWhitespaces);
     const formUrl = location.origin + location.pathname.split("/html/")[0] + `/html/${C.CURRENT_LANG}/${site}?search=${formattedData}`;
     location.href = formUrl;
 }
@@ -896,7 +896,7 @@ async function __initSearcher() {
                             // mean: g - global (throughout the text), m - multiline (search on all lines), u - unicode (match full unicode)
                             const txt = F.trimContent(F.getSiteContent(text, C.WEBSITE_CONTENT_ELEMENT_QUERY, true), /^\s*/gmu);
                             // create the object to be stored in the data array.
-                            const value = { path: paths[i], content: txt };
+                            const value = { path: paths[i], content: txt.toLowerCase() };
                             // append the content into the data array - the data array is always new for each language.
                             data.push(value);
 
