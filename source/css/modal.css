@@ -24,7 +24,7 @@ div.modal-inner-wrapper div.modal-text-wrapper {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    text-align: start;
     font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
     padding: 8px;
 }
