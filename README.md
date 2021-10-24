@@ -20,8 +20,9 @@ To set up your system for running, install all npm packages:
 npm install
 ```
 
-To build the website, run:
+To clean the build folder and then build the website, run:
 ```
+rm -rf build
 node build
 ```
 
