@@ -26,7 +26,7 @@ rm -rf build
 node build
 ```
 
-You will then see your website in build/. After any changes in the source files, run `node build` again.
+You will then see your website in the build/ folder. After any changes in the source files, run `node build` again.
 
 Don't make changes to the files in the build folder, as they will be overridden by the next build, and so all your changes will be deleted!
 
