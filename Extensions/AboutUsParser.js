@@ -52,7 +52,7 @@ class Paragraph {
     getDefaultHtmlCode() {
         return `<div class="card about">
         <div class="card-img">
-            ${this.photo ? `<img src="{cloudinary}galileo_web/${Path.parse(C.ModulePath).base.toLowerCase()}/${this.photo}" class="card-img-top" alt="Picture Not Available!">` : ''}
+            ${this.photo ? `<img src="{cloudinary}galileo_web/c_scale,w_1024/${Path.parse(C.ModulePath).base.toLowerCase()}/${this.photo}" class="card-img-top" alt="Picture Not Available!">` : ''}
         </div>
         <div class="card-content">
             <div>
