@@ -10,7 +10,7 @@
                         ],
                         "language": "en",
                         "folder": "highschool",
-                        "photo": "highSchool/modern.JPG"
+                        "photo": "galileo_web/highSchool/modern.JPG"
                     },
                     {
                         "title": "Path to great universities",
@@ -20,7 +20,7 @@
                         ],
                         "language": "en",
                         "folder": "highschool",
-                        "photo": "highSchool/uni.JPG"
+                        "photo": "galileo_web/highSchool/uni.JPG"
                     },
                     {
                         "title": "Individual approach to learning",
@@ -30,7 +30,7 @@
                         ],
                         "language": "en",
                         "folder": "highschool",
-                        "photo": "highSchool/individual.JPG"
+                        "photo": "galileo_web/highSchool/individual.JPG"
                     }
                 ]
             },
@@ -44,7 +44,7 @@
                         ],
                         "language": "sk",
                         "folder": "highschool",
-                        "photo": "highSchool/modern.JPG"
+                        "photo": "galileo_web/highSchool/modern.JPG"
                     },
                     {
                         "title": "Cesta na skvelé univerzity",
@@ -54,7 +54,7 @@
                         ],
                         "language": "sk",
                         "folder": "highschool",
-                        "photo": "highSchool/uni.JPG"
+                        "photo": "galileo_web/highSchool/uni.JPG"
                     },
                     {
                         "title": "Individuálny prístup",
@@ -64,7 +64,7 @@
                         ],
                         "language": "sk",
                         "folder": "highschool",
-                        "photo": "highSchool/individual.JPG"
+                        "photo": "galileo_web/highSchool/individual.JPG"
                     }
                 ]
             }
@@ -84,7 +84,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/bilingual.JPG"
+                        "photo": "galileo_web/kindergarten/bilingual.JPG"
                     },
                     {
                         "title": "Learning by playing",
@@ -94,7 +94,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/playing.JPG"
+                        "photo": "galileo_web/kindergarten/playing.JPG"
                     },
                     {
                         "title": "Learning by experience",
@@ -105,7 +105,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/experience.JPG"
+                        "photo": "galileo_web/kindergarten/experience.JPG"
                     },
                     {
                         "title": "Learning outdoors",
@@ -116,7 +116,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/outdoors.JPG"
+                        "photo": "galileo_web/kindergarten/outdoors.JPG"
                     },
                     {
                         "title": "The joy of discovery",
@@ -127,7 +127,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/discovery.JPG"
+                        "photo": "galileo_web/kindergarten/discovery.JPG"
                     },
                     {
                         "title": "Developing creativity and fantasy",
@@ -137,7 +137,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/creativity.JPG"
+                        "photo": "galileo_web/kindergarten/creativity.JPG"
                     },
                     {
                         "title": "Healthy and happy eating",
@@ -147,7 +147,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/food.JPG"
+                        "photo": "galileo_web/kindergarten/food.JPG"
                     },
                     {
                         "title": "All summer programme",
@@ -157,7 +157,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/summer.JPG"
+                        "photo": "galileo_web/kindergarten/summer.JPG"
                     },
                     {
                         "title": "The programme during the Corona pandemic",
@@ -169,7 +169,7 @@
                         ],
                         "language": "en",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/corona.JPG"
+                        "photo": "galileo_web/kindergarten/corona.JPG"
                     }
                 ]
             },
@@ -185,7 +185,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/bilingual.JPG"
+                        "photo": "galileo_web/kindergarten/bilingual.JPG"
                     },
                     {
                         "title": "Učenie hrou",
@@ -195,7 +195,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/playing.JPG"
+                        "photo": "galileo_web/kindergarten/playing.JPG"
                     },
                     {
                         "title": "Zážitkové učenie",
@@ -206,7 +206,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/experience.JPG"
+                        "photo": "galileo_web/kindergarten/experience.JPG"
                     },
                     {
                         "title": "Učenie v prírode",
@@ -217,7 +217,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/outdoors.JPG"
+                        "photo": "galileo_web/kindergarten/outdoors.JPG"
                     },
                     {
                         "title": "Radosť z objavovania",
@@ -228,7 +228,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/discovery.JPG"
+                        "photo": "galileo_web/kindergarten/discovery.JPG"
                     },
                     {
                         "title": "Rozvoj tvorivosti a fantázie",
@@ -238,7 +238,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/creativity.JPG"
+                        "photo": "galileo_web/kindergarten/creativity.JPG"
                     },
                     {
                         "title": "Zdravá a pestrá strava",
@@ -248,7 +248,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/food.JPG"
+                        "photo": "galileo_web/kindergarten/food.JPG"
                     },
                     {
                         "title": "Program na celé leto",
@@ -258,7 +258,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/summer.JPG"
+                        "photo": "galileo_web/kindergarten/summer.JPG"
                     },
                     {
                         "title": "Koronový program",
@@ -270,7 +270,7 @@
                         ],
                         "language": "sk",
                         "folder": "kindergarten",
-                        "photo": "kindergarten/corona.JPG"
+                        "photo": "galileo_web/kindergarten/corona.JPG"
                     }
                 ]
             }
@@ -292,7 +292,7 @@
                         ],
                         "language": "en",
                         "folder": "primaryschool",
-                        "photo": "primarySchool/modern.JPG"
+                        "photo": "galileo_web/primarySchool/modern.JPG"
                     },
                     {
                         "title": "A transnational school",
@@ -307,7 +307,7 @@
                         ],
                         "language": "en",
                         "folder": "primaryschool",
-                        "photo": "primarySchool/transnational.JPG"
+                        "photo": "galileo_web/primarySchool/transnational.JPG"
                     },
                     {
                         "title": "A bilingual school",
@@ -327,7 +327,7 @@
                         ],
                         "language": "en",
                         "folder": "primaryschool",
-                        "photo": "primarySchool/bilingual.JPG"
+                        "photo": "galileo_web/primarySchool/bilingual.JPG"
                     },
                     {
                         "title": "A creative school",
@@ -338,7 +338,7 @@
                         ],
                         "language": "en",
                         "folder": "primaryschool",
-                        "photo": "primarySchool/creativity.JPG"
+                        "photo": "galileo_web/primarySchool/creativity.JPG"
                     }
                 ]
             },
@@ -357,7 +357,7 @@
                         ],
                         "language": "sk",
                         "folder": "primaryschool",
-                        "photo": "primarySchool/modern.JPG"
+                        "photo": "galileo_web/primarySchool/modern.JPG"
                     },
                     {
                         "title": "Nadnárodná škola",
@@ -372,7 +372,7 @@
                         ],
                         "language": "sk",
                         "folder": "primaryschool",
-                        "photo": "primarySchool/transnational.JPG"
+                        "photo": "galileo_web/primarySchool/transnational.JPG"
                     },
                     {
                         "title": "Bilingválna škola",
@@ -393,7 +393,7 @@
                         ],
                         "language": "sk",
                         "folder": "primaryschool",
-                        "photo": "primarySchool/bilingual.JPG"
+                        "photo": "galileo_web/primarySchool/bilingual.JPG"
                     },
                     {
                         "title": "Tvorivá škola",
@@ -404,7 +404,7 @@
                         ],
                         "language": "sk",
                         "folder": "primaryschool",
-                        "photo": "primarySchool/creativity.JPG"
+                        "photo": "galileo_web/primarySchool/creativity.JPG"
                     }
                 ]
             }

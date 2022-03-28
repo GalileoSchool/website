@@ -22,7 +22,7 @@
 // https://dirask.com/posts/JavaScript-split-string-by-new-line-character-k1wEQp
 const { EOL } = require('os')
 const NEWLINE_STRING = EOL
-const IMAGE_CLOUD_URL = 'https://res.cloudinary.com/galileoschool/image/upload/galileo_web/';
+const IMAGE_CLOUD_URL = 'https://res.cloudinary.com/galileoschool/image/upload/';
 
 /** Allows us to create an interview card object that has its own pre-made local functions to make our lives easier
  * 
