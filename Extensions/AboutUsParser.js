@@ -1,8 +1,10 @@
-// A quick dev tool created by myself to make my life much easier with parsing documents into sections or boxes
+// A quick dev tool originally created by Ado or Vilko (not sure which one of them) to make life much easier with parsing documents into sections or boxes
+// This is not run often and it is dangerous as it may override other changes
 // Parsable documents can be parsed into individual sections/boxes automatically with the html code being the output
 // Input is a parsable document like those of About Us section, parses them and formats them into an html code
 // Automatically creates components with the output html code, therefore after running a document through this parser immediately usable component is created
-// All documents that you'd like to parse should be located in "source > files > [component folder] > [language] > [your files]" ex "source\files\pearson\en\en.txt"
+// All documents that you'd like to parse should be located in "source > files > [component folder] > [language] > [your files]" eg. "source\files\pearson\en\en.txt"
+// note that running this file is NOT a part of the automated build script. To run it, you need to uncomment the relevant line in the build script.
 
 //regex link for paragraph searching: https://regex101.com/r/UhgGAR/1
 const fs = require('fs');
@@ -11,7 +13,8 @@ const glob = require('glob');
 const ScriptDir = __dirname; // The directory of where this current javascript is located
 const readlineSync = require('readline-sync');
 
-
+// here are some globals that can be interactively input
+// the naming is a bit confusing, despite being called "C", these values are mutated
 const C = {
     ModulePath: ScriptDir + '/../source/files/AboutUs/', // Directory path of AboutUs files
     ComponentsPath: ScriptDir + '/../components/', // Components folder path

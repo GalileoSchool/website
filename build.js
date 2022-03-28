@@ -445,11 +445,13 @@ function transpileJsonInterviewCardsToHTML(enJson, skJson) {
 	}
 }
 
-// This has been commented out/deprected due to the fact that user interaction is not being allowed during runtime if you would like to use this
-// rework AboutUsParser.js module so it fits your needs and doesn't need user interaction 
-
-/*if (readlineSync.keyInYN("\r\nWould you like to run the parser for updating document parsed web pages?\r\n"))
-	parser.AboutUs();*/
+// This has been commented out/deprected due to the fact that user interaction suboptimal during the build process.
+// if you would like to use this, rework AboutUsParser.js module so it fits your needs and doesn't need user interaction
+// or you can uncomment and run this, but it's dangerous, so read the README and the description in AboutUsParser.js before use
+/*
+if (readlineSync.keyInYN("\r\nWould you like to run the parser for updating document parsed web pages?\r\n"))
+	parser.AboutUs();
+*/
 
 // first we prepare all the folders in the build folder
 // create the target build/ folder if it doesn't exist yet

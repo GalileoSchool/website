@@ -32,6 +32,11 @@ Don't make changes to the files in the build folder, as they will be overridden 
 
 You can find all of these in the `Makefile` file which you can use using the `make` command (if you get it installed - this should be done for you on Mac and UNIX systems).
 
+There is also a highly experimental extra build script `Extensions/AboutUsParser.js`. It is by default not part of the automated build script and it is dangerous to use. If you do want to use it, follow these instructions *carefully*:
+* uncomment the lines in `build.js`, which refer to `AboutUsParser`
+* run `node build` - note that this time it will not run automatically, but will require command line input to complete
+* this code is run rarely, so after running very carefully check that it doesn't override any other changes by running `git diff` to highlight all changes made and by opening the built website to check that everything is alright on the affected parts of the website
+
 ## Deploying
 
 Once the website is built in the build folder, you can deploy it (which basically means means replacing the public folder with contents of the build folder).
