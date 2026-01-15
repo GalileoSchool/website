@@ -65,7 +65,7 @@ class Paragraph {
             </div>
             <div class="card-body">
                 <div class="card-text long">
-                ${this.long.map(par =>`<p>${par}</p>`).join('<br>')}
+                ${this.long.map(par => `<p>${par}</p>`).join('<br>')}
                 </div>
             </div>
             <div class="card-footer">
@@ -116,7 +116,7 @@ function parseString(string) {
 
     sections.map(section => { // We iterate through every parsed section
         let paragraph = section.split('\r\n').filter(sentence => sentence.trim() ? true : false); // Splitting sections into paragraphs by new line and removing empty lines
-        parsedSections.push({ title: paragraph[0], short: paragraph[1], long: paragraph.slice(2,paragraph.length) }); // Pushing a parsed section object into an array
+        parsedSections.push({ title: paragraph[0], short: paragraph[1], long: paragraph.slice(2, paragraph.length) }); // Pushing a parsed section object into an array
     });
 
     return parsedSections; // return array of parsed sections as a callback
@@ -131,7 +131,7 @@ function getStringFromArray(array) {
     let str_builder = '';
     for (var par of array)
         str_builder += new Paragraph(par).getDefaultHtmlCode();
-    
+
     return str_builder;
 }
 
@@ -156,6 +156,27 @@ function createComponent(Finalpath = null, name, content, language, append_file 
     console.log(`Successfully created component ${component},\r\nAppend File Mode: ${append_file}`);
 }
 
+/** Make a timestamped backup of the file if it exists
+ *  Backup goes to the same directory as <file>.backup.<timestamp>
+ * @param {string} filePath 
+ */
+function backupFile(filePath) {
+    try {
+        if (!fs.existsSync(filePath)) return; // No file to back up
+
+        const dir = Path.dirname(filePath);
+        const base = Path.basename(filePath);
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const backupPath = Path.join(dir, `${base}.backup.${timestamp}`);
+
+        fs.copyFileSync(filePath, backupPath);
+        console.log(`Backup created at ${backupPath}`);
+    } catch (error) {
+        console.error(`Failed to create backup for ${filePath}: ${error}`);
+
+    }
+}
+
 /** Synchronously writes a string into a file or appends it
  * 
  * @param {String} path Path of the file
@@ -164,12 +185,14 @@ function createComponent(Finalpath = null, name, content, language, append_file 
  * @returns {void}
  */
 function writeFile(path, string, appendFile) {
+    backupFile(path); // Try to back up existing file if it exists (Safety first!)
+
     switch (appendFile) {
         case true:
-            fs.appendFileSync(path, `${string}\r\n`, { flag: 'a+', mode: 0666 });
+            fs.appendFileSync(path, `${string}\r\n`, { flag: 'a+', mode: 0o666 });
             break;
         case false:
-            fs.writeFileSync(path, `${string}\r\n`, { flag: 'w+', mode: 0666 });
+            fs.writeFileSync(path, `${string}\r\n`, { flag: 'w+', mode: 0o666 });
             break;
         default:
             throw new Error('No valid action was chosen for writing a file!');
@@ -181,7 +204,11 @@ function writeFile(path, string, appendFile) {
  * @param {Object} object object to be stringified and saved as a json file
  */
 function saveAsJson(object) {
-    return fs.writeFileSync(Path.join(C.ModulePath, C.jsonFile), JSON.stringify(object, null, 4), {flag: 'w+', mode: 0666});
+    let file = Path.join(C.ModulePath, C.jsonFile); // Path to our json file
+    backupFile(file); // Try to back up existing json file if it exists (Safety first!)
+
+    return fs.writeFileSync(file,
+        JSON.stringify(object, null, 4), { flag: 'w+', mode: 0o666 });
 }
 
 /** Loads a Json file and returns its content parsed
@@ -190,7 +217,7 @@ function saveAsJson(object) {
  * @returns {String} parsed Json file content
  */
 function loadFromJsonFile(file) {
-    return JSON.parse(fs.readFileSync(file, { mode: 0666 }));
+    return JSON.parse(fs.readFileSync(file, { mode: 0o666 }));
 }
 
 /** Creates component files from objects array
@@ -202,23 +229,12 @@ function transpileArrayIntoComponents(array) {
     array.map((section, sectionIndex) => {
         section.content.map(content => {
             let string = getStringFromArray(content.data);
-            if(sectionIndex == 0)
+            if (sectionIndex == 0)
                 createComponent(C.ComponentsPath, section.folder, string, content.language, false, nested);
             else
                 createComponent(C.ComponentsPath, section.folder, string, content.language, true, nested);
         });
     });
-}
-
-/**
- * 
- * @param {Array} array 
- * @deprecated This will be added later on, it should check whether Json file contains objects with paths to photos and ask whether to combine them with newly parsed objects array of data
- */
-function checkJsonForPhotos(parsedJson) {
-    let arr = parsedJson;
-
-    return parsedJson;
 }
 
 /** Counts the number of subdirectories in a directory
@@ -242,14 +258,14 @@ function AboutUs() {
         let folders = getFolders(Path.normalize(`${C.ModulePath}../`)),
             index = readlineSync.keyInSelect(folders, "Please pick a directory holding your custom file/s..."),
             path = Path.normalize(`${C.ModulePath}../${folders[index]}`);
-        
+
         // We confirm the path to the module that the user picked is correct and then continue if not, we break the script
         console.log(`\r\nYou picked '${folders[index]}'`);
         if (readlineSync.keyInYN(`Is "${path}" the correct path?`))
             C.ModulePath = path;
         else
             throw new Error("Fatal error, couldn't get the right path for custom parsing");
-        
+
         // We ask the user to input the name of the component to create from the module
         C.componentName = readlineSync.question("\r\nWhat would you like your component to be named?\r\n").trim();
         C.componentName = C.componentName.includes('.') ? C.componentName.split('.')[0] : C.componentName;
@@ -273,14 +289,14 @@ function AboutUs() {
             temp = [],
             skip = false,
             found = false;
-        
+
         // If Json File is set we try to search for it and print our result to the user
         if (C.jsonFile) {
             console.log(`Searching for Json file ${C.jsonFile} at [${Path.join(C.ModulePath, C.jsonFile ? C.jsonFile : '')}]\n`);
             found = fs.existsSync(Path.join(C.ModulePath, C.jsonFile)) ? true : false;
             console.log(`Found: ${found}\n`);
         }
-        
+
         // If we found the Json file we ask the user whether he wants to use the data inside the file
         if (found) {
             if (readlineSync.question(`\nWould you like to fetch the AboutUs data from ${C.jsonFile}? Yes/No\n`).toLowerCase() === 'yes') {
@@ -288,15 +304,15 @@ function AboutUs() {
                 skip = true;
             }
         }
-        
+
         // If the user decides not to use the data from the Json file, we have to parse the files that we retrieved earlier on
         if (!skip) {
             // We iterate each file and parse its content which is then pushed into an array
             arr.map(file => {
                 for (var res of parseString(fs.readFileSync(file.path, 'utf8')))
-                    arr2.push(new Paragraph({title: res.title, text: { short: res.short, long: res.long }, language: file.language, folder: file.folder.toLowerCase()}));
+                    arr2.push(new Paragraph({ title: res.title, text: { short: res.short, long: res.long }, language: file.language, folder: file.folder.toLowerCase() }));
             });
-        
+
             // For each nested component and language inside our module we sort the above parsed objects, organization 
             folders.map(folder => {
                 let temp2 = [];
@@ -326,7 +342,7 @@ function AboutUs() {
 }
 
 module.exports = {
-    AboutUs : AboutUs
+    AboutUs: AboutUs
 }
 
 AboutUs();
