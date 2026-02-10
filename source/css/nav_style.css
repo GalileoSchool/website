@@ -922,3 +922,29 @@ span.searcher-result-preview:last-child {
     }
 
 }
+/* =========================
+   Top banner – ePrihlášky
+   ========================= */
+
+.top-banner {
+    display: block;
+    width: 100%;
+    background-color: #a60000;
+    color: #ffffff;
+    text-align: center;
+    padding: 1.2vw 0;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', sans-serif;
+    font-size: clamp(1rem, 1.1rem + 0.3vw, 1.4rem);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    transition: background-color 0.25s ease;
+}
+
+.top-banner:hover {
+    background-color: #c40000;
+    cursor: pointer;
+}
