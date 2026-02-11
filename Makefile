@@ -2,24 +2,34 @@
 # for example, to transpile the code into the build directory, one can run:
 #  make build
 
+# Define platform-specific commands
+ifeq ($(OS),Windows_NT) # Windows
+RM = rmdir /s /q
+FIND_DS = powershell -NoProfile -Command "Get-ChildItem -Path . -Recurse -Filter '.DS_Store' -Force -ErrorAction SilentlyContinue | Remove-Item -Force"
+else # Unix/Linux/Mac
+RM = rm -rf
+FIND_DS = find . -name '*.DS_Store' -type f -delete
+endif
+
+
 dependencycheck:
-	# Check tools ****************************************************************
+	@echo "Check tools ****************************************************************"
 	git --version
 	node --version
 	npm --version
 
 firsttimesetup:
-	# Downloading node modules ***************************************************
+	@echo "Downloading node modules ***************************************************"
 	npm install
 
 clean:
-	# clean the directory from all annoying OS X .DS_Store files
-	find . -name '*.DS_Store' -type f -delete
+	@echo "clean the directory from all annoying OS X .DS_Store files"
+	@$(FIND_DS)
 
 build:
-	# Building in build/ *********************************************************
-	rm -rf build
+	@echo "Building in build/ *********************************************************"
+	@$(RM) build
 	node build
-	# The End *******************************************************************
+	@echo "The End *******************************************************************"
 
 .PHONY: dependencycheck clean firsttimesetup build
