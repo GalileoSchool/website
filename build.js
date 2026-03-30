@@ -30,60 +30,60 @@ const IMAGE_CLOUD_URL = 'https://res.cloudinary.com/galileoschool/image/upload/'
  */
 class InterviewCard {
 
-    constructor(image, title, quickinfo, longdesc, pathToPhotosFolderFromWebRoot, student) {
-        this.image = image;
-        this.title = title;
-        this.student = student;
-        this.quickinfo = quickinfo;
-        this.longdesc = longdesc;
-        this.path = pathToPhotosFolderFromWebRoot;
-        this.photos = [];
-        this.hasPhotos = false;
+	constructor(image, title, quickinfo, longdesc, pathToPhotosFolderFromWebRoot, student) {
+		this.image = image;
+		this.title = title;
+		this.student = student;
+		this.quickinfo = quickinfo;
+		this.longdesc = longdesc;
+		this.path = pathToPhotosFolderFromWebRoot;
+		this.photos = [];
+		this.hasPhotos = false;
 
-        if (this.path == null)
-            return;
-        var succ = this._getPhotos();
-        this.hasPhotos = succ;
-        if (!succ)
-            console.error("Missing photos for " + this.student + " interview card");
-    }
+		if (this.path == null)
+			return;
+		var succ = this._getPhotos();
+		this.hasPhotos = succ;
+		if (!succ)
+			console.error("Missing photos for " + this.student + " interview card");
+	}
 
-    /**
-     * This is a private function that shouldn't be accessed from outside this class declaration, it is responsible for loading photos
-     */
-    _getPhotos() {
-        try {
-            var files = fs.readdirSync(getDirname() + '/source/' + this.path);
-            if (this._countPictures(files) < 1)
-                return false;
+	/**
+	 * This is a private function that shouldn't be accessed from outside this class declaration, it is responsible for loading photos
+	 */
+	_getPhotos() {
+		try {
+			var files = fs.readdirSync(getDirname() + '/source/' + this.path);
+			if (this._countPictures(files) < 1)
+				return false;
 
-            files.forEach(file => {
-                var ext = getFileExtension(file);
-                if (ext === "jpg" || ext === "png" || ext === "svg") {
-                    var src = (this.path + file);
-                    var name = file.split('.')[0];
-                    var photo = { name: name, source: src };
-                    this.photos.push(photo);
-                }
-            });
-            return true;
-        } catch (error) {
-            console.log(error);
-            return false;
-        }
-    }
+			files.forEach(file => {
+				var ext = getFileExtension(file);
+				if (ext === "jpg" || ext === "png" || ext === "svg") {
+					var src = (this.path + file);
+					var name = file.split('.')[0];
+					var photo = { name: name, source: src };
+					this.photos.push(photo);
+				}
+			});
+			return true;
+		} catch (error) {
+			console.log(error);
+			return false;
+		}
+	}
 
-    _countPictures(files) {
-        var count = 0;
-        files.forEach(file => {
-            if (file.includes(".jpg") || file.includes(".png") || file.includes(".svg"))
-                count++;
-        });
-        return count;
-    }
+	_countPictures(files) {
+		var count = 0;
+		files.forEach(file => {
+			if (file.includes(".jpg") || file.includes(".png") || file.includes(".svg"))
+				count++;
+		});
+		return count;
+	}
 
-    getCode() {
-            return `
+	getCode() {
+		return `
 		<div id="${this.student.replace(' ', '_')}" class="card interview">
 			<img class="card-img-top" src="{fill_parents}${this.image}" alt="Photo">
 			<h4 class="card-title">${this.title}</h4>
@@ -97,7 +97,7 @@ class InterviewCard {
 				</div>
 				${this.hasPhotos ? `<h2 class="no-display">Gallery</h2>` : ``}
 				<ul class="card-images no-display">
-					${this.photos.map(photo =>`<li class="card-photo">
+					${this.photos.map(photo => `<li class="card-photo">
 						<img src="{fill_parents}${photo.source}" alt="${photo.name}">
 					</li>`).join('')}
 				</ul>
@@ -119,13 +119,13 @@ const OPENING_SIGNATURE = ':^) ' // notice the space on end
 const CLOSING_SIGNATURE = ' :::' // notice the space in front
 
 // getter function for directory name
-function getDirname () {
+function getDirname() {
 	// replaces backwards slashes with forward slashes (Windows patch)
 	return __dirname.replace(/\\/g, '/')
 }
 
 // it's basically the old file with /source/ replaced with /build/
-function getBuildFilePathFromSourceFilePath (sourceFilePath) {
+function getBuildFilePathFromSourceFilePath(sourceFilePath) {
 	// note that replace only replaces the first occurrence if the first argument
 	//  is a string
 	return sourceFilePath.replace(
@@ -134,15 +134,15 @@ function getBuildFilePathFromSourceFilePath (sourceFilePath) {
 	)
 }
 
-function getFileExtension (filePath) {
+function getFileExtension(filePath) {
 	return filePath.split('.').pop()
 }
 
-function isHtmlFile (filePath) {
+function isHtmlFile(filePath) {
 	return getFileExtension(filePath) === 'html'
 }
 
-function isCssFile (filePath) {
+function isCssFile(filePath) {
 	return getFileExtension(filePath) === 'css'
 }
 
@@ -150,7 +150,7 @@ function isJsonFile(filePath) {
 	return getFileExtension(filePath) === 'json'
 }
 
-function makeFolder (folderPath) {
+function makeFolder(folderPath) {
 	// create if it doesn't exists yet
 	if (!fs.existsSync(folderPath)) {
 		fs.mkdirSync(folderPath)
@@ -167,7 +167,7 @@ function makeComponentDictionary(globPattern) {
 		const componentName = componentSourceFile
 			.split('/').pop() // get the actual filename
 			.replace(/\.html$/, '') // remove .html at the end
-	
+
 		// parse component (separate into subcomponents if it is compound)
 		const fileString = fs.readFileSync(componentSourceFile, "utf8")
 		if (fileString.indexOf(OPENING_SIGNATURE) == 0) {
@@ -195,7 +195,7 @@ function makeComponentDictionary(globPattern) {
 			// API reference: http://handlebarsjs.com/reference.html
 			components[componentName] = new Handlebars.SafeString(fileString)
 		}
-		
+
 	}
 	return components
 }
@@ -211,10 +211,28 @@ function transpileUsingNestedHandlebars(fileString, fileToCreate, components) {
 		fileString = template(components)
 	}
 	// write output to file
+	fileString = fillLanguagePathPlaceholders(fileToCreate, fileString);
 	fileString = autoFillParentFolders(fileToCreate, fileString);
 	fileString = autoFillCloudinary(fileString);
 	fileString = languageFillPath(fileToCreate, fileString);
 	fs.writeFileSync(fileToCreate, fileString)
+}
+
+/**
+ * Identifies and fills language path placeholders
+ * 
+ * @param {string} filepath Path to file where the component is located
+ * @param {string} file_content Content of the file
+ * @returns {string} The string with filled placeholders
+ * @param {string} placeholder The placeholder string to be replaced
+ */
+function fillLanguagePathPlaceholders(filepath, file_content, placeholder = '{language_fill}') {
+	while (file_content.indexOf(placeholder) != -1) {
+		let file_path_parts = filepath.split('/'); // Split the file path into parts
+		let language_src = file_path_parts.filter(part => langComponents.includes(part)); // Filter parts that match available languages
+		file_content = file_content.replace(placeholder, language_src.join('/')); // Replace the language placeholder with the joined language path
+	}
+	return file_content; // Return the modified file content
 }
 
 /** Identifies and auto-fills parent folders
@@ -225,11 +243,11 @@ function transpileUsingNestedHandlebars(fileString, fileToCreate, components) {
  */
 function autoFillParentFolders(filepath, file_content) {
 	var path = filepath;
-	while(file_content.indexOf('{fill_parents}') != -1) {
-		file_content = file_content.replace('{fill_parents}', joinRepeatedString(getNumberOfParentFolders(path,'build') - 1,'../'));
+	while (file_content.indexOf('{fill_parents}') != -1) {
+		file_content = file_content.replace('{fill_parents}', joinRepeatedString(getNumberOfParentFolders(path, 'build') - 1, '../'));
 	}
-	while(file_content.indexOf('{fill_parents_html}') != -1) {
-		file_content = file_content.replace('{fill_parents_html}', joinRepeatedString(getNumberOfParentFolders(path,'html') - 1,'../'));
+	while (file_content.indexOf('{fill_parents_html}') != -1) {
+		file_content = file_content.replace('{fill_parents_html}', joinRepeatedString(getNumberOfParentFolders(path, 'html') - 1, '../'));
 	}
 	return file_content;
 }
@@ -240,7 +258,7 @@ function autoFillParentFolders(filepath, file_content) {
  * @returns {String} The string with filled placeholders
  */
 function autoFillCloudinary(file_content) {
-	while(file_content.indexOf('{cloudinary}') != -1) {
+	while (file_content.indexOf('{cloudinary}') != -1) {
 		file_content = file_content.replace('{cloudinary}', IMAGE_CLOUD_URL);
 	}
 	return file_content;
@@ -253,7 +271,7 @@ function autoFillCloudinary(file_content) {
  * @returns Returns the file content with transpiled components
  */
 function languageFillPath(filepath, file_content) {
-	while(file_content.indexOf('{language_src}') != -1) {
+	while (file_content.indexOf('{language_src}') != -1) {
 		file_content = file_content.replace('{language_src}', joinPathofFile(filepath));
 	}
 	return file_content;
@@ -267,7 +285,7 @@ function languageFillPath(filepath, file_content) {
  */
 function joinRepeatedString(multiplier, pattern) {
 	var string_builder = "";
-	for(var i = 0; (i + 1) <= multiplier; i++){
+	for (var i = 0; (i + 1) <= multiplier; i++) {
 		string_builder += pattern;
 	}
 	return string_builder;
@@ -279,12 +297,12 @@ function joinRepeatedString(multiplier, pattern) {
  * @returns {String} The relative url of the same file in different language
  */
 function joinPathofFile(filepath) {
-	if(getNumberOfParentFolders(filepath) == 0)
+	if (getNumberOfParentFolders(filepath) == 0)
 		return;
 	var string_builder = joinRepeatedString(getNumberOfParentFolders(filepath) - 1, '../');
 	var path_parts = filepath.split('/html')[1];
-	if(path_parts.indexOf('/en/') != -1)
-		string_builder += path_parts.replace('/en/','sk/');
+	if (path_parts.indexOf('/en/') != -1)
+		string_builder += path_parts.replace('/en/', 'sk/');
 	else
 		string_builder += path_parts.replace('/sk/', 'en/');
 	return string_builder;
@@ -299,7 +317,7 @@ function joinPathofFile(filepath) {
 function getNumberOfParentFolders(path, root = "html") {
 	var parsed = path.split(root + '/');
 	var counter = 0;
-	if(parsed[1]) {
+	if (parsed[1]) {
 		var parsed_even_more = parsed[1].split('/');
 		counter = parsed_even_more.length;
 	}
@@ -314,7 +332,7 @@ function getNumberOfParentFolders(path, root = "html") {
 function transpileInterviewNavigation(objects) {
 	string_builder = ``;
 	objects.forEach(obj => {
-		string_builder += `<li id="${obj.Name.replace(" ", "_")}_menu" class="nav-elem"><div>${obj.Name}</div></li>\n`;		
+		string_builder += `<li id="${obj.Name.replace(" ", "_")}_menu" class="nav-elem"><div>${obj.Name}</div></li>\n`;
 	});
 	return string_builder;
 }
@@ -531,13 +549,13 @@ let jsonString = JSON.stringify(htmlLangUnionArray)
 
 // Write all the available html files into availablefiles.json file used by the searcher.js
 fs.writeFile(getDirname() + '/build/files/availablefiles.json', jsonString, (err) => {
-	if(err) throw new Error(err.message)
+	if (err) throw new Error(err.message)
 })
 
 
 for (const sourceFile of sourceFiles) {
 	// identifies the new file to be created
-	
+
 	const fileToCreate = getBuildFilePathFromSourceFilePath(sourceFile)
 
 	// note to future contributors: if you're going to use the html folder 
