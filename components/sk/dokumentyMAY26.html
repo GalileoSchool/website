@@ -1,0 +1,1298 @@
+
+<div class="documents-module">
+    <div class="documents-home" id="documents-home">
+        <div class="card about document-card category-card">
+            <div class="card-content">
+                <div>
+                    <div class="card-title"><h3>Školský poriadok</h3></div>
+                    <div class="card-text short">
+                        <p>Pravidlá školy, práva a povinnosti žiakov a zákonných zástupcov, organizácia vyučovania, absencie, hodnotenie a výchovné opatrenia.</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-btn doc-nav-btn" type="button" onclick="showDocumentCategory('skolsky-poriadok')">Otvoriť</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card about document-card category-card">
+            <div class="card-content">
+                <div>
+                    <div class="card-title"><h3>Školský vzdelávací plán</h3></div>
+                    <div class="card-text short">
+                        <p>Zverejnenie školského vzdelávacieho plánu.</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-btn doc-nav-btn" type="button" onclick="showDocumentCategory('skolsky-vzdelavaci-plan')">Otvoriť</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card about document-card category-card">
+            <div class="card-content">
+                <div>
+                    <div class="card-title"><h3>Učebný plán</h3></div>
+                    <div class="card-text short">
+                        <p>Zverejnenie učebného plánu gymnázia.</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-btn doc-nav-btn" type="button" onclick="showDocumentCategory('ucebny-plan')">Otvoriť</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card about document-card category-card">
+            <div class="card-content">
+                <div>
+                    <div class="card-title"><h3>Ostatné</h3></div>
+                    <div class="card-text short">
+                        <p>Zverejňované dokumenty školy, usmernenia, interné pravidlá a doplňujúce informácie.</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="toggle-btn doc-nav-btn" type="button" onclick="showDocumentCategory('ostatne')">Otvoriť</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="documents-category no-display" id="category-skolsky-poriadok">
+        <div class="documents-top-actions">
+            <button class="toggle-btn back-btn" type="button" onclick="showDocumentsHome()">← Späť na výber dokumentov</button>
+        </div>
+        <div class="documents-subintro">
+            <h3>Školský poriadok</h3>
+            <p>Vyberte článok, ktorý chcete zobraziť.</p>
+        </div>
+        <div class="documents-overview" id="documents-overview">
+            <div class="card-text long" style="display:block;"><p>Prehľad článkov bude doplnený po vložení finálneho obsahu existujúcej verzie.</p></div>
+        </div>
+        <div class="documents-articles">
+            <!-- dokumenty.html -->
+
+<style>
+.documents-module{
+  width:100%;
+  text-align:left;
+  color:#222;
+}
+.documents-module *{
+  box-sizing:border-box;
+}
+.documents-module .doc-header-box{
+  width:100%;
+  background:#fff;
+  border-top:8px solid #a60000;
+  box-shadow:0 8px 24px rgba(0,0,0,.06);
+  padding:20px 22px;
+  margin:0 0 16px 0;
+}
+.documents-module .doc-header-box h2{
+  margin:0 0 8px;
+  color:#a60000;
+  font-family:'Century Gothic','Futura','Didact Gothic',sans-serif;
+  font-size:clamp(1.4rem, 2vw, 2rem);
+}
+.documents-module .doc-header-box p{
+  margin:0;
+  line-height:1.7;
+  color:#444;
+}
+.documents-module .layout{
+  max-width:1180px;
+  margin:0 auto 20px;
+  padding:0 0 20px;
+  display:block;
+}
+.documents-module .overview-stack{
+  display:block;
+}
+.documents-module .overview-card,
+.documents-module .main-panel,
+.documents-module .info-box{
+  background:#fff;
+  box-shadow:0 8px 24px rgba(0,0,0,.06);
+  border-top:8px solid #a60000;
+}
+.documents-module .overview-card,
+.documents-module .main-panel{
+  width:100%;
+}
+.documents-module .overview-card{
+  padding:24px;
+}
+.documents-module .main-panel{
+  padding:26px;
+}
+.documents-module .doc-page{
+  display:none;
+}
+.documents-module .doc-page.active{
+  display:block;
+}
+.documents-module .overview-card h2,
+.documents-module .doc-section h3,
+.documents-module .doc-page h2,
+.documents-module .doc-page h3,
+.documents-module .doc-page h4,
+.documents-module .grid-card h3,
+.documents-module .grid-kicker,
+.documents-module .page-eyebrow,
+.documents-module .back-link{
+  font-family:'Century Gothic','Futura','Didact Gothic',sans-serif;
+}
+.documents-module .overview-card h2,
+.documents-module .doc-page h2,
+.documents-module .doc-section h3{
+  color:#a60000;
+}
+.documents-module .overview-card > p{
+  margin:0 0 18px;
+  color:#555;
+  line-height:1.6;
+}
+.documents-module .cards-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.documents-module .grid-card{
+  display:block;
+  text-decoration:none;
+  color:#222;
+  background:#fff;
+  border:1px solid #e6e6e6;
+  border-top:5px solid #a60000;
+  box-shadow:0 8px 18px rgba(0,0,0,.05);
+  padding:18px;
+  transition:all .2s ease;
+}
+.documents-module .grid-card:hover{
+  text-decoration:none;
+  color:#222;
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+.documents-module .grid-kicker{
+  display:inline-block;
+  background:#a60000;
+  color:#fff;
+  padding:5px 10px;
+  margin-bottom:12px;
+  font-size:.95rem;
+  font-weight:700;
+}
+.documents-module .grid-card h3{
+  margin:0 0 8px;
+  font-size:1.15rem;
+}
+.documents-module .grid-card p{
+  margin:0;
+  line-height:1.6;
+  color:#555;
+}
+.documents-module .page-head{
+  margin-bottom:20px;
+}
+.documents-module .page-eyebrow{
+  color:#777;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  margin-bottom:8px;
+}
+.documents-module .page-head h2{
+  margin:0 0 10px;
+  font-size:clamp(1.45rem,2.2vw,2rem);
+}
+.documents-module .page-head p{
+  margin:0;
+  line-height:1.7;
+  color:#555;
+}
+.documents-module .back-link{
+  display:inline-block;
+  margin-bottom:14px;
+  padding:10px 14px;
+  border:1px solid #ddd;
+  background:#f3f3f3;
+  color:#222;
+  text-decoration:none;
+  font-weight:700;
+}
+.documents-module .back-link:hover{
+  background:#a60000;
+  color:#fff;
+  text-decoration:none;
+}
+.documents-module .doc-section{
+  margin-top:18px;
+}
+.documents-module .doc-section p{
+  line-height:1.75;
+  color:#444;
+}
+.documents-module .doc-list{
+  margin:0;
+  padding-left:22px;
+}
+.documents-module .doc-list li{
+  margin-bottom:10px;
+  line-height:1.7;
+}
+.documents-module .split-box{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.documents-module .info-box{
+  padding:18px;
+}
+.documents-module .info-box h4{
+  margin:0 0 12px;
+  color:#a60000;
+  font-size:1.05rem;
+}
+.documents-module .table-like{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.documents-module .table-row{
+  display:grid;
+  grid-template-columns:145px 1fr;
+  gap:14px;
+  padding-bottom:10px;
+  border-bottom:1px solid #ececec;
+  line-height:1.5;
+}
+.documents-module .table-row:last-child{
+  border-bottom:none;
+  padding-bottom:0;
+}
+@media screen and (max-width: 900px){
+  .documents-module .cards-grid,
+  .documents-module .split-box{
+    grid-template-columns:1fr;
+  }
+}
+@media screen and (max-width: 669px){
+  .documents-module .doc-header-box,
+  .documents-module .overview-card,
+  .documents-module .main-panel,
+  .documents-module .info-box{
+    padding:18px;
+  }
+  .documents-module .table-row{
+    grid-template-columns:1fr;
+    gap:4px;
+  }
+}
+
+.ucebny-plan-overview .card.about{margin-bottom:1.25rem;}
+.ucebny-plan-articles .card.about{margin-bottom:1.25rem;}
+.ucebny-table{width:100%;border-collapse:collapse;margin:0 0 1rem 0;background:#ffffff;}
+.ucebny-table th,.ucebny-table td{border:1px solid #d6d6d6;padding:.65rem .75rem;text-align:center;vertical-align:middle;}
+.ucebny-table th:first-child,.ucebny-table td:first-child{text-align:left;}
+.ucebny-table thead th{background:#a60000;color:#ffffff;font-family:'Century Gothic','Futura','Didact Gothic',sans-serif;}
+.ucebny-note-inline{margin-top:1rem;}
+.ucebny-notes-list{padding-left:1.25rem;}
+.ucebny-notes-list li{margin-bottom:.5rem;}
+.ucebny-date{margin-top:1.5rem;}
+.ucebny-article-view .card-body{display:block !important;background-color:#eeeeee !important;color:#000 !important;}
+.ucebny-article-view .card-text.long{display:block !important;}
+
+</style>
+
+<div class="documents-module" id="dokumenty-module">
+  <div class="doc-header-box">
+    <h2>Školský poriadok gymnázia</h2>
+    <p>Vyberte článok školského poriadku, ktorý chcete zobraziť.</p>
+  </div>
+  <main class="layout">
+<div class="overview-stack">
+<section class="overview-card doc-page active" data-page="overview" id="page-overview"><h2>Prehľad článkov</h2><p>Vyberte článok školského poriadku, ktorý chcete zobraziť.</p><div class="cards-grid">
+<a class="grid-card" href="#clanok-1">
+<div class="grid-kicker">Čl. 1</div>
+<h3>Základné ustanovenia</h3>
+<p>Účel školského poriadku, právny základ a základné zásady fungovania školy.</p>
+</a>
+<a class="grid-card" href="#clanok-2">
+<div class="grid-kicker">Čl. 2</div>
+<h3>Organizácia vyučovania</h3>
+<p>Rozvrh dňa, začiatok a koniec vyučovania, prestávky a režim školy.</p>
+</a>
+<a class="grid-card" href="#clanok-3">
+<div class="grid-kicker">Čl. 3</div>
+<h3>Práva žiakov</h3>
+<p>Kvalitné vzdelávanie, ochrana bezpečnosti, rešpekt a rovnaké zaobchádzanie.</p>
+</a>
+<a class="grid-card" href="#clanok-4">
+<div class="grid-kicker">Čl. 4</div>
+<h3>Povinnosti žiakov</h3>
+<p>Dochádzka, pripravenosť na vyučovanie, ochrana majetku a rešpektovanie pokynov školy.</p>
+</a>
+<a class="grid-card" href="#clanok-5">
+<div class="grid-kicker">Čl. 5</div>
+<h3>Zákazy pre žiakov</h3>
+<p>Mobilné telefóny, opustenie areálu, návykové látky, šikana a ohrozujúce správanie.</p>
+</a>
+<a class="grid-card" href="#clanok-6">
+<div class="grid-kicker">Čl. 6</div>
+<h3>Práva zákonného zástupcu</h3>
+<p>Prístup k informáciám, rozhovor s učiteľmi a oboznámenie sa s dokumentmi školy.</p>
+</a>
+<a class="grid-card" href="#clanok-7">
+<div class="grid-kicker">Čl. 7</div>
+<h3>Povinnosti zákonného zástupcu</h3>
+<p>Komunikácia so školou, ospravedlňovanie absencií a spolupráca pri výchove a vzdelávaní.</p>
+</a>
+<a class="grid-card" href="#clanok-8">
+<div class="grid-kicker">Čl. 8</div>
+<h3>Režim školy a organizácia dňa</h3>
+<p>Registrácia pri príchode, odkladanie mobilov, obed, presuny a pobyt v budove školy.</p>
+</a>
+<a class="grid-card" href="#clanok-9">
+<div class="grid-kicker">Čl. 9</div>
+<h3>Absencia žiakov</h3>
+<p>Pravidlá dochádzky, ospravedlňovanie neprítomnosti a postup pri dlhšej absencii.</p>
+</a>
+<a class="grid-card" href="#clanok-10">
+<div class="grid-kicker">Čl. 10</div>
+<h3>Hodnotenie a klasifikácia</h3>
+<p>Percentuálne hodnotenie počas roka, klasifikácia na vysvedčení a náhradné termíny.</p>
+</a>
+<a class="grid-card" href="#clanok-11">
+<div class="grid-kicker">Čl. 11</div>
+<h3>Opravné a komisionálne skúšky</h3>
+<p>Podmienky konania opravných skúšok a prípady komisionálneho preskúšania.</p>
+</a>
+<a class="grid-card" href="#clanok-12">
+<div class="grid-kicker">Čl. 12</div>
+<h3>Postup do vyššieho ročníka</h3>
+<p>Podmienky postupu a opakovania ročníka.</p>
+</a>
+<a class="grid-card" href="#clanok-13">
+<div class="grid-kicker">Čl. 13</div>
+<h3>Výchovné opatrenia</h3>
+<p>Pochvaly, napomenutia, pokarhania, znížená známka zo správania a ďalšie opatrenia.</p>
+</a>
+<a class="grid-card" href="#clanok-14">
+<div class="grid-kicker">Čl. 14</div>
+<h3>Záverečné ustanovenia</h3>
+<p>Záväznosť poriadku, oboznámenie žiakov a pravidlá vstupu zákonného zástupcu do budovy školy.</p>
+</a>
+</div></section>
+<section class="main-panel doc-page" data-page="clanok-1" id="page-clanok-1">
+<div class="page-head">
+<a class="back-link" href="#overview">← Späť na prehľad článkov</a>
+<div class="page-eyebrow">Článok 1</div>
+<h2>Základné ustanovenia</h2>
+<p>Školský poriadok upravuje pravidlá života v škole, povinnosti a práva žiakov, zákonných zástupcov a zamestnancov školy, ako aj zásady bezpečnosti, organizácie a vzájomného rešpektu.</p>
+</div>
+<div class="doc-section">
+<h3>Účel dokumentu</h3>
+<p>Školský poriadok je záväzný vnútorný dokument školy. Jeho cieľom je vytvoriť bezpečné, kultúrne a predvídateľné prostredie pre výchovu a vzdelávanie a podporiť dobré medziľudské vzťahy v celej školskej komunite.</p>
+<p>Dokument je určený žiakom, zákonným zástupcom aj zamestnancom školy. Upravuje režim dňa, pravidlá správania, proces ospravedlňovania neprítomnosti, hodnotenie a výchovné opatrenia.</p>
+</div>
+</section>
+<section class="main-panel doc-page" data-page="clanok-2" id="page-clanok-2">
+<div class="page-head">
+<a class="back-link" href="#overview">← Späť na prehľad článkov</a>
+<div class="page-eyebrow">Článok 2</div>
+<h2>Organizácia vyučovania</h2>
+<p>Vyučovanie je organizované podľa rozvrhu hodín schváleného riaditeľom školy. Škola zabezpečuje výchovno-vzdelávací proces v súlade s demokratickými a ľudskoprávnymi hodnotami.</p>
+</div>
+<div class="split-box">
+<div class="info-box">
+<h4>Časové rozdelenie dňa</h4>
+<div class="table-like">
+<div class="table-row"><strong>7:30 – 8:00</strong><span>Príchod do školy</span></div>
+<div class="table-row"><strong>8:00 – 8:15</strong><span>Triednická pätnásťminútovka</span></div>
+<div class="table-row"><strong>8:15 – 9:00</strong><span>1. vyučovacia hodina</span></div>
+<div class="table-row"><strong>9:10 – 9:55</strong><span>2. vyučovacia hodina</span></div>
+<div class="table-row"><strong>9:55 – 10:05</strong><span>Desiatová prestávka</span></div>
+<div class="table-row"><strong>10:05 – 10:50</strong><span>3. vyučovacia hodina</span></div>
+<div class="table-row"><strong>10:50 – 11:15</strong><span>Veľká prestávka</span></div>
+<div class="table-row"><strong>11:15 – 12:00</strong><span>4. vyučovacia hodina</span></div>
+<div class="table-row"><strong>12:05 – 12:50</strong><span>5. vyučovacia hodina</span></div>
+<div class="table-row"><strong>12:55 – 13:40</strong><span>6. vyučovacia hodina</span></div>
+<div class="table-row"><strong>13:40 – 14:10</strong><span>Obedňajšia prestávka</span></div>
+<div class="table-row"><strong>14:10 – 14:55</strong><span>7. vyučovacia hodina</span></div>
+<div class="table-row"><strong>15:05 – 15:50</strong><span>8. vyučovacia hodina</span></div>
+</div>
+</div>
+<div class="info-box">
+<h4>Základné pravidlá organizácie</h4>
+<ul class="doc-list">
+<li>Vyučovacia jednotka trvá 45 minút.</li>
+<li>Prestávky medzi hodinami trvajú 5 alebo 10 minút.</li>
+<li>Veľká prestávka trvá 25 minút.</li>
+<li>Popoludňajšie vyučovanie začína o 14:10.</li>
+<li>Žiaci sa počas prestávok riadia pokynmi pedagogického dozoru.</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="main-panel doc-page" data-page="clanok-3" id="page-clanok-3">
+<div class="page-head">
+<a class="back-link" href="#overview">← Späť na prehľad článkov</a>
+<div class="page-eyebrow">Článok 3</div>
+<h2>Práva žiakov</h2>
+<p>Žiaci majú právo na kvalitné vzdelávanie, bezpečné a rešpektujúce prostredie, objektívne hodnotenie a ochranu pred diskrimináciou, násilím a ponižujúcim zaobchádzaním.</p>
+</div>
+<div class="doc-section">
+<ul class="doc-list">
+<li>na kvalitný a rovnoprávny prístup k vzdelávaniu podľa školského vzdelávacieho programu,</li>
+<li>na úctu k svojej osobe, vierovyznaniu, svetonázoru a národnostnej príslušnosti,</li>
+<li>na ochranu zdravia, bezpečnosti a súkromia počas výchovno-vzdelávacieho procesu,</li>
+<li>na objektívne hodnotenie a oboznámenie sa s kritériami klasifikácie,</li>
+<li>na dialóg s učiteľom, triednym učiteľom a vedením školy,</li>
+<li>na oddych, hru a účasť na kultúrnom a umeleckom živote školy,</li>
+<li>na primerané podmienky pri špeciálnych výchovno-vzdelávacích potrebách.</li>
+</ul>
+</div>
+</section>
+<section class="main-panel doc-page" data-page="clanok-4" id="page-clanok-4">
+<div class="page-head">
+<a class="back-link" href="#overview">← Späť na prehľad článkov</a>
+<div class="page-eyebrow">Článok 4</div>
+<h2>Povinnosti žiakov</h2>
+<p>Žiaci sú povinní pravidelne a včas dochádzať do školy, osvojovať si vedomosti a zručnosti, správať sa slušne, dbať o bezpečnosť a rešpektovať pokyny zamestnancov školy.</p>
+</div>
+<div class="doc-section">
+<ul class="doc-list">
+<li>prichádzať na vyučovanie včas a zúčastňovať sa na všetkých povinných činnostiach,</li>
+<li>pripravovať sa na vyučovanie a niesť zodpovednosť za svoje študijné výsledky,</li>
+<li>neobmedzovať práva ostatných osôb a rešpektovať pravidlá školy,</li>
+<li>dbať o čistotu, poriadok a ochranu školského majetku,</li>
+<li>bezodkladne oznámiť úraz alebo zdravotnú indispozíciu,</li>
+<li>používať pridelený čip alebo ISIC pri vstupe a odchode zo školy,</li>
+<li>pri vstupe do školy uložiť mobilný telefón do bezpečnostného vrecka podľa pravidiel školy.</li>
+</ul>
+</div>
+</section>
+<section class="main-panel doc-page" data-page="clanok-5" id="page-clanok-5">
+<div class="page-head">
+<a class="back-link" href="#overview">← Späť na prehľad článkov</a>
+<div class="page-eyebrow">Článok 5</div>
+<h2>Zákazy pre žiakov</h2>
+<p>Školský poriadok určuje správanie, ktoré je v škole neprípustné z dôvodu bezpečnosti, ochrany majetku a ochrany dôstojnosti ostatných osôb.</p>
+</div>
+<div class="doc-section">
+<ul class="doc-list">
+<li>opúšťať budovu a areál školy počas vyučovania bez povolenia a dozoru,</li>
+<li>používať mobilné telefóny počas vyučovania,</li>
+<li>používať notebooky alebo tablety bez povolenia vyučujúceho,</li>
+<li>fajčiť, požívať alebo šíriť alkohol, drogy a iné zdraviu škodlivé látky,</li>
+<li>prinášať predmety ohrozujúce zdravie, bezpečnosť alebo priebeh vyučovania,</li>
+<li>vulgárne sa správať, šikanovať, kradnúť alebo poškodzovať majetok,</li>
+<li>bez súhlasu zverejňovať informácie o škole alebo vyhotovovať záznamy v priestoroch školy.</li>
+</ul>
+</div>
+</section>
+<section class="main-panel doc-page" data-page="clanok-6" id="page-clanok-6">
+<div class="page-head">
+<a class="back-link" href="#overview">← Späť na prehľad článkov</a>
+<div class="page-eyebrow">Článok 6</div>
+<h2>Práva zákonného zástupcu</h2>
+<p>Zákonný zástupca má právo byť informovaný o výchovno-vzdelávacích výsledkoch svojho dieťaťa a komunikovať so školou vo veciach týkajúcich sa jeho vzdelávania.</p>
+</div>
+<div class="doc-section">
+<ul class="doc-list">
+<li>získavať informácie o výsledkoch svojho dieťaťa na rodičovských stretnutiach a pohovoroch,</li>
+<li>mať prístup k dokumentom školy, ktoré sa týkajú jeho dieťaťa,</li>
+<li>po dohode požiadať o rozhovor s vyučujúcim alebo vedením školy,</li>
+<li>požiadať o komisionálne skúšanie v súlade s platnými predpismi,</li>
+<li>oboznámiť sa so školským poriadkom a výchovno-vzdelávacím programom školy.</li>
+</ul>
+</div>
+</section>
+<section class="main-panel doc-page" data-page="clanok-7" id="page-clanok-7">
+<div class="page-head">
+<a class="back-link" href="#overview">← Späť na prehľad článkov</a>
+<div class="page-eyebrow">Článok 7</div>
+<h2>Povinnosti zákonného zástupcu</h2>
+<p>Zákonný zástupca spolupracuje so školou, ospravedlňuje neprítomnosť žiaka, informuje o dôležitých skutočnostiach a vedie dieťa k dodržiavaniu školského poriadku.</p>
+</div>
+<div class="doc-section">
+<ul class="doc-list">
+<li>oboznámiť sa so školským poriadkom a viesť dieťa k jeho dodržiavaniu,</li>
+<li>komunikovať so školou vecne, rešpektujúco a konštruktívne,</li>
+<li>písomne oznámiť dôvod neprítomnosti žiaka bez zbytočného odkladu,</li>
+<li>informovať školu o zdravotných obmedzeniach a závažných skutočnostiach, ktoré môžu ovplyvniť vzdelávanie,</li>
+<li>nahradiť škodu, ktorú žiak úmyselne alebo z nedbanlivosti spôsobil,</li>
+<li>rešpektovať súkromie pracovníkov školy a komunikovať vo vopred dohodnutom čase.</li>
+</ul>
+</div>
+</section>
+<section class="main-panel doc-page" data-page="clanok-8" id="page-clanok-8">
+<div class="page-head">
+<a class="back-link" href="#overview">← Späť na prehľad článkov</a>
+<div class="page-eyebrow">Článok 8</div>
+<h2>Režim školy a organizácia dňa</h2>
+<p>Článok upravuje praktický chod školy: vstup do budovy, registráciu, používanie telefónov, pohyb po škole, stravovanie a komunikáciu so zamestnancami školy.</p>
+</div>
+<div class="doc-section">
+<ul class="doc-list">
+<li>žiaci sa registrujú čipom alebo ISIC kartou pri vstupe aj odchode zo školy,</li>
+<li>mobilný telefón sa pred začiatkom vyučovania vypne, vloží do bezpečnostného vrecka a odloží do tašky,</li>
+<li>žiaci nosia v priestoroch školy hygienicky vhodnú obuv,</li>
+<li>do odborných učební a telocvične vstupujú iba v sprievode vyučujúceho,</li>
+<li>počas vyučovania a prestávok neopúšťajú bez povolenia areál školy,</li>
+<li>obed sa vydáva a konzumuje výlučne v školskej jedálni,</li>
+<li>úradné záležitosti vybavujú žiaci spravidla prostredníctvom triedneho učiteľa.</li>
+</ul>
+</div>
+</section>
+<section class="main-panel doc-page" data-page="clanok-9" id="page-clanok-9">
+<div class="page-head">
+<a class="back-link" href="#overview">← Späť na prehľad článkov</a>
+<div class="page-eyebrow">Článok 9</div>
+<h2>Absencia žiakov na vyučovaní</h2>
+<p>Žiaci sú povinní dochádzať do školy pravidelne a dochvíľne. Pri neúčasti na vyučovaní je zákonný zástupca povinný bezodkladne informovať triedneho učiteľa a dodržať pravidlá ospravedlňovania.</p>
+</div>
+<div class="doc-section">
+<ul class="doc-list">
+<li>ak sa žiak nemôže zúčastniť vyučovania z dôvodov vopred známych, zákonný zástupca o tom vopred písomne informuje triedneho učiteľa,</li>
+<li>ak žiak opúšťa školu počas vyučovania, zákonný zástupca informuje triedneho učiteľa, ktorý vystaví priepustku,</li>
+<li>krátkodobú neprítomnosť ospravedlňuje zákonný zástupca v rozsahu podľa platných pravidiel školy a legislatívy,</li>
+<li>pri dlhšej neprítomnosti z dôvodu ochorenia sa predkladá potvrdenie od lekára,</li>
+<li>za neospravedlnené hodiny môže byť žiakovi uložené výchovné opatrenie,</li>
+<li>pri vysokej absencii v predmete môže škola nariadiť komisionálne preskúšanie.</li>
+</ul>
+</div>
+
+</section>
+<section class="main-panel doc-page" data-page="clanok-10" id="page-clanok-10">
+<div class="page-head">
+<a class="back-link" href="#overview">← Späť na prehľad článkov</a>
+<div class="page-eyebrow">Článok 10</div>
+<h2>Hodnotenie a klasifikácia</h2>
+<p>Počas školského roka sú výsledky výchovno-vzdelávacieho procesu priebežne hodnotené. Na vysvedčení sú žiaci hodnotení klasifikáciou podľa platných pravidiel školy.</p>
+</div>
+<div class="split-box">
+<div class="info-box">
+<h4>Klasifikácia prospechu</h4>
+<ul class="doc-list">
+<li>výborný</li>
+<li>chválitebný</li>
+<li>dobrý</li>
+<li>dostatočný</li>
+<li>nedostatočný</li>
+</ul>
+</div>
+<div class="info-box">
+<h4>Klasifikácia správania</h4>
+<ul class="doc-list">
+<li>veľmi dobré</li>
+<li>uspokojivé</li>
+<li>menej uspokojivé</li>
+<li>neuspokojivé</li>
+</ul>
+</div>
+</div>
+<div class="doc-section">
+<p>Ak nie je možné žiaka klasifikovať v riadnom termíne, riaditeľ školy určí náhradný termín skúšok. Zákonný zástupca môže požiadať o komisionálne preskúšanie v zákonom stanovenej lehote.</p>
+</div>
+</section>
+<section class="main-panel doc-page" data-page="clanok-11" id="page-clanok-11">
+<div class="page-head">
+<a class="back-link" href="#overview">← Späť na prehľad článkov</a>
+<div class="page-eyebrow">Článok 11</div>
+<h2>Opravné a komisionálne skúšky</h2>
+<p>Žiak, ktorý na konci druhého polroka neprospel najviac z dvoch povinných predmetov, môže so súhlasom riaditeľa školy vykonať opravnú skúšku.</p>
+</div>
+<div class="doc-section">
+<ul class="doc-list">
+<li>termín opravných skúšok určuje riaditeľ školy spravidla do 31. augusta,</li>
+<li>zo závažných dôvodov možno povoliť náhradný termín najneskôr do 15. septembra,</li>
+<li>komisionálna skúška sa koná v prípadoch určených školským zákonom a školským poriadkom,</li>
+<li>komisia je najmenej trojčlenná a výsledok skúšky je konečný.</li>
+</ul>
+</div>
+</section>
+<section class="main-panel doc-page" data-page="clanok-12" id="page-clanok-12">
+<div class="page-head">
+<a class="back-link" href="#overview">← Späť na prehľad článkov</a>
+<div class="page-eyebrow">Článok 12</div>
+<h2>Postup do vyššieho ročníka a opakovanie ročníka</h2>
+<p>Do vyššieho ročníka postupuje žiak, ktorý prospel. Žiak opakuje ročník, ak neprospel z viac ako dvoch predmetov alebo nevykonal úspešne opravnú skúšku z jedného alebo dvoch predmetov.</p>
+</div>
+</section>
+<section class="main-panel doc-page" data-page="clanok-13" id="page-clanok-13">
+<div class="page-head">
+<a class="back-link" href="#overview">← Späť na prehľad článkov</a>
+<div class="page-eyebrow">Článok 13</div>
+<h2>Výchovné opatrenia</h2>
+<p>Škola môže udeliť žiakovi pochvalu alebo výchovné opatrenie podľa závažnosti konania a po prerokovaní v súlade s vnútornými pravidlami školy.</p>
+</div>
+<div class="split-box">
+<div class="info-box">
+<h4>Pochvala alebo ocenenie</h4>
+<ul class="doc-list">
+<li>za výborný prospech a vzorné správanie,</li>
+<li>za reprezentáciu školy,</li>
+<li>za záslužný alebo statočný čin.</li>
+</ul>
+</div>
+<div class="info-box">
+<h4>Možné opatrenia pri porušení poriadku</h4>
+<ul class="doc-list">
+<li>napomenutie triednym učiteľom,</li>
+<li>pokarhanie triednym učiteľom,</li>
+<li>pokarhanie riaditeľom školy,</li>
+<li>zhoršená známka zo správania,</li>
+<li>podmienečné vylúčenie alebo vylúčenie zo školy.</li>
+</ul>
+</div>
+</div>
+<div class="doc-section">
+<h3>Príklady závažného porušenia pravidiel</h3>
+<ul class="doc-list">
+<li>slovné alebo fyzické napadnutie učiteľa,</li>
+<li>šikana, kyberšikana alebo sexuálne obťažovanie,</li>
+<li>rasizmus, šírenie nenávisti alebo diskriminácia,</li>
+<li>nosenie zbraní, požívanie a šírenie návykových látok,</li>
+<li>poškodzovanie alebo krádež majetku školy alebo iných osôb.</li>
+</ul>
+</div>
+</section>
+<section class="main-panel doc-page" data-page="clanok-14" id="page-clanok-14">
+<div class="page-head">
+<a class="back-link" href="#overview">← Späť na prehľad článkov</a>
+<div class="page-eyebrow">Článok 14</div>
+<h2>Záverečné ustanovenia</h2>
+<p>Školský poriadok je záväzný pre všetkých žiakov a zamestnancov školy. Triedny učiteľ oboznamuje žiakov s obsahom poriadku a škola zverejňuje jeho platné znenie spôsobom určeným vedením školy.</p>
+</div>
+<div class="doc-section">
+<ul class="doc-list">
+<li>nedodržanie školského poriadku je dôvodom na uloženie výchovných opatrení,</li>
+<li>so školským poriadkom musia byť žiaci preukázateľne oboznámení,</li>
+<li>neoddeliteľnou súčasťou sú aj prevádzkové poriadky odborných učební a ďalšie bezpečnostné pravidlá,</li>
+<li>zákonný zástupca vstupuje do budovy školy s vedomím zamestnanca školy a rieši záležitosti vo vopred dohodnutom čase.</li>
+</ul>
+</div>
+
+</section>
+</div>
+  </main>
+</div>
+
+<script>
+(function () {
+  const module = document.getElementById('dokumenty-module');
+  if (!module) return;
+
+  const pages = module.querySelectorAll('.doc-page');
+  const pageNames = Array.from(pages).map(p => p.dataset.page);
+
+  function resolvePage(hash) {
+    const cleaned = (hash || '#overview').replace('#', '');
+    return pageNames.includes(cleaned) ? cleaned : 'overview';
+  }
+
+  function activate(pageName) {
+    pages.forEach(page => {
+      page.classList.toggle('active', page.dataset.page === pageName);
+    });
+    const target = module.querySelector('[data-page="' + pageName + '"]');
+    if (target) {
+      target.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+  }
+
+  function onRoute() {
+    activate(resolvePage(window.location.hash));
+  }
+
+  window.addEventListener('hashchange', onRoute);
+  onRoute();
+})();
+
+function showUcebnyPlanArticle(articleId) {
+    var overview = document.getElementById('ucebny-plan-overview');
+    if (overview) overview.classList.add('no-display');
+
+    document.querySelectorAll('.ucebny-article-view').forEach(function(article){
+        article.classList.add('no-display');
+    });
+
+    var target = document.getElementById(articleId);
+    if (target) target.classList.remove('no-display');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showUcebnyPlanOverview() {
+    document.querySelectorAll('.ucebny-article-view').forEach(function(article){
+        article.classList.add('no-display');
+    });
+
+    var overview = document.getElementById('ucebny-plan-overview');
+    if (overview) overview.classList.remove('no-display');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+</script>
+
+
+        </div>
+    </div>
+
+    <div class="documents-category no-display" id="category-skolsky-vzdelavaci-plan">
+        <div class="documents-top-actions">
+            <button class="toggle-btn back-btn" type="button" onclick="showDocumentsHome()">← Späť na výber dokumentov</button>
+        </div>
+        <div class="documents-placeholder">
+            <div class="card about document-card">
+                <div class="card-content">
+                    <div>
+                        <div class="card-title"><h3>Školský vzdelávací plán</h3></div>
+                        <div class="card-text long" style="display:block;">
+                            <p>Sekcia na doplnenie finálneho obsahu školského vzdelávacieho plánu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="documents-category no-display" id="category-ucebny-plan">
+        <div class="documents-top-actions">
+            <button class="toggle-btn back-btn" type="button" onclick="showDocumentsHome()">← Späť na výber dokumentov</button>
+        </div>
+        <div class="documents-subintro">
+            <h3>Učebný plán</h3>
+            <p>Vyberte vzdelávaciu oblasť alebo poznámky, ktoré chcete zobraziť.</p>
+            <p><strong>Celková týždenná hodinová dotácia podľa ročníkov:</strong> 31 / 31 / 32 / 32 / 29 &nbsp;|&nbsp; <strong>Spolu:</strong> 155 hodín.</p>
+        </div>
+
+        <div class="ucebny-plan-overview" id="ucebny-plan-overview">
+            <div class="card-deck about">
+                <div class="card about document-card">
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title"><h3>Jazyk a komunikácia</h3></div>
+                            <div class="card-text short">
+                                <p>Slovenský jazyk a literatúra, anglický jazyk – 2. vyučovací jazyk a cudzí jazyk.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="toggle-btn" type="button" onclick="showUcebnyPlanArticle('ucebny-plan-jazyk-komunikacia')">Otvoriť</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card about document-card">
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title"><h3>Človek a hodnoty</h3></div>
+                            <div class="card-text short">
+                                <p>Etická alebo náboženská výchova v prvom a druhom ročníku.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="toggle-btn" type="button" onclick="showUcebnyPlanArticle('ucebny-plan-clovek-hodnoty')">Otvoriť</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card about document-card">
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title"><h3>Človek a spoločnosť</h3></div>
+                            <div class="card-text short">
+                                <p>Dejepis, geografia a občianska náuka rozdelené podľa ročníkov.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="toggle-btn" type="button" onclick="showUcebnyPlanArticle('ucebny-plan-clovek-spolocnost')">Otvoriť</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card about document-card">
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title"><h3>Človek a príroda</h3></div>
+                            <div class="card-text short">
+                                <p>Fyzika, chémia a biológia vrátane IGCSE prípravy v anglickom jazyku.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="toggle-btn" type="button" onclick="showUcebnyPlanArticle('ucebny-plan-clovek-priroda')">Otvoriť</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card about document-card">
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title"><h3>Umenie a kultúra</h3></div>
+                            <div class="card-text short">
+                                <p>Predmet Umenie a kultúra s dotáciou v prvom ročníku.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="toggle-btn" type="button" onclick="showUcebnyPlanArticle('ucebny-plan-umenie-kultura')">Otvoriť</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card about document-card">
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title"><h3>Matematika a práca s informáciami</h3></div>
+                            <div class="card-text short">
+                                <p>Matematika, cvičenia z matematiky a informatika.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="toggle-btn" type="button" onclick="showUcebnyPlanArticle('ucebny-plan-matematika-informacie')">Otvoriť</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card about document-card">
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title"><h3>Zdravie a človek</h3></div>
+                            <div class="card-text short">
+                                <p>Telesná a športová výchova v každom ročníku.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="toggle-btn" type="button" onclick="showUcebnyPlanArticle('ucebny-plan-zdravie-clovek')">Otvoriť</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card about document-card">
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title"><h3>Profilové a voliteľné predmety</h3></div>
+                            <div class="card-text short">
+                                <p>Spoločenskovedný seminár a voliteľné semináre GALILEO SCHOOL.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="toggle-btn" type="button" onclick="showUcebnyPlanArticle('ucebny-plan-profilove-volitelne')">Otvoriť</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card about document-card">
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title"><h3>Poznámky</h3></div>
+                            <div class="card-text short">
+                                <p>Rozpis seminárov, disponibilné hodiny, organizačné poznámky a ďalšie podmienky vyučovania.</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="toggle-btn" type="button" onclick="showUcebnyPlanArticle('ucebny-plan-poznamky')">Otvoriť</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ucebny-plan-articles">
+            <div class="card about document-card ucebny-article-view no-display" id="ucebny-plan-jazyk-komunikacia">
+                <div class="card-content">
+                    <div>
+                        <div class="card-title"><h3>Jazyk a komunikácia</h3></div>
+                        <div class="card-body">
+                            <div class="card-text long" style="display:block;">
+                                <table class="ucebny-table">
+                                    <thead>
+                                        <tr><th>Predmet</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>Spolu</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Slovenský jazyk a literatúra</td><td>3</td><td>3</td><td>3</td><td>5</td><td>—</td><td>14</td></tr>
+                                        <tr><td>Anglický jazyk – 2. vyučovací jazyk</td><td>8</td><td>6</td><td>6</td><td>6</td><td>6</td><td>32</td></tr>
+                                        <tr><td>Cudzí jazyk</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>15</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer"><button class="toggle-btn" type="button" onclick="showUcebnyPlanOverview()">← Späť na vzdelávacie oblasti</button></div>
+                </div>
+            </div>
+
+            <div class="card about document-card ucebny-article-view no-display" id="ucebny-plan-clovek-hodnoty">
+                <div class="card-content">
+                    <div>
+                        <div class="card-title"><h3>Človek a hodnoty</h3></div>
+                        <div class="card-body">
+                            <div class="card-text long" style="display:block;">
+                                <table class="ucebny-table">
+                                    <thead>
+                                        <tr><th>Predmet</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>Spolu</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Etická / náboženská výchova</td><td>1</td><td>1</td><td>—</td><td>—</td><td>—</td><td>2</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer"><button class="toggle-btn" type="button" onclick="showUcebnyPlanOverview()">← Späť na vzdelávacie oblasti</button></div>
+                </div>
+            </div>
+
+            <div class="card about document-card ucebny-article-view no-display" id="ucebny-plan-clovek-spolocnost">
+                <div class="card-content">
+                    <div>
+                        <div class="card-title"><h3>Človek a spoločnosť</h3></div>
+                        <div class="card-body">
+                            <div class="card-text long" style="display:block;">
+                                <table class="ucebny-table">
+                                    <thead>
+                                        <tr><th>Predmet</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>Spolu</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Dejepis</td><td>—</td><td>2</td><td>2</td><td>2</td><td>—</td><td>6</td></tr>
+                                        <tr><td>Geografia</td><td>—</td><td>1</td><td>2</td><td>1</td><td>—</td><td>4</td></tr>
+                                        <tr><td>Občianska náuka</td><td>—</td><td>—</td><td>2</td><td>2</td><td>3</td><td>7</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer"><button class="toggle-btn" type="button" onclick="showUcebnyPlanOverview()">← Späť na vzdelávacie oblasti</button></div>
+                </div>
+            </div>
+
+            <div class="card about document-card ucebny-article-view no-display" id="ucebny-plan-clovek-priroda">
+                <div class="card-content">
+                    <div>
+                        <div class="card-title"><h3>Človek a príroda</h3></div>
+                        <div class="card-body">
+                            <div class="card-text long" style="display:block;">
+                                <table class="ucebny-table">
+                                    <thead>
+                                        <tr><th>Predmet</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>Spolu</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Fyzika</td><td>—</td><td>2</td><td>2</td><td>1</td><td>—</td><td>5</td></tr>
+                                        <tr><td>IGCSE Fyzika</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>2</td></tr>
+                                        <tr><td>Chémia</td><td>—</td><td>2</td><td>2</td><td>1</td><td>—</td><td>5</td></tr>
+                                        <tr><td>IGCSE Chémia</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>2</td></tr>
+                                        <tr><td>Biológia</td><td>—</td><td>2</td><td>2</td><td>2</td><td>—</td><td>6</td></tr>
+                                        <tr><td>IGCSE Biológia</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>2</td></tr>
+                                    </tbody>
+                                </table>
+                                <p class="ucebny-note-inline"><strong>Poznámka:</strong> Profilové predmety v anglickom jazyku podporujú prípravu na štúdium prírodovedných predmetov a IGCSE kurikulum.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer"><button class="toggle-btn" type="button" onclick="showUcebnyPlanOverview()">← Späť na vzdelávacie oblasti</button></div>
+                </div>
+            </div>
+
+            <div class="card about document-card ucebny-article-view no-display" id="ucebny-plan-umenie-kultura">
+                <div class="card-content">
+                    <div>
+                        <div class="card-title"><h3>Umenie a kultúra</h3></div>
+                        <div class="card-body">
+                            <div class="card-text long" style="display:block;">
+                                <table class="ucebny-table">
+                                    <thead>
+                                        <tr><th>Predmet</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>Spolu</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Umenie a kultúra</td><td>2</td><td>—</td><td>—</td><td>—</td><td>—</td><td>2</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer"><button class="toggle-btn" type="button" onclick="showUcebnyPlanOverview()">← Späť na vzdelávacie oblasti</button></div>
+                </div>
+            </div>
+
+            <div class="card about document-card ucebny-article-view no-display" id="ucebny-plan-matematika-informacie">
+                <div class="card-content">
+                    <div>
+                        <div class="card-title"><h3>Matematika a práca s informáciami</h3></div>
+                        <div class="card-body">
+                            <div class="card-text long" style="display:block;">
+                                <table class="ucebny-table">
+                                    <thead>
+                                        <tr><th>Predmet</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>Spolu</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Matematika</td><td>4</td><td>4</td><td>4</td><td>—</td><td>—</td><td>12</td></tr>
+                                        <tr><td>Cvičenia z matematiky</td><td>—</td><td>—</td><td>—</td><td>4</td><td>3</td><td>7</td></tr>
+                                        <tr><td>Informatika</td><td>—</td><td>2</td><td>2</td><td>—</td><td>—</td><td>4</td></tr>
+                                    </tbody>
+                                </table>
+                                <p class="ucebny-note-inline"><strong>Poznámka:</strong> Trieda sa delí na každej hodine informatiky v druhom a treťom ročníku.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer"><button class="toggle-btn" type="button" onclick="showUcebnyPlanOverview()">← Späť na vzdelávacie oblasti</button></div>
+                </div>
+            </div>
+
+            <div class="card about document-card ucebny-article-view no-display" id="ucebny-plan-zdravie-clovek">
+                <div class="card-content">
+                    <div>
+                        <div class="card-title"><h3>Zdravie a človek</h3></div>
+                        <div class="card-body">
+                            <div class="card-text long" style="display:block;">
+                                <table class="ucebny-table">
+                                    <thead>
+                                        <tr><th>Predmet</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>Spolu</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Telesná a športová výchova</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>10</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer"><button class="toggle-btn" type="button" onclick="showUcebnyPlanOverview()">← Späť na vzdelávacie oblasti</button></div>
+                </div>
+            </div>
+
+            <div class="card about document-card ucebny-article-view no-display" id="ucebny-plan-profilove-volitelne">
+                <div class="card-content">
+                    <div>
+                        <div class="card-title"><h3>Profilové a voliteľné predmety GALILEO SCHOOL</h3></div>
+                        <div class="card-body">
+                            <div class="card-text long" style="display:block;">
+                                <table class="ucebny-table">
+                                    <thead>
+                                        <tr><th>Predmet</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>Spolu</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Spoločenskovedný seminár</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>3</td></tr>
+                                        <tr><td>Voliteľné semináre</td><td>—</td><td>—</td><td>—</td><td>3</td><td>12</td><td>15</td></tr>
+                                    </tbody>
+                                </table>
+                                <p class="ucebny-note-inline"><strong>Poznámka:</strong> Voliteľné hodiny sú určené na prípravu na maturitnú skúšku; študenti si z ponuky seminárov volia spolu 15 vyučovacích hodín.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer"><button class="toggle-btn" type="button" onclick="showUcebnyPlanOverview()">← Späť na vzdelávacie oblasti</button></div>
+                </div>
+            </div>
+
+            <div class="card about document-card ucebny-article-view no-display" id="ucebny-plan-poznamky">
+                <div class="card-content">
+                    <div>
+                        <div class="card-title"><h3>Poznámky</h3></div>
+                        <div class="card-body">
+                            <div class="card-text long" style="display:block;">
+                                <h4>Maturitná príprava a semináre</h4>
+                                <ul class="ucebny-notes-list">
+                                    <li>Voliteľné hodiny budú použité na prípravu na maturitnú skúšku. Študenti si z ponuky seminárov volia spolu 15 vyučovacích hodín.</li>
+                                </ul>
+
+                                <h4>Dotácia vo 4. ročníku</h4>
+                                <ul class="ucebny-notes-list">
+                                    <li>Seminár z geografie – 3 hodiny</li>
+                                    <li>Spoločenskovedný seminár – 3 hodiny</li>
+                                    <li>Seminár z biológie – 3 hodiny</li>
+                                </ul>
+
+                                <h4>Dotácia v 5. ročníku</h4>
+                                <ul class="ucebny-notes-list">
+                                    <li>Seminár z informatiky – 3 hodiny</li>
+                                    <li>Seminár z fyziky – 3 hodiny</li>
+                                    <li>Seminár z dejepisu – 3 hodiny</li>
+                                    <li>Seminár z geografie – 3 hodiny</li>
+                                    <li>Seminár z matematiky – 3 hodiny</li>
+                                    <li>Seminár z biológie – 3 hodiny</li>
+                                    <li>Seminár z chémie – 3 hodiny</li>
+                                    <li>Spoločenskovedný seminár – 3 hodiny</li>
+                                </ul>
+
+                                <h4>Disponibilné hodiny GALILEO SCHOOL</h4>
+                                <ul class="ucebny-notes-list">
+                                    <li>Cvičenia z matematiky</li>
+                                    <li>Príprava na štúdium Fyziky v Anglickom jazyku</li>
+                                    <li>Príprava na štúdium Chémie v Anglickom jazyku</li>
+                                    <li>Príprava na štúdium Biológie v Anglickom jazyku</li>
+                                    <li>Spoločenskovedný seminár</li>
+                                </ul>
+
+                                <h4>Organizačné poznámky</h4>
+                                <ul class="ucebny-notes-list">
+                                    <li>Trieda sa delí na každej hodine Informatiky v druhom a treťom ročníku.</li>
+                                    <li>Prierezové témy sú začlenené do všetkých vyučovacích predmetov.</li>
+                                    <li>Povinnou súčasťou vyučovania je učivo „Ochrana života a zdravia“, účelové cvičenia v 1. a 2. ročníku a samostatný kurz na ochranu života a zdravia v 3. ročníku.</li>
+                                    <li>Ako cudzí jazyk sa vyučuje jeden z jazykov: nemecký, francúzsky, španielsky a ruský a podľa potreby a možnosti aj ďalšie cudzie jazyky.</li>
+                                    <li>Škola organizuje projektový týždeň so zameraním na využitie medzipredmetových vzťahov v oblastiach prírodovedných a humanitných predmetov v trvaní jeden týždeň za jeden polrok.</li>
+                                    <li>Škola organizuje praktické vyučovanie formou odbornej stáže (Internship) v trvaní jeden týždeň v treťom ročníku štúdia so zameraním na využitie teoretických vedomostí kurikula IGCSE Business nadobudnutých v prvom a druhom ročníku štúdia.</li>
+                                    <li>Psychosociálny tréning sa bude realizovať formou kurzu.</li>
+                                </ul>
+
+                                <p class="ucebny-date"><strong>V Bratislave 15. 7. 2025</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer"><button class="toggle-btn" type="button" onclick="showUcebnyPlanOverview()">← Späť na vzdelávacie oblasti</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="documents-category no-display" id="category-ostatne">
+        <div class="documents-top-actions">
+            <button class="toggle-btn back-btn" type="button" onclick="showDocumentsHome()">← Späť na výber dokumentov</button>
+        </div>
+        <div class="documents-placeholder">
+            <div class="card about document-card">
+                <div class="card-content">
+                    <div>
+                        <div class="card-title"><h3>Ostatné</h3></div>
+                        <div class="card-text long" style="display:block;">
+                            <p>Táto sekcia je pripravená na doplnenie ďalších dokumentov a oznamov určených na zverejnenie.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.documents-module{width:100%;}
+.documents-home,.documents-overview,.documents-articles,.documents-placeholder{width:100%;}
+.documents-home .category-card{margin-bottom:1.25rem;}
+.documents-category .documents-subintro{padding:0 1rem 1rem 1rem;text-align:center;}
+.documents-category .documents-subintro h3{color:#a60000;font-family:'Century Gothic','Futura','Didact Gothic',sans-serif;margin-bottom:.5rem;}
+.documents-category .documents-subintro p{margin-bottom:0;}
+.documents-top-actions{padding:0 0 1rem 0;text-align:center;}
+.documents-top-actions .back-btn{width:auto;padding:.75rem 1.25rem;display:inline-block;}
+.documents-placeholder .card-content{background-color:#a60000;color:#fff;}
+.documents-placeholder .card-text.long{background-color:#eeeeee;color:#000;}
+.doc-nav-btn{font-weight:bold;}
+.no-display{display:none!important;}
+@media screen and (min-width: 670px){
+  .documents-home{padding:0 2%;}
+}
+
+.ucebny-plan-overview .card.about{margin-bottom:1.25rem;}
+.ucebny-plan-articles .card.about{margin-bottom:1.25rem;}
+.ucebny-table{width:100%;border-collapse:collapse;margin:0 0 1rem 0;background:#ffffff;}
+.ucebny-table th,.ucebny-table td{border:1px solid #d6d6d6;padding:.65rem .75rem;text-align:center;vertical-align:middle;}
+.ucebny-table th:first-child,.ucebny-table td:first-child{text-align:left;}
+.ucebny-table thead th{background:#a60000;color:#ffffff;font-family:'Century Gothic','Futura','Didact Gothic',sans-serif;}
+.ucebny-note-inline{margin-top:1rem;}
+.ucebny-notes-list{padding-left:1.25rem;}
+.ucebny-notes-list li{margin-bottom:.5rem;}
+.ucebny-date{margin-top:1.5rem;}
+.ucebny-article-view .card-body{display:block !important;background-color:#eeeeee !important;color:#000 !important;}
+.ucebny-article-view .card-text.long{display:block !important;}
+
+</style>
+
+<script>
+function showDocumentsHome() {
+    var home = document.getElementById('documents-home');
+    if (home) home.classList.remove('no-display');
+
+    document.querySelectorAll('.documents-category').forEach(function(section){
+        section.classList.add('no-display');
+    });
+
+    document.querySelectorAll('.document-article-view').forEach(function(article){
+        article.classList.add('no-display');
+    });
+
+    var overview = document.getElementById('documents-overview');
+    if (overview) overview.classList.remove('no-display');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showDocumentCategory(categoryId) {
+    var home = document.getElementById('documents-home');
+    if (home) home.classList.add('no-display');
+
+    document.querySelectorAll('.documents-category').forEach(function(section){
+        section.classList.add('no-display');
+    });
+
+    var target = document.getElementById('category-' + categoryId);
+    if (target) target.classList.remove('no-display');
+
+    if (categoryId === 'skolsky-poriadok') {
+        document.querySelectorAll('.document-article-view').forEach(function(article){
+            article.classList.add('no-display');
+        });
+        var overview = document.getElementById('documents-overview');
+        if (overview) overview.classList.remove('no-display');
+    }
+
+    if (categoryId === 'ucebny-plan') {
+        document.querySelectorAll('.ucebny-article-view').forEach(function(article){
+            article.classList.add('no-display');
+        });
+        var uOverview = document.getElementById('ucebny-plan-overview');
+        if (uOverview) uOverview.classList.remove('no-display');
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showDocumentArticle(articleId) {
+    var overview = document.getElementById('documents-overview');
+    if (overview) overview.classList.add('no-display');
+
+    document.querySelectorAll('.document-article-view').forEach(function(article){
+        article.classList.add('no-display');
+    });
+
+    var target = document.getElementById(articleId);
+    if (target) target.classList.remove('no-display');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showArticlesOverview() {
+    document.querySelectorAll('.document-article-view').forEach(function(article){
+        article.classList.add('no-display');
+    });
+
+    var overview = document.getElementById('documents-overview');
+    if (overview) overview.classList.remove('no-display');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showUcebnyPlanArticle(articleId) {
+    var overview = document.getElementById('ucebny-plan-overview');
+    if (overview) overview.classList.add('no-display');
+
+    document.querySelectorAll('.ucebny-article-view').forEach(function(article){
+        article.classList.add('no-display');
+    });
+
+    var target = document.getElementById(articleId);
+    if (target) target.classList.remove('no-display');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showUcebnyPlanOverview() {
+    document.querySelectorAll('.ucebny-article-view').forEach(function(article){
+        article.classList.add('no-display');
+    });
+
+    var overview = document.getElementById('ucebny-plan-overview');
+    if (overview) overview.classList.remove('no-display');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+</script>
